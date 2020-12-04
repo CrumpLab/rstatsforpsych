@@ -1,0 +1,44 @@
+# Preface {.unnumbered}
+
+Right now it's Dec 4th, 2020; and Anjali Krishnan & I have been co-teaching a stats course for graduate students in our Master's of Experimental Psychology program. The semester is almost over, and next semester we are moving on to stats II. This is the first time we have tried to coordinate efforts at the graduate level, it's been fun.
+
+A few years ago, we put our heads together to create a free undergraduate textbook ([Answering questions with data](https://crumplab.github.io/statistics/)) and [lab manual](https://crumplab.github.io/statisticsLab/), which covered the same exercises across four software environments, R, Excel, SPSS, and Jamovi ([Anjali's verion here](https://anjkrishnan.github.io/StatLab_jamovi)). All of those resources exist on Github repos, and are licensed as CC BY 4.0, so they can all be copied, remixed, and re-used on that license.
+
+Anjali has been teaching our stats sequence at the graduate level for several years, and our program decided to expand the statistics offering to include additional lab hours. So, this year, I'm joining the club and writing lab curriculum for every week of the course. As of now, I decided to gather all of the labs written so far and put them into this "fancy" new `bs4_book()` bookdown format.
+
+Anjali has been using two statistics textbooks for the lecture portion of the course. The first semester mostly follows "Thinking with Data" [@vokeyThinkingData7th2018], and the second semester mostly follows "Experimental Design and Analysis for Psychology" [@abdiExperimentalDesignAnalysis2009]. Coincidentally, I was trained by John Vokey & Scott Allen at the University of Lethbridge (and worked through their textbook as an undergrad), and Anjali was trained by Hérve Abdi at UT Austin. So, it seems we have both academically inherited the impulse to create statistics curriculum.
+
+## For Students
+
+If you are a student in my class and have questions about what's going on in class, then please ask me or email me.
+
+If you are a student interested in using these materials, and you are not in my class, and you don't know where to begin, then I hope this little overview is helpful. I think there are enough breadcrumbs here to work your way through the course material on your own.
+
+I am creating new chapters almost each week during Fall 2020 and Spring 2021. Each chapter is a series of lab exercises corresponding closely to chapters in the textbooks we use for stats I and II [@abdiExperimentalDesignAnalysis2009;@vokeyThinkingData7th2018]. In the labs we use R, RStudio, and Github to complete assignments. See instructions in the next Getting Started section for tips on installing the necessary software. 
+
+Each lab has a similar structure, with a written chapter and corresponding lecture video followed by a generalization assignment. Lab content is split into conceptual sections (reinforcing a statistical concept with R), and practical sections (showing how to do specific tasks and analyses in R). We start off with very basic R coding, and discuss new coding concepts as they are needed. The generalization problems at the end of each lab are designed to be solved with R code, and challenge students to independently apply coding concepts from the lab to solving similar but new assignment problems. At the same time, all of the assigned problems have walkthrough videos showing example solutions in case you get stuck.
+
+If you were to follow all of the materials, you would gain experience using R and Rstudio, as well as writing in the powerful and amazing R Markdown language (e.g., which allowed me to make this web-book), and also become familiar with using Github for sharing research assets like statistical analyses that you produce with R. Also, I hope you would find the materials useful for enriching your understanding of statistics. Best of luck!
+
+## For Instructors
+
+These materials are currently under development, but the plan is to release them under a CC BY 4.0 license. As a result, these materials will be free to remix and re-use under that license. 
+
+Feel free to fork the repo and use these materials as you see fit. If you would like to contribute to the development of these materials, feel free to submit a pull-request with suggested changes (or leave a comment in github issues).
+
+<!--
+
+## Goals
+
+I have found learning a variety of computational skills incredibly useful for many aspects of my research, from theory-building to creating and running experiments, to analyzing and communicating results. Additionally, I have been spending some of my teaching energy on attempting to help students acquire these skills, especially students that have little to no prior experience in computation.
+
+There is no shortage of fantastic statistics curriculum out there these days, including many free and open educational resources; and, in general my hope is that our students and anyone else who wants to use these materials find them useful.
+
+This collection of tutorials is intended to supplement our weekly lectures across two semesters of teaching statistics, and they assume that students have read chapters in the above textbooks that we are currently using. I assume that many students come into our program with little to no programming or coding experience, so I am designing this stat lab curriculum to partly to aid in training computational skills. However, the primary focus of the course is still statistics and not coding, so various elements of coding in R gradually introduced over the labs.
+
+-->
+
+
+
+
+

@@ -1,0 +1,27 @@
+delete_merged_file: true
+new_session: true
+
+output_dir: "docs"
+
+rmd_files:
+- "index.Rmd"
+- "Preface.Rmd"
+
+- "Getting_Started.Rmd"
+- "GS_R_intro.Rmd"
+- "GS_R_Problems.Rmd"
+- "GS_R_Reference.Rmd"
+
+- "Lab1_Basics.Rmd"
+- "Lab2_Descriptives.Rmd"
+- "Lab3_Distributions_I.Rmd"
+- "Lab4_Distributions_II.Rmd"
+- "Lab5_Sampling_Distributions.Rmd"
+- "Lab6_Statistical_Inference.Rmd"
+- "Lab7_Binomial.Rmd"
+- "Lab8_Normal.Rmd"
+- "Lab9_Chisquare.Rmd"
+- "Lab10_ttest.Rmd"
+- "Lab11_Correlation.Rmd"
+
+- "References.Rmd"

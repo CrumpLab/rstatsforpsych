@@ -1,0 +1,22 @@
+.figure { 
+     border-top: 0px !important;
+     border-bottom: 0px !important;
+   }
+   
+.inline-figure { 
+     border: 0px !important;
+   }
+   
+h2, h3 {
+  background-color: #fef5ff !important;
+}
+
+h4 {
+background-color: #faece3 !important;
+}
+
+blockquote p {
+  font-weight: 200 !important;
+  font-family: 'Work Sans:ital', sans-serif !important;
+  font-style: italic !important;
+}

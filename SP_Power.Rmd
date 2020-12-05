@@ -1,23 +1,14 @@
----
-title: "Simulation and Power Analysis"
-author: "Matthew J. C. Crump"
-date: "11/12/2020"
-bibliography: references.bib
-csl: apa.csl
-link-citations: yes
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Simulation and Power Analysis}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+# Simulation and Power Analysis {.unnumbered}
+
+"11/8/2020 | Last Compiled: `r Sys.Date()`"
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  cache = TRUE
 )
 ```
 

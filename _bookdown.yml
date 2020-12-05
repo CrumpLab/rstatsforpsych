@@ -22,6 +22,8 @@ rmd_files:
 - "Lab8_Normal.Rmd"
 - "Lab9_Chisquare.Rmd"
 - "Lab10_ttest.Rmd"
+- "SP_Power.Rmd"
 - "Lab11_Correlation.Rmd"
+- "semester_project.Rmd"
 
 - "References.Rmd"

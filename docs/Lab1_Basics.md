@@ -2,7 +2,7 @@
 
 # R Basics
 
-"8/27/2020 | Last Compiled: 2020-12-04"
+"8/27/2020 | Last Compiled: 2020-12-05"
 
 ## Reading and walkthrough video
 

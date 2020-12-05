@@ -18,7 +18,12 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="custom.css">
+    </script><meta property="og:card" content="website">
+<meta property="og:title" content="Practice problems | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="custom.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -59,7 +64,9 @@
 <li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
 <li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
 <li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
 <li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -71,7 +78,7 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="practice-problems" class="section level1 unnumbered" number="">
 <h1>Practice problems<a class="anchor" aria-label="anchor" href="#practice-problems"><i class="fas fa-link"></i></a>
 </h1>
-<p>“8/27/2020 | Last Compiled: 2020-12-04”</p>
+<p>“8/27/2020 | Last Compiled: 2020-12-05”</p>
 <p><em>This chapter is here as a supplement for students who are looking for exercises to work on coding skills outside of class.</em> The labs in this course are designed to develop practical data analysis skills in R, and conceptual knowledge about statistics by using R as a way to interact with statistical phenomena. I assume that students may be new to coding. Don’t worry, if you are a student in this course, we will gradually introduce coding concepts throughout the course.</p>
 <p>Learning how to code takes time and effort, and can be intensely frustrating at the beginning. When I was learning programming for the first time as an undergraduate, my advisor (John Vokey) showed me a computer on a desk and told me this was where I would teach myself to program…then he pointed to a large hole in the drywall underneath the desk and said, “that is where you kick the wall”.</p>
 <p>Learning how to teach coding is also very hard. I’ve been trying to do this for years. However, when I stumble across methods that seem promising, and/or have been immensely helpful to me, I like to advertise them. For example a few years ago I came across a completely different approach to learning programming at the website <a href="https://projecteuler.net">Project Euler</a>, which I highly recommend. That website presents a series of problems, usually mathematical ones, like what is the sum of the first 1000 prime numbers? The challenge is to use any programming language to find the correct answer. When submit correct answers, you unlock a forum where other post their working code (in many different languages).</p>
@@ -272,7 +279,7 @@
 </ol>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">1000</span>, digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1607137220137.99</code></pre>
+<pre><code>## [1] 1607176556025.58</code></pre>
 <ol start="17" style="list-style-type: decimal">
 <li><p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p></li>
 <li><p>Read a .txt file or .csv file into a variable</p></li>
@@ -452,7 +459,7 @@
 <span class="op">}</span>
 
 <span class="fu">encrypt_numbers</span><span class="op">(</span><span class="va">original_sequence</span>,<span class="va">encryption_key</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 1 4 3 5 2 4 4 3 4 5 2 4</code></pre>
+<pre><code>##  [1] 1 3 4 5 2 3 3 4 3 5 2 3</code></pre>
 <ul>
 <li>here is a different approach making use of the <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> function</li>
 </ul>
@@ -477,13 +484,13 @@
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rolling a dice with sample</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 6</code></pre>
+<pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>-tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># try one simulation</span>
@@ -494,7 +501,7 @@
   <span class="va">total_sum</span> <span class="op">&lt;-</span><span class="va">total_sum</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="va">number_of_rolls</span></code></pre></div>
-<pre><code>## [1] 8</code></pre>
+<pre><code>## [1] 5</code></pre>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># record the results from multiple simulations</span>
 
@@ -509,7 +516,7 @@
   <span class="va">save_rolls</span><span class="op">[</span><span class="va">sims</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">number_of_rolls</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">save_rolls</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 7.56</code></pre>
+<pre><code>## [1] 7.53</code></pre>
 <ul>
 <li>how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.</li>
 </ul>

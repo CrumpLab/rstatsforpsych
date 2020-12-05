@@ -4,9 +4,9 @@
 
 *This chapter is here as a supplement for students who are looking for exercises to work on coding skills outside of class.* The labs in this course are designed to develop practical data analysis skills in R, and conceptual knowledge about statistics by using R as a way to interact with statistical phenomena. I assume that students may be new to coding. Don't worry, if you are a student in this course, we will gradually introduce coding concepts throughout the course. 
 
-Learning how to code takes time and effort, and can be intensely frustrating at the beginning. When I was learning programming for the first time as an undergraduate, my advisor (John Vokey) showed me a computer on a desk and this was where I would sit to learn programming...then he pointed to a large hole in the drywall underneath the desk and said, "that is where you kick the wall". I also made contributions to that hole (I feel your pain).
+Learning how to code takes time and effort, and can be intensely frustrating at the beginning. When I was learning programming for the first time as an undergraduate, my advisor (John Vokey) showed me a computer on a desk and told me this was where I would teach myself to program...then he pointed to a large hole in the drywall underneath the desk and said, "that is where you kick the wall".
 
-Learning how to teach coding is also very hard. I've been trying to do this for years. However, when I stumble across methods that seem promising, and/or have been immensely helpful to me, I like to advertise them. For example a few years ago I came across a completely different approach to learning programming at the website [Project Euler](https://projecteuler.net), which I highly recommend. That website presents a series of problems, usually mathematical ones, like what is the sum of the first 1000 prime numbers? The challenge is to use any programming language to find the correct answer. When submit correct answers, you unlock a forum where other post their working code (in many different languages). T
+Learning how to teach coding is also very hard. I've been trying to do this for years. However, when I stumble across methods that seem promising, and/or have been immensely helpful to me, I like to advertise them. For example a few years ago I came across a completely different approach to learning programming at the website [Project Euler](https://projecteuler.net), which I highly recommend. That website presents a series of problems, usually mathematical ones, like what is the sum of the first 1000 prime numbers? The challenge is to use any programming language to find the correct answer. When submit correct answers, you unlock a forum where other post their working code (in many different languages).
 
 he idea of Project Euler is to learn basic programming skills by trying to solve concrete problems. You might not know the syntax for how to make the computer accomplish a particular goal that you have, but you have a particular goal in mind, so you use that in your search to figure out how to make a programming language do something.
 
@@ -241,7 +241,7 @@ print(as.numeric(Sys.time())*1000, digits=15)
 ```
 
 ```
-## [1] 1607127411531.53
+## [1] 1607131289602.64
 ```
 
 
@@ -475,7 +475,7 @@ encrypt_numbers(original_sequence,encryption_key)
 ```
 
 ```
-##  [1] 2 3 5 4 1 3 3 5 3 4 1 3
+##  [1] 2 3 1 4 5 3 3 1 3 4 5 3
 ```
   
   - here is a different approach making use of the `factor()` function
@@ -517,6 +517,14 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
+## [1] 6
+```
+
+```r
+sample(c(1,2,3,4,5,6),1)
+```
+
+```
 ## [1] 3
 ```
 
@@ -525,15 +533,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 6
-```
-
-```r
-sample(c(1,2,3,4,5,6),1)
-```
-
-```
-## [1] 6
+## [1] 3
 ```
 
   -tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?
@@ -571,7 +571,7 @@ mean(save_rolls)
 ```
 
 ```
-## [1] 7.71
+## [1] 7.43
 ```
   
   - how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.

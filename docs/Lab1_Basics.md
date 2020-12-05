@@ -1,6 +1,6 @@
 # (PART) Labs {.unnumbered}
 
-# Basics
+# R Basics
 
 "8/27/2020 | Last Compiled: 2020-12-04"
 

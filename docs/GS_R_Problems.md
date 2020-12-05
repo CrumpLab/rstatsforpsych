@@ -241,7 +241,7 @@ print(as.numeric(Sys.time())*1000, digits=15)
 ```
 
 ```
-## [1] 1607131289602.64
+## [1] 1607132217038.79
 ```
 
 
@@ -475,7 +475,7 @@ encrypt_numbers(original_sequence,encryption_key)
 ```
 
 ```
-##  [1] 2 3 1 4 5 3 3 1 3 4 5 3
+##  [1] 3 2 1 5 4 2 2 1 2 5 4 2
 ```
   
   - here is a different approach making use of the `factor()` function
@@ -517,7 +517,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 6
+## [1] 2
 ```
 
 ```r
@@ -525,7 +525,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 3
+## [1] 4
 ```
 
 ```r
@@ -533,7 +533,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 3
+## [1] 2
 ```
 
   -tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?
@@ -551,7 +551,7 @@ number_of_rolls
 ```
 
 ```
-## [1] 8
+## [1] 9
 ```
 
 ```r
@@ -571,7 +571,7 @@ mean(save_rolls)
 ```
 
 ```
-## [1] 7.43
+## [1] 7.79
 ```
   
   - how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.

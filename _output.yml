@@ -6,5 +6,5 @@ bookdown::bs4_book:
     heading_font: !expr bslib::font_google("Major Mono Display")
   repo: https://github.com/CrumpLab/rstatsforpsych
   includes:
-    in_header: [ga_script.html,cards.html]
+    in_header: [ga_script.html,og_cards.html,twitter_cards.html]
   css: custom.css

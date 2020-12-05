@@ -6,21 +6,19 @@
 
 ## Reading and walkthrough video
 
-Vokey & Allen, Chapters 1
-
-Here is a walkthrough lecture on this lab (sorry the volume is a little low on this one):
+Vokey & Allen [-@vokeyThinkingData7th2018], Chapter 1
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
 
-The labs for this course are designed to give students exposure to the free and open-source statistical programming language R. The assumption is that students may have zero prior experience with scripting, coding, or computer programming. Over the semester we will use R both as a tool for data-analysis, and as a tool to conduct demonstrations of statistical concepts. 
+The labs for this course are designed to give students exposure to the free and open-source statistical programming language R. The assumption is that students may have zero prior experience with scripting, coding, or computer programming. Over the semester we will use R as a tool for data-analysis, and as a tool to sharpen understanding of statistical concepts. 
 
-Before starting this lab, make sure you have followed the getting started instructions to install R, R-studio, create a Github.com account, download github Desktop, and make sure that you test the github pipeline. Throughout the semester you will be posting your assignments on github.com, and submitting links to your repositories on blackboard.
+Before starting this lab follow the getting started instructions to install R, R-studio, create a Github.com account, download github Desktop; and, make sure that you test the github pipeline. Throughout the semester you will be posting your assignments on Github.com, and submitting links to your repositories on blackboard.
 
 ## Problem 1: Summing 1 to 100
 
-In Chapter 1 Vokey & Allen tell the story of how a young Gauss very quickly summed up the numbers from 1 to 100. 
+In Chapter 1, @vokeyThinkingData7th2018 tell the story of how a young Gauss very quickly summed up the numbers from 1 to 100. We can solve the problem very quickly in R.
 
 1. Use R to find the sum of the sequence of numbers from 1 to 100:
 
@@ -33,7 +31,7 @@ sum(1:100)
 ## [1] 5050
 ```
 
-As you can see, it is pretty simple and fast to solve Gauss's problem in R. Indeed, you could easily find other sums by changing the 1 or the 100
+Using `sum()`, it is simple and fast to solve Gauss's problem in R. You could easily find other sums by changing the 1 or the 100
 
 
 ```r
@@ -52,13 +50,13 @@ sum(100:200)
 ## [1] 15150
 ```
 
-At the same time, there are many details going on behind the scenes in R that we will dive into to understand how the sum function works. We will need to understand how to actually generate sequences of number so that we add them up. This will begin a discussion of variables in R (objects that store information, like sequences of numbers). And, we need to understand how take actions, like "summing" up a sequence of numbers. This involves understanding functions and other "active" operations we can do with R.
+There are many details going on behind the scenes in R that allow the `sum()` function do its work. One detail is how to get R to create a sequence of numbers, another is how to take an action like adding up all the numbers in the sequence. Two major concepts here are *variables* for storing information (like sequences of numbers), and *functions* that take actions to transform an input (a number sequence) to a desired output (a sum of the number sequence). 
 
 ## R Basics Background
 
 ### Creating sequences of numbers in R
 
-A sequence of numbers from a starting value to an ending value can be generated using the following syntax `x:y`, where x is the starting value, and y is the ending value.
+There are multiple ways to create number sequences in R. A sequence of integers can be generated with `x:y`, where x is the starting value, and y is the ending value.
 
 
 ```r
@@ -87,7 +85,7 @@ A sequence of numbers from a starting value to an ending value can be generated 
 
 ### seq()
 
-The above method generates sequences that increment by a value of 1. It is possible to create sequences that increment by any constant value using the `seq()` function. Look up "help" for any R function by typing `?name_of_function` into the console
+Sequences incremented by any constant value can be created using the `seq()` function. Look up "help" for any R function by typing `?name_of_function` into the console
 
 
 ```r
@@ -96,9 +94,9 @@ The above method generates sequences that increment by a value of 1. It is possi
 
 R comes pre-packaged with many functions like `seq()`, and you can write your own functions, and download libraries of functions that other people have written to extend the base functionality of R. We will look more closely at functions throughout the semester.
 
-Briefly, a function will usually receive some kind of input, "do something", and then return some kind of output. In R, you use functions by writing the name of the function and parentheses `name()`. If the function takes inputs, then you define the inputs inside the parentheses `name(x=1)`. Functions can have multiple inputs, that are separated by commas. 
+An R function usually has three components. It will 1) receive some kind of input,  2) "do something", and 3) return some kind of output. In R, you use functions by writing the name of the function and parentheses `name()`. If the function takes inputs, then you define the inputs inside the parentheses `name(x=1)`. Functions can have multiple inputs, that are separated by commas. 
 
-Let's take a look at using the `seq()` function to generare sequences of numbers.
+Let's take a look at using the `seq()` function to generate sequences of numbers.
 
 
 ```r
@@ -211,7 +209,7 @@ step <- 5
 
 ### The Gaussian trick
 
-Remember Gauss added up the numbers from 1 to 100 by imaging two number lines:
+Remember Gauss added up the numbers from 1 to 100 by imagining two number lines:
 
 
 ```r
@@ -255,9 +253,12 @@ He noted that the sum of the columns always added up to 101 (e.g., 1+100 = 101, 
 ##  [73] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
 ##  [91] 101 101 101 101 101 101 101 101 101 101
 ```
-Each time we created a sequence above we were creating something called a `numeric vector` in R. These are objects that can store multiple numbers. Vectors are one kind of variable in R. Vectors can have names, they can be saved, and they can be manipulated. Let's take a quick look at vectors:
 
-`a` is the name of the new vector. `<-` is called the assignment operator. `1:5` creates a vector of length 5, containing the sequence of numbers 1 to 5. In plain language, we "assign" the object on the right (the 1:5), to the "name" in the left.
+Each time we created a sequence of numbers (e.g., from 1 to 100) we were creating an object called a `numeric vector` in R. Vectors can store multiple numbers. 
+
+Vectors are a kind of variable in R. Vectors can have names, they can be saved, and they can be manipulated. Let's take a quick look at vectors:
+
+`a` is the name of the new vector. `<-` is called the assignment operator. `1:5` creates a vector of length 5, containing the sequence of numbers 1 to 5. In plain language, we "assign" the object on the right (the 1:5), to the "name" `a` written on the left side of the `<-`. In other words, we put the numbers 1 to 5 into something called `a`.
 
 
 ```r
@@ -265,7 +266,7 @@ Each time we created a sequence above we were creating something called a `numer
 a <- 1:5
 ```
 
-When you create a variable like the above, it's name will appear in the global environment (top right environment tab). When the variable is created for the first time (by executing the code in the console), it becomes registered or saved in your computer's memory for the current R session. 
+When you create a variable like the `a` above, its name will appear in the global environment (top right environment tab). When the variable is created for the first time (by executing the code in the console), it becomes registered or saved in your computer's memory for the current R session. 
 
 If you want to double-check that a variable exists in memory, enter its name into the console, and press enter:
 
@@ -278,7 +279,7 @@ a
 ## [1] 1 2 3 4 5
 ```
 
-You can clear a variable using `rm()`. And, you can clear the entire global environment using `Session > Clear Workspace...` from the RStudio menu.
+You can clear (remove) a variable using `rm()`. And, you can clear the entire global environment using `Session > Clear Workspace...` from the RStudio menu.
 
 
 ```r
@@ -308,16 +309,18 @@ class(b)
 
 ### c()
 
-It is also possible to create vectors that contain characters, rather than numbers. To illustrate an example of a `character vector`, we introduce one more basic R function `c()`, which is short for "combine".
+It is also possible to create vectors that contain characters, rather than numbers. To illustrate an example of a `character vector`, we introduce one more basic R function `c()`, short for "combine".
 
 
 ```r
 ?c
 ```
 
-It could be helpful to consider a train car analogy when thinking about vectors. In the analogy, a vector is like a train. Trains are composed of connected train cars, and each car is a container that holds things like people, or resources. Trains can have any number of train cars, just like a vector can have any length. The cars in a train are the slots in a vector. To make a train you have to connect the train cars together. Similarly, in R, to make a vector you need to concatenate or connect the slots together. This is what the `c()` function is all about. It combines slots together to form a vector. It is a very flexible and useful function. Also, to avoid confusion, I will only use the letter `c` to refer to the `c()` function, and never as the name of a variable.
+Vectors are like trains, they have slots (train cars) that can contain things, like passengers, or oil or coal. Trains can have any number of train cars, just like a vector can have any length (number of slots).
 
-To use `c()`, we insert individual items separated by commas. To insert characters, we wrap each character with quotations
+Importantly, train cars need to be connected together to form a whole train. Similarly, in R, to make a vector you need to concatenate or connect individual slots of a vector together. This is what the `c()` function is all about. It combines individual units together to form a vector.
+
+To use `c()`, insert individual items separated by commas between the parentheses. To insert characters, wrap each character (or string of characters) between quotations.
 
 
 ```r
@@ -327,11 +330,11 @@ numbers_as_chars <- c("1","2","3")
 words <- c("this","is","a","vector","of","strings")
 ```
 
-In each of the above examples, we "combine" the elements inside each `c()` function to form a vector. This is like connecting train cars together. 
+ The elements between the commas are like individual train cars, and the `c()` function connects the elements together into a single entity comprised of multiple units, like a train, called a vector.
 
 ### length()
 
-Just like a train has a specific number of cars, a vector has a specific number of slots. This is called the length of the vector. R has a `length()` function the reports the length of a vector.
+Just like a train has a specific number of cars, a vector has a specific number of slots. This is called the length of the vector. R has a `length()` function that reports the length of a vector.
 
 
 ```r
@@ -352,7 +355,7 @@ length(words)
 
 ### More on combining
 
-The `c()` function is very flexible because it can be used to combine all sorts of elements, even elements that are vectors, or elements that are existing variables.
+The `c()` function is flexible because it can combine all sorts of elements, including vectors or variables.
 
 
 ```r
@@ -361,7 +364,7 @@ some_numbers <- c(1, 2, 3, 1:5)
 some_characters <- c(letters, words)
 ```
 
-Remember that vectors have different classes depending on what kind of elements are inside the vector. This is important, because in general R requires that **all of the elements** in a vector have the **same** class.
+Remember that vectors have different classes depending on what kind of elements are inside the vector. This is important, because R requires that **all of the elements** in a vector have the **same** class.
 
 
 ```r
@@ -388,7 +391,7 @@ class(c(TRUE,FALSE,TRUE))
 ## [1] "logical"
 ```
 
-It is possible to combine vectors that start with different classes, but R may give an error, or it will convert one class into another. To go back to the train car analogy, R doesn't like trains that have different kinds of cars...it wants the whole thing to be a passenger cars, or the whole thing to be tank cars. 
+It is possible to combine vectors that start with different classes, but R may give an error, or it will convert one class into another. To go back to the train car analogy, R doesn't like trains that have different kinds of cars...it wants the whole train to be passenger cars, or the whole train to be oil tankers.
 
 
 ```r
@@ -402,16 +405,20 @@ c(1,2,3,"a","b","c")
 
 ### Indexing a vector
 
-Vector indexing is the process of being able inspect and change the individual elements of a vector. This is just like a train, where you might want to go an look at what is in cars 3 to 5, or unload car number 7 and put something else in it.
+Vector indexing iallows elements to be inspected and changed. This is like a train, where you could inspect the contents of cars 3 to 5, or unload car 7 and put something else in it.
 
-We us the square bracket `[]` notation to index a vector. Generally, the form is `variable_name[x]`. Where, x is another vector specifying the slots that you want to isolate.
-
-Looking at individual elements or groups of elements using an index.
+Square bracket `[]` notation indexes a vector, with `variable_name[x]`; where, `x` is another vector specifying the indexed slots.
 
 
 ```r
-a <- c(1,6,3,2,8,9)
-a[1]
+a <- c(1,6,3,2,8,9) # make a vector
+```
+
+The following examples use `[]` to index specific elements of the vector `a`. The outcome is that the elements specified inside the square brackets are printed to the console.
+
+
+```r
+a[1] # first element
 ```
 
 ```
@@ -419,7 +426,7 @@ a[1]
 ```
 
 ```r
-a[2]
+a[2] # second element
 ```
 
 ```
@@ -427,7 +434,7 @@ a[2]
 ```
 
 ```r
-a[1:3]
+a[1:3] # 1st to 3rd elements
 ```
 
 ```
@@ -435,7 +442,7 @@ a[1:3]
 ```
 
 ```r
-a[c(1,5)]
+a[c(1,5)] # elements 1 and 5
 ```
 
 ```
@@ -456,7 +463,7 @@ a
 ```
 
 ```r
-# assign a 1 to slots 5 to 6 of a
+# assign the value 1 to slots 5 to 6 of a
 a[5:6] <- 1
 a
 ```
@@ -467,7 +474,7 @@ a
 
 ### Growing a vector
 
-In many upcoming lab exercises you will it useful to use vectors to store information. Sometimes you know in advance how many slots you need for your vector, and other times you might not know, and instead you could decide to build your vector one slot at a time.
+In upcoming labs we will use vectors to store information. Sometimes you know in advance how many slots you need for your vector, and other times you might not know, and instead you could decide to build your vector one slot at a time.
 
 Below I begin with an empty (NULL) vector. I use the `c()` command, but I don't combine anything together. This like starting a train with no cars at all.
 

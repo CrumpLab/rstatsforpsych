@@ -104,7 +104,7 @@ mean_B(some_numbers)
 a <- "adskfjhkadsjfh"
 strsplit(a,split="")
 
-# note that strsplit returns it's result in a list
+# note that strsplit returns its result in a list
 b <-strsplit(a,split="")
 b[[1]] # access all elements in list 1
 b[[1]][1] # access first element of list 1

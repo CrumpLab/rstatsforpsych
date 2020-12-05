@@ -64,7 +64,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CrumpLab/psyc7709Lab/bookdown">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -92,14 +92,14 @@
 <span class="header-section-number">10.3</span> Practical I: t.test()<a class="anchor" aria-label="anchor" href="#practical-i-t.test"><i class="fas fa-link"></i></a>
 </h2>
 <p>Base R includes the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function that computes several forms of t-tests.</p>
-<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1042"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">t.test</span></code></pre></div>
 <p>Here are three quick examples of computing one sample, paired sample and independent sample t-tests using R.</p>
 <div id="one-sample-t-test" class="section level3" number="10.3.1">
 <h3>
 <span class="header-section-number">10.3.1</span> One-sample t-test<a class="anchor" aria-label="anchor" href="#one-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1042"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_random_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">some_random_means</span>, mu<span class="op">=</span><span class="fl">0</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -118,7 +118,7 @@
 <h3>
 <span class="header-section-number">10.3.2</span> Paired-sample t-test<a class="anchor" aria-label="anchor" href="#paired-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1044"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="va">B_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 
@@ -139,7 +139,7 @@
 <h3>
 <span class="header-section-number">10.3.3</span> Independent-sample t-test<a class="anchor" aria-label="anchor" href="#independent-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1046"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="va">B_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 
@@ -161,7 +161,7 @@
 <span class="header-section-number">10.3.4</span> formula syntax for data frames<a class="anchor" aria-label="anchor" href="#formula-syntax-for-data-frames"><i class="fas fa-link"></i></a>
 </h3>
 <p>In the above examples, the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function was applied to vectors containing sample means. It is also possible to apply the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function to long data frames using the <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code> syntax.</p>
-<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,
                       means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
@@ -183,7 +183,7 @@
 <span class="header-section-number">10.3.5</span> one or two-sided test<a class="anchor" aria-label="anchor" href="#one-or-two-sided-test"><i class="fas fa-link"></i></a>
 </h3>
 <p>By default, the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function provides a two sided test, but the options can be specified using the <code>alternative = c("two.sided", "less", "greater")</code> input parameter.</p>
-<div class="sourceCode" id="cb1050"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_random_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">some_random_means</span>, mu<span class="op">=</span><span class="fl">0</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -197,7 +197,7 @@
 ## sample estimates:
 ## mean of x 
 ## 0.1974013</code></pre>
-<div class="sourceCode" id="cb1052"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1053"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">some_random_means</span>, mu<span class="op">=</span><span class="fl">0</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
@@ -210,7 +210,7 @@
 ## sample estimates:
 ## mean of x 
 ## 0.1974013</code></pre>
-<div class="sourceCode" id="cb1054"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1055"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">some_random_means</span>, mu<span class="op">=</span><span class="fl">0</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
@@ -229,7 +229,7 @@
 <span class="header-section-number">10.3.6</span> var.equal and Welch’s correction<a class="anchor" aria-label="anchor" href="#var.equal-and-welchs-correction"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function also makes default assumptions about the indpendent samples test. By, default it applies a correction called Welch’s correction. This correction is related to the assumption of equal variances between the samples in each group.</p>
-<div class="sourceCode" id="cb1056"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span><span class="op">)</span></code></pre></div>
@@ -245,7 +245,7 @@
 ##   mean of x   mean of y 
 ##  0.04832838 -0.26900728</code></pre>
 <p>To conduct a t-test without the correction set <code>var.equal=TRUE</code>. This only applies to the independent sample case where there are two variances.</p>
-<div class="sourceCode" id="cb1058"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1059"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
@@ -264,7 +264,7 @@
 <span class="header-section-number">10.3.7</span> t.test() contents<a class="anchor" aria-label="anchor" href="#t.test-contents"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function has two kinds of outputs. First, it prints the results to the console (as we saw above). Second, it outputs a list containing the components of test. The individual pieces of the t-test can be saved and accessed by putting the results of the t.test into a new variable.</p>
-<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
 <code class="sourceCode R"> <span class="op">(</span><span class="va">my_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
@@ -278,18 +278,18 @@
 ##   mean of x   mean of y 
 ##  0.04832838 -0.26900728</code></pre>
 <p>For example:</p>
-<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1063"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_results</span><span class="op">$</span><span class="va">statistic</span></code></pre></div>
 <pre><code>##         t 
 ## 0.8279306</code></pre>
-<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1065"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_results</span><span class="op">$</span><span class="va">parameter</span></code></pre></div>
 <pre><code>## df 
 ## 18</code></pre>
-<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1067"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_results</span><span class="op">$</span><span class="va">p.value</span></code></pre></div>
 <pre><code>## [1] 0.4185522</code></pre>
-<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1069"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_results</span><span class="op">$</span><span class="va">estimate</span></code></pre></div>
 <pre><code>##   mean of x   mean of y 
 ##  0.04832838 -0.26900728</code></pre>
@@ -299,7 +299,7 @@
 <span class="header-section-number">10.3.8</span> papaja reporting with apa_print()<a class="anchor" aria-label="anchor" href="#papaja-reporting-with-apa_print"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>papaja</code> package has convenient functions for automating the writing of t-test results.</p>
-<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/crsh/papaja">papaja</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">my_results</span><span class="op">)</span></code></pre></div>
 <pre><code>## $estimate
@@ -329,7 +329,7 @@
 <h3>
 <span class="header-section-number">10.4.1</span> Simulating a single experiment<a class="anchor" aria-label="anchor" href="#simulating-a-single-experiment"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#subjects per group</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10</span>
 <span class="co"># measurements per subject</span>
@@ -342,7 +342,7 @@
 <span class="va">A_sd</span> <span class="op">&lt;-</span> <span class="fl">25</span>
 <span class="va">B_sd</span> <span class="op">&lt;-</span> <span class="fl">25</span></code></pre></div>
 <p>With the above assumptions in place, it is possible to simulate the results of a single experiment.</p>
-<div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1074"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">*</span><span class="va">X</span>,<span class="va">A_mean</span>,<span class="va">A_sd</span><span class="op">)</span>
 <span class="va">B_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">N</span><span class="op">*</span><span class="va">X</span>,<span class="va">B_mean</span>,<span class="va">B_sd</span><span class="op">)</span>
 
@@ -369,7 +369,7 @@
 ## mean in group A mean in group B 
 ##        96.74487        96.32540</code></pre>
 <p>As one alternative, here is another example of the above in a one-liner:</p>
-<div class="sourceCode" id="cb1075"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1076"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
        <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
        var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -396,7 +396,7 @@
 <span class="header-section-number">10.4.2.1</span> The distribution of mean differences<a class="anchor" aria-label="anchor" href="#the-distribution-of-mean-differences"><i class="fas fa-link"></i></a>
 </h4>
 <p>If this experiment was repeated a 1000 times, then each time there could be a mean difference between Group A and B. Thus, if the mean difference was the sample statistic used to summarize the result of this experiment, the sampling distribution of mean differences could be estimated by simulation:</p>
-<div class="sourceCode" id="cb1077"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_mean_diffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_mean_diffs</span><span class="op">)</span></code></pre></div>
@@ -410,7 +410,7 @@
 <p><span class="math inline">\(t = \frac{\bar{X}_1 - \bar{X}_2}{s_p\sqrt{2/n}}\)</span></p>
 <p><span class="math inline">\(s_p = \sqrt{\frac{s^2_{X_1} + s^2_{X_2}}{2}}\)</span></p>
 <p>Although we already have distribution functions for t-values, a t-distribution could be constructed by simulation. Here is a histogram of the 1000 <span class="math inline">\(t\)</span> values that could have happened.</p>
-<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span><span class="op">)</span>
@@ -424,11 +424,11 @@
 </h3>
 <p>R comes with the <code>dt</code>, <code>pt</code>, <code>qt</code>, <code>rt</code> family of function for t-distributions as well.</p>
 <p>For example, rather than simulating t values as we did above, we could sample 1000 <span class="math inline">\(t\)</span> values from a t-distribution with df = 18.</p>
-<div class="sourceCode" id="cb1079"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span><span class="fl">1000</span>,df<span class="op">=</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-18-1.png" width="672">
 THe <code>dt</code> function could be used to draw the probability density function for t-distributions across a range of degrees of freedom.</p>
-<div class="sourceCode" id="cb1080"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">5</span>,length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, df<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">dt</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">5</span>,length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, df<span class="op">=</span><span class="fl">3</span><span class="op">)</span>,
@@ -447,10 +447,10 @@ THe <code>dt</code> function could be used to draw the probability density funct
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks<span class="op">=</span><span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab10_ttest_files/figure-html/unnamed-chunk-19-1.png" width="672"></div>
 <p>As discussed in lecture, the t-distribution approaches a normal distribution as degrees of freedom increase. For example, 95% of the values in normal distribution are smaller than Z = 1.644854 standard deviations. The corresponding 95% values of t are shown to approach 1.644 as degrees of freedom increase.</p>
-<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1082"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.644854</code></pre>
-<div class="sourceCode" id="cb1083"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1084"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">qt</a></span><span class="op">(</span>p<span class="op">=</span><span class="fl">.95</span>,df<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">100</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 6.313752 2.015048 1.812461 1.660234 1.646379</code></pre>
 </div>
@@ -469,23 +469,23 @@ THe <code>dt</code> function could be used to draw the probability density funct
 </h3>
 <p>The purpose of this conceptual section is to use simulation techniques to ask what proportion of experiments would be significant (at some alpha level, say p&lt;.05) if the experimental manipulation worked and caused a difference between group means.</p>
 <p>First, we should be confident in a basic answer. If we set an alpha criterion of p&lt;.05, what proportion of experiments will be significant according to the null-hypothesis (that there is no difference between groups)? We can conduct this simulation, and see how many experiments out of 1000 returned a p-value of less than .05. The answer should be, by definition, approximately .05.</p>
-<div class="sourceCode" id="cb1085"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1086"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab10_ttest_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
-<div class="sourceCode" id="cb1086"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1087"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></code></pre></div>
 <pre><code>## [1] 0.038</code></pre>
 <p>A next question would be something like, what proportion of experiments would be significant if there actually was a difference between the means of group A and B. For example, here we assume that group A has a mean of 0, and group B has a mean of .25, and that both distributions have the same standard deviation (sd=1). In this design, with N = 10 in each group, and 5 scores measured per subject, the probability of getting a p &lt; .05 is much higher than 5%.</p>
-<div class="sourceCode" id="cb1088"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">.25</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab10_ttest_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
-<div class="sourceCode" id="cb1089"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1090"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></code></pre></div>
 <pre><code>## [1] 0.238</code></pre>
 </div>
@@ -504,7 +504,7 @@ THe <code>dt</code> function could be used to draw the probability density funct
 <span class="header-section-number">10.5.3</span> Power-curve as a function of effect-size<a class="anchor" aria-label="anchor" href="#power-curve-as-a-function-of-effect-size"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this example we conduct a range of simulations assuming that effect-size increases from 0 to 1.5, in steps of .1. All simulations have the same design parameters: there are N=10 subjects per group, and X=5 scores are taken for each subject. The power curve shows the proportion of experiments that would return a result of p &lt; .05 at each level of effect-size. For example, when the assumed effect-size is 1, then this design will detect an effect of that size at the p&lt;.05 level close to 100% of the time. However, the “power” of the same design to detect smaller effects decreases following this curve.</p>
-<div class="sourceCode" id="cb1091"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1.5</span>,<span class="fl">.1</span><span class="op">)</span>
 <span class="va">prop_significant</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 
@@ -614,8 +614,8 @@ THe <code>dt</code> function could be used to draw the probability density funct
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CrumpLab/psyc7709Lab/bookdown/blob/master/Lab10_ttest.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CrumpLab/psyc7709Lab/bookdown/edit/master/Lab10_ttest.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/Lab10_ttest.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/Lab10_ttest.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>

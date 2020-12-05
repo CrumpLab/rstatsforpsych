@@ -64,7 +64,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CrumpLab/psyc7709Lab/bookdown">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -114,32 +114,32 @@
 <ol style="list-style-type: decimal">
 <li>Create a distribution with two equally possible numbers, sample from it twice:</li>
 </ol>
-<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb687"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2 1</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a distribution with two equally possible numbers, sample from it 10 times (note must set replace=TRUE, because we are sampling more items than exist in the vector):</li>
 </ol>
-<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb689"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 1 2 1 1 2 1 2 1 1 2</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times</li>
 </ol>
-<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb691"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.9</span>,<span class="fl">.1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return “heads” or “tails”.</li>
 </ol>
-<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb693"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"heads"</span>,<span class="st">"tails"</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">10</span>, replace<span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code></pre></div>
 <pre><code>##  [1] "heads" "heads" "heads" "tails" "tails" "tails" "tails" "heads" "heads"
 ## [10] "heads"</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Create a distribution that has the numbers 1 to 1000, and allows them to be sampled with equal probability. Sample 10 numbers from this distribution without replacement (if you have sampled one number, you are not allowed to sample it again because it has been taken out):</li>
 </ol>
-<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb695"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] 733 354 204 435 278 598  79 875 463 460</code></pre>
 </div>
@@ -151,11 +151,11 @@
 <ol style="list-style-type: decimal">
 <li>Two ways to sample 10 numbers from a normal distribution with mean = 0, and standard deviation = 1.</li>
 </ol>
-<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb697"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span> <span class="fl">10</span>,mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1]  0.79680747 -0.04431444 -0.85356807 -0.38846600 -0.69136999 -0.86033924
 ##  [7] -0.33889780 -1.12573542 -0.07471057 -1.95648908</code></pre>
-<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb699"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1]  1.8391151 -1.0570314 -0.3235842 -1.2049140 -1.5977929  0.8620560
 ##  [7]  0.9034647  0.7606043 -0.7822502 -2.0054921</code></pre>
@@ -163,14 +163,14 @@
 <li>Visualize the sample quickly with <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code>
 </li>
 </ol>
-<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Visualize the sample with ggplot2 using <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>. A requirement here is that the sample data is formatted in a <code>data.frame</code> first. I create a data frame with 100 observations in a <code>sample_data</code> column, and I add a <code>sample</code> column which contains all 1s, to refer to the fact that all of the numbers in sample_data belong to sample #1.</li>
 </ol>
-<div class="sourceCode" id="cb701"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>sample_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
                       sample <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
@@ -183,7 +183,7 @@
 <li>Visualizing multiple samples with individual histograms with ggplot2. Let’s say we want to sample 25 values from a normal distribution, but we want to repeat this process four times. We will have samples 1 to 4, each containing 25 observations. We also want to generate four histograms to quickly look at each of the four samples. We can do this by setting up our dataframe to represent this situation, and by using <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>.</li>
 </ol>
 <p>Note: the use of the <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> function is new, it creates a vector that repeats the numbers from 1 to 4, 25 times each. This way, the first 25 rows in the dataframe represent the 25 observations in sample 1, the next 25 rows represent the observations in sample 2, and so on.</p>
-<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>sample_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
                       sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, each<span class="op">=</span><span class="fl">25</span><span class="op">)</span><span class="op">)</span>
 
@@ -201,19 +201,19 @@
 <ol style="list-style-type: decimal">
 <li>Sample and plot 1000 values from a uniform distribution between 0 and 1.</li>
 </ol>
-<div class="sourceCode" id="cb703"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Sample and plot 10000 values from a uniform distribution between 100 and 1000.</li>
 </ol>
-<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">100</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Take one sample of 100 numbers from a uniform distribution between 0 and 1. Then, for this one sample return a count of how many numbers are less than the value .05.</li>
 </ol>
-<div class="sourceCode" id="cb705"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">[</span><span class="va">my_sample</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
@@ -224,15 +224,15 @@
 </h3>
 <p>R contains many distributions to sample numbers from. The list can be found by <code><a href="https://rdrr.io/r/stats/Distributions.html">?distributions</a></code>. Here a few more examples:</p>
 <p>Exponential distribution</p>
-<div class="sourceCode" id="cb707"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">1000</span>,rate <span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
 <p>Binomial Distribution</p>
-<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
 <p>Weibull distribution</p>
-<div class="sourceCode" id="cb709"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html">rweibull</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">1000</span>, shape<span class="op">=</span><span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
 </div>
@@ -244,39 +244,39 @@
 <ol style="list-style-type: decimal">
 <li>Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a normal distribution:</li>
 </ol>
-<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb711"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.r-project.org">moments</a></span><span class="op">)</span>
 <span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.03965391</code></pre>
-<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.01795</code></pre>
-<div class="sourceCode" id="cb714"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb715"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.05159677</code></pre>
-<div class="sourceCode" id="cb716"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb717"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 3.024779</code></pre>
-<div class="sourceCode" id="cb718"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb719"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure">
 <img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-17-1.png" width="672">
 2. Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a right-skewed exponential distribution.</div>
-<div class="sourceCode" id="cb719"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb720"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.4942242</code></pre>
-<div class="sourceCode" id="cb721"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb722"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.4928924</code></pre>
-<div class="sourceCode" id="cb723"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb724"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.877632</code></pre>
-<div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb726"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 7.559505</code></pre>
-<div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
 </div>
@@ -306,7 +306,7 @@
 <li>Look at if we get an equal number of “heads” or “tails” in the long run.</li>
 </ol>
 <p>There is more than one way to use R to accomplish these goals. Here, we use the <code>sample</code> function, and sample 1s for heads, and 0s for tails. We also create a <code>for</code> loop, and repeat a sampling process 100 times. Each iteration we flip a coin, save the result, and calculate the proportion of heads and tails so far. We save everything in a data.frame, and plot the proportion of heads as we go from 1 to 100 flips. We should see the proportion get closer to .5 as we increase the number of flips.</p>
-<div class="sourceCode" id="cb728"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#initialize variables</span>
 <span class="va">flip</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
@@ -340,7 +340,7 @@
 </h3>
 <p>A fundamental concept in sampling is that samples of numbers become increasingly like their parent population (or distribution) as the size of the sample (n or number of observations in the sample) increases. Let’s demonstrate an example of this phenomena.</p>
 <p>Our parent population will be a normal distribution with mean =100, and sd = 50. We want to conduct a simulation that takes a sample across different ranges of n. Then for each sample, we will calculate a sample statistic such as the mean and standard deviation. These sample statistics should become closer and closer to the “true” parent distribution parameters as n increases.</p>
-<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#initialize variables</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">100000</span>,<span class="fl">1000</span><span class="op">)</span>
 <span class="va">sample_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
@@ -364,7 +364,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">100</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
-<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb731"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">n</span>,y<span class="op">=</span><span class="va">sample_sd</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
@@ -461,8 +461,8 @@
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CrumpLab/psyc7709Lab/bookdown/blob/master/Lab3_Distributions_I.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CrumpLab/psyc7709Lab/bookdown/edit/master/Lab3_Distributions_I.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/Lab3_Distributions_I.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/Lab3_Distributions_I.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>

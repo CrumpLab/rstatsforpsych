@@ -64,7 +64,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/CrumpLab/psyc7709Lab/bookdown">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -193,7 +193,7 @@
 <pre><code>## [[1]]
 ##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># note that strsplit returns it's result in a list</span>
+<code class="sourceCode R"><span class="co"># note that strsplit returns its result in a list</span>
 <span class="va">b</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># access all elements in list 1</span></code></pre></div>
 <pre><code>##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</code></pre>
@@ -272,7 +272,7 @@
 </ol>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">1000</span>, digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1607132217038.79</code></pre>
+<pre><code>## [1] 1607137220137.99</code></pre>
 <ol start="17" style="list-style-type: decimal">
 <li><p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p></li>
 <li><p>Read a .txt file or .csv file into a variable</p></li>
@@ -452,7 +452,7 @@
 <span class="op">}</span>
 
 <span class="fu">encrypt_numbers</span><span class="op">(</span><span class="va">original_sequence</span>,<span class="va">encryption_key</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 3 2 1 5 4 2 2 1 2 5 4 2</code></pre>
+<pre><code>##  [1] 1 4 3 5 2 4 4 3 4 5 2 4</code></pre>
 <ul>
 <li>here is a different approach making use of the <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> function</li>
 </ul>
@@ -477,13 +477,13 @@
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rolling a dice with sample</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
+<pre><code>## [1] 5</code></pre>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 3</code></pre>
 <p>-tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># try one simulation</span>
@@ -494,7 +494,7 @@
   <span class="va">total_sum</span> <span class="op">&lt;-</span><span class="va">total_sum</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="va">number_of_rolls</span></code></pre></div>
-<pre><code>## [1] 9</code></pre>
+<pre><code>## [1] 8</code></pre>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># record the results from multiple simulations</span>
 
@@ -509,7 +509,7 @@
   <span class="va">save_rolls</span><span class="op">[</span><span class="va">sims</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">number_of_rolls</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">save_rolls</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 7.79</code></pre>
+<pre><code>## [1] 7.56</code></pre>
 <ul>
 <li>how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.</li>
 </ul>
@@ -578,8 +578,8 @@
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CrumpLab/psyc7709Lab/bookdown/blob/master/GS_R_Problems.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CrumpLab/psyc7709Lab/bookdown/edit/master/GS_R_Problems.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/GS_R_Problems.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/GS_R_Problems.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>

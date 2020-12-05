@@ -12,13 +12,13 @@
 <link href="libs/bs_font_google_major%20mono%20display-0.2.3.9000/font.css" rel="stylesheet">
 <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-79429674-12"></script><script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        gtag('config', 'UA-79429674-12');
-        </script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="custom.css">
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="custom.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -272,7 +272,7 @@
 </ol>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">1000</span>, digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1607119889018.91</code></pre>
+<pre><code>## [1] 1607126882901.11</code></pre>
 <ol start="17" style="list-style-type: decimal">
 <li><p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p></li>
 <li><p>Read a .txt file or .csv file into a variable</p></li>
@@ -452,7 +452,7 @@
 <span class="op">}</span>
 
 <span class="fu">encrypt_numbers</span><span class="op">(</span><span class="va">original_sequence</span>,<span class="va">encryption_key</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 5 3 4 2 1 3 3 4 3 2 1 3</code></pre>
+<pre><code>##  [1] 5 1 4 3 2 1 1 4 1 3 2 1</code></pre>
 <ul>
 <li>here is a different approach making use of the <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> function</li>
 </ul>
@@ -477,13 +477,13 @@
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rolling a dice with sample</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 6</code></pre>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>-tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># try one simulation</span>
@@ -494,7 +494,7 @@
   <span class="va">total_sum</span> <span class="op">&lt;-</span><span class="va">total_sum</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="va">number_of_rolls</span></code></pre></div>
-<pre><code>## [1] 6</code></pre>
+<pre><code>## [1] 8</code></pre>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># record the results from multiple simulations</span>
 
@@ -509,7 +509,7 @@
   <span class="va">save_rolls</span><span class="op">[</span><span class="va">sims</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">number_of_rolls</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">save_rolls</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 7.81</code></pre>
+<pre><code>## [1] 7.36</code></pre>
 <ul>
 <li>how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.</li>
 </ul>

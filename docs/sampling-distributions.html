@@ -50,7 +50,7 @@
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="basics.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="lab-2-descriptives.html"><span class="header-section-number">2</span> Lab 2 Descriptives</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
 <li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
 <li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
 <li><a class="active" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
@@ -120,12 +120,12 @@
 <span class="header-section-number">5.3.1</span> Normal Distribution<a class="anchor" aria-label="anchor" href="#normal-distribution-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>We use <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> to sample numbers from a normal distribution:</p>
-<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb765"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] -0.4847615 -0.5200696  0.4963287 -0.2932856  2.1340186  0.6305173
-##  [7]  0.7556962  0.7737684  1.8044098 -0.6738966</code></pre>
+<pre><code>##  [1]  0.72827882 -0.92200292 -0.06506031 -0.56874871  1.00305053 -0.41048896
+##  [7]  0.31679233 -0.82457118 -0.82487830  1.07872301</code></pre>
 <p>We can ‘see’ the distribution by sampling a large number of observations, and plotting them in a histogram:</p>
-<div class="sourceCode" id="cb784"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb767"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>observations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10000</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         type <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span>
@@ -139,21 +139,23 @@
 <ol style="list-style-type: decimal">
 <li>We can answer a question like the above through observation. We can look at the sample that we generated, and see how many numbers out of the total are larger than a particular value:</li>
 </ol>
-<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">]</span></code></pre></div>
-<pre><code>##  [1] 3.739576 3.204868 2.575234 2.526918 2.639880 2.555828 2.621840 2.536810
-##  [9] 2.772980 3.523847 2.666390 2.553776 2.657336 2.518635 2.566940 2.592200
-## [17] 2.727534 2.556748 2.671243 2.541272 2.800437 2.570448 3.477238 2.707711
-## [25] 2.602765 2.575790 3.326891 2.521287 2.549420 2.850299 2.979420 2.508975
-## [33] 2.744312 2.510874 2.632694 2.586328 2.632006 2.637292 2.686149 2.916016
-## [41] 2.863875 3.085612 3.065677 3.009463 4.253467 2.962180 2.503168 2.562674
-## [49] 2.688059 3.109479 2.504919 2.573179 2.625990 2.796077</code></pre>
-<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
+<pre><code>##  [1] 2.619051 3.173680 3.418734 2.706189 2.987490 2.556825 2.543277 3.030613
+##  [9] 2.784710 3.589647 2.523578 2.884610 2.737284 2.910478 2.699579 2.592171
+## [17] 2.887627 2.762073 2.657049 2.523820 2.667680 2.558692 2.915544 2.585908
+## [25] 2.628490 3.054475 2.500383 2.998071 2.518553 2.760501 2.588048 2.823324
+## [33] 2.783715 3.388079 2.942723 2.619064 2.751581 2.521358 2.901560 2.810077
+## [41] 3.219068 3.226081 3.107316 2.749460 2.521745 2.626917 3.043616 2.760957
+## [49] 3.130286 2.616313 3.245079 2.521663 3.254855 3.277282 3.547010 3.268435
+## [57] 2.842228 2.677835 2.649183 2.807950 2.752898 3.085298 3.068534 3.057687
+## [65] 2.844420 2.786219 3.236080 2.604231</code></pre>
+<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 54</code></pre>
-<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
+<pre><code>## [1] 68</code></pre>
+<div class="sourceCode" id="cb772"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
-<pre><code>## [1] 0.0054</code></pre>
+<pre><code>## [1] 0.0068</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with <code>d</code>, <code>p</code>, <code>q</code>, and <code>r</code>, so there are <code>dnorm</code>, <code>pnorm</code>, <code>qnorm</code>, and <code>rnorm</code> functions for the normal distribution (and other distributions).</li>
 </ol>
@@ -162,10 +164,10 @@
 <span class="header-section-number">5.3.1.1</span> rnorm()<a class="anchor" aria-label="anchor" href="#rnorm"><i class="fas fa-link"></i></a>
 </h4>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">rnorm(n, mean = 0, sd = 1)</a></code> samples observations (or random deviates) from a normal distribution with specified mean and standard deviation.</p>
-<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb774"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] -2.9123232 -1.4401072 -0.6011178  0.3204890 -0.4387737  1.4910340
-##  [7] -1.2440312  2.1751700  1.6126872 -0.8992319</code></pre>
+<pre><code>##  [1] -0.50041787  0.06936582  1.06386499  0.50565899  1.79366518  0.50117600
+##  [7]  0.24892247 -0.26883304 -0.36899345 -1.91838783</code></pre>
 </div>
 <div id="dnorm" class="section level4" number="5.3.1.2">
 <h4>
@@ -173,7 +175,7 @@
 </h4>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">dnorm(x, mean = 0, sd = 1, log = FALSE)</a></code> is the probability density function. It returns the probability density of the distribution for any value that can be obtained from the distribution.</p>
 <p>For example, in the above histogram, we can see that the distribution produces values roughly between -3 and 3, or perhaps -4 to 4. We also see that as values approach 0, they happen more often. So, the probability density changes across the distribution. We can plot this directly using <code>dorm()</code>, by supplying a sequence of value, say from -4 to 4.</p>
-<div class="sourceCode" id="cb793"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb776"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="fl">4</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         x <span class="op">=</span> <span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
@@ -223,13 +225,13 @@
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb794"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb777"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure">
 <img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-6-1.png" width="672">
 To generate a plot of the full distribution in R, you could calculate additional intervening values on the x-axis, and use a line plot.</div>
-<div class="sourceCode" id="cb795"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb778"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
 
@@ -238,18 +240,9 @@ To generate a plot of the full distribution in R, you could calculate additional
 <div class="inline-figure">
 <img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-7-1.png" width="672">
 Note, that this probability density function could be consulted to ask a question like, what is the probability of getting a value larger than 2.5? The answer is given by the area under the curve (in red).</div>
-<div class="sourceCode" id="cb796"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb800"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+<div class="sourceCode" id="cb779"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">region_data</span> <span class="op">&lt;-</span> <span class="va">some_data</span> <span class="op">%&gt;%</span>
@@ -265,11 +258,11 @@ Note, that this probability density function could be consulted to ask a questio
 ### pnorm</div>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)</a></code> takes a given value that the distribution could produce as an input called <code>q</code> for quantile. The function then returns the proportional area under the curve up to that value.</p>
 <p>For example, what is the area under the curve starting from the left (e.g., negative infinity) all the way to 2.5?</p>
-<div class="sourceCode" id="cb801"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb780"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.9937903</code></pre>
 <p>This is the “complement” of our question. That is 99.37903% of all values drawn from the distribution are expected to be <strong>less than 2.5</strong>. We have just determined the probability of getting a number smaller than 2.5, otherwise known as the lower tail.</p>
-<div class="sourceCode" id="cb803"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb782"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
 <span class="va">region_data</span> <span class="op">&lt;-</span> <span class="va">some_data</span> <span class="op">%&gt;%</span>
@@ -283,10 +276,10 @@ Note, that this probability density function could be consulted to ask a questio
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-10-1.png" width="672">
 By default, <code>pnorm</code> calculates the lower tail, or the area under the curve from the <code>q</code> value point to the left side of the plot.</p>
 <p>To calculate the the probability of getting a number larger than a particular value you can take the complement, or set <code>lower.tail=FALSE</code></p>
-<div class="sourceCode" id="cb804"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb783"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.006209665</code></pre>
-<div class="sourceCode" id="cb806"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb785"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.006209665</code></pre>
 </div>
@@ -297,18 +290,18 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)</a></code> is similar to <code>pnorm</code>, but it takes a probability as an input, and returns a specific point value (or quantile) on the x-axis. More formally, you specify a proportional area under the curve starting from the left, and the function tells which number that area corresponds to.</p>
 <p>For the remaining we assume mean=0 and sd =1.</p>
 <p>What number on the x-axis is the location where 25% of the values are smaller than that value?</p>
-<div class="sourceCode" id="cb808"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb787"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.25</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -0.6744898</code></pre>
 <p>What number on the x-axis is the location where 50% of the values are smaller than that value?</p>
-<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb789"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.5</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>What is the number where 95% of the values are larger than that number?</p>
-<div class="sourceCode" id="cb812"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb791"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.95</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -1.644854</code></pre>
-<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb793"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.05</span>, mean <span class="op">=</span> <span class="fl">0</span> , sd <span class="op">=</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 1.644854</code></pre>
 </div>
@@ -339,9 +332,9 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 </h3>
 <p>For all of the remaining examples we will use a normal distribution with mean = 0 and sd =1.</p>
 <p>We already know what the sample mean is and how to calculate it in R. Here is an example of calculating a sample mean, where the number of observations (n) in the sample is 10.</p>
-<div class="sourceCode" id="cb816"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb795"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.303793</code></pre>
+<pre><code>## [1] 0.04183193</code></pre>
 </div>
 <div id="multiple-sample-means" class="section level3" number="5.4.3">
 <h3>
@@ -349,21 +342,21 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 </h3>
 <p>We can repeat the above process as many times as we like, each time creating a sample of 10 observations and computing the mean.</p>
 <p>Here is an example of creating 5 sample means from 5 sets of 10 observations.</p>
-<div class="sourceCode" id="cb818"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb797"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.01368166</code></pre>
-<div class="sourceCode" id="cb820"><pre class="downlit sourceCode r">
+<pre><code>## [1] 0.2030156</code></pre>
+<div class="sourceCode" id="cb799"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.08635408</code></pre>
-<div class="sourceCode" id="cb822"><pre class="downlit sourceCode r">
+<pre><code>## [1] -0.5608278</code></pre>
+<div class="sourceCode" id="cb801"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.2376181</code></pre>
-<div class="sourceCode" id="cb824"><pre class="downlit sourceCode r">
+<pre><code>## [1] 0.5978975</code></pre>
+<div class="sourceCode" id="cb803"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3913962</code></pre>
-<div class="sourceCode" id="cb826"><pre class="downlit sourceCode r">
+<pre><code>## [1] -0.384792</code></pre>
+<div class="sourceCode" id="cb805"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.1999591</code></pre>
+<pre><code>## [1] 0.04033531</code></pre>
 <p>Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.</p>
 <p>The mean of the distribution that the samples come from is 0, what do we expect the mean of the samples to be? In general, we expect 0, but we can see that not all of the sample means are exactly 0.</p>
 <p>How much variability can we expect for our sample mean? In other words, if we are going to obtain a sample of 10 numbers from this distribution, <strong>what kinds of sample means could we get?</strong>.</p>
@@ -374,7 +367,7 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 </h3>
 <p>The answer to the question <strong>what kinds of sample means could we get?</strong> is “the sampling distribution of the sample means”. In other words, if you do the work to actually find out and create a bunch of samples, and then find their means, then you have a bunch of sample means, and all of these numbers form a distribution. This distribution is effectively showing you all of the different ways that random chance can produce particular sample means.</p>
 <p>Let’s make a distribution of sample means. We will create 10,000 samples, each with 10 observations, and compute the mean for each. We will save and look at all of the means in a histogram.</p>
-<div class="sourceCode" id="cb828"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb807"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure">
@@ -394,21 +387,21 @@ The above is a histogram representing the means for 10,000 samples. We can refer
 <li>Calculate the standard deviation of the sample means</li>
 </ol>
 <p>The standard deviation of the sample means would give us an idea of how much variability we expect from our sample mean. We could do this quickly in R like this:</p>
-<div class="sourceCode" id="cb829"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb808"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3168491</code></pre>
+<pre><code>## [1] 0.3132954</code></pre>
 <p>The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.</p>
 <p>We do not necessarily have to generate a distribution of sample means to calculate the standard error. If we know the population standard deviation (<span class="math inline">\(\sigma\)</span>), then we can use this formula for the standard error of the mean (SEM) is:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
 <p>where <span class="math inline">\(\sigma\)</span> is the population standard deviation, and <span class="math inline">\(N\)</span> is the sample size.</p>
 <p>We can also compare the SEM from the formula to the one we obtained by simulation, and we find they are similar.</p>
-<div class="sourceCode" id="cb831"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb810"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulation SEM</span>
 <span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3182884</code></pre>
-<div class="sourceCode" id="cb833"><pre class="downlit sourceCode r">
+<pre><code>## [1] 0.3167199</code></pre>
+<div class="sourceCode" id="cb812"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># analytic SEM</span>
 
 <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>

@@ -1,7 +1,7 @@
-# Lab 2 Descriptives
+# Descriptives
 
 ```{r, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 ```
 
 "9/2/2020 | Last Compiled: `r Sys.Date()`"

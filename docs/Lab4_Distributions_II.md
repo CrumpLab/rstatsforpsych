@@ -39,7 +39,7 @@ table(rolls)
 ```
 ## rolls
 ##   1   2   3   4   5   6 
-## 176 158 158 153 179 176
+## 169 172 156 163 181 159
 ```
 
 2. With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.
@@ -55,7 +55,7 @@ table(combined)/1000
 ```
 ## combined
 ##     2     3     4     5     6     7     8     9    10    11    12 
-## 0.040 0.047 0.080 0.112 0.145 0.173 0.140 0.101 0.081 0.047 0.034
+## 0.023 0.050 0.093 0.114 0.136 0.171 0.123 0.101 0.094 0.063 0.032
 ```
 Let's compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:
 
@@ -86,12 +86,10 @@ true_probs-sim_result
 
 ```
 ## sum_rolls
-##             2             3             4             5             6 
-## -0.0122222222  0.0085555556  0.0033333333 -0.0008888889 -0.0061111111 
-##             7             8             9            10            11 
-## -0.0063333333 -0.0011111111  0.0101111111  0.0023333333  0.0085555556 
-##            12 
-## -0.0062222222
+##            2            3            4            5            6            7 
+##  0.004777778  0.005555556 -0.009666667 -0.002888889  0.002888889 -0.004333333 
+##            8            9           10           11           12 
+##  0.015888889  0.010111111 -0.010666667 -0.007444444 -0.004222222
 ```
 ### Event generators
 
@@ -105,7 +103,7 @@ sample(c("A","B"), 20, replace = TRUE, prob = c(.8, .2))
 ```
 
 ```
-##  [1] "B" "A" "B" "A" "A" "A" "B" "A" "B" "B" "B" "A" "B" "A" "B" "A" "A" "A" "A"
+##  [1] "B" "A" "A" "A" "A" "A" "A" "B" "A" "B" "B" "A" "A" "B" "A" "A" "A" "A" "A"
 ## [20] "A"
 ```
 
@@ -139,9 +137,9 @@ sample(letters,50,replace=TRUE)
 ```
 
 ```
-##  [1] "g" "y" "x" "x" "z" "m" "n" "z" "h" "f" "l" "x" "p" "f" "z" "d" "t" "z" "k"
-## [20] "g" "z" "o" "z" "t" "v" "q" "u" "z" "l" "i" "c" "g" "i" "v" "g" "m" "o" "f"
-## [39] "f" "t" "j" "i" "q" "i" "w" "b" "s" "h" "k" "r"
+##  [1] "b" "g" "x" "o" "b" "u" "t" "w" "n" "b" "c" "f" "c" "s" "g" "e" "o" "k" "m"
+## [20] "n" "e" "g" "a" "m" "j" "m" "h" "h" "i" "k" "p" "v" "l" "o" "o" "u" "d" "z"
+## [39] "b" "p" "b" "g" "u" "n" "y" "j" "u" "z" "x" "y"
 ```
 
 3. Create a random string generator that creates strings of random letters. For example a string of 5 random letters could look like "fjwud". Generate 50 random letter strings, each with 5 random letters in it.
@@ -158,7 +156,7 @@ paste(my_strings[1,], collapse="")
 ```
 
 ```
-## [1] "ssyov"
+## [1] "iochm"
 ```
 
 ```r
@@ -172,12 +170,12 @@ random_strings
 ```
 
 ```
-##  [1] "ssyov" "cmwcx" "agxoe" "wwpqf" "gmced" "joaqj" "uicms" "vjnha" "hfmpg"
-## [10] "bkelv" "hndus" "gufou" "wsvdf" "toyyv" "hzohf" "hoetm" "dzxtp" "eqvcc"
-## [19] "syiiv" "tezgo" "dlaul" "cpofo" "knsjj" "sqlgd" "esmlg" "clfls" "dyphd"
-## [28] "vodcs" "qurwi" "sjizi" "mubnh" "tatgz" "qlnos" "oodkm" "kenbc" "lugze"
-## [37] "lgvsv" "xgtaa" "ffela" "ingkl" "fozfc" "xndxo" "ndlmv" "fixuc" "dmecu"
-## [46] "cfoyb" "ixgge" "gyydp" "udqcl" "kxvfo"
+##  [1] "iochm" "uvaii" "lavuh" "sqjvz" "ntdaa" "qppup" "vjwnv" "novma" "aixeq"
+## [10] "eobqa" "imbow" "vsdru" "wiadp" "sgott" "dhlan" "pnwvs" "kxjgc" "quglg"
+## [19] "mcltz" "wlyai" "vqnzd" "izdsg" "xxrmt" "gdduz" "beefy" "dyacv" "xvkzv"
+## [28] "ifuhw" "sfmfu" "lbpph" "rkxng" "otvgc" "bwhpg" "nhqna" "lzxyi" "qijut"
+## [37] "xmlib" "gpqom" "uflsq" "nehjx" "syajx" "doesu" "rgvqu" "dibqu" "sukvg"
+## [46] "kkrtp" "ztuip" "krczt" "vpplu" "rkzck"
 ```
 
 ## Concept II: Experiencing probability
@@ -204,7 +202,7 @@ table(number_of_heads)/10000
 ```
 ## number_of_heads
 ##      0      1      2      3      4      5      6      7      8      9     10 
-## 0.0013 0.0103 0.0430 0.1198 0.2047 0.2446 0.2020 0.1210 0.0424 0.0093 0.0016
+## 0.0005 0.0102 0.0462 0.1144 0.1969 0.2547 0.2057 0.1174 0.0436 0.0095 0.0009
 ```
 
 ```r
@@ -217,7 +215,7 @@ table(number_of_heads)/10000
 ```
 ## number_of_heads
 ##      0      1      2      3      4      5      6      7      8      9     10 
-## 0.0008 0.0084 0.0453 0.1108 0.2014 0.2424 0.2089 0.1261 0.0442 0.0108 0.0009
+## 0.0015 0.0099 0.0429 0.1122 0.1999 0.2463 0.2062 0.1260 0.0433 0.0113 0.0005
 ```
 2. If you flipped a coin 10000 times, you would find many different kinds of short-run sequences. For example, HH, HT, TH, and TT. What is the probability of each of these kinds of sequences?
 
@@ -238,7 +236,7 @@ table(sequence)/sum(table(sequence))
 ```
 ## sequence
 ##        HH        HT        TH        TT 
-## 0.2471247 0.2492249 0.2492249 0.2544254
+## 0.2588259 0.2513251 0.2513251 0.2385239
 ```
 
 ```r
@@ -262,7 +260,7 @@ table(sequence)/sum(table(sequence))
 ```
 ## sequence
 ##       HHH       HHT       HTH       HTT       THH       THT       TTH       TTT 
-## 0.1239248 0.1273255 0.1273255 0.1229246 0.1273255 0.1229246 0.1229246 0.1253251
+## 0.1276255 0.1238248 0.1242248 0.1247249 0.1238248 0.1250250 0.1246249 0.1261252
 ```
 
 ## Concept III: Subjective Probability

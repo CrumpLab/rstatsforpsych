@@ -50,7 +50,7 @@
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="basics.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="lab-2-descriptives.html"><span class="header-section-number">2</span> Lab 2 Descriptives</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
 <li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
 <li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
 <li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
@@ -132,22 +132,22 @@
 <span class="header-section-number">6.3.1</span> What is a permutation?<a class="anchor" aria-label="anchor" href="#what-is-a-permutation"><i class="fas fa-link"></i></a>
 </h3>
 <p>A permutation is a reordering of a sequence. For example, we can easily re-order the sequence in <code>a</code> by using the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function.</p>
-<div class="sourceCode" id="cb835"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb814"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5 1 2 4 3</code></pre>
+<pre><code>## [1] 5 4 2 3 1</code></pre>
 <p>The number of permutations (unique re-orderings) for n distinct items is <span class="math inline">\(n!\)</span></p>
 <p>Therefore, if we take 5 numbers from the distinct values 1, 2, 3, 4, 5, we will be able to form 120 distinct orders or permutations of those numbers.</p>
-<div class="sourceCode" id="cb837"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb816"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">5</span><span class="op">*</span><span class="fl">4</span><span class="op">*</span><span class="fl">3</span><span class="op">*</span><span class="fl">2</span><span class="op">*</span><span class="fl">1</span></code></pre></div>
 <pre><code>## [1] 120</code></pre>
 <p>If you were to put the numbers 1, 2, 3, 4, 5 into a basket, and randomly take them out, what are the chances you take them out in the order 1,2,3,4,5?</p>
 <p>Well, that is 1 order out of 120, so 1/120 =</p>
-<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb818"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span><span class="op">/</span><span class="fl">120</span></code></pre></div>
 <pre><code>## [1] 0.008333333</code></pre>
 <p>Let’s quickly test this:</p>
-<div class="sourceCode" id="cb841"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb820"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># generate 10000 random samples</span>
 <span class="va">my_samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
@@ -159,7 +159,7 @@
 <span class="op">}</span>
 
 <span class="va">count_examples</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
-<pre><code>## [1] 0.0072</code></pre>
+<pre><code>## [1] 0.0079</code></pre>
 <p>A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.</p>
 </div>
 <div id="a-permutation-test-example" class="section level3" number="6.3.2">
@@ -169,7 +169,7 @@
 <p>There are 8 people, and you assign 4 to group A, and 4 to group B. You have a basket that contains 8 balls, each with a number on it, just like a lottery. The balls are numbered from 1 to 8, and are completely identical. Everybody puts on a blindfold and goes up one at a time to take one ball.</p>
 <p>What are the possible outcomes in this situation? First, there are <span class="math inline">\(8! = 8*7*6*5*4*3*2*1 = 40,320\)</span> possible permutations, which is the number of different ways that each person from each group could randomly choose a ball.</p>
 <p>This also means that the chances of getting a highly specific outcome, like below is is <span class="math inline">\(1/40320\)</span>, or 2.4801587^{-5}.</p>
-<div class="sourceCode" id="cb843"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb822"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">example_outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">4</span><span class="op">)</span>,
                               person <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,
                               ball <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>
@@ -185,83 +185,77 @@
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">1</td>
-<td align="right">2</td>
+<td align="right">6</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
-<td align="right">2</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">4</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="left">B</td>
-<td align="right">1</td>
-<td align="right">8</td>
-</tr>
-<tr class="even">
-<td align="left">B</td>
 <td align="right">2</td>
 <td align="right">7</td>
 </tr>
 <tr class="odd">
+<td align="left">A</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">2</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
 <td align="left">B</td>
 <td align="right">3</td>
-<td align="right">6</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">B</td>
 <td align="right">4</td>
-<td align="right">3</td>
+<td align="right">2</td>
 </tr>
 </tbody>
 </table></div>
 <p>What are the chances that sum of the balls in Group A will be very different from the sum of the balls chosen by Group B? We could figure these kinds of questions out if we had access to all of the permutations. Let’s make a matrix of all of the possible permutations.</p>
 <p>First, install the package ‘combinat’, which contains the <code><a href="https://rdrr.io/pkg/combinat/man/permn.html">permn()</a></code> function. We can use this function to create matrix of all permutations of the sequence 1 to 8. Note, if your sequence is much larger, the number of permutations becomes very very large, so I wouldn’t recommend using this function to generate permutations for very large sequences.</p>
-<div class="sourceCode" id="cb844"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">combinat</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'combinat'</code></pre>
-<pre><code>## The following object is masked from 'package:utils':
-## 
-##     combn</code></pre>
-<div class="sourceCode" id="cb847"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">permutation_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/combinat/man/permn.html">permn</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">8</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb823"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">combinat</span><span class="op">)</span>
+<span class="va">permutation_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/combinat/man/permn.html">permn</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">8</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>In this matrix we can assume that the first four columns are the choices that persons 1 to 4 in group A could have made, and the last four columns are the choices that persons 5 to 8 could have made.</p>
 <p>Let’s now determine the various sums that could be obtained for each permutation. That is, if we sum up the ball numbers for Group A and group B, we can learn what all of the different possible outcomes actually are.</p>
-<div class="sourceCode" id="cb848"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb824"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_A_sums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">permutation_matrix</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
 <span class="va">group_B_sums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">permutation_matrix</span><span class="op">[</span>,<span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p>Now, let’s determine all of the possible differences between the sums for Group A and B.</p>
-<div class="sourceCode" id="cb849"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb825"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">possible_differences</span> <span class="op">&lt;-</span> <span class="va">group_A_sums</span> <span class="op">-</span> <span class="va">group_B_sums</span></code></pre></div>
 <p>What do these possible differences look like? Let’s make a histogram.</p>
-<div class="sourceCode" id="cb850"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb826"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
 <p>Let’s do a sanity check. What is the biggest possible difference that could be obtained? That would occur if one group chose the 4 smallest numbers (1,2,3,4), which sums to 10; and the other group chose the 4 biggest numbers (5,6,7,8), which sums to 26. Therefore, the largest possible difference is 26-10 = 16.</p>
 <p>What is the largest difference observed in our <code>possible_differences</code> vector? Checks out, that’s good.</p>
-<div class="sourceCode" id="cb851"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb827"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
 <p>Let’s now answer some specific questions. What is the probability that the difference in the group sums will be larger than 16? Because we have just determined that this is impossible, we can confidently say 0.</p>
-<div class="sourceCode" id="cb853"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb829"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">possible_differences</span><span class="op">[</span><span class="va">possible_differences</span> <span class="op">&gt;</span> <span class="fl">16</span><span class="op">]</span></code></pre></div>
 <pre><code>## numeric(0)</code></pre>
 <p>What is the probability that the absolute value of the difference in the group sums will be larger than 10?</p>
 <p>First, we convert all of the differences to positive values:</p>
-<div class="sourceCode" id="cb855"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb831"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">absolute_differences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span></code></pre></div>
 <p>Then we figure out how many differences are larger than 10, and divide by the total possible outcomes:</p>
-<div class="sourceCode" id="cb856"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb832"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">absolute_differences</span><span class="op">[</span><span class="va">absolute_differences</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">absolute_differences</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.1142857</code></pre>
 </div>
@@ -282,19 +276,19 @@
 <span class="header-section-number">6.3.4</span> Permutation test on experimental data.<a class="anchor" aria-label="anchor" href="#permutation-test-on-experimental-data."><i class="fas fa-link"></i></a>
 </h3>
 <p>Consider an experiment was conducted that had two groups A and B. There were 8 total participants, and they were <strong>randomly assigned</strong> to the groups. Group A received 1 million dollars as motivation to do well on a midterm. Group B received 0 dollars. Both groups took a midterm. The mean performance for each subject in group A was 85, 75, 76, and 89. The mean performance for each subject in Group B was 90, 65, 68, 69.</p>
-<div class="sourceCode" id="cb858"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb834"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">85</span>,<span class="fl">75</span>,<span class="fl">76</span>,<span class="fl">89</span><span class="op">)</span>
 <span class="va">group_B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>,<span class="fl">65</span>,<span class="fl">68</span>,<span class="fl">69</span><span class="op">)</span></code></pre></div>
 <p>Overall the mean for group A was:</p>
-<div class="sourceCode" id="cb859"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb835"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 81.25</code></pre>
 <p>And, the mean for group B was:</p>
-<div class="sourceCode" id="cb861"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb837"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 73</code></pre>
 <p>So, group A, who got a million dollars, on average did better on the midterm than group B. The difference was 81.25 - 73 = 8.25.</p>
-<div class="sourceCode" id="cb863"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb839"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 8.25</code></pre>
 <div id="what-caused-the-difference" class="section level4" number="6.3.4.1">
@@ -309,7 +303,7 @@
 <span class="header-section-number">6.3.4.2</span> Assessing chance with a permutation test<a class="anchor" aria-label="anchor" href="#assessing-chance-with-a-permutation-test"><i class="fas fa-link"></i></a>
 </h4>
 <p>We can use a permutation test to assess all of the possible ways that participants and their scores could have been assigned to groups. Then we can calculate all of the possible group differences that could have been observed. Then we can compare the group difference that we did observe (8.25), to the group differences that we could have observed. This will let us know if the random sampling process was likely or unlikely to produce the difference.</p>
-<div class="sourceCode" id="cb865"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb841"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># put all means in a variable</span>
 <span class="va">all_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">group_A</span>,<span class="va">group_B</span><span class="op">)</span> 
 
@@ -323,7 +317,7 @@
 <span class="co"># generate all possible differences</span>
 <span class="va">possible_differences</span> <span class="op">&lt;-</span> <span class="va">group_A_means</span> <span class="op">-</span> <span class="va">group_B_means</span></code></pre></div>
 <p>The <code>possible_differences</code> vector contains all of the possible mean differences that could have been produced by random sampling. Let’s compare this to what we observed. We will do this in two ways.</p>
-<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb842"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># visualize the analysis</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
@@ -332,13 +326,11 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
 <p>The histogram shows all of the possible differences we could have obtained by randomly sampling the participants into the different groups. The red line shows the difference that was obtained. These are all facts of this example.</p>
 <p>I like to the think of the “distribution of possible differences” as a window of opportunity for chance. That is, we are looking at differences in the data that could have been produced by chance. We also see that some values occur more often than others. For example, the red line, with the observed difference of 8.25 is 1) inside the distribution, which means that chance could have produced this difference, but 2) it is kind of far to the left, so it seems that chance doesn’t produce a difference this big very often.</p>
 <p>We could be more precise and calculate the odds of getting a difference of 8.25 or larger, which I find to be 11.4%.</p>
-<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb843"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">[</span><span class="va">possible_differences</span> <span class="op">&gt;=</span> <span class="fl">8.25</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.1142857</code></pre>
 <p>So…to return the cartoon character metaphor, we have a who dunnit question. Was Mickey Mouse with the million dollars that caused the difference of 8.25? Or was it Donald Duck with random chance that accidentally produced a difference of 8.25? We know that Mr. Duck only produces a difference of 8.25 or larger 10% of the time…Is that enough to say that Mr. Duck DID NOT DO IT? I don’t think so. He clearly could have done it. Can we be absolutely certain that it was the million dollar manipulation? No. Have we learned anything useful at all? I think so, it seems we got a result that is irregular from the perspective of chance. This might give me some confidence that the experimental manipulation actually caused the difference, and not the act of randomly assigning participants to groups.</p>
@@ -352,22 +344,22 @@
 </h2>
 <p>The randomization test is a version of the permutation test that can be used when the number of permutations is very large and impractical to generate. For example, in the previous toy example we only had 8 means, and permuting them across two groups required generating 40320 sequences. If you had hundreds or thousands of subjects, your computer would quickly loose the memory capacity to generate all of the possible permutations. <strong>Instead, we randomly sample from the possible permutations</strong>, and create a <strong>sampling distribution</strong>, and use this to become informed about <strong>what could have happened by chance</strong>.</p>
 <p>Imagine you had 50 subjects each in group A and B. Let’s generate fake scores for each participant. Let’s also imagine that in this experiment the manipulation <strong>actually DOES NOT WORK</strong>. So, we will pretend that the scores for each participant are coming from the very same distribution, let’s say a normal distribution with mean = 65 and sd = 10.</p>
-<div class="sourceCode" id="cb870"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb845"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">65</span>,<span class="fl">10</span><span class="op">)</span>
 <span class="va">group_B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">65</span>,<span class="fl">10</span><span class="op">)</span></code></pre></div>
 <p>We can then calculate the mean of each group, and look at the difference.</p>
-<div class="sourceCode" id="cb871"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb846"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 64.41772</code></pre>
-<div class="sourceCode" id="cb873"><pre class="downlit sourceCode r">
+<pre><code>## [1] 64.82171</code></pre>
+<div class="sourceCode" id="cb848"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 64.76914</code></pre>
-<div class="sourceCode" id="cb875"><pre class="downlit sourceCode r">
+<pre><code>## [1] 66.50917</code></pre>
+<div class="sourceCode" id="cb850"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] -0.3514197</code></pre>
+<pre><code>## [1] -1.687465</code></pre>
 <p>In some general sense if the manipulation works, that is it <strong>causes a difference</strong>, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, <strong>however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups</strong>.</p>
 <p>We now want to calculate a <strong>sampling distribution of possible mean differences</strong>. To do this, we take all of the values in Group A and B, and randomly re-assign them across both groups, then recalculate the means and the mean difference. Then we, do this multiple times, as in monte-carlo simulation.</p>
-<div class="sourceCode" id="cb877"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb852"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># creating one random permutation</span>
 <span class="va">all_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">group_A</span>,<span class="va">group_B</span><span class="op">)</span>
 <span class="va">resample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">all_scores</span><span class="op">)</span>
@@ -375,8 +367,8 @@
 <span class="va">new_B_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">resample</span><span class="op">[</span><span class="fl">51</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">)</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_A_mean</span><span class="op">-</span><span class="va">new_B_mean</span>
 <span class="va">new_difference</span></code></pre></div>
-<pre><code>## [1] 1.946026</code></pre>
-<div class="sourceCode" id="cb879"><pre class="downlit sourceCode r">
+<pre><code>## [1] -0.3251556</code></pre>
+<div class="sourceCode" id="cb854"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Simulate the above process 10000 times</span>
 <span class="va">mean_differences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
@@ -386,20 +378,18 @@
   <span class="va">mean_differences</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">new_A_mean</span><span class="op">-</span><span class="va">new_B_mean</span>
 <span class="op">}</span></code></pre></div>
 <p>Now we can plot the mean differences to get a sense of the kinds of differences that chance could have produced, again the red line shows a particular mean difference that was observed in this toy example.</p>
-<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb855"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
 <p>The above histogram is a “sampling distribution of mean differences”, and it shows the kinds of differences between group A and group B that could be obtained purely because of randomly assigning people to different groups.</p>
 <p>In terms of a detective novel, this is <strong>chances alibi</strong>, it shows what chance is capable of doing. In this situation, chance alone could easily produce differences between group A and B as large as 4 or -4. Notice, that chance never produces a difference as large as 20. If you had all the information that we have in this example, then as a researcher you could attempt to rule out the possibility that was chance was involved in producing a difference that you observed.</p>
 <p>We can also use this distribution to calculate specific probabilities concerning chance. For example, what is the probability of getting a 4 or larger by chance alone?</p>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb856"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;=</span><span class="fl">4</span> <span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.0183</code></pre>
+<pre><code>## [1] 0.0283</code></pre>
 </div>
 <div id="p1-randomization-test-with-real-data" class="section level2" number="6.5">
 <h2>
@@ -415,25 +405,16 @@
 <p>Here I construct a randomization test for an experiment asking the question…Do you come across as smarter (in an interview) when evaluators get to <strong>hear</strong> what you say, or only get to <strong>read</strong> what you say.</p>
 <p>You can learn more about the experiment here: <a href="https://crumplab.github.io/statisticsLab/lab-7-t-test-independent-sample.html" class="uri">https://crumplab.github.io/statisticsLab/lab-7-t-test-independent-sample.html</a>. This is a link to a lab manual that gives an example of conducting a t-test, something we will discuss in later labs. We will use the data from this experiment, which is contained in your ‘open_data’ folder, and titled, <code>SchroederEpley2015data.csv</code>, and we will conduct a randomization test.</p>
 <p>Note that the condition code <code>1</code> refers to the audio group, and <code>0</code> refers to the reading only group.</p>
-<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb858"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#load the data</span>
 <span class="va">the_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"open_data/SchroederEpley2015data.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># compute the group means</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb888"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">the_data</span> <span class="op">%&gt;%</span> 
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="va">the_data</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ##   CONDITION group_means
 ##       &lt;int&gt;       &lt;dbl&gt;
@@ -441,7 +422,7 @@
 ## 2         1        5.63</code></pre>
 <p>We can see that the audio only group (1) received higher intellect ratings (5.63) than the read only group (0), 3.64. The difference, or effect was about 2.</p>
 <p>Was this difference a result that could have occurred because of randomly assigning people to different groups? Let’s do a randomization test to create <strong>a sampling distribution of possible mean differences</strong>.</p>
-<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb860"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># restrict the dataset to the columns of interest</span>
 <span class="va">simulation_data</span> <span class="op">&lt;-</span> <span class="va">the_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">CONDITION</span>,<span class="va">Intellect_Rating</span><span class="op">)</span>
@@ -450,46 +431,46 @@
 <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##    CONDITION Intellect_Rating
-## 1          1        6.0000000
+## 1          1        5.6666667
 ## 2          1        5.0000000
-## 3          1        4.6666667
-## 4          0        5.6666667
-## 5          0        6.0000000
-## 6          0        2.3333333
-## 7          1        9.0000000
-## 8          0        4.6666667
-## 9          1        3.6666667
+## 3          1        3.3333333
+## 4          0        1.6666667
+## 5          0        3.3333333
+## 6          0        9.0000000
+## 7          1        3.6666667
+## 8          0        3.6666667
+## 9          1        9.0000000
 ## 10         0        4.6666667
-## 11         0        6.0000000
-## 12         1        7.0000000
-## 13         1        3.6666667
-## 14         0        5.3333333
-## 15         0        9.0000000
-## 16         1        5.0000000
-## 17         1        5.6666667
-## 18         1        6.3333333
-## 19         0        0.6666667
-## 20         0        3.3333333
-## 21         0        2.0000000
+## 11         0        3.6666667
+## 12         1        6.6666667
+## 13         1        1.0000000
+## 14         0        7.6666667
+## 15         0        6.3333333
+## 16         1        4.6666667
+## 17         1        3.6666667
+## 18         1        5.6666667
+## 19         0        5.0000000
+## 20         0        5.3333333
+## 21         0        6.0000000
 ## 22         0        3.6666667
-## 23         0        3.6666667
-## 24         1        3.6666667
-## 25         1        6.6666667
-## 26         1        1.6666667
-## 27         0        6.0000000
-## 28         1        5.6666667
-## 29         1        3.3333333
-## 30         1        7.6666667
-## 31         0        1.6666667
-## 32         0        1.0000000
-## 33         1        6.6666667
-## 34         1        3.3333333
-## 35         0        5.6666667
-## 36         1        5.0000000
-## 37         0        6.0000000
-## 38         1        4.6666667
-## 39         1        2.3333333</code></pre>
-<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
+## 23         0        6.6666667
+## 24         1        3.3333333
+## 25         1        4.6666667
+## 26         1        2.3333333
+## 27         0        1.6666667
+## 28         1        4.6666667
+## 29         1        5.6666667
+## 30         1        2.3333333
+## 31         0        6.0000000
+## 32         0        5.0000000
+## 33         1        6.0000000
+## 34         1        6.0000000
+## 35         0        6.0000000
+## 36         1        5.6666667
+## 37         0        2.0000000
+## 38         1        0.6666667
+## 39         1        7.0000000</code></pre>
+<div class="sourceCode" id="cb862"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># example of calculating a new mean difference</span>
 
 <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
@@ -501,15 +482,15 @@
 <pre><code>## # A tibble: 2 x 2
 ##   CONDITION new_means
 ##       &lt;int&gt;     &lt;dbl&gt;
-## 1         0      4.94
-## 2         1      4.52</code></pre>
-<div class="sourceCode" id="cb895"><pre class="downlit sourceCode r">
+## 1         0      4.48
+## 2         1      4.92</code></pre>
+<div class="sourceCode" id="cb864"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span></code></pre></div>
-<pre><code>## [1] 4.944444</code></pre>
-<div class="sourceCode" id="cb897"><pre class="downlit sourceCode r">
+<pre><code>## [1] 4.481481</code></pre>
+<div class="sourceCode" id="cb866"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span></code></pre></div>
-<pre><code>## [1] 4.52381</code></pre>
-<div class="sourceCode" id="cb899"><pre class="downlit sourceCode r">
+<pre><code>## [1] 4.920635</code></pre>
+<div class="sourceCode" id="cb868"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span><span class="op">-</span><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
 
 <span class="co"># Run a randomization test</span>
@@ -526,17 +507,15 @@
   <span class="va">possible_differences</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span><span class="op">-</span><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
 <span class="op">}</span></code></pre></div>
 <p>Now we look the sampling distribution of possible differences, and compare the observed difference of 2, to what could have happened:</p>
-<div class="sourceCode" id="cb900"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb869"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">2</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure">
 <img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="672">
 It’s pretty clear in this example that a mean difference of 2 rarely occurred across the random shuffles of the data. The odds of getting 2 or larger from the simulation were:</div>
-<div class="sourceCode" id="cb902"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb870"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">[</span><span class="va">possible_differences</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>What can be concluded from this exercise? Should we conclude that that experimental manipulation actually caused the difference in Intellect ratings? Should we conclude that chance did not produce the difference?</p>
@@ -547,7 +526,7 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
 <span class="header-section-number">6.5.1</span> Some coding alternatives<a class="anchor" aria-label="anchor" href="#some-coding-alternatives"><i class="fas fa-link"></i></a>
 </h3>
 <p>The script for a randomization test could be written in many different ways. Here are is an additional example:</p>
-<div class="sourceCode" id="cb904"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb872"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#load the data</span>
 <span class="va">the_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"open_data/SchroederEpley2015data.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -555,19 +534,18 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
 <span class="va">the_data</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ##   CONDITION group_means
 ##       &lt;int&gt;       &lt;dbl&gt;
 ## 1         0        3.65
 ## 2         1        5.63</code></pre>
-<div class="sourceCode" id="cb907"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb874"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># how many participants per group?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">the_data</span><span class="op">$</span><span class="va">CONDITION</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  0  1 
 ## 18 21</code></pre>
-<div class="sourceCode" id="cb909"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb876"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create permutations</span>
 <span class="va">mean_differences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
@@ -582,8 +560,6 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">2</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-31-1.png" width="672"></div>
 </div>
 </div>

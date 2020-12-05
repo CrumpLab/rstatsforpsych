@@ -49,8 +49,8 @@ rnorm(n=10, mean = 0, sd = 1)
 ```
 
 ```
-##  [1] -0.4847615 -0.5200696  0.4963287 -0.2932856  2.1340186  0.6305173
-##  [7]  0.7556962  0.7737684  1.8044098 -0.6738966
+##  [1]  0.72827882 -0.92200292 -0.06506031 -0.56874871  1.00305053 -0.41048896
+##  [7]  0.31679233 -0.82457118 -0.82487830  1.07872301
 ```
 
 We can 'see' the distribution by sampling a large number of observations, and plotting them in a histogram:
@@ -80,13 +80,15 @@ some_data$observations[some_data$observations > 2.5]
 ```
 
 ```
-##  [1] 3.739576 3.204868 2.575234 2.526918 2.639880 2.555828 2.621840 2.536810
-##  [9] 2.772980 3.523847 2.666390 2.553776 2.657336 2.518635 2.566940 2.592200
-## [17] 2.727534 2.556748 2.671243 2.541272 2.800437 2.570448 3.477238 2.707711
-## [25] 2.602765 2.575790 3.326891 2.521287 2.549420 2.850299 2.979420 2.508975
-## [33] 2.744312 2.510874 2.632694 2.586328 2.632006 2.637292 2.686149 2.916016
-## [41] 2.863875 3.085612 3.065677 3.009463 4.253467 2.962180 2.503168 2.562674
-## [49] 2.688059 3.109479 2.504919 2.573179 2.625990 2.796077
+##  [1] 2.619051 3.173680 3.418734 2.706189 2.987490 2.556825 2.543277 3.030613
+##  [9] 2.784710 3.589647 2.523578 2.884610 2.737284 2.910478 2.699579 2.592171
+## [17] 2.887627 2.762073 2.657049 2.523820 2.667680 2.558692 2.915544 2.585908
+## [25] 2.628490 3.054475 2.500383 2.998071 2.518553 2.760501 2.588048 2.823324
+## [33] 2.783715 3.388079 2.942723 2.619064 2.751581 2.521358 2.901560 2.810077
+## [41] 3.219068 3.226081 3.107316 2.749460 2.521745 2.626917 3.043616 2.760957
+## [49] 3.130286 2.616313 3.245079 2.521663 3.254855 3.277282 3.547010 3.268435
+## [57] 2.842228 2.677835 2.649183 2.807950 2.752898 3.085298 3.068534 3.057687
+## [65] 2.844420 2.786219 3.236080 2.604231
 ```
 
 ```r
@@ -94,7 +96,7 @@ length(some_data$observations[some_data$observations > 2.5])
 ```
 
 ```
-## [1] 54
+## [1] 68
 ```
 
 ```r
@@ -102,7 +104,7 @@ length(some_data$observations[some_data$observations > 2.5])/10000
 ```
 
 ```
-## [1] 0.0054
+## [1] 0.0068
 ```
 2. We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with `d`, `p`, `q`, and `r`, so there are `dnorm`, `pnorm`, `qnorm`, and `rnorm` functions for the normal distribution (and other distributions).
 
@@ -117,8 +119,8 @@ rnorm(n=10, mean = 0, sd = 1)
 ```
 
 ```
-##  [1] -2.9123232 -1.4401072 -0.6011178  0.3204890 -0.4387737  1.4910340
-##  [7] -1.2440312  2.1751700  1.6126872 -0.8992319
+##  [1] -0.50041787  0.06936582  1.06386499  0.50565899  1.79366518  0.50117600
+##  [7]  0.24892247 -0.26883304 -0.36899345 -1.91838783
 ```
 
 #### dnorm()
@@ -173,26 +175,6 @@ Note, that this probability density function could be consulted to ask a questio
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 some_data <- data.frame(density = dnorm(seq(-4,4,.001), mean = 0, sd = 1),
                         x = seq(-4,4,.001))
 
@@ -335,7 +317,7 @@ mean(rnorm(10, mean=0, sd =1))
 ```
 
 ```
-## [1] 0.303793
+## [1] 0.04183193
 ```
 
 ### Multiple sample means
@@ -350,7 +332,7 @@ mean(rnorm(10, mean=0, sd =1))
 ```
 
 ```
-## [1] 0.01368166
+## [1] 0.2030156
 ```
 
 ```r
@@ -358,7 +340,7 @@ mean(rnorm(10, mean=0, sd =1))
 ```
 
 ```
-## [1] 0.08635408
+## [1] -0.5608278
 ```
 
 ```r
@@ -366,7 +348,7 @@ mean(rnorm(10, mean=0, sd =1))
 ```
 
 ```
-## [1] 0.2376181
+## [1] 0.5978975
 ```
 
 ```r
@@ -374,7 +356,7 @@ mean(rnorm(10, mean=0, sd =1))
 ```
 
 ```
-## [1] 0.3913962
+## [1] -0.384792
 ```
 
 ```r
@@ -382,7 +364,7 @@ mean(rnorm(10, mean=0, sd =1))
 ```
 
 ```
-## [1] 0.1999591
+## [1] 0.04033531
 ```
 
 Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.
@@ -429,7 +411,7 @@ sd(sample_means)
 ```
 
 ```
-## [1] 0.3168491
+## [1] 0.3132954
 ```
 
 The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.
@@ -450,7 +432,7 @@ sd(sample_means)
 ```
 
 ```
-## [1] 0.3182884
+## [1] 0.3167199
 ```
 
 ```r

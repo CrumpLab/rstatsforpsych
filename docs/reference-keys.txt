@@ -116,7 +116,7 @@ example-functions-1
 lab-1-generalization-assignment
 instructions
 problems
-lab-2-descriptives
+descriptives
 reading
 overview-1
 means-demo

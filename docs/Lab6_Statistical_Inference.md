@@ -61,7 +61,7 @@ sample(a)
 ```
 
 ```
-## [1] 5 1 2 4 3
+## [1] 5 4 2 3 1
 ```
 
 The number of permutations (unique re-orderings) for n distinct items is $n!$
@@ -108,7 +108,7 @@ count_examples/10000
 ```
 
 ```
-## [1] 0.0072
+## [1] 0.0079
 ```
 
 A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.
@@ -134,14 +134,14 @@ knitr::kable(example_outcome)
 
 |group | person| ball|
 |:-----|------:|----:|
-|A     |      1|    2|
-|A     |      2|    1|
-|A     |      3|    4|
-|A     |      4|    5|
-|B     |      1|    8|
-|B     |      2|    7|
-|B     |      3|    6|
-|B     |      4|    3|
+|A     |      1|    6|
+|A     |      2|    7|
+|A     |      3|    3|
+|A     |      4|    4|
+|B     |      1|    5|
+|B     |      2|    8|
+|B     |      3|    1|
+|B     |      4|    2|
 
 What are the chances that sum of the balls in Group A will be very different from the sum of the balls chosen by Group B? We could figure these kinds of questions out if we had access to all of the permutations. Let's make a matrix of all of the possible permutations.
 
@@ -150,20 +150,6 @@ First, install the package 'combinat', which contains the `permn()` function. We
 
 ```r
 library(combinat)
-```
-
-```
-## 
-## Attaching package: 'combinat'
-```
-
-```
-## The following object is masked from 'package:utils':
-## 
-##     combn
-```
-
-```r
 permutation_matrix <- matrix(unlist(permn(1:8)), ncol=8, byrow=TRUE)
 ```
 
@@ -330,11 +316,6 @@ qplot(possible_differences)+
   theme_classic()
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
 <img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 The histogram shows all of the possible differences we could have obtained by randomly sampling the participants into the different groups. The red line shows the difference that was obtained. These are all facts of this example.
@@ -376,7 +357,7 @@ mean(group_A)
 ```
 
 ```
-## [1] 64.41772
+## [1] 64.82171
 ```
 
 ```r
@@ -384,7 +365,7 @@ mean(group_B)
 ```
 
 ```
-## [1] 64.76914
+## [1] 66.50917
 ```
 
 ```r
@@ -392,7 +373,7 @@ mean(group_A)-mean(group_B)
 ```
 
 ```
-## [1] -0.3514197
+## [1] -1.687465
 ```
 
 In some general sense if the manipulation works, that is it **causes a difference**, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, **however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups**.
@@ -411,7 +392,7 @@ new_difference
 ```
 
 ```
-## [1] 1.946026
+## [1] -0.3251556
 ```
 
 ```r
@@ -435,11 +416,6 @@ qplot(mean_differences)+
   theme_classic()
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
 <img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-25-1.png" width="672" />
 
 The above histogram is a "sampling distribution of mean differences", and it shows the kinds of differences between group A and group B that could be obtained purely because of randomly assigning people to different groups. 
@@ -454,7 +430,7 @@ length(mean_differences[mean_differences >=4 ])/length(mean_differences)
 ```
 
 ```
-## [1] 0.0183
+## [1] 0.0283
 ```
 
 ## P1: Randomization test with real data
@@ -479,33 +455,10 @@ the_data <- read.csv("open_data/SchroederEpley2015data.csv", header = TRUE)
 
 # compute the group means
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 the_data %>% 
   group_by(CONDITION) %>%
   summarize(group_means = mean(Intellect_Rating))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -533,45 +486,45 @@ simulation_data %>%
 
 ```
 ##    CONDITION Intellect_Rating
-## 1          1        6.0000000
+## 1          1        5.6666667
 ## 2          1        5.0000000
-## 3          1        4.6666667
-## 4          0        5.6666667
-## 5          0        6.0000000
-## 6          0        2.3333333
-## 7          1        9.0000000
-## 8          0        4.6666667
-## 9          1        3.6666667
+## 3          1        3.3333333
+## 4          0        1.6666667
+## 5          0        3.3333333
+## 6          0        9.0000000
+## 7          1        3.6666667
+## 8          0        3.6666667
+## 9          1        9.0000000
 ## 10         0        4.6666667
-## 11         0        6.0000000
-## 12         1        7.0000000
-## 13         1        3.6666667
-## 14         0        5.3333333
-## 15         0        9.0000000
-## 16         1        5.0000000
-## 17         1        5.6666667
-## 18         1        6.3333333
-## 19         0        0.6666667
-## 20         0        3.3333333
-## 21         0        2.0000000
+## 11         0        3.6666667
+## 12         1        6.6666667
+## 13         1        1.0000000
+## 14         0        7.6666667
+## 15         0        6.3333333
+## 16         1        4.6666667
+## 17         1        3.6666667
+## 18         1        5.6666667
+## 19         0        5.0000000
+## 20         0        5.3333333
+## 21         0        6.0000000
 ## 22         0        3.6666667
-## 23         0        3.6666667
-## 24         1        3.6666667
-## 25         1        6.6666667
-## 26         1        1.6666667
-## 27         0        6.0000000
-## 28         1        5.6666667
-## 29         1        3.3333333
-## 30         1        7.6666667
-## 31         0        1.6666667
-## 32         0        1.0000000
-## 33         1        6.6666667
-## 34         1        3.3333333
-## 35         0        5.6666667
-## 36         1        5.0000000
-## 37         0        6.0000000
-## 38         1        4.6666667
-## 39         1        2.3333333
+## 23         0        6.6666667
+## 24         1        3.3333333
+## 25         1        4.6666667
+## 26         1        2.3333333
+## 27         0        1.6666667
+## 28         1        4.6666667
+## 29         1        5.6666667
+## 30         1        2.3333333
+## 31         0        6.0000000
+## 32         0        5.0000000
+## 33         1        6.0000000
+## 34         1        6.0000000
+## 35         0        6.0000000
+## 36         1        5.6666667
+## 37         0        2.0000000
+## 38         1        0.6666667
+## 39         1        7.0000000
 ```
 
 ```r
@@ -589,8 +542,8 @@ new_data
 ## # A tibble: 2 x 2
 ##   CONDITION new_means
 ##       <int>     <dbl>
-## 1         0      4.94
-## 2         1      4.52
+## 1         0      4.48
+## 2         1      4.92
 ```
 
 ```r
@@ -598,7 +551,7 @@ new_data[new_data$CONDITION == 0,]$new_means
 ```
 
 ```
-## [1] 4.944444
+## [1] 4.481481
 ```
 
 ```r
@@ -606,7 +559,7 @@ new_data[new_data$CONDITION == 1,]$new_means
 ```
 
 ```
-## [1] 4.52381
+## [1] 4.920635
 ```
 
 ```r
@@ -635,11 +588,6 @@ qplot(possible_differences)+
   geom_histogram(color="orange")+
   geom_vline(xintercept=2, color ="red")+
   theme_classic()
-```
-
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 <img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="672" />
@@ -676,10 +624,6 @@ the_data %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 2
 ##   CONDITION group_means
 ##       <int>       <dbl>
@@ -713,14 +657,6 @@ qplot(mean_differences)+
   geom_histogram(color="orange")+
   geom_vline(xintercept=2, color ="red")+
   theme_classic()
-```
-
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 <img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-31-1.png" width="672" />

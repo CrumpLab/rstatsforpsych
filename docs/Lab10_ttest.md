@@ -38,13 +38,13 @@ t.test(some_random_means, mu=0)
 ## 	One Sample t-test
 ## 
 ## data:  some_random_means
-## t = -0.71005, df = 9, p-value = 0.4957
+## t = -0.08278, df = 9, p-value = 0.9358
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -1.0648686  0.5560794
+##  -0.6477837  0.6020480
 ## sample estimates:
-##  mean of x 
-## -0.2543946
+##   mean of x 
+## -0.02286783
 ```
 
 ### Paired-sample t-test
@@ -62,13 +62,13 @@ t.test(A_means,B_means,paired=TRUE)
 ## 	Paired t-test
 ## 
 ## data:  A_means and B_means
-## t = 0.8292, df = 9, p-value = 0.4284
+## t = -0.93543, df = 9, p-value = 0.374
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.5989366  1.2921086
+##  -0.8844547  0.3669740
 ## sample estimates:
 ## mean of the differences 
-##                0.346586
+##              -0.2587403
 ```
 
 ### Independent-sample t-test
@@ -86,13 +86,13 @@ t.test(A_means,B_means, var.equal=TRUE)
 ## 	Two Sample t-test
 ## 
 ## data:  A_means and B_means
-## t = -0.36689, df = 18, p-value = 0.718
+## t = 0.063609, df = 18, p-value = 0.95
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.8678276  0.6097867
+##  -0.8794854  0.9344042
 ## sample estimates:
-##   mean of x   mean of y 
-## -0.04055850  0.08846198
+## mean of x mean of y 
+## 0.2706210 0.2431616
 ```
 
 ### formula syntax for data frames
@@ -112,13 +112,13 @@ t.test(means~group, var.equal=TRUE, data=my_data)
 ## 	Two Sample t-test
 ## 
 ## data:  means by group
-## t = -0.23855, df = 18, p-value = 0.8142
+## t = 0.95478, df = 18, p-value = 0.3523
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.8222489  0.6545655
+##  -0.4917681  1.3110918
 ## sample estimates:
 ## mean in group A mean in group B 
-##     -0.07147335      0.01236839
+##    -0.005239521    -0.414901379
 ```
 
 ### one or two-sided test
@@ -136,13 +136,13 @@ t.test(some_random_means, mu=0, alternative = "two.sided")
 ## 	One Sample t-test
 ## 
 ## data:  some_random_means
-## t = 0.65576, df = 9, p-value = 0.5284
+## t = 0.81921, df = 9, p-value = 0.4338
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
-##  -0.4715763  0.8565905
+##  -0.3477011  0.7425036
 ## sample estimates:
 ## mean of x 
-## 0.1925071
+## 0.1974013
 ```
 
 ```r
@@ -154,13 +154,13 @@ t.test(some_random_means, mu=0, alternative = "less")
 ## 	One Sample t-test
 ## 
 ## data:  some_random_means
-## t = 0.65576, df = 9, p-value = 0.7358
+## t = 0.81921, df = 9, p-value = 0.7831
 ## alternative hypothesis: true mean is less than 0
 ## 95 percent confidence interval:
-##       -Inf 0.7306394
+##       -Inf 0.6391186
 ## sample estimates:
 ## mean of x 
-## 0.1925071
+## 0.1974013
 ```
 
 ```r
@@ -172,13 +172,13 @@ t.test(some_random_means, mu=0, alternative = "greater")
 ## 	One Sample t-test
 ## 
 ## data:  some_random_means
-## t = 0.65576, df = 9, p-value = 0.2642
+## t = 0.81921, df = 9, p-value = 0.2169
 ## alternative hypothesis: true mean is greater than 0
 ## 95 percent confidence interval:
-##  -0.3456252        Inf
+##  -0.2443161        Inf
 ## sample estimates:
 ## mean of x 
-## 0.1925071
+## 0.1974013
 ```
 
 ### var.equal and Welch's correction
@@ -197,13 +197,13 @@ t.test(A,B)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  A and B
-## t = 0.31917, df = 12.055, p-value = 0.7551
+## t = 0.82793, df = 16.179, p-value = 0.4198
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7771384  1.0440608
+##  -0.4944682  1.1291395
 ## sample estimates:
-##  mean of x  mean of y 
-## 0.22379878 0.09033761
+##   mean of x   mean of y 
+##  0.04832838 -0.26900728
 ```
 
 To conduct a t-test without the correction set `var.equal=TRUE`. This only applies to the independent sample case where there are two variances. 
@@ -218,13 +218,13 @@ t.test(A,B, var.equal=TRUE)
 ## 	Two Sample t-test
 ## 
 ## data:  A and B
-## t = 0.31917, df = 18, p-value = 0.7533
+## t = 0.82793, df = 18, p-value = 0.4186
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7450291  1.0119514
+##  -0.487922  1.122593
 ## sample estimates:
-##  mean of x  mean of y 
-## 0.22379878 0.09033761
+##   mean of x   mean of y 
+##  0.04832838 -0.26900728
 ```
 
 ### t.test() contents
@@ -241,13 +241,13 @@ The `t.test()` function has two kinds of outputs. First, it prints the results t
 ## 	Two Sample t-test
 ## 
 ## data:  A and B
-## t = 0.31917, df = 18, p-value = 0.7533
+## t = 0.82793, df = 18, p-value = 0.4186
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.7450291  1.0119514
+##  -0.487922  1.122593
 ## sample estimates:
-##  mean of x  mean of y 
-## 0.22379878 0.09033761
+##   mean of x   mean of y 
+##  0.04832838 -0.26900728
 ```
 
 For example:
@@ -259,7 +259,7 @@ my_results$statistic
 
 ```
 ##         t 
-## 0.3191743
+## 0.8279306
 ```
 
 ```r
@@ -276,7 +276,7 @@ my_results$p.value
 ```
 
 ```
-## [1] 0.7532687
+## [1] 0.4185522
 ```
 
 ```r
@@ -284,8 +284,8 @@ my_results$estimate
 ```
 
 ```
-##  mean of x  mean of y 
-## 0.22379878 0.09033761
+##   mean of x   mean of y 
+##  0.04832838 -0.26900728
 ```
 
 ### papaja reporting with apa_print()
@@ -300,13 +300,13 @@ apa_print(my_results)
 
 ```
 ## $estimate
-## [1] "$\\Delta M = 0.13$, 95\\% CI $[-0.75$, $1.01]$"
+## [1] "$\\Delta M = 0.32$, 95\\% CI $[-0.49$, $1.12]$"
 ## 
 ## $statistic
-## [1] "$t(18) = 0.32$, $p = .753$"
+## [1] "$t(18) = 0.83$, $p = .419$"
 ## 
 ## $full_result
-## [1] "$\\Delta M = 0.13$, 95\\% CI $[-0.75$, $1.01]$, $t(18) = 0.32$, $p = .753$"
+## [1] "$\\Delta M = 0.32$, 95\\% CI $[-0.49$, $1.12]$, $t(18) = 0.83$, $p = .419$"
 ## 
 ## $table
 ## NULL
@@ -314,7 +314,7 @@ apa_print(my_results)
 ## attr(,"class")
 ## [1] "apa_results" "list"
 ```
-For example, this t-test result, $t(18) = 0.32$, $p = .753$, was printed using an r code snippet inserted into the text of this .Rmd.
+For example, this t-test result, $t(18) = 0.83$, $p = .419$, was printed using an r code snippet inserted into the text of this .Rmd.
 
 
 ## Conceptual I: Simulating the t-test
@@ -352,26 +352,7 @@ sim_data <- data.frame(groups = rep(c("A","B"),each = N*X),
                        scores = c(A_scores,B_scores))
 
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 subject_means <- sim_data %>%
   group_by(groups,subjects) %>%
   summarize(means = mean(scores), .groups = 'drop')
@@ -384,13 +365,13 @@ t.test(means~groups, var.equal =TRUE,data = subject_means)
 ## 	Two Sample t-test
 ## 
 ## data:  means by groups
-## t = -1.6716, df = 18, p-value = 0.1119
+## t = 0.051629, df = 18, p-value = 0.9594
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -26.475596   3.012963
+##  -16.65010  17.48904
 ## sample estimates:
 ## mean in group A mean in group B 
-##         99.3221        111.0534
+##        96.74487        96.32540
 ```
 As one alternative, here is another example of the above in a one-liner:
 
@@ -406,13 +387,13 @@ t.test(replicate(N, mean(rnorm(X, A_mean, A_sd))),
 ## 	Two Sample t-test
 ## 
 ## data:  replicate(N, mean(rnorm(X, A_mean, A_sd))) and replicate(N, mean(rnorm(X, B_mean, B_sd)))
-## t = -0.17998, df = 18, p-value = 0.8592
+## t = -0.018883, df = 18, p-value = 0.9851
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -24.71239  20.81245
+##  -22.75531  22.34991
 ## sample estimates:
 ## mean of x mean of y 
-##  103.8946  105.8446
+##  103.4201  103.6228
 ```
 
 ### Simulating distributions of experiments
@@ -539,7 +520,7 @@ length(sim_ps[sim_ps < .05])/1000
 ```
 
 ```
-## [1] 0.044
+## [1] 0.038
 ```
 
 A next question would be something like, what proportion of experiments would be significant if there actually was a difference between the means of group A and B. For example, here we assume that group A has a mean of 0, and group B has a mean of .25, and that both distributions have the same standard deviation (sd=1). In this design, with N = 10 in each group, and 5 scores measured per subject, the probability of getting a p < .05 is much higher than 5%.
@@ -559,7 +540,7 @@ length(sim_ps[sim_ps < .05])/1000
 ```
 
 ```
-## [1] 0.226
+## [1] 0.238
 ```
 
 ### Effect-size

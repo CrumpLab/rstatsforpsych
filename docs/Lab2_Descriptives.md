@@ -1,4 +1,4 @@
-# Lab 2 Descriptives
+# Descriptives
 
 
 
@@ -33,26 +33,6 @@ install.packages("tidyverse")
 ```r
 # load libraries
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(ggplot2)
 
 # chickwts is a built in data set
@@ -62,13 +42,7 @@ library(ggplot2)
 means_df <- chickwts %>%
   group_by(feed) %>%
   summarize(means = mean(weight))
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 # print table of means
 knitr::kable(means_df)
 ```
@@ -649,13 +623,7 @@ library(dplyr)
 group_means <- gapminder_data %>%
                 group_by(continent) %>%
                 summarize(mean_lifeExp = mean(lifeExp))
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 knitr::kable(group_means)
 ```
 
@@ -676,13 +644,7 @@ Change the name of the variable inside `group_by()` to change which factor you w
 group_means <- gapminder_data %>%
                 group_by(continent,country) %>%
                 summarize(mean_lifeExp = mean(lifeExp))
-```
 
-```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
-```
-
-```r
 knitr::kable(head(group_means))
 ```
 
@@ -712,10 +674,6 @@ group_means <- gapminder_data %>%
                           var_lifeExp = var(lifeExp))
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
 Note, you can even write your own custom functions and use them inside summarize.
 
 ## Practical II: Plotting the means with ggplot2
@@ -729,13 +687,7 @@ Note, you can even write your own custom functions and use them inside summarize
 group_means <- gapminder_data %>%
                 group_by(continent) %>%
                 summarize(mean_lifeExp = mean(lifeExp))
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
   geom_bar(stat="identity")
 ```
@@ -794,13 +746,7 @@ group_means <- gapminder_data %>%
                 group_by(continent) %>%
                 summarize(mean_lifeExp = mean(lifeExp),
                           sd_lifeExp = sd(lifeExp))
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
   geom_bar(stat="identity") +
   geom_errorbar(aes(ymin = mean_lifeExp - sd_lifeExp,

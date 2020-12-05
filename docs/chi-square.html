@@ -50,7 +50,7 @@
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="basics.html"><span class="header-section-number">1</span> Basics</a></li>
-<li><a class="" href="lab-2-descriptives.html"><span class="header-section-number">2</span> Lab 2 Descriptives</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
 <li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
 <li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
 <li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
@@ -121,7 +121,7 @@
 <span class="header-section-number">9.3.1</span> chisq.test()<a class="anchor" aria-label="anchor" href="#chisq.test"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> function performs basic tests of independence for vectors and contingency tables.</p>
-<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb957"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">chisq.test</span></code></pre></div>
 <div id="test-for-a-frequency-vector" class="section level4" number="9.3.1.1">
 <h4>
@@ -129,7 +129,7 @@
 </h4>
 <p>Inputting a single vector of values conducts a chi-square test with N-1 degrees of freedom. The test assumes equal probability of outcome by default, and reports the chi-square sample statistic, as a well as the p-value associated with a <span class="math inline">\(\chi^2\)</span> distribution with N-1 degrees of freedom.</p>
 <p>Toss a coin 50 times and receive 20 heads and 30 tails. Conduct a chi-square test of independence, and assume the theoretically expected frequencies are 25 and 25.</p>
-<div class="sourceCode" id="cb997"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span>
 <span class="op">(</span><span class="va">xsq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">my_vals</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -137,24 +137,24 @@
 ## 
 ## data:  my_vals
 ## X-squared = 2, df = 1, p-value = 0.1573</code></pre>
-<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb960"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">xsq</span><span class="op">$</span><span class="va">statistic</span></code></pre></div>
 <pre><code>## X-squared 
 ##         2</code></pre>
-<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb962"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">xsq</span><span class="op">$</span><span class="va">observed</span></code></pre></div>
 <pre><code>## [1] 20 30</code></pre>
-<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb964"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">xsq</span><span class="op">$</span><span class="va">expected</span></code></pre></div>
 <pre><code>## [1] 25 25</code></pre>
-<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb966"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">xsq</span><span class="op">$</span><span class="va">residuals</span></code></pre></div>
 <pre><code>## [1] -1  1</code></pre>
-<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb968"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">xsq</span><span class="op">$</span><span class="va">observed</span> <span class="op">-</span> <span class="va">xsq</span><span class="op">$</span><span class="va">expected</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="va">xsq</span><span class="op">$</span><span class="va">expected</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>It is possible to specify different theoretical probabilities:</p>
-<div class="sourceCode" id="cb1009"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb970"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">my_vals</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.75</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -163,7 +163,7 @@
 ## data:  my_vals
 ## X-squared = 6, df = 1, p-value = 0.01431</code></pre>
 <p>The vector can be any length, e.g., roll a dice 120 times and count the number of times each number from 1 to 6 occurs, then conduct a chi-square test of independence:</p>
-<div class="sourceCode" id="cb1011"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb972"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">30</span>,<span class="fl">30</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="va">my_vals</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -179,7 +179,7 @@
 </h3>
 <p>A matrix describing a contingency table with positive values in rows and columns can also be inputted directly to the function. Here, the null hypothesis is that the “joint distribution of the cell counts in the contingency table is the product of row and column marginals”. The degrees of freedom is defined as <span class="math inline">\((r-1)(c-1)\)</span>, where <span class="math inline">\(r\)</span> is the number of rows and <span class="math inline">\(c\)</span> is the number of columns.</p>
 <p>The following example is from the help file:</p>
-<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb974"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">762</span>, <span class="fl">327</span>, <span class="fl">468</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">484</span>, <span class="fl">239</span>, <span class="fl">477</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"M"</span><span class="op">)</span>,
                     party <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Democrat"</span>,<span class="st">"Independent"</span>, <span class="st">"Republican"</span><span class="op">)</span><span class="op">)</span>
@@ -189,34 +189,34 @@
 ## 
 ## data:  M
 ## X-squared = 30.07, df = 2, p-value = 2.954e-07</code></pre>
-<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb976"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Xsq</span><span class="op">$</span><span class="va">observed</span>   <span class="co"># observed counts (same as M)</span></code></pre></div>
 <pre><code>##       party
 ## gender Democrat Independent Republican
 ##      F      762         327        468
 ##      M      484         239        477</code></pre>
-<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb978"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Xsq</span><span class="op">$</span><span class="va">expected</span>   <span class="co"># expected counts under the null</span></code></pre></div>
 <pre><code>##       party
 ## gender Democrat Independent Republican
 ##      F 703.6714    319.6453   533.6834
 ##      M 542.3286    246.3547   411.3166</code></pre>
-<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb980"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Xsq</span><span class="op">$</span><span class="va">residuals</span>  <span class="co"># Pearson residuals</span></code></pre></div>
 <pre><code>##       party
 ## gender   Democrat Independent Republican
 ##      F  2.1988558   0.4113702 -2.8432397
 ##      M -2.5046695  -0.4685829  3.2386734</code></pre>
-<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb982"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Xsq</span><span class="op">$</span><span class="va">stdres</span>     <span class="co"># standardized residuals</span></code></pre></div>
 <pre><code>##       party
 ## gender   Democrat Independent Republican
 ##      F  4.5020535   0.6994517 -5.3159455
 ##      M -4.5020535  -0.6994517  5.3159455</code></pre>
-<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb984"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Xsq</span><span class="op">$</span><span class="va">p.value</span></code></pre></div>
 <pre><code>## [1] 2.953589e-07</code></pre>
-<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb986"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">Xsq</span><span class="op">$</span><span class="va">statistic</span></code></pre></div>
 <pre><code>## X-squared 
 ##  30.07015</code></pre>
@@ -243,7 +243,7 @@
 <p><span class="math inline">\(\chi^2 = \sum_{i=1}^n{\frac{(\text{O}_i - \text{E}_i)^2}{\text{E}_i}}\)</span></p>
 <p>The <span class="math inline">\(\chi^2\)</span> sample statistic is used to summarize obtained frequency data, specifically in a way that relates the obtained frequencies to theoretically expected frequencies.</p>
 <p>For example, if you tossed a coin 50 times, and found the following observed frequencies of heads and tails, you could compare them to the expected frequencies if the coin was fair.</p>
-<div class="sourceCode" id="cb1027"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb988"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coin_toss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"H"</span>,<span class="st">"T"</span><span class="op">)</span>,
                         O <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>,<span class="fl">27</span><span class="op">)</span>,
                         E <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">25</span><span class="op">)</span><span class="op">)</span>
@@ -268,18 +268,10 @@
 </tbody>
 </table></div>
 <p>Thus, each outcome has an observed value (<span class="math inline">\(O_i\)</span>) and expected value (<span class="math inline">\(E_i\)</span>), and <span class="math inline">\(\chi^2\)</span> can be computed:</p>
-<div class="sourceCode" id="cb1028"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb1032"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">coin_toss</span> <span class="op">&lt;-</span> <span class="va">coin_toss</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb989"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="va">coin_toss</span> <span class="op">&lt;-</span> <span class="va">coin_toss</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>d <span class="op">=</span> <span class="va">O</span> <span class="op">-</span> <span class="va">E</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>d_sq <span class="op">=</span> <span class="va">d</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>div <span class="op">=</span> <span class="va">d_sq</span><span class="op">/</span><span class="va">E</span> <span class="op">)</span>
@@ -313,17 +305,17 @@
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb990"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># compute chi-square</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">coin_toss</span><span class="op">$</span><span class="va">div</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.32</code></pre>
-<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb992"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># compute chi-square </span>
 <span class="va">O</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>,<span class="fl">27</span><span class="op">)</span>
 <span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">25</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">O</span><span class="op">-</span><span class="va">E</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span><span class="va">E</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.32</code></pre>
-<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb994"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># compute chi-square</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>,<span class="fl">27</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -332,7 +324,7 @@
 ## data:  c(23, 27)
 ## X-squared = 0.32, df = 1, p-value = 0.5716</code></pre>
 <p>The above shows two ways to compute <span class="math inline">\(\chi^2\)</span> for this example, including using the base R function <span class="math inline">\(chisq.test()\)</span>. The obtained value of .32 in our case is fairly small because the differences between the obtained and expected frequencies were fairly small. If the differences were larger, then the <span class="math inline">\(\chi^2\)</span> sample statistic would be much larger, e.g:</p>
-<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb996"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">47</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
@@ -346,16 +338,16 @@
 <span class="header-section-number">9.4.2</span> The <span class="math inline">\(\chi^2\)</span> distribution<a class="anchor" aria-label="anchor" href="#the-chi2-distribution"><i class="fas fa-link"></i></a>
 </h3>
 <p>The shape of <span class="math inline">\(\chi^2\)</span> distribution depends on a parameter called <span class="math inline">\(k\)</span>. When, <span class="math inline">\(k = 1\)</span>, the <span class="math inline">\(\chi^2\)</span> distribution is defined as the unit normal distribution squared.</p>
-<div class="sourceCode" id="cb1041"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb998"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># normal histogram</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
-<div class="sourceCode" id="cb1042"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># chi-squared with k = 1</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, breaks <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-2.png" width="672"></div>
 <p>R has distribution functions for <span class="math inline">\(\chi^2\)</span>, including <code><a href="https://rdrr.io/r/stats/Chisquare.html">dchisq()</a></code>, <code><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq()</a></code>, <code><a href="https://rdrr.io/r/stats/Chisquare.html">qchisq()</a></code>, <code><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq()</a></code>. So, if we sampled random deviates using <code><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq()</a></code>, with k = 1 (equivalent to df = 1), we should get the same histogram as above:</p>
-<div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1000"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">1</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
 <p>So, at its simplest, <span class="math inline">\(\chi^2\)</span> is just the normal distribution squared.</p>
@@ -363,7 +355,7 @@
 <p><span class="math inline">\(\chi^2 = \sum_{i=1}^k Z_i^2\)</span></p>
 <p>Where, <span class="math inline">\(Z_i\)</span> are independent samples from a unit normal distribution. In other words, <span class="math inline">\(\chi^2\)</span> is the distribution of the <strong>sum of squared values</strong> from a unit normal distribution, and <span class="math inline">\(k\)</span> is the number of independent samples in each squared sum.</p>
 <p>To clarify, let’s use R:</p>
-<div class="sourceCode" id="cb1044"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1001"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># k = 1</span>
 <span class="va">from_normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="va">from_chisq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">1</span><span class="op">)</span>
@@ -377,7 +369,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"k=1"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">source</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
-<div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1002"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># k = 2</span>
 <span class="va">from_normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">from_chisq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">2</span><span class="op">)</span>
@@ -391,7 +383,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"k=2"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">source</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
-<div class="sourceCode" id="cb1046"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1003"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># k = 3</span>
 <span class="va">from_normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">from_chisq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">3</span><span class="op">)</span>
@@ -405,7 +397,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"k=3"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">source</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
-<div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1004"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># k = 5</span>
 <span class="va">from_normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="va">from_chisq</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">5</span><span class="op">)</span>
@@ -420,7 +412,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">source</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
 <p>We can get a glimpse of what the <span class="math inline">\(\chi^2\)</span> distribution looks like across a range of <span class="math inline">\(k\)</span> by plotting the pdf (probability density function), using <code><a href="https://rdrr.io/r/stats/Chisquare.html">dchisq()</a></code>.</p>
-<div class="sourceCode" id="cb1048"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1005"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">dchisq</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span>,length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, df<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">dchisq</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span>,length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, df<span class="op">=</span><span class="fl">3</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">dchisq</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span>,length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, df<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,
@@ -441,7 +433,7 @@
 <ol style="list-style-type: decimal">
 <li>Let’s say you randomly sampled 5 numbers from a unit normal distribution (mean = 0 and sd =1), and then you squared those numbers, and then added them all up. What would you expect this number to be?</li>
 </ol>
-<div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1006"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
@@ -451,18 +443,18 @@
 </ol>
 <p>In the following, I will take random samples from a unit normal distribution:</p>
 <p>What is the expected mean of a unit normal distribution?</p>
-<div class="sourceCode" id="cb1050"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1007"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] -0.004223426</code></pre>
+<pre><code>## [1] 0.02189166</code></pre>
 <p>If we square all of the values that we sample from a unit normal distribution (equivalent to <span class="math inline">\(\chi^2\)</span> with <span class="math inline">\(k=1\)</span>), then what would the mean of those squared values be?</p>
-<div class="sourceCode" id="cb1052"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1009"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1.008608</code></pre>
+<pre><code>## [1] 0.9824043</code></pre>
 <p>It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a <span class="math inline">\(\chi^2\)</span> is the same as the <span class="math inline">\(k\)</span> parameter, also called degrees of freedom.</p>
 <p>For example, the mean of 10,000 numbers drawn from a <span class="math inline">\(\chi^2\)</span> with k = 10, is:</p>
-<div class="sourceCode" id="cb1054"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1011"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 10.00292</code></pre>
+<pre><code>## [1] 10.00042</code></pre>
 <p>Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1…summing up 10 ones, gives you 10. The same expectations can be applied to <span class="math inline">\(\chi^2\)</span> distributions of any <span class="math inline">\(k\)</span>.</p>
 </div>
 </div>
@@ -472,22 +464,22 @@
 </h2>
 <p>In lecture we discussed that the binomial distribution converges on the normal distribution in the long run. This is one of the properties that allows the <span class="math inline">\(\chi^2\)</span> distribution to approximate properties of the binomial distribution.</p>
 <p>First, we can visually see that a binomial distribution becomes normally distributed in the long run by simulation. Each simulation involves 10,000 sets of coin flips. The first histogram involves a set of 10 coin flips, and displays the frequency of each possible outcome (# of heads)s. The second histogram shows sets of 100 coin flips. Here, the range of possible outcomes increases, and they appear to be distributed more normally. <strong>As the number of flips in the set increases, the distribution of possible outcomes approaches a normal distribution</strong>.</p>
-<div class="sourceCode" id="cb1056"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1013"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># flip a coin 10 times</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">10</span>,<span class="fl">.5</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-1.png" width="672"></div>
-<div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1014"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># flip a coin 100 times</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">80</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-2.png" width="672">
 Second, let’s develop a sense of the idea that the <span class="math inline">\(\chi^2\)</span> test is approximation of the binomial test.</p>
 <p>Consider another coin flipping scenario. Let’s say a coin is flipped 10 times, and there are 2 heads. What is the p-value for a two-tailed test, specifically the probabiltiy of getting 2 or less heads, or 8 or more heads.?</p>
 <p>We could use the binomial test, and compute the exact probability.</p>
-<div class="sourceCode" id="cb1058"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1015"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">10</span>,<span class="fl">.5</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0.109375</code></pre>
 <p>We could also use a <span class="math inline">\(\chi^2\)</span> test as an approximation:</p>
-<div class="sourceCode" id="cb1060"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1017"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
@@ -496,30 +488,30 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
 ## X-squared = 3.6, df = 1, p-value = 0.05778</code></pre>
 <p>In this case there wouldn’t be a good reason to use the <span class="math inline">\(\chi^2\)</span> test, because the binomial test provides an exact probability. Also, because the expected frequencies are very small here, the p-value <span class="math inline">\(\chi^2\)</span> test is about half as small as it should be.</p>
 <p>However, if we consider sets of coin flips that are much larger than 10, we increase the expected frequencies (which allows closer convergence to a normal distribution), and the <span class="math inline">\(\chi^2\)</span> and binomial tests both return p-values that are increasingly similar.</p>
-<div class="sourceCode" id="cb1062"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1019"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">100</span>,<span class="fl">.5</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0.05688793</code></pre>
-<div class="sourceCode" id="cb1064"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1021"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">60</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  c(40, 60)
 ## X-squared = 4, df = 1, p-value = 0.0455</code></pre>
-<div class="sourceCode" id="cb1066"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1023"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">450</span>,<span class="fl">1000</span>,<span class="fl">.5</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0.001730536</code></pre>
-<div class="sourceCode" id="cb1068"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1025"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">450</span>,<span class="fl">550</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  c(450, 550)
 ## X-squared = 10, df = 1, p-value = 0.001565</code></pre>
-<div class="sourceCode" id="cb1070"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1027"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">4900</span>,<span class="fl">10000</span>,<span class="fl">.5</span>, lower.tail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0.04658553</code></pre>
-<div class="sourceCode" id="cb1072"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1029"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4900</span>,<span class="fl">5100</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
@@ -561,23 +553,21 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
 <p><strong>Solution script</strong>: I am also providing the .rmd for lab 9 that I wrote in the solution video here <a href="https://github.com/CrumpLab/psyc7709Lab/blob/master/lab_solutions/Lab9.Rmd" class="uri">https://github.com/CrumpLab/psyc7709Lab/blob/master/lab_solutions/Lab9.Rmd</a>.</p>
 <p><strong>Update on misuse of chi-square test in the above paper</strong>. As we discussed in class and in the solution video, it appears we accidentally found an example in the recent literature where a chi-square test was used incorrectly. In the solution video I didn’t provide a clear reason to demonstrate why the chi-square test was misused. So, I thought I would write an addendum to this lab.</p>
 <p>To recap, the authors measured a choice made by 21 infants. The age of each infant was measured in months (to two decimal places). They reported a chi-square test of independence to determine whether age was independent of the choice. For example, they reported: <span class="math inline">\(\chi^2\)</span> (19,N=21) =18.24,p=.506. These values are in some sense correct. For example:</p>
-<div class="sourceCode" id="cb1074"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1031"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span><span class="op">(</span><span class="fl">18.24</span>, <span class="fl">19</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.5064639</code></pre>
 <p>However, it appears that the authors treated the infant’s ages, measured a continuous variable, as a categorical variable. And, as it happened, there were two infants who happened to be exactly 11.66 months old. As a result, there were 21 infants, and 20 different age categories. If a contingency table is constructed to represent 20 age categories, and 2 choice options, you get a 20x2 table. This table has (20-1)(2-1) = 19 degrees of freedom. In my solution video I showed an example of how the authors might have constructed that table from their data, and I was able to obtain the same chi-square value that they reported, suggesting that they did construct such a table.</p>
 <p>There are several problems here. One of the problems that I will focus on is the conversion of a continuous age variable into a categorical variable. I was expecting the authors to bin ages, say into two categories: younger vs. older. Instead, they used each infant’s age as a category level. It happened to be the case that two infants had exactly the same age (11.66 months), but if that hadn’t happened, the table would have had 21 levels for age (because there were 21 infants).</p>
 <p>Consider what occurs if you treat each subject as a unique level in a contingency table, especially in an experiment that involves the subject making a single choice between two alternatives. We will see that the answer is, you always get the same chi-square value. No matter what the subjects do.</p>
 <p>Here is an example contingency table with 5 subjects. In this case, each column represents a subject. Row 1 represents choice A, and row 2 choice 2. Each subject makes a choice, and their choice is counted in the appropriate row.</p>
-<div class="sourceCode" id="cb1076"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1033"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    1    1    1    1
-## [2,]    0    0    0    0    0</code></pre>
+## [1,]    1    0    1    1    1
+## [2,]    0    1    0    0    0</code></pre>
 <p>This is a contingency table, so it is possible to compute a chi-square test on this table.</p>
-<div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1035"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in chisq.test(replicate(5, sample(c(1, 0), 2))): Chi-squared
-## approximation may be incorrect</code></pre>
 <pre><code>## 
 ##  Pearson's Chi-squared test
 ## 
@@ -585,10 +575,8 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
 ## X-squared = 5, df = 4, p-value = 0.2873</code></pre>
 <p>However, look at what happens. We obtain a chi-squared value of 5. And, this is what will always happen, no matter what choices each subject makes:</p>
 <p>Every time this function runs, the choices made by each simulated subject are randomized. However, no matter what happens, the chi-square value is always five.</p>
-<div class="sourceCode" id="cb1081"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1037"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in chisq.test(replicate(5, sample(c(1, 0), 2))): Chi-squared
-## approximation may be incorrect</code></pre>
 <pre><code>## 
 ##  Pearson's Chi-squared test
 ## 
@@ -596,10 +584,8 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
 ## X-squared = 5, df = 4, p-value = 0.2873</code></pre>
 <p>This is effectively what the authors did. For example, consider what would happen to the authors data if they excluded the two infants who had the exact same age. That table would have choices from 19 infants.</p>
 <p>We can simulate any possible outcome this way:</p>
-<div class="sourceCode" id="cb1084"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1039"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">19</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Warning in chisq.test(replicate(19, sample(c(1, 0), 2))): Chi-squared
-## approximation may be incorrect</code></pre>
 <pre><code>## 
 ##  Pearson's Chi-squared test
 ## 

@@ -88,26 +88,6 @@ For example, consider the range between 1 and 2 in the first graph (mean = 0, sd
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 ggplot(plot_df, aes(y=score,x=x))+
   geom_line()+
   facet_wrap(~dist, scales="free_x")+
@@ -319,7 +299,7 @@ length(to_z[to_z > 0 & to_z < 1])/10000
 ```
 
 ```
-## [1] 0.3437
+## [1] 0.3384
 ```
 
 We've just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.
@@ -391,7 +371,7 @@ mean(sample_means)
 ```
 
 ```
-## [1] 54.95379
+## [1] 55.00255
 ```
 
 ```r
@@ -399,7 +379,7 @@ sd(sample_means)
 ```
 
 ```
-## [1] 1.579271
+## [1] 1.570411
 ```
 
 Or, we could use analytic formulas to "know" what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.
@@ -449,7 +429,7 @@ length(sample_means[sample_means > 60])/10000
 ```
 
 ```
-## [1] 6e-04
+## [1] 0.0012
 ```
 
 
@@ -485,10 +465,10 @@ length(mean_differences[mean_differences > 3])/10000
 ```
 
 ```
-## [1] 0.0896
+## [1] 0.0899
 ```
 
-According to a simulation, scores of 3% or greater occur with p <= 0.0896. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
+According to a simulation, scores of 3% or greater occur with p <= 0.0899. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
 
 
 ```r
@@ -496,7 +476,7 @@ length(mean_differences[mean_differences > 3 | mean_differences < -3])/10000
 ```
 
 ```
-## [1] 0.1796
+## [1] 0.1801
 ```
 
 These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.
@@ -518,7 +498,7 @@ sd(mean_differences)
 ```
 
 ```
-## [1] 2.244584
+## [1] 2.24557
 ```
 
 It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:

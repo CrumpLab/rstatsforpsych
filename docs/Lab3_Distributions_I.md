@@ -59,7 +59,7 @@ sample(x= 1:2, size = 10, replace = TRUE)
 ```
 
 ```
-##  [1] 1 2 2 2 2 1 2 2 1 1
+##  [1] 1 2 1 1 2 1 2 1 1 2
 ```
 
 3. Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times
@@ -81,8 +81,8 @@ sample(x = c("heads","tails"), size=10, replace= TRUE)
 ```
 
 ```
-##  [1] "heads" "heads" "tails" "tails" "heads" "heads" "tails" "heads" "tails"
-## [10] "tails"
+##  [1] "heads" "heads" "heads" "tails" "tails" "tails" "tails" "heads" "heads"
+## [10] "heads"
 ```
 
 5. Create a distribution that has the numbers 1 to 1000, and allows them to be sampled with equal probability. Sample 10 numbers from this distribution without replacement (if you have sampled one number, you are not allowed to sample it again because it has been taken out):
@@ -93,7 +93,7 @@ sample(x= 1:1000, size = 10, replace = FALSE)
 ```
 
 ```
-##  [1]  92  39 873 427 757 630 809 885 361 110
+##  [1] 733 354 204 435 278 598  79 875 463 460
 ```
 
 ### Normal distribution
@@ -108,8 +108,8 @@ rnorm(n= 10,mean = 0, sd = 1)
 ```
 
 ```
-##  [1] -0.35931279  1.99421774  0.57771893  0.12608408  0.34459689  2.14585773
-##  [7] -0.02731723 -0.77159647 -0.17774504 -0.81589296
+##  [1]  0.79680747 -0.04431444 -0.85356807 -0.38846600 -0.69136999 -0.86033924
+##  [7] -0.33889780 -1.12573542 -0.07471057 -1.95648908
 ```
 
 ```r
@@ -117,8 +117,8 @@ rnorm(10,0,1)
 ```
 
 ```
-##  [1]  0.8691077 -1.5410391  1.7044105 -0.8194698  1.6152961  0.8902007
-##  [7] -0.4585975  0.8115101 -0.1315423 -1.5310965
+##  [1]  1.8391151 -1.0570314 -0.3235842 -1.2049140 -1.5977929  0.8620560
+##  [7]  0.9034647  0.7606043 -0.7822502 -2.0054921
 ```
 
 2. Visualize the sample quickly with `hist()`
@@ -144,10 +144,6 @@ ggplot(my_data, aes(x=sample_data))+
   geom_histogram()
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
 <img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 4. Visualizing multiple samples with individual histograms with ggplot2. Let's say we want to sample 25 values from a normal distribution, but we want to repeat this process four times. We will have samples 1 to 4, each containing 25 observations. We also want to generate four histograms to quickly look at each of the four samples. We can do this by setting up our dataframe to represent this situation, and by using `facet_wrap()`.
@@ -162,10 +158,6 @@ my_data <- data.frame(sample_data = rnorm(100,0,1),
 ggplot(my_data, aes(x=sample_data))+
   geom_histogram()+
   facet_wrap(~sample)
-```
-
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 <img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-10-1.png" width="672" />
@@ -203,7 +195,7 @@ length(my_sample[my_sample < .05])
 ```
 
 ```
-## [1] 3
+## [1] 4
 ```
 
 ### Other distributions
@@ -251,7 +243,7 @@ mean(my_sample)
 ```
 
 ```
-## [1] 0.01022157
+## [1] 0.03965391
 ```
 
 ```r
@@ -259,7 +251,7 @@ sd(my_sample)
 ```
 
 ```
-## [1] 1.007102
+## [1] 1.01795
 ```
 
 ```r
@@ -267,7 +259,7 @@ skewness(my_sample)
 ```
 
 ```
-## [1] 0.07970892
+## [1] 0.05159677
 ```
 
 ```r
@@ -275,7 +267,7 @@ kurtosis(my_sample)
 ```
 
 ```
-## [1] 3.222505
+## [1] 3.024779
 ```
 
 ```r
@@ -292,7 +284,7 @@ mean(my_sample)
 ```
 
 ```
-## [1] 0.5063596
+## [1] 0.4942242
 ```
 
 ```r
@@ -300,7 +292,7 @@ sd(my_sample)
 ```
 
 ```
-## [1] 0.4977857
+## [1] 0.4928924
 ```
 
 ```r
@@ -308,7 +300,7 @@ skewness(my_sample)
 ```
 
 ```
-## [1] 1.815369
+## [1] 1.877632
 ```
 
 ```r
@@ -316,7 +308,7 @@ kurtosis(my_sample)
 ```
 
 ```
-## [1] 7.015908
+## [1] 7.559505
 ```
 
 ```r

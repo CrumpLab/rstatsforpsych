@@ -1,6 +1,6 @@
 # Practice problems {.unnumbered}
 
-"8/27/2020 | Last Compiled: 2020-12-05"
+"8/27/2020 | Last Compiled: 2020-12-07"
 
 *This chapter is here as a supplement for students who are looking for exercises to work on coding skills outside of class.* The labs in this course are designed to develop practical data analysis skills in R, and conceptual knowledge about statistics by using R as a way to interact with statistical phenomena. I assume that students may be new to coding. Don't worry, if you are a student in this course, we will gradually introduce coding concepts throughout the course. 
 
@@ -241,7 +241,7 @@ print(as.numeric(Sys.time())*1000, digits=15)
 ```
 
 ```
-## [1] 1607178369180.36
+## [1] 1607349089384.54
 ```
 
 
@@ -475,7 +475,7 @@ encrypt_numbers(original_sequence,encryption_key)
 ```
 
 ```
-##  [1] 2 3 4 5 1 3 3 4 3 5 1 3
+##  [1] 1 2 3 5 4 2 2 3 2 5 4 2
 ```
   
   - here is a different approach making use of the `factor()` function
@@ -517,7 +517,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 6
+## [1] 1
 ```
 
 ```r
@@ -525,7 +525,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 4
+## [1] 5
 ```
 
 ```r
@@ -533,7 +533,7 @@ sample(c(1,2,3,4,5,6),1)
 ```
 
 ```
-## [1] 6
+## [1] 5
 ```
 
   -tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?
@@ -551,7 +551,7 @@ number_of_rolls
 ```
 
 ```
-## [1] 9
+## [1] 7
 ```
 
 ```r
@@ -571,7 +571,7 @@ mean(save_rolls)
 ```
 
 ```
-## [1] 7.58
+## [1] 7.87
 ```
   
   - how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.

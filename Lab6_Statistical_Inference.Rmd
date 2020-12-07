@@ -8,6 +8,8 @@ knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 
 ## Readings and Review
 
+@vokeyThinkingData7th2018, Chapter 10; @crumpAnsweringQuestionsData2018, [Chapter 5](https://crumplab.github.io/statistics/foundations-for-inference.html) 
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_mOn3wLjqqA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 This lab marks a departure into the land of statistical inference. We have been working toward these concepts and using R to help us understand basic aspects of distributions and sampling from distributions. These concepts will be applied throughout the remainder of the course as we discuss many different tools and tests and for statistical inference.
@@ -26,7 +28,7 @@ And, because I think **being able to justify your statistical inferences** is so
 
 ### Foundations for Statistical Inference and the Crump test
 
-If you are new to the concept of tests for statistical inference, and/or if you want a slightly unconventional take on statistical inference, I'll forward you to a chapter from my undergraduate statistics textbook: <https://crumplab.github.io/statistics/foundations-for-inference.html>. This chapter discusses some basic ideas behind statistical inference, and it also provides a test that I "made up" called the Crump test, which doesn't use any formulas, and tries to highlight the process and ideas behind statistical inference.
+If you are new to the concept of tests for statistical inference, and/or if you want a slightly unconventional take on statistical inference, I'll forward you to a chapter from my undergraduate statistics textbook [@crumpAnsweringQuestionsData2018]: <https://crumplab.github.io/statistics/foundations-for-inference.html>. This chapter discusses some basic ideas behind statistical inference, and it also provides a test that I "made up" called the Crump test, which doesn't use any formulas, and tries to highlight the process and ideas behind statistical inference.
 
 ### A parting metaphor
 

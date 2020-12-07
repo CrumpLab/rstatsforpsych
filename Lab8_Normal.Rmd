@@ -6,6 +6,10 @@ knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 
 "10/8/2020 | Last Compiled: `r Sys.Date()`"
 
+## Reading
+
+@vokeyThinkingData7th2018, Chapter 12;  @abdiExperimentalDesignAnalysis2009 Appendix D
+
 ## Overview
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m6PedhaOWT4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

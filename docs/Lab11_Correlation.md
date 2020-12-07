@@ -2,7 +2,11 @@
 
 
 
-"10/8/2020 | Last Compiled: 2020-12-05"
+"10/8/2020 | Last Compiled: 2020-12-07"
+
+## Reading
+
+@vokeyThinkingData7th2018, Chapter 7; @abdiExperimentalDesignAnalysis2009, Chapter 2;  @crumpAnsweringQuestionsData2018, [Chapter 3](https://crumplab.github.io/statistics/Correlation.html)
 
 ## Overview
 

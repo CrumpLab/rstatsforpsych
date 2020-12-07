@@ -2,7 +2,11 @@
 
 
 
-"10/2/2020 | Last Compiled: 2020-12-05"
+"10/2/2020 | Last Compiled: 2020-12-07"
+
+## Readings
+
+@crumpAnsweringQuestionsData2018, [4.8 - 4.10](https://crumplab.github.io/statistics/probability-sampling-and-estimation.html#samples-populations-and-sampling)
 
 ## Review
 

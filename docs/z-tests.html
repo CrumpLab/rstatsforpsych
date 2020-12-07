@@ -18,7 +18,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><meta property="og:card" content="website">
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
 <meta property="og:title" content="8 Z tests | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
 <meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
@@ -84,10 +85,16 @@
 <h1>
 <span class="header-section-number">8</span> Z tests<a class="anchor" aria-label="anchor" href="#z-tests"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-05”</p>
-<div id="overview-7" class="section level2" number="8.1">
+<p>“10/8/2020 | Last Compiled: 2020-12-07”</p>
+<div id="reading-3" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">8.1</span> Overview<a class="anchor" aria-label="anchor" href="#overview-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-3"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Vokey &amp; Allen (<a href="references.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 12; <span class="citation">Abdi et al. (<a href="references.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> Appendix D</p>
+</div>
+<div id="overview-7" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-7"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m6PedhaOWT4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -98,9 +105,9 @@
 <li>Practical II: Z-tests</li>
 </ol>
 </div>
-<div id="review-and-reminder" class="section level2" number="8.2">
+<div id="review-and-reminder" class="section level2" number="8.3">
 <h2>
-<span class="header-section-number">8.2</span> Review and Reminder<a class="anchor" aria-label="anchor" href="#review-and-reminder"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3</span> Review and Reminder<a class="anchor" aria-label="anchor" href="#review-and-reminder"><i class="fas fa-link"></i></a>
 </h2>
 <p>In previous labs we introduced the concepts of 1) the normal distribution and 2) sampling distributions. We relate these concepts here. Specifically, the central limit theorem shows that sampling distributions of the mean generally have the shape of a normal distribution. As a result, the properties of normal distributions can be substituted for the properties of sampling distributions in the process of statistical inference.</p>
 <p>Normal distributions and their assumptions routinely appear across many of the remaining statistical tests (e.g., t-tests, ANOVAs, linear regression, etc.) discussed across this course. So, it is important to be comfortable with basic properties of the normal distribution.</p>
@@ -178,22 +185,22 @@ To calculate the area of the shaded regions relative to the total area properly 
 <div class="sourceCode" id="cb917"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">35</span>,<span class="fl">25</span>,<span class="fl">5</span><span class="op">)</span><span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">25</span>,<span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.1359051</code></pre>
-<div id="convenience" class="section level3" number="8.2.1">
+<div id="convenience" class="section level3" number="8.3.1">
 <h3>
-<span class="header-section-number">8.2.1</span> Convenience<a class="anchor" aria-label="anchor" href="#convenience"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.1</span> Convenience<a class="anchor" aria-label="anchor" href="#convenience"><i class="fas fa-link"></i></a>
 </h3>
 <p>Before heading into the main part of the lab I’ll suggest that <strong>convenience</strong> is often important in statistics. In real life, it is not uncommon for people to use tools because they are convenient to use. The normal distribution has a number of conveniences, and this is one reason why it is widely used. You can use the concept of convenience to gauge your own understanding of normal distributions. For example, if you understand normal distributions then you should be able to explain at least a few reasons why these distributions are convenient to use.</p>
 <p>Here is one convenience. We described above that all normal distributions have the same shape. We also looked at a “special” version of the normal, called the <strong>unit normal</strong>, also called the <strong>standard normal</strong>, or <strong>z-distribution</strong>. This is defined as a normal distribution with mean = 0 , and sd = 1. The unit normal can be very convenient for quick estimation. To see why, let’s turn to the first practical section of the lab, z-scores.</p>
 </div>
 </div>
-<div id="practical-i-z-scores" class="section level2" number="8.3">
+<div id="practical-i-z-scores" class="section level2" number="8.4">
 <h2>
-<span class="header-section-number">8.3</span> Practical I: z-scores<a class="anchor" aria-label="anchor" href="#practical-i-z-scores"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4</span> Practical I: z-scores<a class="anchor" aria-label="anchor" href="#practical-i-z-scores"><i class="fas fa-link"></i></a>
 </h2>
 <p>Let me admit that I am often confused by the metric system and the imperial system, this partly because I grew up in Canada and live in the USA, but also because those systems are used inconsistently in my personal experience. For example, even though I grew up with the metric system, I only know my weight in pounds, not in kilograms. Also, I know my height in feet and inches, but not in meters. Temperature is even more confusing. I’m very good with cold temperatures in celsius, but I use Fahrenheit for hot temperatures. I’m still better with kilometers than miles. Oh well.</p>
-<div id="linear-transformation" class="section level3" number="8.3.1">
+<div id="linear-transformation" class="section level3" number="8.4.1">
 <h3>
-<span class="header-section-number">8.3.1</span> Linear Transformation<a class="anchor" aria-label="anchor" href="#linear-transformation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.1</span> Linear Transformation<a class="anchor" aria-label="anchor" href="#linear-transformation"><i class="fas fa-link"></i></a>
 </h3>
 <p>I bring these issues up because differences between metric and imperial are essentially inconsequential. No matter whether I use Celsius or Fahrenheit, the temperature that is measured is the same. Similarly, the distance between between two cities is the same no matter whether you use miles or kilometers. The only difference is the measurement scale. In this case, the differences are linear transformations of each other, which means one scale is shifted by a constant amount relative to other scale.</p>
 <p>For example, the formula to translate celsius to fahrenheit is :</p>
@@ -245,28 +252,28 @@ To calculate the area of the shaded regions relative to the total area properly 
 <p>If you spend time with the unit normal distribution, then you learn its basic properties, such as about 95% of scores fall between -2 and +2 standard deviations; or 99% of scores fall between -3 and 3 standard deviations, or about 34% of scores fall between the mean and one standard deviation. If you memorized all of these details, then whenever you have three things in the future…1) a score from a normal distribution, 2) the mean, and 3) the standard deviation…you can have some good intuitions about whether the score is common or rare…which can be convenient (if you happen to be interacting with normal distributions on a regular basis).</p>
 </div>
 </div>
-<div id="conceptual-i-central-limit-theorem" class="section level2" number="8.4">
+<div id="conceptual-i-central-limit-theorem" class="section level2" number="8.5">
 <h2>
-<span class="header-section-number">8.4</span> Conceptual I: Central Limit Theorem<a class="anchor" aria-label="anchor" href="#conceptual-i-central-limit-theorem"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5</span> Conceptual I: Central Limit Theorem<a class="anchor" aria-label="anchor" href="#conceptual-i-central-limit-theorem"><i class="fas fa-link"></i></a>
 </h2>
 <p>It turns out that many common statistics rely upon normal distributions, so if you are doing common statistics, you will frequently use normal distributions. This is one good reason to become familiar with their basic properties.</p>
 <p>Why are normal distributions so commonly used in statistics? I think there are multiple reasons, including convenience (the math can be done by hand), and inertia (because normals can be convenient to work with, people use them, and then keep using them). However, there is also a more fundamental reason stemming from the <strong>central limit theorem</strong>.</p>
 <p>I will present the central limit theorem in terms of one thing we already learned about, and then I will make a grand claim about it.</p>
-<div id="we-already-learned-about-sampling-distributions" class="section level3" number="8.4.1">
+<div id="we-already-learned-about-sampling-distributions" class="section level3" number="8.5.1">
 <h3>
-<span class="header-section-number">8.4.1</span> We already learned about sampling distributions<a class="anchor" aria-label="anchor" href="#we-already-learned-about-sampling-distributions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.1</span> We already learned about sampling distributions<a class="anchor" aria-label="anchor" href="#we-already-learned-about-sampling-distributions"><i class="fas fa-link"></i></a>
 </h3>
 <p>Remember, a sampling distribution is when you 1) take multiple samples, 2) calculate a statistic like a mean for each sample, and 3) look at the distribution of the sample statistic, that is what all of the sample statistics look like. It is important to remember that the statistic you compute for each sample could be any descriptive statistic, like a mean, standard deviation, median, or whatever you want.</p>
 </div>
-<div id="claim-sampling-distributions-of-the-mean-are-normally-distributed" class="section level3" number="8.4.2">
+<div id="claim-sampling-distributions-of-the-mean-are-normally-distributed" class="section level3" number="8.5.2">
 <h3>
-<span class="header-section-number">8.4.2</span> Claim: sampling distributions of the mean are normally distributed<a class="anchor" aria-label="anchor" href="#claim-sampling-distributions-of-the-mean-are-normally-distributed"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.2</span> Claim: sampling distributions of the mean are normally distributed<a class="anchor" aria-label="anchor" href="#claim-sampling-distributions-of-the-mean-are-normally-distributed"><i class="fas fa-link"></i></a>
 </h3>
 <p>The central limit theorem roughly has two parts. The main part is that sampling distributions of the mean are normally distributed. The second part is “most of the time”. The central limit theorem therefore mostly let’s you treat sampling distributions of the mean as normal distributions. Because sampling distributions, especially sampling distributions of the mean, are extremely common and fundamental to statistical inference, and the math behind normal distributions is well understood, you can blame the central limit theorem for the frequency with which you will have to deal with normal distributions in statistics.</p>
 </div>
-<div id="implication" class="section level3" number="8.4.3">
+<div id="implication" class="section level3" number="8.5.3">
 <h3>
-<span class="header-section-number">8.4.3</span> Implication<a class="anchor" aria-label="anchor" href="#implication"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.3</span> Implication<a class="anchor" aria-label="anchor" href="#implication"><i class="fas fa-link"></i></a>
 </h3>
 <p>A major implication of the central limit theorem is that 1) even if the scores come from a non-normal distribution, 2) the sampling distribution of the sample means will be approximately normally distributed.</p>
 <p>Let’s use R to illustrate this implication.</p>
@@ -296,15 +303,15 @@ Now, rather than plotting individual scores. We create a sampling distribution o
 <p>As we will see later, not all sampling distributions create normal distributions, this is a special property of sampling distributions of sample means. In later tests, we will look at sampling distributions of other statistics such as the t-statistic, and F-statistic. These are not distributed normally, and so different distributions (t and F distributions) are used in place of the normal.</p>
 </div>
 </div>
-<div id="conceptual-ii-z-tests" class="section level2" number="8.5">
+<div id="conceptual-ii-z-tests" class="section level2" number="8.6">
 <h2>
-<span class="header-section-number">8.5</span> Conceptual II: z-tests<a class="anchor" aria-label="anchor" href="#conceptual-ii-z-tests"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6</span> Conceptual II: z-tests<a class="anchor" aria-label="anchor" href="#conceptual-ii-z-tests"><i class="fas fa-link"></i></a>
 </h2>
 <p>Because of the central limit theorem, in the long run, and with a large enough sample-size, many statistical tests converge on the z-test. We will see this later when discussing the t-test.</p>
 <p>The z-test can be used for statistical inference when the population parameters for some set of sample means are 1) known to be normal, and 2) the mean and standard deviation are also known. <strong>WARNING: these assumptions are rarely met, and all of these facts are rarely known</strong>. So, z-tests are not very commonly used compared to other statistical tests, especially in psychological research where it is usually impossible to know the properties of the “true” distribution where measurements come from.</p>
-<div id="n1-example" class="section level3" number="8.5.1">
+<div id="n1-example" class="section level3" number="8.6.1">
 <h3>
-<span class="header-section-number">8.5.1</span> N=1 example<a class="anchor" aria-label="anchor" href="#n1-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6.1</span> N=1 example<a class="anchor" aria-label="anchor" href="#n1-example"><i class="fas fa-link"></i></a>
 </h3>
 <p>The “z-test” and “z-scores” are the same when you have an N of 1. For example, if you know that some measurement involves sampling a score from a normal distribution, AND you know the mean and standard deviation of the distribution. Then you can use your knowledge of normal distributions to determine the probability of obtaining specified ranges of scores.</p>
 <ol style="list-style-type: decimal">
@@ -323,9 +330,9 @@ Now, rather than plotting individual scores. We create a sampling distribution o
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">1</span>,<span class="fl">3</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">*</span><span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0.1824224</code></pre>
 </div>
-<div id="n-1-example" class="section level3" number="8.5.2">
+<div id="n-1-example" class="section level3" number="8.6.2">
 <h3>
-<span class="header-section-number">8.5.2</span> N &gt; 1 example<a class="anchor" aria-label="anchor" href="#n-1-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6.2</span> N &gt; 1 example<a class="anchor" aria-label="anchor" href="#n-1-example"><i class="fas fa-link"></i></a>
 </h3>
 <p>Z-tests become more complicated when the sample-size is greater than 1. For example, imagine you take 10 scores (n=10) from a normal distribution with mean = 55, and sd = 5. What kinds of things could happen here?</p>
 <p>Let’s focus on a question of the sample mean. Your sample has n=10, what could the sample mean be? Would a sample mean of 60 be strange? what can randomly sampling numbers do in this case?</p>
@@ -368,9 +375,9 @@ Now, we are one step removed from the original distribution. The original distri
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">[</span><span class="va">sample_means</span> <span class="op">&gt;</span> <span class="fl">60</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span></code></pre></div>
 <pre><code>## [1] 0.0012</code></pre>
 </div>
-<div id="example-3-differences-between-groups" class="section level3" number="8.5.3">
+<div id="example-3-differences-between-groups" class="section level3" number="8.6.3">
 <h3>
-<span class="header-section-number">8.5.3</span> Example 3: differences between groups<a class="anchor" aria-label="anchor" href="#example-3-differences-between-groups"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6.3</span> Example 3: differences between groups<a class="anchor" aria-label="anchor" href="#example-3-differences-between-groups"><i class="fas fa-link"></i></a>
 </h3>
 <p>There is a standardized educational test with known distributional properties. Average test performance is distributed normally. The mean of the normal distribution is 55, and the standard deviation is 5.</p>
 <p>You are an experimenter and you want to determine if your “special training” can improve test performance. You create two groups and randomly assign 10 participants to each group. One group gets NO TRAINING (they are the control group), another group gets the TRAINING.</p>
@@ -416,9 +423,9 @@ Now, we are one step removed from the original distribution. The original distri
 <code class="sourceCode R"><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">*</span><span class="fl">5</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2.236068</code></pre>
 </div>
-<div id="doing-the-z-test" class="section level3" number="8.5.4">
+<div id="doing-the-z-test" class="section level3" number="8.6.4">
 <h3>
-<span class="header-section-number">8.5.4</span> doing the z-test<a class="anchor" aria-label="anchor" href="#doing-the-z-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6.4</span> doing the z-test<a class="anchor" aria-label="anchor" href="#doing-the-z-test"><i class="fas fa-link"></i></a>
 </h3>
 <p>So, is doing better than 3%, or showing a group difference of at least 3% something that happens very often by chance?</p>
 <div class="sourceCode" id="cb956"><pre class="downlit sourceCode r">
@@ -429,15 +436,15 @@ Now, we are one step removed from the original distribution. The original distri
 <p>As you can see, the p-value we found by the z-test is basically the same as the one we found with the simulation approach.</p>
 </div>
 </div>
-<div id="lab-8-generalization-assignment" class="section level2" number="8.6">
+<div id="lab-8-generalization-assignment" class="section level2" number="8.7">
 <h2>
-<span class="header-section-number">8.6</span> Lab 8 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-8-generalization-assignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.7</span> Lab 8 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-8-generalization-assignment"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kymA90bZreo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions-7" class="section level3" number="8.6.1">
+<div id="instructions-7" class="section level3" number="8.7.1">
 <h3>
-<span class="header-section-number">8.6.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.7.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-7"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
@@ -450,9 +457,9 @@ Now, we are one step removed from the original distribution. The original distri
 <li>Submit your github repository link for Lab 8 on blackboard.</li>
 </ol>
 </div>
-<div id="problems-7" class="section level3" number="8.6.2">
+<div id="problems-7" class="section level3" number="8.7.2">
 <h3>
-<span class="header-section-number">8.6.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-7"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.7.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-7"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>Write a function to convert a vector of raw-scores into z-scores. The function should have inputs for the vector, the mean and sd of the normal distribution, and should return a vector of zscores. (1 point). Also, demonstrate that the function works correctly (1 point). How you make the demonstration is up to you.</li>
@@ -478,32 +485,33 @@ Now, we are one step removed from the original distribution. The original distri
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#z-tests"><span class="header-section-number">8</span> Z tests</a></li>
-<li><a class="nav-link" href="#overview-7"><span class="header-section-number">8.1</span> Overview</a></li>
+<li><a class="nav-link" href="#reading-3"><span class="header-section-number">8.1</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-7"><span class="header-section-number">8.2</span> Overview</a></li>
 <li>
-<a class="nav-link" href="#review-and-reminder"><span class="header-section-number">8.2</span> Review and Reminder</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#convenience"><span class="header-section-number">8.2.1</span> Convenience</a></li></ul>
+<a class="nav-link" href="#review-and-reminder"><span class="header-section-number">8.3</span> Review and Reminder</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#convenience"><span class="header-section-number">8.3.1</span> Convenience</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#practical-i-z-scores"><span class="header-section-number">8.3</span> Practical I: z-scores</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#linear-transformation"><span class="header-section-number">8.3.1</span> Linear Transformation</a></li></ul>
+<a class="nav-link" href="#practical-i-z-scores"><span class="header-section-number">8.4</span> Practical I: z-scores</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#linear-transformation"><span class="header-section-number">8.4.1</span> Linear Transformation</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-i-central-limit-theorem"><span class="header-section-number">8.4</span> Conceptual I: Central Limit Theorem</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#we-already-learned-about-sampling-distributions"><span class="header-section-number">8.4.1</span> We already learned about sampling distributions</a></li>
-<li><a class="nav-link" href="#claim-sampling-distributions-of-the-mean-are-normally-distributed"><span class="header-section-number">8.4.2</span> Claim: sampling distributions of the mean are normally distributed</a></li>
-<li><a class="nav-link" href="#implication"><span class="header-section-number">8.4.3</span> Implication</a></li>
+<a class="nav-link" href="#conceptual-i-central-limit-theorem"><span class="header-section-number">8.5</span> Conceptual I: Central Limit Theorem</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#we-already-learned-about-sampling-distributions"><span class="header-section-number">8.5.1</span> We already learned about sampling distributions</a></li>
+<li><a class="nav-link" href="#claim-sampling-distributions-of-the-mean-are-normally-distributed"><span class="header-section-number">8.5.2</span> Claim: sampling distributions of the mean are normally distributed</a></li>
+<li><a class="nav-link" href="#implication"><span class="header-section-number">8.5.3</span> Implication</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-ii-z-tests"><span class="header-section-number">8.5</span> Conceptual II: z-tests</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#n1-example"><span class="header-section-number">8.5.1</span> N=1 example</a></li>
-<li><a class="nav-link" href="#n-1-example"><span class="header-section-number">8.5.2</span> N &gt; 1 example</a></li>
-<li><a class="nav-link" href="#example-3-differences-between-groups"><span class="header-section-number">8.5.3</span> Example 3: differences between groups</a></li>
-<li><a class="nav-link" href="#doing-the-z-test"><span class="header-section-number">8.5.4</span> doing the z-test</a></li>
+<a class="nav-link" href="#conceptual-ii-z-tests"><span class="header-section-number">8.6</span> Conceptual II: z-tests</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#n1-example"><span class="header-section-number">8.6.1</span> N=1 example</a></li>
+<li><a class="nav-link" href="#n-1-example"><span class="header-section-number">8.6.2</span> N &gt; 1 example</a></li>
+<li><a class="nav-link" href="#example-3-differences-between-groups"><span class="header-section-number">8.6.3</span> Example 3: differences between groups</a></li>
+<li><a class="nav-link" href="#doing-the-z-test"><span class="header-section-number">8.6.4</span> doing the z-test</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#lab-8-generalization-assignment"><span class="header-section-number">8.6</span> Lab 8 Generalization Assignment</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instructions-7"><span class="header-section-number">8.6.1</span> Instructions</a></li>
-<li><a class="nav-link" href="#problems-7"><span class="header-section-number">8.6.2</span> Problems</a></li>
+<a class="nav-link" href="#lab-8-generalization-assignment"><span class="header-section-number">8.7</span> Lab 8 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-7"><span class="header-section-number">8.7.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-7"><span class="header-section-number">8.7.2</span> Problems</a></li>
 </ul>
 </li>
 </ul>

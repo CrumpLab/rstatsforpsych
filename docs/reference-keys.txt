@@ -172,6 +172,7 @@ lab-4-generalization-assignment
 instructions-3
 problems-3
 sampling-distributions
+readings
 review
 overview-4
 probability-distributions
@@ -210,6 +211,7 @@ lab-6-generalization-assignment
 instructions-5
 problems-5
 binomial-test
+readings-1
 overview-6
 practical-i-conducting-a-binomial-test-in-r
 classification-performance-example
@@ -225,6 +227,7 @@ lab-7-generalization-assignment
 instructions-6
 problems-6
 z-tests
+reading-3
 overview-7
 review-and-reminder
 convenience
@@ -243,6 +246,7 @@ lab-8-generalization-assignment
 instructions-7
 problems-7
 chi-square
+reading-4
 overview-8
 background
 a-brief-history
@@ -261,6 +265,7 @@ lab-9-generalization-assignment
 instructions-8
 problems-8
 t-tests
+reading-5
 overview-9
 historical-background
 practical-i-t.test
@@ -302,6 +307,7 @@ more-examples
 one-way-anova
 correlation-between-traits-and-behavior
 correlation
+reading-6
 overview-11
 historical-background-1
 additional-reading

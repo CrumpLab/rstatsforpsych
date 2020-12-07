@@ -6,6 +6,10 @@ knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 
 "10/8/2020 | Last Compiled: `r Sys.Date()`"
 
+## Reading
+
+@vokeyThinkingData7th2018, Chapter 14; @crumpAnsweringQuestionsData2018, [Chapter 6](https://crumplab.github.io/statistics/t-tests.html)
+
 ## Overview
 
 This lab demonstrates how to conduct one sample, paired sample, and independent sample t-tests in R, and uses R as a tool to develop insight into the conceptual foundations of the t-test.

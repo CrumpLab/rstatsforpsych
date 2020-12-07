@@ -2,9 +2,13 @@
 
 
 
-"10/8/2020 | Last Compiled: 2020-12-05"
+"10/8/2020 | Last Compiled: 2020-12-07"
 
 >Extraordinary claims require extraordinary evidence (ECREE) -  Carl Sagan
+
+## Readings
+
+@vokeyThinkingData7th2018, Chapter 11; @abdiExperimentalDesignAnalysis2009, appendix D and E on the binomial test.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MNzuV0x5x1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

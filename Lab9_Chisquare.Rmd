@@ -6,6 +6,10 @@ knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 
 "10/8/2020 | Last Compiled: `r Sys.Date()`"
 
+## Reading
+
+@vokeyThinkingData7th2018, Chapter 13.
+
 ## Overview
 
 This lab provides a conceptual foundation for understanding the chi square test using R.

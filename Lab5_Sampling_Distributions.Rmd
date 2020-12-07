@@ -6,6 +6,10 @@ knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 
 "10/2/2020 | Last Compiled: `r Sys.Date()`"
 
+## Readings
+
+@crumpAnsweringQuestionsData2018, [4.8 - 4.10](https://crumplab.github.io/statistics/probability-sampling-and-estimation.html#samples-populations-and-sampling)
+
 ## Review
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xbQaPWdKUp0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

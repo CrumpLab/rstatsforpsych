@@ -18,7 +18,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><meta property="og:card" content="website">
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
 <meta property="og:title" content="9 Chi Square | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
 <meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
@@ -84,60 +85,66 @@
 <h1>
 <span class="header-section-number">9</span> Chi Square<a class="anchor" aria-label="anchor" href="#chi-square"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-05”</p>
-<div id="overview-8" class="section level2" number="9.1">
+<p>“10/8/2020 | Last Compiled: 2020-12-07”</p>
+<div id="reading-4" class="section level2" number="9.1">
 <h2>
-<span class="header-section-number">9.1</span> Overview<a class="anchor" aria-label="anchor" href="#overview-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-4"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Vokey &amp; Allen (<a href="references.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 13.</p>
+</div>
+<div id="overview-8" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-8"><i class="fas fa-link"></i></a>
 </h2>
 <p>This lab provides a conceptual foundation for understanding the chi square test using R.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gJ5qR_ebDvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="background" class="section level2" number="9.2">
+<div id="background" class="section level2" number="9.3">
 <h2>
-<span class="header-section-number">9.2</span> Background<a class="anchor" aria-label="anchor" href="#background"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3</span> Background<a class="anchor" aria-label="anchor" href="#background"><i class="fas fa-link"></i></a>
 </h2>
-<div id="a-brief-history" class="section level3" number="9.2.1">
+<div id="a-brief-history" class="section level3" number="9.3.1">
 <h3>
-<span class="header-section-number">9.2.1</span> A brief history<a class="anchor" aria-label="anchor" href="#a-brief-history"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.1</span> A brief history<a class="anchor" aria-label="anchor" href="#a-brief-history"><i class="fas fa-link"></i></a>
 </h3>
 <p>Karl Pearson described the chi-square test in 1900 <span class="citation">(Pearson, <a href="references.html#ref-pearsonCriterionThatGiven1900" role="doc-biblioref">1900</a>)</span>. Also see <span class="citation">Plackett (<a href="references.html#ref-plackettKarlPearsonChiSquared1983" role="doc-biblioref">1983</a>)</span> for additional context about the development of this test. Relatedly, Pearson had an undeniably large impact on the discipline of statistics; although a socio-historical account is beyond the scope of this lab, it is worth pointing out that Pearson (like many of his contemporaries) was heavily involved in the eugenics movement <span class="citation">(Semmel, <a href="references.html#ref-semmelKarlPearsonSocialist1958" role="doc-biblioref">1958</a>)</span>, and he not only developed statistical techniques, but also applied them to those causes (interested readers could see examples in Pearson’s publications in eugenics journals).</p>
 </div>
-<div id="chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics" class="section level3" number="9.2.2">
+<div id="chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics" class="section level3" number="9.3.2">
 <h3>
-<span class="header-section-number">9.2.2</span> Chi-square distributions have fundamental properties that make them widespread in statistics<a class="anchor" aria-label="anchor" href="#chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.2</span> Chi-square distributions have fundamental properties that make them widespread in statistics<a class="anchor" aria-label="anchor" href="#chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics"><i class="fas fa-link"></i></a>
 </h3>
 <p>The chi-square (<span class="math inline">\(\chi^2\)</span>) test, statistic, and associated distribution are fundamental to many other aspects of statistics. A full accounting of the many connections and mathematical relationships is beyond the scope of this lab (but see wikipedia articles on the <a href="https://en.wikipedia.org/wiki/Chi-squared_test">chi-square test</a>, and <a href="https://en.wikipedia.org/wiki/Chi-square_distribution">chi-square distribution</a> ).</p>
 </div>
-<div id="debate-about-correct-usage" class="section level3" number="9.2.3">
+<div id="debate-about-correct-usage" class="section level3" number="9.3.3">
 <h3>
-<span class="header-section-number">9.2.3</span> Debate about correct usage<a class="anchor" aria-label="anchor" href="#debate-about-correct-usage"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.3</span> Debate about correct usage<a class="anchor" aria-label="anchor" href="#debate-about-correct-usage"><i class="fas fa-link"></i></a>
 </h3>
 <p>The chi-square test has multiple uses in psychology, including tests of independence and goodness of fit. The “correct” usage of chi-square tests is not without debate. For example, roughly 50 years after Pearson, <span class="citation">Lewis &amp; Burke (<a href="references.html#ref-lewisUseMisuseChisquare1949" role="doc-biblioref">1949</a>)</span> wrote a lengthy paper describing “uses and misuses” of chi-square tests in psychology. There were several replies by other authors who were identified as “misusing” the chi-square test. More recently, the suggestions of <span class="citation">Lewis &amp; Burke (<a href="references.html#ref-lewisUseMisuseChisquare1949" role="doc-biblioref">1949</a>)</span> were revisited by <span class="citation">Delucchi (<a href="references.html#ref-delucchiUseMisuseChisquare1983" role="doc-biblioref">1983</a>)</span>. These papers scratch the surface of the many uses and misuses of chi-square tests in psychology. An ongoing goal in our labs is to develop your conceptual understanding of the statistics you use so that you can justify why your usage is appropriate to your analysis.</p>
 </div>
-<div id="connection-to-previous-lab-concepts" class="section level3" number="9.2.4">
+<div id="connection-to-previous-lab-concepts" class="section level3" number="9.3.4">
 <h3>
-<span class="header-section-number">9.2.4</span> Connection to previous lab concepts<a class="anchor" aria-label="anchor" href="#connection-to-previous-lab-concepts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.4</span> Connection to previous lab concepts<a class="anchor" aria-label="anchor" href="#connection-to-previous-lab-concepts"><i class="fas fa-link"></i></a>
 </h3>
 <p>In previous labs we have conducted statistical inference by adopting similar general procedures. We obtain sample data. We consider how the sample could have arisen by random sampling, and construct a sampling distribution. Then we compare our sample data to the sampling distribution to see if it was likely or unlikely to have been produced by chance. Sometimes we have simulated the sampling distribution, and other times we have used formulas to compute precise probabilities.</p>
 <p>The chi-square test is another specific example of the general procedure described above. We can obtain sample data, compute a <span class="math inline">\(\chi^2\)</span> statistic for the sample data, and then compare that statistic to a reference null distribution to determine the probability of obtaining that value by chance.</p>
 </div>
 </div>
-<div id="practical-i-chisq.test-in-r" class="section level2" number="9.3">
+<div id="practical-i-chisq.test-in-r" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">9.3</span> Practical I: <code>chisq.test()</code> in R<a class="anchor" aria-label="anchor" href="#practical-i-chisq.test-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Practical I: <code>chisq.test()</code> in R<a class="anchor" aria-label="anchor" href="#practical-i-chisq.test-in-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>Base R comes with several functions for chi-square tests, including <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> and the family of <span class="math inline">\(\chi^2\)</span> distribution functions: <code>dchisqu()</code>, <code>pchisqu()</code>, <code>qchisqu()</code>, and <code>rchisqu()</code>.</p>
-<div id="chisq.test" class="section level3" number="9.3.1">
+<div id="chisq.test" class="section level3" number="9.4.1">
 <h3>
-<span class="header-section-number">9.3.1</span> chisq.test()<a class="anchor" aria-label="anchor" href="#chisq.test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1</span> chisq.test()<a class="anchor" aria-label="anchor" href="#chisq.test"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test()</a></code> function performs basic tests of independence for vectors and contingency tables.</p>
 <div class="sourceCode" id="cb958"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">chisq.test</span></code></pre></div>
-<div id="test-for-a-frequency-vector" class="section level4" number="9.3.1.1">
+<div id="test-for-a-frequency-vector" class="section level4" number="9.4.1.1">
 <h4>
-<span class="header-section-number">9.3.1.1</span> Test for a frequency vector<a class="anchor" aria-label="anchor" href="#test-for-a-frequency-vector"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1.1</span> Test for a frequency vector<a class="anchor" aria-label="anchor" href="#test-for-a-frequency-vector"><i class="fas fa-link"></i></a>
 </h4>
 <p>Inputting a single vector of values conducts a chi-square test with N-1 degrees of freedom. The test assumes equal probability of outcome by default, and reports the chi-square sample statistic, as a well as the p-value associated with a <span class="math inline">\(\chi^2\)</span> distribution with N-1 degrees of freedom.</p>
 <p>Toss a coin 50 times and receive 20 heads and 30 tails. Conduct a chi-square test of independence, and assume the theoretically expected frequencies are 25 and 25.</p>
@@ -185,9 +192,9 @@
 ## X-squared = 22.308, df = 5, p-value = 0.0004576</code></pre>
 </div>
 </div>
-<div id="independence-test-for-a-contingency-table" class="section level3" number="9.3.2">
+<div id="independence-test-for-a-contingency-table" class="section level3" number="9.4.2">
 <h3>
-<span class="header-section-number">9.3.2</span> Independence test for a contingency table<a class="anchor" aria-label="anchor" href="#independence-test-for-a-contingency-table"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.2</span> Independence test for a contingency table<a class="anchor" aria-label="anchor" href="#independence-test-for-a-contingency-table"><i class="fas fa-link"></i></a>
 </h3>
 <p>A matrix describing a contingency table with positive values in rows and columns can also be inputted directly to the function. Here, the null hypothesis is that the “joint distribution of the cell counts in the contingency table is the product of row and column marginals”. The degrees of freedom is defined as <span class="math inline">\((r-1)(c-1)\)</span>, where <span class="math inline">\(r\)</span> is the number of rows and <span class="math inline">\(c\)</span> is the number of columns.</p>
 <p>The following example is from the help file:</p>
@@ -234,9 +241,9 @@
 ##  30.07015</code></pre>
 </div>
 </div>
-<div id="conceptual-i-chi2-distribution-sample-statistic-and-test" class="section level2" number="9.4">
+<div id="conceptual-i-chi2-distribution-sample-statistic-and-test" class="section level2" number="9.5">
 <h2>
-<span class="header-section-number">9.4</span> Conceptual I: <span class="math inline">\(\chi^2\)</span> distribution, sample statistic, and test<a class="anchor" aria-label="anchor" href="#conceptual-i-chi2-distribution-sample-statistic-and-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5</span> Conceptual I: <span class="math inline">\(\chi^2\)</span> distribution, sample statistic, and test<a class="anchor" aria-label="anchor" href="#conceptual-i-chi2-distribution-sample-statistic-and-test"><i class="fas fa-link"></i></a>
 </h2>
 <p>Chi-square (<span class="math inline">\(\chi^2\)</span>) statistics can be confusing because <span class="math inline">\(\chi^2\)</span> can refer to distributions, a sample statistic, and statistical inference tests.</p>
 <p>The <span class="math inline">\(\chi^2\)</span> <strong>distribution</strong> is a family of distributions that arise when you sum the squared values of random samples from a unit normal distribution:</p>
@@ -246,9 +253,9 @@
 <p><span class="math inline">\(\chi^2 = \sum{\frac{(\text{Observed} - \text{Expected})^2}{\text{Expected}}}\)</span></p>
 <p><span class="math inline">\(\chi^2 = \sum_{i=1}^n{\frac{(\text{O}_i - \text{E}_i)^2}{\text{E}_i}}\)</span></p>
 <p><span class="math inline">\(\chi^2\)</span> <strong>statistical tests</strong> (such as a test of independence, or goodness of fit) are used for inference about the role of chance in producing observed frequency data. The process involves computing the <span class="math inline">\(\chi^2\)</span> sample statistic on observed frequency data, then comparing the obtained value to a <span class="math inline">\(\chi^2\)</span> distribution with the same degrees of freedom as the sample. The probability of obtaining the <span class="math inline">\(\chi^2\)</span> sample statistic or larger generally approximates the probability that an independent random sampling process could have produced deviations from the expected frequencies as large as or larger than that found in the sample.</p>
-<div id="the-chi2-sample-statistic" class="section level3" number="9.4.1">
+<div id="the-chi2-sample-statistic" class="section level3" number="9.5.1">
 <h3>
-<span class="header-section-number">9.4.1</span> The <span class="math inline">\(\chi^2\)</span> sample statistic<a class="anchor" aria-label="anchor" href="#the-chi2-sample-statistic"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.1</span> The <span class="math inline">\(\chi^2\)</span> sample statistic<a class="anchor" aria-label="anchor" href="#the-chi2-sample-statistic"><i class="fas fa-link"></i></a>
 </h3>
 <p>Below are two ways of writing the formula for the <span class="math inline">\(\chi^2\)</span> sample statistic.</p>
 <p><span class="math inline">\(\chi^2 = \sum{\frac{(\text{Observed} - \text{Expected})^2}{\text{Expected}}}\)</span></p>
@@ -345,9 +352,9 @@
 ## X-squared = 38.72, df = 1, p-value = 4.892e-10</code></pre>
 <p>Both times the base R function returned the <span class="math inline">\(\chi^2\)</span> sample statistic (computed from the data and assumed theoretical frequencies). The function also return information about degrees of freedom (df), and a p-value. These additional values refer to information from a <span class="math inline">\(\chi^2\)</span> distribution. Under appropriate conditions, the <span class="math inline">\(\chi^2\)</span> sample statistic can be compared to a <span class="math inline">\(\chi^2\)</span> distribution for the purposes of statistical inference.</p>
 </div>
-<div id="the-chi2-distribution" class="section level3" number="9.4.2">
+<div id="the-chi2-distribution" class="section level3" number="9.5.2">
 <h3>
-<span class="header-section-number">9.4.2</span> The <span class="math inline">\(\chi^2\)</span> distribution<a class="anchor" aria-label="anchor" href="#the-chi2-distribution"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.5.2</span> The <span class="math inline">\(\chi^2\)</span> distribution<a class="anchor" aria-label="anchor" href="#the-chi2-distribution"><i class="fas fa-link"></i></a>
 </h3>
 <p>The shape of <span class="math inline">\(\chi^2\)</span> distribution depends on a parameter called <span class="math inline">\(k\)</span>. When, <span class="math inline">\(k = 1\)</span>, the <span class="math inline">\(\chi^2\)</span> distribution is defined as the unit normal distribution squared.</p>
 <div class="sourceCode" id="cb999"><pre class="downlit sourceCode r">
@@ -470,9 +477,9 @@
 <p>Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1…summing up 10 ones, gives you 10. The same expectations can be applied to <span class="math inline">\(\chi^2\)</span> distributions of any <span class="math inline">\(k\)</span>.</p>
 </div>
 </div>
-<div id="conceptual-ii-examining-the-approximation" class="section level2" number="9.5">
+<div id="conceptual-ii-examining-the-approximation" class="section level2" number="9.6">
 <h2>
-<span class="header-section-number">9.5</span> Conceptual II: Examining the approximation<a class="anchor" aria-label="anchor" href="#conceptual-ii-examining-the-approximation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6</span> Conceptual II: Examining the approximation<a class="anchor" aria-label="anchor" href="#conceptual-ii-examining-the-approximation"><i class="fas fa-link"></i></a>
 </h2>
 <p>In lecture we discussed that the binomial distribution converges on the normal distribution in the long run. This is one of the properties that allows the <span class="math inline">\(\chi^2\)</span> distribution to approximate properties of the binomial distribution.</p>
 <p>First, we can visually see that a binomial distribution becomes normally distributed in the long run by simulation. Each simulation involves 10,000 sets of coin flips. The first histogram involves a set of 10 coin flips, and displays the frequency of each possible outcome (# of heads)s. The second histogram shows sets of 100 coin flips. Here, the range of possible outcomes increases, and they appear to be distributed more normally. <strong>As the number of flips in the set increases, the distribution of possible outcomes approaches a normal distribution</strong>.</p>
@@ -531,15 +538,15 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
 ## data:  c(4900, 5100)
 ## X-squared = 4, df = 1, p-value = 0.0455</code></pre>
 </div>
-<div id="lab-9-generalization-assignment" class="section level2" number="9.6">
+<div id="lab-9-generalization-assignment" class="section level2" number="9.7">
 <h2>
-<span class="header-section-number">9.6</span> Lab 9 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-9-generalization-assignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7</span> Lab 9 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-9-generalization-assignment"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/n4RchGANJWg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions-8" class="section level3" number="9.6.1">
+<div id="instructions-8" class="section level3" number="9.7.1">
 <h3>
-<span class="header-section-number">9.6.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-8"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
@@ -552,9 +559,9 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
 <li>Submit your github repository link for Lab 9 on blackboard.</li>
 </ol>
 </div>
-<div id="problems-8" class="section level3" number="9.6.2">
+<div id="problems-8" class="section level3" number="9.7.2">
 <h3>
-<span class="header-section-number">9.6.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-8"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>The following paper links to open data, and describes a design where two chi-square tests are performed for Experiment 1 (A copy of this paper will be made available).</li>
@@ -933,32 +940,33 @@ Second, let’s develop a sense of the idea that the <span class="math inline">\
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#chi-square"><span class="header-section-number">9</span> Chi Square</a></li>
-<li><a class="nav-link" href="#overview-8"><span class="header-section-number">9.1</span> Overview</a></li>
+<li><a class="nav-link" href="#reading-4"><span class="header-section-number">9.1</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-8"><span class="header-section-number">9.2</span> Overview</a></li>
 <li>
-<a class="nav-link" href="#background"><span class="header-section-number">9.2</span> Background</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#a-brief-history"><span class="header-section-number">9.2.1</span> A brief history</a></li>
-<li><a class="nav-link" href="#chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics"><span class="header-section-number">9.2.2</span> Chi-square distributions have fundamental properties that make them widespread in statistics</a></li>
-<li><a class="nav-link" href="#debate-about-correct-usage"><span class="header-section-number">9.2.3</span> Debate about correct usage</a></li>
-<li><a class="nav-link" href="#connection-to-previous-lab-concepts"><span class="header-section-number">9.2.4</span> Connection to previous lab concepts</a></li>
+<a class="nav-link" href="#background"><span class="header-section-number">9.3</span> Background</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#a-brief-history"><span class="header-section-number">9.3.1</span> A brief history</a></li>
+<li><a class="nav-link" href="#chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics"><span class="header-section-number">9.3.2</span> Chi-square distributions have fundamental properties that make them widespread in statistics</a></li>
+<li><a class="nav-link" href="#debate-about-correct-usage"><span class="header-section-number">9.3.3</span> Debate about correct usage</a></li>
+<li><a class="nav-link" href="#connection-to-previous-lab-concepts"><span class="header-section-number">9.3.4</span> Connection to previous lab concepts</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#practical-i-chisq.test-in-r"><span class="header-section-number">9.3</span> Practical I: chisq.test() in R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chisq.test"><span class="header-section-number">9.3.1</span> chisq.test()</a></li>
-<li><a class="nav-link" href="#independence-test-for-a-contingency-table"><span class="header-section-number">9.3.2</span> Independence test for a contingency table</a></li>
+<a class="nav-link" href="#practical-i-chisq.test-in-r"><span class="header-section-number">9.4</span> Practical I: chisq.test() in R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#chisq.test"><span class="header-section-number">9.4.1</span> chisq.test()</a></li>
+<li><a class="nav-link" href="#independence-test-for-a-contingency-table"><span class="header-section-number">9.4.2</span> Independence test for a contingency table</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-i-chi2-distribution-sample-statistic-and-test"><span class="header-section-number">9.4</span> Conceptual I: \(\chi^2\) distribution, sample statistic, and test</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-chi2-sample-statistic"><span class="header-section-number">9.4.1</span> The \(\chi^2\) sample statistic</a></li>
-<li><a class="nav-link" href="#the-chi2-distribution"><span class="header-section-number">9.4.2</span> The \(\chi^2\) distribution</a></li>
+<a class="nav-link" href="#conceptual-i-chi2-distribution-sample-statistic-and-test"><span class="header-section-number">9.5</span> Conceptual I: \(\chi^2\) distribution, sample statistic, and test</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-chi2-sample-statistic"><span class="header-section-number">9.5.1</span> The \(\chi^2\) sample statistic</a></li>
+<li><a class="nav-link" href="#the-chi2-distribution"><span class="header-section-number">9.5.2</span> The \(\chi^2\) distribution</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#conceptual-ii-examining-the-approximation"><span class="header-section-number">9.5</span> Conceptual II: Examining the approximation</a></li>
+<li><a class="nav-link" href="#conceptual-ii-examining-the-approximation"><span class="header-section-number">9.6</span> Conceptual II: Examining the approximation</a></li>
 <li>
-<a class="nav-link" href="#lab-9-generalization-assignment"><span class="header-section-number">9.6</span> Lab 9 Generalization Assignment</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instructions-8"><span class="header-section-number">9.6.1</span> Instructions</a></li>
-<li><a class="nav-link" href="#problems-8"><span class="header-section-number">9.6.2</span> Problems</a></li>
+<a class="nav-link" href="#lab-9-generalization-assignment"><span class="header-section-number">9.7</span> Lab 9 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-8"><span class="header-section-number">9.7.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-8"><span class="header-section-number">9.7.2</span> Problems</a></li>
 </ul>
 </li>
 </ul>

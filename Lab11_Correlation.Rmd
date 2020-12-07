@@ -6,6 +6,10 @@ knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
 
 "10/8/2020 | Last Compiled: `r Sys.Date()`"
 
+## Reading
+
+@vokeyThinkingData7th2018, Chapter 7; @abdiExperimentalDesignAnalysis2009, Chapter 2;  @crumpAnsweringQuestionsData2018, [Chapter 3](https://crumplab.github.io/statistics/Correlation.html)
+
 ## Overview
 
 This lab contains a practical section and two concept sections on correlations in R.

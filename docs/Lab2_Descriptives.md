@@ -2,11 +2,11 @@
 
 
 
-"9/2/2020 | Last Compiled: 2020-12-05"
+"9/2/2020 | Last Compiled: 2020-12-07"
 
 ## Reading
 
-Vokey & Allen, Chapters 2 & 3 on descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances).
+[@vokeyThinkingData7th2018], Chapters 2 & 3 on descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances); @crumpAnsweringQuestionsData2018 chapter 2 on [describing data](https://crumplab.github.io/statistics/DescribingData.html); and/or @abdiExperimentalDesignAnalysis2009, appendix A.
 
 ## Overview
 

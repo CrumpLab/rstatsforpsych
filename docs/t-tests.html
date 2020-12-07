@@ -18,7 +18,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><meta property="og:card" content="website">
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
 <meta property="og:title" content="10 T-tests | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
 <meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
@@ -84,32 +85,38 @@
 <h1>
 <span class="header-section-number">10</span> T-tests<a class="anchor" aria-label="anchor" href="#t-tests"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-05”</p>
-<div id="overview-9" class="section level2" number="10.1">
+<p>“10/8/2020 | Last Compiled: 2020-12-07”</p>
+<div id="reading-5" class="section level2" number="10.1">
 <h2>
-<span class="header-section-number">10.1</span> Overview<a class="anchor" aria-label="anchor" href="#overview-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-5"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Vokey &amp; Allen (<a href="references.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 14; <span class="citation">Crump et al. (<a href="references.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/t-tests.html">Chapter 6</a></p>
+</div>
+<div id="overview-9" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-9"><i class="fas fa-link"></i></a>
 </h2>
 <p>This lab demonstrates how to conduct one sample, paired sample, and independent sample t-tests in R, and uses R as a tool to develop insight into the conceptual foundations of the t-test.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xp_SWJ_uTn0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="historical-background" class="section level2" number="10.2">
+<div id="historical-background" class="section level2" number="10.3">
 <h2>
-<span class="header-section-number">10.2</span> Historical Background<a class="anchor" aria-label="anchor" href="#historical-background"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3</span> Historical Background<a class="anchor" aria-label="anchor" href="#historical-background"><i class="fas fa-link"></i></a>
 </h2>
 <p>William Sealy Gosset published the t-test under the pseudonym “Student”, which is why the test is sometimes called “Student’s t-test” <span class="citation">(Student, <a href="references.html#ref-studentProbableErrorMean1908" role="doc-biblioref">1908</a>)</span>. There is dispute about the origin and meaning of <span class="math inline">\(t\)</span>. One hypothesis is that <span class="math inline">\(s\)</span> was commonly used at the time to refer to sample statistics, so Gosset chose <span class="math inline">\(t\)</span> as the next letter, perhaps indicating a “step-up” in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job. <span class="citation">Pearson (<a href="references.html#ref-pearsonStudentStatistician1939" role="doc-biblioref">1939</a>)</span> provides a biography of Gosset. <span class="citation">Sawilowsky &amp; Blair (<a href="references.html#ref-sawilowskyMoreRealisticLook1992" role="doc-biblioref">1992</a>)</span> conduct simulations and examine how robust the t-test is to violations of assumptions.</p>
 </div>
-<div id="practical-i-t.test" class="section level2" number="10.3">
+<div id="practical-i-t.test" class="section level2" number="10.4">
 <h2>
-<span class="header-section-number">10.3</span> Practical I: t.test()<a class="anchor" aria-label="anchor" href="#practical-i-t.test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4</span> Practical I: t.test()<a class="anchor" aria-label="anchor" href="#practical-i-t.test"><i class="fas fa-link"></i></a>
 </h2>
 <p>Base R includes the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function that computes several forms of t-tests.</p>
 <div class="sourceCode" id="cb1042"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">t.test</span></code></pre></div>
 <p>Here are three quick examples of computing one sample, paired sample and independent sample t-tests using R.</p>
-<div id="one-sample-t-test" class="section level3" number="10.3.1">
+<div id="one-sample-t-test" class="section level3" number="10.4.1">
 <h3>
-<span class="header-section-number">10.3.1</span> One-sample t-test<a class="anchor" aria-label="anchor" href="#one-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.1</span> One-sample t-test<a class="anchor" aria-label="anchor" href="#one-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1043"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_random_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
@@ -126,9 +133,9 @@
 ##   mean of x 
 ## -0.02286783</code></pre>
 </div>
-<div id="paired-sample-t-test" class="section level3" number="10.3.2">
+<div id="paired-sample-t-test" class="section level3" number="10.4.2">
 <h3>
-<span class="header-section-number">10.3.2</span> Paired-sample t-test<a class="anchor" aria-label="anchor" href="#paired-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.2</span> Paired-sample t-test<a class="anchor" aria-label="anchor" href="#paired-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1045"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
@@ -147,9 +154,9 @@
 ## mean of the differences 
 ##              -0.2587403</code></pre>
 </div>
-<div id="independent-sample-t-test" class="section level3" number="10.3.3">
+<div id="independent-sample-t-test" class="section level3" number="10.4.3">
 <h3>
-<span class="header-section-number">10.3.3</span> Independent-sample t-test<a class="anchor" aria-label="anchor" href="#independent-sample-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.3</span> Independent-sample t-test<a class="anchor" aria-label="anchor" href="#independent-sample-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1047"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
@@ -168,9 +175,9 @@
 ## mean of x mean of y 
 ## 0.2706210 0.2431616</code></pre>
 </div>
-<div id="formula-syntax-for-data-frames" class="section level3" number="10.3.4">
+<div id="formula-syntax-for-data-frames" class="section level3" number="10.4.4">
 <h3>
-<span class="header-section-number">10.3.4</span> formula syntax for data frames<a class="anchor" aria-label="anchor" href="#formula-syntax-for-data-frames"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.4</span> formula syntax for data frames<a class="anchor" aria-label="anchor" href="#formula-syntax-for-data-frames"><i class="fas fa-link"></i></a>
 </h3>
 <p>In the above examples, the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function was applied to vectors containing sample means. It is also possible to apply the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function to long data frames using the <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code> syntax.</p>
 <div class="sourceCode" id="cb1049"><pre class="downlit sourceCode r">
@@ -190,9 +197,9 @@
 ## mean in group A mean in group B 
 ##    -0.005239521    -0.414901379</code></pre>
 </div>
-<div id="one-or-two-sided-test" class="section level3" number="10.3.5">
+<div id="one-or-two-sided-test" class="section level3" number="10.4.5">
 <h3>
-<span class="header-section-number">10.3.5</span> one or two-sided test<a class="anchor" aria-label="anchor" href="#one-or-two-sided-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.5</span> one or two-sided test<a class="anchor" aria-label="anchor" href="#one-or-two-sided-test"><i class="fas fa-link"></i></a>
 </h3>
 <p>By default, the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function provides a two sided test, but the options can be specified using the <code>alternative = c("two.sided", "less", "greater")</code> input parameter.</p>
 <div class="sourceCode" id="cb1051"><pre class="downlit sourceCode r">
@@ -236,9 +243,9 @@
 ## mean of x 
 ## 0.1974013</code></pre>
 </div>
-<div id="var.equal-and-welchs-correction" class="section level3" number="10.3.6">
+<div id="var.equal-and-welchs-correction" class="section level3" number="10.4.6">
 <h3>
-<span class="header-section-number">10.3.6</span> var.equal and Welch’s correction<a class="anchor" aria-label="anchor" href="#var.equal-and-welchs-correction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.6</span> var.equal and Welch’s correction<a class="anchor" aria-label="anchor" href="#var.equal-and-welchs-correction"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function also makes default assumptions about the indpendent samples test. By, default it applies a correction called Welch’s correction. This correction is related to the assumption of equal variances between the samples in each group.</p>
 <div class="sourceCode" id="cb1057"><pre class="downlit sourceCode r">
@@ -271,9 +278,9 @@
 ##   mean of x   mean of y 
 ##  0.04832838 -0.26900728</code></pre>
 </div>
-<div id="t.test-contents" class="section level3" number="10.3.7">
+<div id="t.test-contents" class="section level3" number="10.4.7">
 <h3>
-<span class="header-section-number">10.3.7</span> t.test() contents<a class="anchor" aria-label="anchor" href="#t.test-contents"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.7</span> t.test() contents<a class="anchor" aria-label="anchor" href="#t.test-contents"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function has two kinds of outputs. First, it prints the results to the console (as we saw above). Second, it outputs a list containing the components of test. The individual pieces of the t-test can be saved and accessed by putting the results of the t.test into a new variable.</p>
 <div class="sourceCode" id="cb1061"><pre class="downlit sourceCode r">
@@ -306,9 +313,9 @@
 <pre><code>##   mean of x   mean of y 
 ##  0.04832838 -0.26900728</code></pre>
 </div>
-<div id="papaja-reporting-with-apa_print" class="section level3" number="10.3.8">
+<div id="papaja-reporting-with-apa_print" class="section level3" number="10.4.8">
 <h3>
-<span class="header-section-number">10.3.8</span> papaja reporting with apa_print()<a class="anchor" aria-label="anchor" href="#papaja-reporting-with-apa_print"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4.8</span> papaja reporting with apa_print()<a class="anchor" aria-label="anchor" href="#papaja-reporting-with-apa_print"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>papaja</code> package has convenient functions for automating the writing of t-test results.</p>
 <div class="sourceCode" id="cb1071"><pre class="downlit sourceCode r">
@@ -331,15 +338,15 @@
 <p>For example, this t-test result, <span class="math inline">\(t(18) = 0.83\)</span>, <span class="math inline">\(p = .419\)</span>, was printed using an r code snippet inserted into the text of this .Rmd.</p>
 </div>
 </div>
-<div id="conceptual-i-simulating-the-t-test" class="section level2" number="10.4">
+<div id="conceptual-i-simulating-the-t-test" class="section level2" number="10.5">
 <h2>
-<span class="header-section-number">10.4</span> Conceptual I: Simulating the t-test<a class="anchor" aria-label="anchor" href="#conceptual-i-simulating-the-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5</span> Conceptual I: Simulating the t-test<a class="anchor" aria-label="anchor" href="#conceptual-i-simulating-the-t-test"><i class="fas fa-link"></i></a>
 </h2>
 <p>In this section we will create simulations of the various components of a an independent samples t-test. One goal will be to make the code general, so that we can simulate a wide range of designs.</p>
 <p>We will simulate an experimental situation involving two groups A and B. We will assume they have an equal number of subjects (N), and that each subject was measured a similar number of times (X times). We will also simulate the null-hypothesis, which assumes that the experimental manipulation was ineffective. As a result, we assume that the subjects in A and B are randomly sampled from the same underlying distribution. We will assume the raw scores for each subject come from a normal distribution.</p>
-<div id="simulating-a-single-experiment" class="section level3" number="10.4.1">
+<div id="simulating-a-single-experiment" class="section level3" number="10.5.1">
 <h3>
-<span class="header-section-number">10.4.1</span> Simulating a single experiment<a class="anchor" aria-label="anchor" href="#simulating-a-single-experiment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.1</span> Simulating a single experiment<a class="anchor" aria-label="anchor" href="#simulating-a-single-experiment"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1073"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#subjects per group</span>
@@ -397,15 +404,15 @@
 ## mean of x mean of y 
 ##  103.4201  103.6228</code></pre>
 </div>
-<div id="simulating-distributions-of-experiments" class="section level3" number="10.4.2">
+<div id="simulating-distributions-of-experiments" class="section level3" number="10.5.2">
 <h3>
-<span class="header-section-number">10.4.2</span> Simulating distributions of experiments<a class="anchor" aria-label="anchor" href="#simulating-distributions-of-experiments"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.2</span> Simulating distributions of experiments<a class="anchor" aria-label="anchor" href="#simulating-distributions-of-experiments"><i class="fas fa-link"></i></a>
 </h3>
 <p>“Any experiment may be regarded as forming an individual of a ‘population’ of experiments which might be performed under the same conditions. A series of experiments is a sample drawn from this population.” — William Sealy Gossett <span class="citation">(Student, <a href="references.html#ref-studentProbableErrorMean1908" role="doc-biblioref">1908</a>)</span>.</p>
 <p>This quote is the first sentence from Student’s formative paper on the t-test. In the previous section we have simulated a single experiment. If we conduct this simulation several thousand times, we can create the “population” of experiments that could have occurred under the same conditions. The very general idea is to create a sampling distribution of experiments, and then compare the results of an actual experiment to distributions of possible experiments.</p>
-<div id="the-distribution-of-mean-differences" class="section level4" number="10.4.2.1">
+<div id="the-distribution-of-mean-differences" class="section level4" number="10.5.2.1">
 <h4>
-<span class="header-section-number">10.4.2.1</span> The distribution of mean differences<a class="anchor" aria-label="anchor" href="#the-distribution-of-mean-differences"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.2.1</span> The distribution of mean differences<a class="anchor" aria-label="anchor" href="#the-distribution-of-mean-differences"><i class="fas fa-link"></i></a>
 </h4>
 <p>If this experiment was repeated a 1000 times, then each time there could be a mean difference between Group A and B. Thus, if the mean difference was the sample statistic used to summarize the result of this experiment, the sampling distribution of mean differences could be estimated by simulation:</p>
 <div class="sourceCode" id="cb1078"><pre class="downlit sourceCode r">
@@ -414,9 +421,9 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_mean_diffs</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab10_ttest_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
 </div>
-<div id="the-distribution-of-t" class="section level4" number="10.4.2.2">
+<div id="the-distribution-of-t" class="section level4" number="10.5.2.2">
 <h4>
-<span class="header-section-number">10.4.2.2</span> The distribution of t<a class="anchor" aria-label="anchor" href="#the-distribution-of-t"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.2.2</span> The distribution of t<a class="anchor" aria-label="anchor" href="#the-distribution-of-t"><i class="fas fa-link"></i></a>
 </h4>
 <p>Student used the <span class="math inline">\(t\)</span> formula, rather than mean differences to summarize the sample data from a two group experiment. The <span class="math inline">\(t\)</span> formula normalizes the mean difference by the estimated standard error of the mean.</p>
 <p><span class="math inline">\(t = \frac{\bar{X}_1 - \bar{X}_2}{s_p\sqrt{2/n}}\)</span></p>
@@ -430,9 +437,9 @@
 <div class="inline-figure"><img src="Lab10_ttest_files/figure-html/unnamed-chunk-17-1.png" width="672"></div>
 </div>
 </div>
-<div id="t-distribution-functions" class="section level3" number="10.4.3">
+<div id="t-distribution-functions" class="section level3" number="10.5.3">
 <h3>
-<span class="header-section-number">10.4.3</span> t distribution functions<a class="anchor" aria-label="anchor" href="#t-distribution-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5.3</span> t distribution functions<a class="anchor" aria-label="anchor" href="#t-distribution-functions"><i class="fas fa-link"></i></a>
 </h3>
 <p>R comes with the <code>dt</code>, <code>pt</code>, <code>qt</code>, <code>rt</code> family of function for t-distributions as well.</p>
 <p>For example, rather than simulating t values as we did above, we could sample 1000 <span class="math inline">\(t\)</span> values from a t-distribution with df = 18.</p>
@@ -467,17 +474,17 @@ THe <code>dt</code> function could be used to draw the probability density funct
 <pre><code>## [1] 6.313752 2.015048 1.812461 1.660234 1.646379</code></pre>
 </div>
 </div>
-<div id="conceptual-ii-simulating-power-curves" class="section level2" number="10.5">
+<div id="conceptual-ii-simulating-power-curves" class="section level2" number="10.6">
 <h2>
-<span class="header-section-number">10.5</span> Conceptual II: Simulating power curves<a class="anchor" aria-label="anchor" href="#conceptual-ii-simulating-power-curves"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6</span> Conceptual II: Simulating power curves<a class="anchor" aria-label="anchor" href="#conceptual-ii-simulating-power-curves"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lHWpFcGCpj8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>The above simulations assumed that an experimental manipulation had no effect, therefore the expectation is that measurements from both groups were taken from the same distribution, and that any differences between groups would be explained by random sampling.</p>
 <p>Another possibility is that the experimental manipulation was effective and caused a difference between the groups. In this case the expectations are that the measurements from each group are from <strong>different</strong> distributions. Specifically, some causal force from the manipulation is assumed to change performance, resulting in systematic changes to the scores in the group that received the manipulation. The experimental manipulation could in principle change almost any property of the distribution, and differences in means are often a focus of research interest.</p>
-<div id="what-proportion-of-experiments-would-be-significant" class="section level3" number="10.5.1">
+<div id="what-proportion-of-experiments-would-be-significant" class="section level3" number="10.6.1">
 <h3>
-<span class="header-section-number">10.5.1</span> What proportion of experiments would be significant…?<a class="anchor" aria-label="anchor" href="#what-proportion-of-experiments-would-be-significant"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.1</span> What proportion of experiments would be significant…?<a class="anchor" aria-label="anchor" href="#what-proportion-of-experiments-would-be-significant"><i class="fas fa-link"></i></a>
 </h3>
 <p>The purpose of this conceptual section is to use simulation techniques to ask what proportion of experiments would be significant (at some alpha level, say p&lt;.05) if the experimental manipulation worked and caused a difference between group means.</p>
 <p>First, we should be confident in a basic answer. If we set an alpha criterion of p&lt;.05, what proportion of experiments will be significant according to the null-hypothesis (that there is no difference between groups)? We can conduct this simulation, and see how many experiments out of 1000 returned a p-value of less than .05. The answer should be, by definition, approximately .05.</p>
@@ -501,9 +508,9 @@ THe <code>dt</code> function could be used to draw the probability density funct
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span></code></pre></div>
 <pre><code>## [1] 0.238</code></pre>
 </div>
-<div id="effect-size" class="section level3" number="10.5.2">
+<div id="effect-size" class="section level3" number="10.6.2">
 <h3>
-<span class="header-section-number">10.5.2</span> Effect-size<a class="anchor" aria-label="anchor" href="#effect-size"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.2</span> Effect-size<a class="anchor" aria-label="anchor" href="#effect-size"><i class="fas fa-link"></i></a>
 </h3>
 <p>We are working toward plotting power-curves, which could show us the probability of getting a significant result as a function of design parameters like number of subjects, and number of scores per subject (observations per cell), as well as the assumed “effect-size” of the manipulation. Effect size has a regular meaning, which is the idea that an experimental manipulation can cause change in different amounts, some manipulations might have big effects (e.g., cause a really big change in the mean), or small effects.</p>
 <p>Effect-size can also refer to specific statistical units. For example, Cohen proposed that effect-sizes for mean differences between two groups could be standardized. For example, if there was a mean difference of between group A and B, it is not clear if this is a big or small difference. If the underlying distributions were unit normal distributions, a mean shift of 1 is very large, it represents shifting the distribution by a whole standard deviation. If the underlying distributions had a large standard deviation, say 100, then shifting the mean by a 1 isn’t very large with respect to the total variability.</p>
@@ -511,9 +518,9 @@ THe <code>dt</code> function could be used to draw the probability density funct
 <p><span class="math inline">\(\text{Cohen's d} = \frac{\text{mean difference}}{\text{standard deviation}}\)</span></p>
 <p>We will make use of these ideas in out power-curve simulations. Specifically, for convenience, we will use unit normal distributions as the parent distributions for our group scores. And, we will only simulate differences in the mean between groups. As a result, when we increase the mean difference by .25, .5, or 1, or another number, we can interpret these differences in terms of standard deviation units.</p>
 </div>
-<div id="power-curve-as-a-function-of-effect-size" class="section level3" number="10.5.3">
+<div id="power-curve-as-a-function-of-effect-size" class="section level3" number="10.6.3">
 <h3>
-<span class="header-section-number">10.5.3</span> Power-curve as a function of effect-size<a class="anchor" aria-label="anchor" href="#power-curve-as-a-function-of-effect-size"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.3</span> Power-curve as a function of effect-size<a class="anchor" aria-label="anchor" href="#power-curve-as-a-function-of-effect-size"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this example we conduct a range of simulations assuming that effect-size increases from 0 to 1.5, in steps of .1. All simulations have the same design parameters: there are N=10 subjects per group, and X=5 scores are taken for each subject. The power curve shows the proportion of experiments that would return a result of p &lt; .05 at each level of effect-size. For example, when the assumed effect-size is 1, then this design will detect an effect of that size at the p&lt;.05 level close to 100% of the time. However, the “power” of the same design to detect smaller effects decreases following this curve.</p>
 <div class="sourceCode" id="cb1092"><pre class="downlit sourceCode r">
@@ -540,15 +547,15 @@ THe <code>dt</code> function could be used to draw the probability density funct
 <div class="inline-figure"><img src="Lab10_ttest_files/figure-html/unnamed-chunk-23-1.png" width="672"></div>
 </div>
 </div>
-<div id="lab-10-generalization-assignment" class="section level2" number="10.6">
+<div id="lab-10-generalization-assignment" class="section level2" number="10.7">
 <h2>
-<span class="header-section-number">10.6</span> Lab 10 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-10-generalization-assignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.7</span> Lab 10 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-10-generalization-assignment"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eSut_2cdRvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions-9" class="section level3" number="10.6.1">
+<div id="instructions-9" class="section level3" number="10.7.1">
 <h3>
-<span class="header-section-number">10.6.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.7.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-9"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
@@ -561,9 +568,9 @@ THe <code>dt</code> function could be used to draw the probability density funct
 <li>Submit your github repository link for Lab 10 on blackboard.</li>
 </ol>
 </div>
-<div id="problems-9" class="section level3" number="10.6.2">
+<div id="problems-9" class="section level3" number="10.7.2">
 <h3>
-<span class="header-section-number">10.6.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.7.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-9"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li>Your task is to obtain the data from the following paper and conduct a reproducible analysis of their results.</li>
@@ -588,38 +595,39 @@ THe <code>dt</code> function could be used to draw the probability density funct
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#t-tests"><span class="header-section-number">10</span> T-tests</a></li>
-<li><a class="nav-link" href="#overview-9"><span class="header-section-number">10.1</span> Overview</a></li>
-<li><a class="nav-link" href="#historical-background"><span class="header-section-number">10.2</span> Historical Background</a></li>
+<li><a class="nav-link" href="#reading-5"><span class="header-section-number">10.1</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-9"><span class="header-section-number">10.2</span> Overview</a></li>
+<li><a class="nav-link" href="#historical-background"><span class="header-section-number">10.3</span> Historical Background</a></li>
 <li>
-<a class="nav-link" href="#practical-i-t.test"><span class="header-section-number">10.3</span> Practical I: t.test()</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#one-sample-t-test"><span class="header-section-number">10.3.1</span> One-sample t-test</a></li>
-<li><a class="nav-link" href="#paired-sample-t-test"><span class="header-section-number">10.3.2</span> Paired-sample t-test</a></li>
-<li><a class="nav-link" href="#independent-sample-t-test"><span class="header-section-number">10.3.3</span> Independent-sample t-test</a></li>
-<li><a class="nav-link" href="#formula-syntax-for-data-frames"><span class="header-section-number">10.3.4</span> formula syntax for data frames</a></li>
-<li><a class="nav-link" href="#one-or-two-sided-test"><span class="header-section-number">10.3.5</span> one or two-sided test</a></li>
-<li><a class="nav-link" href="#var.equal-and-welchs-correction"><span class="header-section-number">10.3.6</span> var.equal and Welch’s correction</a></li>
-<li><a class="nav-link" href="#t.test-contents"><span class="header-section-number">10.3.7</span> t.test() contents</a></li>
-<li><a class="nav-link" href="#papaja-reporting-with-apa_print"><span class="header-section-number">10.3.8</span> papaja reporting with apa_print()</a></li>
+<a class="nav-link" href="#practical-i-t.test"><span class="header-section-number">10.4</span> Practical I: t.test()</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#one-sample-t-test"><span class="header-section-number">10.4.1</span> One-sample t-test</a></li>
+<li><a class="nav-link" href="#paired-sample-t-test"><span class="header-section-number">10.4.2</span> Paired-sample t-test</a></li>
+<li><a class="nav-link" href="#independent-sample-t-test"><span class="header-section-number">10.4.3</span> Independent-sample t-test</a></li>
+<li><a class="nav-link" href="#formula-syntax-for-data-frames"><span class="header-section-number">10.4.4</span> formula syntax for data frames</a></li>
+<li><a class="nav-link" href="#one-or-two-sided-test"><span class="header-section-number">10.4.5</span> one or two-sided test</a></li>
+<li><a class="nav-link" href="#var.equal-and-welchs-correction"><span class="header-section-number">10.4.6</span> var.equal and Welch’s correction</a></li>
+<li><a class="nav-link" href="#t.test-contents"><span class="header-section-number">10.4.7</span> t.test() contents</a></li>
+<li><a class="nav-link" href="#papaja-reporting-with-apa_print"><span class="header-section-number">10.4.8</span> papaja reporting with apa_print()</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-i-simulating-the-t-test"><span class="header-section-number">10.4</span> Conceptual I: Simulating the t-test</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#simulating-a-single-experiment"><span class="header-section-number">10.4.1</span> Simulating a single experiment</a></li>
-<li><a class="nav-link" href="#simulating-distributions-of-experiments"><span class="header-section-number">10.4.2</span> Simulating distributions of experiments</a></li>
-<li><a class="nav-link" href="#t-distribution-functions"><span class="header-section-number">10.4.3</span> t distribution functions</a></li>
+<a class="nav-link" href="#conceptual-i-simulating-the-t-test"><span class="header-section-number">10.5</span> Conceptual I: Simulating the t-test</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simulating-a-single-experiment"><span class="header-section-number">10.5.1</span> Simulating a single experiment</a></li>
+<li><a class="nav-link" href="#simulating-distributions-of-experiments"><span class="header-section-number">10.5.2</span> Simulating distributions of experiments</a></li>
+<li><a class="nav-link" href="#t-distribution-functions"><span class="header-section-number">10.5.3</span> t distribution functions</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-ii-simulating-power-curves"><span class="header-section-number">10.5</span> Conceptual II: Simulating power curves</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#what-proportion-of-experiments-would-be-significant"><span class="header-section-number">10.5.1</span> What proportion of experiments would be significant…?</a></li>
-<li><a class="nav-link" href="#effect-size"><span class="header-section-number">10.5.2</span> Effect-size</a></li>
-<li><a class="nav-link" href="#power-curve-as-a-function-of-effect-size"><span class="header-section-number">10.5.3</span> Power-curve as a function of effect-size</a></li>
+<a class="nav-link" href="#conceptual-ii-simulating-power-curves"><span class="header-section-number">10.6</span> Conceptual II: Simulating power curves</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#what-proportion-of-experiments-would-be-significant"><span class="header-section-number">10.6.1</span> What proportion of experiments would be significant…?</a></li>
+<li><a class="nav-link" href="#effect-size"><span class="header-section-number">10.6.2</span> Effect-size</a></li>
+<li><a class="nav-link" href="#power-curve-as-a-function-of-effect-size"><span class="header-section-number">10.6.3</span> Power-curve as a function of effect-size</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#lab-10-generalization-assignment"><span class="header-section-number">10.6</span> Lab 10 Generalization Assignment</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instructions-9"><span class="header-section-number">10.6.1</span> Instructions</a></li>
-<li><a class="nav-link" href="#problems-9"><span class="header-section-number">10.6.2</span> Problems</a></li>
+<a class="nav-link" href="#lab-10-generalization-assignment"><span class="header-section-number">10.7</span> Lab 10 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-9"><span class="header-section-number">10.7.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-9"><span class="header-section-number">10.7.2</span> Problems</a></li>
 </ul>
 </li>
 </ul>

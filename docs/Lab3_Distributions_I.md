@@ -2,11 +2,11 @@
 
 
 
-"9/2/2020 | Last Compiled: 2020-12-05"
+"9/2/2020 | Last Compiled: 2020-12-07"
 
 ## Reading
 
-Vokey & Allen, Chapters 5 & 6 on additional descriptive statistics, and recovering the distribution.
+@vokeyThinkingData7th2018, Chapters 5 & 6 on additional descriptive statistics, and recovering the distribution; and @abdiExperimentalDesignAnalysis2009, Appendices C & D.
 
 ## Overview
 

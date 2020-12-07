@@ -1,6 +1,6 @@
 # Simulation and Power Analysis {.unnumbered}
 
-"11/8/2020 | Last Compiled: 2020-12-05"
+"11/8/2020 | Last Compiled: 2020-12-07"
 
 
 

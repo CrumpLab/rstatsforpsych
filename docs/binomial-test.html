@@ -18,7 +18,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><meta property="og:card" content="website">
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
 <meta property="og:title" content="7 Binomial Test | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
 <meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
@@ -84,18 +85,24 @@
 <h1>
 <span class="header-section-number">7</span> Binomial Test<a class="anchor" aria-label="anchor" href="#binomial-test"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-05”</p>
+<p>“10/8/2020 | Last Compiled: 2020-12-07”</p>
 <blockquote>
 <p>Extraordinary claims require extraordinary evidence (ECREE) - Carl Sagan</p>
 </blockquote>
+<div id="readings-1" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Readings<a class="anchor" aria-label="anchor" href="#readings-1"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Vokey &amp; Allen (<a href="references.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 11; <span class="citation">Abdi et al. (<a href="references.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, appendix D and E on the binomial test.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MNzuV0x5x1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>Imagine a wise pigeon that you can ask any Yes or No question. You ask the question. The pigeon responds by pecking Yes or No. How many answers would the pigeon need to get correct in row before you were willing to believe the pigeon knew the correct answer to every question?</p>
 <p>If someone claimed that they had a magical and wise pigeon that knew the answer to every Yes or No question, how would you put it to the test? How many questions would you ask, when would you would be satisfied that the extraordinary claim was TRUE or FALSE?</p>
 <p>We can consider these kinds of questions from the perspective of a binomial test. And, as it happens, binomial tests are often used on pigeons in real research. For example, pigeons are excellent at classifying visual patterns into different categories, and binomial tests are often used as a part of the process of establishing that a pigeon actually possesses some visual skill/ability to make the discrimination, and is not simply getting lucky.</p>
-<div id="overview-6" class="section level2" number="7.1">
+</div>
+<div id="overview-6" class="section level2" number="7.2">
 <h2>
-<span class="header-section-number">7.1</span> Overview<a class="anchor" aria-label="anchor" href="#overview-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-6"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>Practical I: Conducting a binomial test in R</li>
@@ -103,14 +110,14 @@
 <li>Concepts II: Task design and binomial models</li>
 </ol>
 </div>
-<div id="practical-i-conducting-a-binomial-test-in-r" class="section level2" number="7.2">
+<div id="practical-i-conducting-a-binomial-test-in-r" class="section level2" number="7.3">
 <h2>
-<span class="header-section-number">7.2</span> Practical I: Conducting a binomial test in R<a class="anchor" aria-label="anchor" href="#practical-i-conducting-a-binomial-test-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3</span> Practical I: Conducting a binomial test in R<a class="anchor" aria-label="anchor" href="#practical-i-conducting-a-binomial-test-in-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>We have already conducted binomial tests in R in previous labs when we discussed coin flipping examples. However, we did not use the language of a binomial test. In this practical example, we go over a couple different ways to conduct a binomial test in R.</p>
-<div id="classification-performance-example" class="section level3" number="7.2.1">
+<div id="classification-performance-example" class="section level3" number="7.3.1">
 <h3>
-<span class="header-section-number">7.2.1</span> Classification performance example<a class="anchor" aria-label="anchor" href="#classification-performance-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.1</span> Classification performance example<a class="anchor" aria-label="anchor" href="#classification-performance-example"><i class="fas fa-link"></i></a>
 </h3>
 <p>Binomial tests are commonly used in situations where a researcher wants to know whether or not a subject was guessing, or truly was able to perform some task. For example, in comparative cognition, a pigeon researcher might ask whether a pigeon can discriminate between different classes of visual stimuli, such as red vs. green, or circles vs. squares, or buildings vs. trees.</p>
 <p>Imagine a pigeon was given a 2AFC task (two-alternative forced-choice task) to discriminate between pictures of circular shapes and angular shapes. On each trial the pigeon is shown two pictures, one circular and one angular. They are rewarded when they correctly peck on the circular shape.</p>
@@ -149,9 +156,9 @@
 <p>So, it is now possible to write:</p>
 <p>Pigeon A was 65% correct (p &lt;= 0.0017588)</p>
 </div>
-<div id="examining-the-report" class="section level3" number="7.2.2">
+<div id="examining-the-report" class="section level3" number="7.3.2">
 <h3>
-<span class="header-section-number">7.2.2</span> Examining the report:<a class="anchor" aria-label="anchor" href="#examining-the-report"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.2</span> Examining the report:<a class="anchor" aria-label="anchor" href="#examining-the-report"><i class="fas fa-link"></i></a>
 </h3>
 <pre><code>Exact binomial test
 
@@ -168,32 +175,32 @@ probability of success
 <p>We will focus on the “less”, or “greater” options, because the “two.sided” is more contentious (and there are multiple interpretations of how/whether two-sided tests should be done).</p>
 <p>For now, we will also ignore the alternative hypothesis and confidence interval sections. In my view neither of these outputs are a part of the binomial test.</p>
 </div>
-<div id="what-can-we-conclude" class="section level3" number="7.2.3">
+<div id="what-can-we-conclude" class="section level3" number="7.3.3">
 <h3>
-<span class="header-section-number">7.2.3</span> What can we conclude?<a class="anchor" aria-label="anchor" href="#what-can-we-conclude"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.3</span> What can we conclude?<a class="anchor" aria-label="anchor" href="#what-can-we-conclude"><i class="fas fa-link"></i></a>
 </h3>
 <p>In our example, I chose <code>alternative= "greater"</code>, and we found that the p-value was 0.001759. What does this mean?</p>
 <p>Officially, the probability that a 50/50 binomial process could produce 65 or more successes out of 100 by chance is p = .001759. More specifically, the 50/50 binomial process is one where there is 50% chance of a success, and a 50% chance of a failure. This is just like the coin flipping examples, except we are using success and failure as the two possible outcomes instead of heads or tails.</p>
 </div>
-<div id="what-does-this-have-to-do-with-the-pigeon" class="section level3" number="7.2.4">
+<div id="what-does-this-have-to-do-with-the-pigeon" class="section level3" number="7.3.4">
 <h3>
-<span class="header-section-number">7.2.4</span> What does this have to do with the pigeon<a class="anchor" aria-label="anchor" href="#what-does-this-have-to-do-with-the-pigeon"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.4</span> What does this have to do with the pigeon<a class="anchor" aria-label="anchor" href="#what-does-this-have-to-do-with-the-pigeon"><i class="fas fa-link"></i></a>
 </h3>
 <p>Remember the research example. A pigeon chose the correct shape 65/100 times. What can we say about the pigeon? Does it have the ability to classify circular shapes from angular shapes? When we “answer” this question with a binomial test, we are using a “compared to what” strategy. Clearly the pigeon is not perfectly good at the discrimination, otherwise the pigeon would have got 100%. How about compared to chance?</p>
 <p>What is chance here? Imagine if we removed the pigeon entirely, and replaced the pigeon with a coin. On each trial we flip a coin to choose one of the two shapes. Clearly, the coin “knows nothing about shapes”, and all of the coins “choices” would be “random guesses”. What is a coin flip capable of doing? Could a coin get 65/100 correct?</p>
 <p>The binomial test tells us something about what the coin could have done. The answer is not about the pigeon. We learned that the binomial process (the coin), is capable of producing 65/100 or greater with only a very small probability (.001759).</p>
 </div>
-<div id="facts-and-inferences" class="section level3" number="7.2.5">
+<div id="facts-and-inferences" class="section level3" number="7.3.5">
 <h3>
-<span class="header-section-number">7.2.5</span> Facts and Inferences<a class="anchor" aria-label="anchor" href="#facts-and-inferences"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3.5</span> Facts and Inferences<a class="anchor" aria-label="anchor" href="#facts-and-inferences"><i class="fas fa-link"></i></a>
 </h3>
 <p>In our example we have a few facts. The pigeon got 65/100 correct. A coin-flipping process could get 65 or more heads out of 100 with a small probability of .001759.</p>
 <p>After the facts, you could engage in inferences by attempting to relate the behavior of the pigeon to the coin. For example, I would say that it is very unlikely that the 65% correct could be explained by chance. This gives me some confidence that pigeon wasn’t just guessing. Just guessing wouldn’t do as well as the pigeon very often. If this is all the information I had to go on, I would probably also bet the pigeon would have a similar level of performance, or do even better if was given another 100 trials.</p>
 </div>
 </div>
-<div id="concepts-i-binomial-model-foundations" class="section level2" number="7.3">
+<div id="concepts-i-binomial-model-foundations" class="section level2" number="7.4">
 <h2>
-<span class="header-section-number">7.3</span> Concepts I: Binomial model foundations<a class="anchor" aria-label="anchor" href="#concepts-i-binomial-model-foundations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4</span> Concepts I: Binomial model foundations<a class="anchor" aria-label="anchor" href="#concepts-i-binomial-model-foundations"><i class="fas fa-link"></i></a>
 </h2>
 <p>Although we can use the <code><a href="https://rdrr.io/r/stats/binom.test.html">binom.test()</a></code> function to conduct a binomial test, we can also use the family of binom functions that we have already come across occasionally.</p>
 <p>For example, if there are 100 trials, there are a limited number of possible outcomes. There could be 0 successes all the way to 100 successes. That’s it. If we model this in terms of 50% for a success/failure, then this histogram shows the binomial distribution for this situation:</p>
@@ -214,9 +221,9 @@ Remember two things. First, this is a discrete probability distribution. Each of
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">65</span><span class="op">:</span><span class="fl">100</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.001758821</code></pre>
 <p>This is the same probability that <code><a href="https://rdrr.io/r/stats/binom.test.html">binom.test()</a></code> returned.</p>
-<div id="the-test-and-the-model" class="section level3" number="7.3.1">
+<div id="the-test-and-the-model" class="section level3" number="7.4.1">
 <h3>
-<span class="header-section-number">7.3.1</span> The test and the model<a class="anchor" aria-label="anchor" href="#the-test-and-the-model"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4.1</span> The test and the model<a class="anchor" aria-label="anchor" href="#the-test-and-the-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>A binomial test is often conducted to make inferences about a data point. So, for example, you flipped a coin 10 times and got 7 heads out of 10. The binomial test is:</p>
 <div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
@@ -322,9 +329,9 @@ Remember two things. First, this is a discrete probability distribution. Each of
 <p>We consider the value of thinking about the full model in the next section.</p>
 </div>
 </div>
-<div id="concepts-ii-task-design-and-binomial-models" class="section level2" number="7.4">
+<div id="concepts-ii-task-design-and-binomial-models" class="section level2" number="7.5">
 <h2>
-<span class="header-section-number">7.4</span> Concepts II: Task design and binomial models<a class="anchor" aria-label="anchor" href="#concepts-ii-task-design-and-binomial-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5</span> Concepts II: Task design and binomial models<a class="anchor" aria-label="anchor" href="#concepts-ii-task-design-and-binomial-models"><i class="fas fa-link"></i></a>
 </h2>
 <p>Consider this. If it is appropriate to conduct a binomial test, then the situation under consideration can be described by a binomial process. In other words, it is possible to describe all of the possible outcomes of the experiment before conducting it.</p>
 <p>For example, in the pigeon experiment, there were 100 trials. Each trial involved a decision that was correct or incorrect. So, there are only 101 total possible outcomes (0/100 to 100/100 correct). <strong>The possibilities are defined by the design of the task</strong>. If there were only 10 trials in the experiment, there would only be 11 possible outcomes.</p>
@@ -332,9 +339,9 @@ Remember two things. First, this is a discrete probability distribution. Each of
 <p>For example, I showed a pigeon a truck and a car and told it to peck on the truck. It correctly pecked the truck. This was a 1 trial experiment, with a 50% chance of being correct. Should I claim that my pigeon can tell the difference between cars and trucks based on this evidence? After all, it was 100% correct.</p>
 <p>My point is 100% correct is not good enough evidence when there is only 1 trial to the experiment. It is obvious that chance will get 100% correct 50% of the time, so the pigeon could have easily been “guessing”.</p>
 <p>If the pigeon correctly chose the truck 100% of the time over 10 different choices, I would start to think maybe the pigeon “knows” something. This is because I know it would be more unlikely to get “10-in-a-row” by chance.</p>
-<div id="setting-task-parameters" class="section level3" number="7.4.1">
+<div id="setting-task-parameters" class="section level3" number="7.5.1">
 <h3>
-<span class="header-section-number">7.4.1</span> Setting task parameters<a class="anchor" aria-label="anchor" href="#setting-task-parameters"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5.1</span> Setting task parameters<a class="anchor" aria-label="anchor" href="#setting-task-parameters"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are costs and benefits to changing task design. Some costs could include a longer experiment that takes more time and resources to run. Some benefits include being more confident that you are measuring “non-chance” phenomena.</p>
 <p>If you were designing a task to evaluate a subject making correct or incorrect decisions, how many trials would you want to have in your experiment? Here are some possibilities:</p>
@@ -493,15 +500,15 @@ Remember two things. First, this is a discrete probability distribution. Each of
 <!-- However, the use of binomial tests for inference, especially in human studies involving choice behavior is questionable. For example, a binomial process has several formal properties, such as independence. Each coin flip in the model is completely independent. However, several studies have shown that people are not very good at generating random sequences--their choices are not independent. So, if we believe that people are not very good at being random like a binomial process, why would we ever care to test the probability that a binomial process could explain human data? We already have very good reasons for rejecting a binomial model in the first place. -->
 </div>
 </div>
-<div id="lab-7-generalization-assignment" class="section level2" number="7.5">
+<div id="lab-7-generalization-assignment" class="section level2" number="7.6">
 <h2>
-<span class="header-section-number">7.5</span> Lab 7 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-7-generalization-assignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6</span> Lab 7 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-7-generalization-assignment"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4SAWdBVgy18" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions-6" class="section level3" number="7.5.1">
+<div id="instructions-6" class="section level3" number="7.6.1">
 <h3>
-<span class="header-section-number">7.5.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-6"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
@@ -514,9 +521,9 @@ Remember two things. First, this is a discrete probability distribution. Each of
 <li>Submit your github repository link for Lab 7 on blackboard.</li>
 </ol>
 </div>
-<div id="problems-6" class="section level3" number="7.5.2">
+<div id="problems-6" class="section level3" number="7.6.2">
 <h3>
-<span class="header-section-number">7.5.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-6"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li><p>A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be produced by the test-taker randomly guessing on each question. (2 points)</p></li>
@@ -537,26 +544,27 @@ Remember two things. First, this is a discrete probability distribution. Each of
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#binomial-test"><span class="header-section-number">7</span> Binomial Test</a></li>
-<li><a class="nav-link" href="#overview-6"><span class="header-section-number">7.1</span> Overview</a></li>
+<li><a class="nav-link" href="#readings-1"><span class="header-section-number">7.1</span> Readings</a></li>
+<li><a class="nav-link" href="#overview-6"><span class="header-section-number">7.2</span> Overview</a></li>
 <li>
-<a class="nav-link" href="#practical-i-conducting-a-binomial-test-in-r"><span class="header-section-number">7.2</span> Practical I: Conducting a binomial test in R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#classification-performance-example"><span class="header-section-number">7.2.1</span> Classification performance example</a></li>
-<li><a class="nav-link" href="#examining-the-report"><span class="header-section-number">7.2.2</span> Examining the report:</a></li>
-<li><a class="nav-link" href="#what-can-we-conclude"><span class="header-section-number">7.2.3</span> What can we conclude?</a></li>
-<li><a class="nav-link" href="#what-does-this-have-to-do-with-the-pigeon"><span class="header-section-number">7.2.4</span> What does this have to do with the pigeon</a></li>
-<li><a class="nav-link" href="#facts-and-inferences"><span class="header-section-number">7.2.5</span> Facts and Inferences</a></li>
+<a class="nav-link" href="#practical-i-conducting-a-binomial-test-in-r"><span class="header-section-number">7.3</span> Practical I: Conducting a binomial test in R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#classification-performance-example"><span class="header-section-number">7.3.1</span> Classification performance example</a></li>
+<li><a class="nav-link" href="#examining-the-report"><span class="header-section-number">7.3.2</span> Examining the report:</a></li>
+<li><a class="nav-link" href="#what-can-we-conclude"><span class="header-section-number">7.3.3</span> What can we conclude?</a></li>
+<li><a class="nav-link" href="#what-does-this-have-to-do-with-the-pigeon"><span class="header-section-number">7.3.4</span> What does this have to do with the pigeon</a></li>
+<li><a class="nav-link" href="#facts-and-inferences"><span class="header-section-number">7.3.5</span> Facts and Inferences</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#concepts-i-binomial-model-foundations"><span class="header-section-number">7.3</span> Concepts I: Binomial model foundations</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#the-test-and-the-model"><span class="header-section-number">7.3.1</span> The test and the model</a></li></ul>
+<a class="nav-link" href="#concepts-i-binomial-model-foundations"><span class="header-section-number">7.4</span> Concepts I: Binomial model foundations</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#the-test-and-the-model"><span class="header-section-number">7.4.1</span> The test and the model</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#concepts-ii-task-design-and-binomial-models"><span class="header-section-number">7.4</span> Concepts II: Task design and binomial models</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#setting-task-parameters"><span class="header-section-number">7.4.1</span> Setting task parameters</a></li></ul>
+<a class="nav-link" href="#concepts-ii-task-design-and-binomial-models"><span class="header-section-number">7.5</span> Concepts II: Task design and binomial models</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#setting-task-parameters"><span class="header-section-number">7.5.1</span> Setting task parameters</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#lab-7-generalization-assignment"><span class="header-section-number">7.5</span> Lab 7 Generalization Assignment</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instructions-6"><span class="header-section-number">7.5.1</span> Instructions</a></li>
-<li><a class="nav-link" href="#problems-6"><span class="header-section-number">7.5.2</span> Problems</a></li>
+<a class="nav-link" href="#lab-7-generalization-assignment"><span class="header-section-number">7.6</span> Lab 7 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-6"><span class="header-section-number">7.6.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-6"><span class="header-section-number">7.6.2</span> Problems</a></li>
 </ul>
 </li>
 </ul>

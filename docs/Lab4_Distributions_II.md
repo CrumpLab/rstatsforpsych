@@ -2,11 +2,11 @@
 
 
 
-"9/17/2020 | Last Compiled: 2020-12-05"
+"9/17/2020 | Last Compiled: 2020-12-07"
 
 ## Reading
 
-Vokey & Allen, Chapters 16.
+@vokeyThinkingData7th2018, Chapter 16; @crumpAnsweringQuestionsData2018, [4.1 - 4.7](https://crumplab.github.io/statistics/probability-sampling-and-estimation.html#how-are-probability-and-statistics-different); @abdiExperimentalDesignAnalysis2009, Appendix C.
 
 ## Overview
 

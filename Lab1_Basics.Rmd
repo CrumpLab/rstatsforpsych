@@ -6,7 +6,7 @@
 
 ## Reading and walkthrough video
 
-Vokey & Allen [-@vokeyThinkingData7th2018], Chapter 1
+Vokey & Allen [-@vokeyThinkingData7th2018], Chapter 1, available online here: <http://people.uleth.ca/~vokey/pdf/thinking.pdf>.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -18,7 +18,9 @@ Before starting this lab follow the getting started instructions to install R, R
 
 ## Problem 1: Summing 1 to 100
 
-In Chapter 1, @vokeyThinkingData7th2018 tell the story of how a young Gauss very quickly summed up the numbers from 1 to 100. We can solve the problem very quickly in R.
+@vokeyThinkingData7th2018 tell the story of a teacher giving challenging students to add up all of the numbers from 1 to 100. This was supposed to stump one of the students, a young [Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss). Apparently, it did not, and Gauss very quickly wrote down the sum 5050.
+
+Gauss didn't have R, but we do, so we can solve the problem very quickly too:
 
 1. Use R to find the sum of the sequence of numbers from 1 to 100:
 

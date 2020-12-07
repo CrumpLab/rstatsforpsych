@@ -18,7 +18,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><meta property="og:card" content="website">
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
 <meta property="og:title" content="11 Correlation | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
 <meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
@@ -84,10 +85,16 @@
 <h1>
 <span class="header-section-number">11</span> Correlation<a class="anchor" aria-label="anchor" href="#correlation"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-05”</p>
-<div id="overview-11" class="section level2" number="11.1">
+<p>“10/8/2020 | Last Compiled: 2020-12-07”</p>
+<div id="reading-6" class="section level2" number="11.1">
 <h2>
-<span class="header-section-number">11.1</span> Overview<a class="anchor" aria-label="anchor" href="#overview-11"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-6"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Vokey &amp; Allen (<a href="references.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 7; <span class="citation">Abdi et al. (<a href="references.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, Chapter 2; <span class="citation">Crump et al. (<a href="references.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/Correlation.html">Chapter 3</a></p>
+</div>
+<div id="overview-11" class="section level2" number="11.2">
+<h2>
+<span class="header-section-number">11.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-11"><i class="fas fa-link"></i></a>
 </h2>
 <p>This lab contains a practical section and two concept sections on correlations in R.</p>
 <ul>
@@ -97,16 +104,16 @@
 <li>Concepts II: statistical inference for correlation using permutation tests</li>
 </ul>
 </div>
-<div id="historical-background-1" class="section level2" number="11.2">
+<div id="historical-background-1" class="section level2" number="11.3">
 <h2>
-<span class="header-section-number">11.2</span> Historical Background<a class="anchor" aria-label="anchor" href="#historical-background-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.3</span> Historical Background<a class="anchor" aria-label="anchor" href="#historical-background-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Sir Francis Galton is often credited with inventing measures of correlation <span class="citation">(Galton, <a href="references.html#ref-galtonCorelationsTheirMeasurement1889" role="doc-biblioref">1889</a>, <a href="references.html#ref-galtonKinshipCorrelation1890" role="doc-biblioref">1890</a>)</span>, which developed out of his interests in eugenics and quantifying heritability of traits from parents to offspring <span class="citation">(Galton, <a href="references.html#ref-galtonHereditaryTalentCharacter1865" role="doc-biblioref">1865</a>, <a href="references.html#ref-galtonHereditaryGenius1869" role="doc-biblioref">1869</a>)</span>. Galton’s protege, Karl Pearson, is credited with popularizing and formalizing measures of correlation; for example, the correlation coefficient, <span class="math inline">\(r\)</span>, is often referred to as Pearson’s <span class="math inline">\(r\)</span> (AKA Pearson’s correlation coefficient, and Pearson’s product-moment correlation coefficient). Pearson published his work in a brief note to the Royal Society <span class="citation">(Pearson, <a href="references.html#ref-pearsonNotesRegressionInheritance1895" role="doc-biblioref">1895</a>)</span>. Despite the recognition that Galton and Pearson receive, it seems that August Bravais had described correlation coefficients before both of them <span class="citation">(Bravais, <a href="references.html#ref-bravaisAnalyseMathematiqueProbabilites1844" role="doc-biblioref">1844</a>)</span>. Pearson recounts the history of his development of the correlation coefficient, and discusses how he missed Bravais’ work <span class="citation">(Pearson, <a href="references.html#ref-pearsonNOTESHISTORYCORRELATION1920" role="doc-biblioref">1920</a>)</span>. More recently, Stigler discussed some of the history about Galton’s account of his development of the correlation coefficient <span class="citation">(Stigler, <a href="references.html#ref-stiglerFrancisGaltonAccount1989" role="doc-biblioref">1989</a>)</span>. <em>note: these papers are included in the class zotero group</em>.</p>
 <p>Finally, <span class="citation">Lee Rodgers &amp; Nicewander (<a href="references.html#ref-leerodgersThirteenWaysLook1988" role="doc-biblioref">1988</a>)</span> have a fantastic article on thirteen ways of conceptualizing the correlation coefficient. They also begin the article with a brief discussion of the history of the development of ideas around correlation.</p>
 </div>
-<div id="additional-reading" class="section level2" number="11.3">
+<div id="additional-reading" class="section level2" number="11.4">
 <h2>
-<span class="header-section-number">11.3</span> Additional Reading<a class="anchor" aria-label="anchor" href="#additional-reading"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.4</span> Additional Reading<a class="anchor" aria-label="anchor" href="#additional-reading"><i class="fas fa-link"></i></a>
 </h2>
 <p>For additional reading and introductory background to the concept of correlation, see this chapter on correlation from <em>Answering questions with data:</em> <a href="https://crumplab.github.io/statistics/Correlation.html" class="uri">https://crumplab.github.io/statistics/Correlation.html</a></p>
 <div class="sourceCode" id="cb1108"><pre class="downlit sourceCode r">
@@ -116,13 +123,13 @@
 </div>
 <p>The animated gif above shows examples of observing random correlations by chance alone. See the above link for example R code to generate gifs like this one.</p>
 </div>
-<div id="practical-i-cor-and-cor.test" class="section level2" number="11.4">
+<div id="practical-i-cor-and-cor.test" class="section level2" number="11.5">
 <h2>
-<span class="header-section-number">11.4</span> Practical I: cor() and cor.test()<a class="anchor" aria-label="anchor" href="#practical-i-cor-and-cor.test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5</span> Practical I: cor() and cor.test()<a class="anchor" aria-label="anchor" href="#practical-i-cor-and-cor.test"><i class="fas fa-link"></i></a>
 </h2>
-<div id="cor" class="section level3" number="11.4.1">
+<div id="cor" class="section level3" number="11.5.1">
 <h3>
-<span class="header-section-number">11.4.1</span> cor()<a class="anchor" aria-label="anchor" href="#cor"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.1</span> cor()<a class="anchor" aria-label="anchor" href="#cor"><i class="fas fa-link"></i></a>
 </h3>
 <p>Base R comes with the <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> function for computing Pearson’s correlation coefficients.</p>
 <div class="sourceCode" id="cb1109"><pre class="downlit sourceCode r">
@@ -165,9 +172,9 @@
 ## [4,] -0.56603184  0.40815187 -0.4239296 -0.7023332 0.70056387
 ## [5,] -0.22554200 -0.68663316  0.4199453  0.3439231 0.87135590</code></pre>
 </div>
-<div id="cor-and-n-1" class="section level3" number="11.4.2">
+<div id="cor-and-n-1" class="section level3" number="11.5.2">
 <h3>
-<span class="header-section-number">11.4.2</span> cor and n-1<a class="anchor" aria-label="anchor" href="#cor-and-n-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.2</span> cor and n-1<a class="anchor" aria-label="anchor" href="#cor-and-n-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>It’s worth noting that <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> divides by n-1, so it is a function for computing the correlation coefficient for a sample.</p>
 <div class="sourceCode" id="cb1117"><pre class="downlit sourceCode r">
@@ -183,9 +190,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">A_z</span> <span class="op">*</span> <span class="va">B_z</span><span class="op">)</span> <span class="op">/</span> <span class="fl">4</span> <span class="co"># n-1, 5-1 = 4</span></code></pre></div>
 <pre><code>## [1] -0.3</code></pre>
 </div>
-<div id="additional-cor-functionality" class="section level3" number="11.4.3">
+<div id="additional-cor-functionality" class="section level3" number="11.5.3">
 <h3>
-<span class="header-section-number">11.4.3</span> Additional <code>cor()</code> functionality<a class="anchor" aria-label="anchor" href="#additional-cor-functionality"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.3</span> Additional <code>cor()</code> functionality<a class="anchor" aria-label="anchor" href="#additional-cor-functionality"><i class="fas fa-link"></i></a>
 </h3>
 <p>A review of the help file for <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> shows that it has a number of other uses. For example, the default method is to compute a Pearson correlation coefficient, but the same function could also be used to compute a kendall or spearman’s coefficient (not yet discussed in class).</p>
 <p>Another more advanced feature is handling of missing values. For example, below the variable B contains an <code>NA</code>, or a missing value in the fifth position. By default, <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> will return NA in this situation.</p>
@@ -199,9 +206,9 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,use<span class="op">=</span><span class="st">"complete.obs"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -0.8315218</code></pre>
 </div>
-<div id="cor.test" class="section level3" number="11.4.4">
+<div id="cor.test" class="section level3" number="11.5.4">
 <h3>
-<span class="header-section-number">11.4.4</span> cor.test()<a class="anchor" aria-label="anchor" href="#cor.test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.4</span> cor.test()<a class="anchor" aria-label="anchor" href="#cor.test"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> function only returns correlation coefficients, however the <code><a href="https://rdrr.io/r/stats/cor.test.html">cor.test()</a></code> function can be used to return both an <span class="math inline">\(r\)</span> value, as well as a <span class="math inline">\(p\)</span>-value.</p>
 <div class="sourceCode" id="cb1125"><pre class="downlit sourceCode r">
@@ -244,13 +251,13 @@
 ## -0.3</code></pre>
 </div>
 </div>
-<div id="conceptual-i-the-simple-cross-product-as-a-measure-of-correlation" class="section level2" number="11.5">
+<div id="conceptual-i-the-simple-cross-product-as-a-measure-of-correlation" class="section level2" number="11.6">
 <h2>
-<span class="header-section-number">11.5</span> Conceptual I: The simple cross product as a measure of correlation<a class="anchor" aria-label="anchor" href="#conceptual-i-the-simple-cross-product-as-a-measure-of-correlation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.6</span> Conceptual I: The simple cross product as a measure of correlation<a class="anchor" aria-label="anchor" href="#conceptual-i-the-simple-cross-product-as-a-measure-of-correlation"><i class="fas fa-link"></i></a>
 </h2>
-<div id="correlation-basics" class="section level3" number="11.5.1">
+<div id="correlation-basics" class="section level3" number="11.6.1">
 <h3>
-<span class="header-section-number">11.5.1</span> Correlation basics<a class="anchor" aria-label="anchor" href="#correlation-basics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.6.1</span> Correlation basics<a class="anchor" aria-label="anchor" href="#correlation-basics"><i class="fas fa-link"></i></a>
 </h3>
 <p>A correlation coefficient is a convenient measure of association between two variables. One convenient aspect is that the resulting value is limited to the range of -1 to 1, which can aid in interpreting the value. +1 means perfect positive correlation, 0 means no correlation, and -1 means perfect negative correlation.</p>
 <p>In this section we use R to look at the basic math behind the correlation coefficient, as a way to focus on the more general concept.</p>
@@ -287,9 +294,9 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -0.04242424</code></pre>
 </div>
-<div id="crossproducts-and-correlation" class="section level3" number="11.5.2">
+<div id="crossproducts-and-correlation" class="section level3" number="11.6.2">
 <h3>
-<span class="header-section-number">11.5.2</span> Crossproducts and correlation<a class="anchor" aria-label="anchor" href="#crossproducts-and-correlation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.6.2</span> Crossproducts and correlation<a class="anchor" aria-label="anchor" href="#crossproducts-and-correlation"><i class="fas fa-link"></i></a>
 </h3>
 <p>Pearson’s <span class="math inline">\(r\)</span> is also sometimes called a product moment correlation coefficient. This refers to the idea that <span class="math inline">\(r\)</span> is a sum of cross products that are standardized.</p>
 <p>In this section we look at the more basic cross-product operation. For example, a cross product involves multiplying the values in two variables X and Y together.</p>
@@ -341,14 +348,14 @@
 <pre><code>## [1] 374</code></pre>
 </div>
 </div>
-<div id="conceptual-ii-statistical-inference-for-correlation" class="section level2" number="11.6">
+<div id="conceptual-ii-statistical-inference-for-correlation" class="section level2" number="11.7">
 <h2>
-<span class="header-section-number">11.6</span> Conceptual II: Statistical inference for correlation<a class="anchor" aria-label="anchor" href="#conceptual-ii-statistical-inference-for-correlation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.7</span> Conceptual II: Statistical inference for correlation<a class="anchor" aria-label="anchor" href="#conceptual-ii-statistical-inference-for-correlation"><i class="fas fa-link"></i></a>
 </h2>
 <p>We will look at the concept of a null-distribution for correlation co-efficients in two different ways, first by randomly samply values from normal distributions, and second by a permutation test.</p>
-<div id="random-correlations" class="section level3" number="11.6.1">
+<div id="random-correlations" class="section level3" number="11.7.1">
 <h3>
-<span class="header-section-number">11.6.1</span> “Random” correlations<a class="anchor" aria-label="anchor" href="#random-correlations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.7.1</span> “Random” correlations<a class="anchor" aria-label="anchor" href="#random-correlations"><i class="fas fa-link"></i></a>
 </h3>
 <p>It is totally possible to apply the Pearson’s <span class="math inline">\(r\)</span> formula to two variables that are conceptually 100% uncorrelated and independent from each other, and still find “correlations”, or largish values of <span class="math inline">\(r\)</span>.</p>
 <p>For example, if we randomly sample 10 values from a normal distribution into X, and another 10 values from a normal distribution in Y, then we expect on average there should be 0 correlation between X and Y. After all, we selected our values completely at random.</p>
@@ -378,9 +385,9 @@
 <pre><code>## [1] -0.8403529</code></pre>
 <p>In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of <span class="math inline">\(r\)</span> values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It’s clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.</p>
 </div>
-<div id="sample-size-matters" class="section level3" number="11.6.2">
+<div id="sample-size-matters" class="section level3" number="11.7.2">
 <h3>
-<span class="header-section-number">11.6.2</span> Sample-size matters<a class="anchor" aria-label="anchor" href="#sample-size-matters"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.7.2</span> Sample-size matters<a class="anchor" aria-label="anchor" href="#sample-size-matters"><i class="fas fa-link"></i></a>
 </h3>
 <p>Briefly, the kinds of correlations that can be produced by chance are limited by sample-size. For example, consider what happens to the range of simulated <span class="math inline">\(r\)</span> values when the number of paired scores is increased from 10 to 100.</p>
 <div class="sourceCode" id="cb1171"><pre class="downlit sourceCode r">
@@ -397,9 +404,9 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] -0.3656941</code></pre>
 </div>
-<div id="permutation-test" class="section level3" number="11.6.3">
+<div id="permutation-test" class="section level3" number="11.7.3">
 <h3>
-<span class="header-section-number">11.6.3</span> Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.7.3</span> Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test"><i class="fas fa-link"></i></a>
 </h3>
 <p>In class we discussed some sample data suggesting that the length of a word is negatively correlated with the number of meanings of a word. Example data showing a negative correlation is shown below (taken from the R workbook from the Abdi textbook).</p>
 <div class="sourceCode" id="cb1178"><pre class="downlit sourceCode r">
@@ -554,13 +561,13 @@
 <pre><code>## [1] 0</code></pre>
 </div>
 </div>
-<div id="lab-11-generalization-assignment" class="section level2" number="11.7">
+<div id="lab-11-generalization-assignment" class="section level2" number="11.8">
 <h2>
-<span class="header-section-number">11.7</span> Lab 11 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-11-generalization-assignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.8</span> Lab 11 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-11-generalization-assignment"><i class="fas fa-link"></i></a>
 </h2>
-<div id="instructions-10" class="section level3" number="11.7.1">
+<div id="instructions-10" class="section level3" number="11.8.1">
 <h3>
-<span class="header-section-number">11.7.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.8.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-10"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
@@ -573,9 +580,9 @@
 <li>Submit your github repository link for Lab 11 on blackboard.</li>
 </ol>
 </div>
-<div id="problems-10" class="section level3" number="11.7.2">
+<div id="problems-10" class="section level3" number="11.8.2">
 <h3>
-<span class="header-section-number">11.7.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.8.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-10"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb1187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span><span class="op">)</span>
@@ -602,34 +609,35 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#correlation"><span class="header-section-number">11</span> Correlation</a></li>
-<li><a class="nav-link" href="#overview-11"><span class="header-section-number">11.1</span> Overview</a></li>
-<li><a class="nav-link" href="#historical-background-1"><span class="header-section-number">11.2</span> Historical Background</a></li>
-<li><a class="nav-link" href="#additional-reading"><span class="header-section-number">11.3</span> Additional Reading</a></li>
+<li><a class="nav-link" href="#reading-6"><span class="header-section-number">11.1</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-11"><span class="header-section-number">11.2</span> Overview</a></li>
+<li><a class="nav-link" href="#historical-background-1"><span class="header-section-number">11.3</span> Historical Background</a></li>
+<li><a class="nav-link" href="#additional-reading"><span class="header-section-number">11.4</span> Additional Reading</a></li>
 <li>
-<a class="nav-link" href="#practical-i-cor-and-cor.test"><span class="header-section-number">11.4</span> Practical I: cor() and cor.test()</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#cor"><span class="header-section-number">11.4.1</span> cor()</a></li>
-<li><a class="nav-link" href="#cor-and-n-1"><span class="header-section-number">11.4.2</span> cor and n-1</a></li>
-<li><a class="nav-link" href="#additional-cor-functionality"><span class="header-section-number">11.4.3</span> Additional cor() functionality</a></li>
-<li><a class="nav-link" href="#cor.test"><span class="header-section-number">11.4.4</span> cor.test()</a></li>
+<a class="nav-link" href="#practical-i-cor-and-cor.test"><span class="header-section-number">11.5</span> Practical I: cor() and cor.test()</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cor"><span class="header-section-number">11.5.1</span> cor()</a></li>
+<li><a class="nav-link" href="#cor-and-n-1"><span class="header-section-number">11.5.2</span> cor and n-1</a></li>
+<li><a class="nav-link" href="#additional-cor-functionality"><span class="header-section-number">11.5.3</span> Additional cor() functionality</a></li>
+<li><a class="nav-link" href="#cor.test"><span class="header-section-number">11.5.4</span> cor.test()</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-i-the-simple-cross-product-as-a-measure-of-correlation"><span class="header-section-number">11.5</span> Conceptual I: The simple cross product as a measure of correlation</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#correlation-basics"><span class="header-section-number">11.5.1</span> Correlation basics</a></li>
-<li><a class="nav-link" href="#crossproducts-and-correlation"><span class="header-section-number">11.5.2</span> Crossproducts and correlation</a></li>
+<a class="nav-link" href="#conceptual-i-the-simple-cross-product-as-a-measure-of-correlation"><span class="header-section-number">11.6</span> Conceptual I: The simple cross product as a measure of correlation</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#correlation-basics"><span class="header-section-number">11.6.1</span> Correlation basics</a></li>
+<li><a class="nav-link" href="#crossproducts-and-correlation"><span class="header-section-number">11.6.2</span> Crossproducts and correlation</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-ii-statistical-inference-for-correlation"><span class="header-section-number">11.6</span> Conceptual II: Statistical inference for correlation</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#random-correlations"><span class="header-section-number">11.6.1</span> “Random” correlations</a></li>
-<li><a class="nav-link" href="#sample-size-matters"><span class="header-section-number">11.6.2</span> Sample-size matters</a></li>
-<li><a class="nav-link" href="#permutation-test"><span class="header-section-number">11.6.3</span> Permutation test</a></li>
+<a class="nav-link" href="#conceptual-ii-statistical-inference-for-correlation"><span class="header-section-number">11.7</span> Conceptual II: Statistical inference for correlation</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#random-correlations"><span class="header-section-number">11.7.1</span> “Random” correlations</a></li>
+<li><a class="nav-link" href="#sample-size-matters"><span class="header-section-number">11.7.2</span> Sample-size matters</a></li>
+<li><a class="nav-link" href="#permutation-test"><span class="header-section-number">11.7.3</span> Permutation test</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#lab-11-generalization-assignment"><span class="header-section-number">11.7</span> Lab 11 Generalization Assignment</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instructions-10"><span class="header-section-number">11.7.1</span> Instructions</a></li>
-<li><a class="nav-link" href="#problems-10"><span class="header-section-number">11.7.2</span> Problems</a></li>
+<a class="nav-link" href="#lab-11-generalization-assignment"><span class="header-section-number">11.8</span> Lab 11 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-10"><span class="header-section-number">11.8.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-10"><span class="header-section-number">11.8.2</span> Problems</a></li>
 </ul>
 </li>
 </ul>

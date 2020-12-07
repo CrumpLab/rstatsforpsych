@@ -18,7 +18,8 @@
       gtag('js', new Date());
 
       gtag('config', 'G-TJYWEN5QYP');
-    </script><meta property="og:card" content="website">
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
 <meta property="og:title" content="5 Sampling Distributions | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
 <meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
@@ -84,10 +85,16 @@
 <h1>
 <span class="header-section-number">5</span> Sampling Distributions<a class="anchor" aria-label="anchor" href="#sampling-distributions"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/2/2020 | Last Compiled: 2020-12-05”</p>
-<div id="review" class="section level2" number="5.1">
+<p>“10/2/2020 | Last Compiled: 2020-12-07”</p>
+<div id="readings" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">5.1</span> Review<a class="anchor" aria-label="anchor" href="#review"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> Readings<a class="anchor" aria-label="anchor" href="#readings"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Crump et al. (<a href="references.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/probability-sampling-and-estimation.html#samples-populations-and-sampling">4.8 - 4.10</a></p>
+</div>
+<div id="review" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Review<a class="anchor" aria-label="anchor" href="#review"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xbQaPWdKUp0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -100,9 +107,9 @@
 <p>To put this into concrete terms from previous labs. You know that ‘chance’ can produce different outcomes when you flip a coin. This is a sense in which chance do things. A 50% chance process can sometimes make a heads, and sometimes a tails. Also, we have started to ask “what can chance do?” in prior labs. For example, we asked how often chance produces 10 heads in a row, when you a flip a coin. We found that chance doesn’t do that very often, compared to say 5 heads and 5 tails.</p>
 <p>We are using these next labs to find different ways to use R to experience 1) <strong>that</strong> chance can do things, and 2) how <strong>likely</strong> it is that some things happen by chance. We are working toward a third question (for next lab), which is 3) did chance do it?…or when I run an experiment, is it possible that chance alone produced the data that was collected?</p>
 </div>
-<div id="overview-4" class="section level2" number="5.2">
+<div id="overview-4" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">5.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> Overview<a class="anchor" aria-label="anchor" href="#overview-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>This lab has the following modules:</p>
 <ol style="list-style-type: decimal">
@@ -120,16 +127,16 @@
 <strong>Understanding sampling distributions may well be the most fundamental thing to understand about statistics</strong> (but that’s just my opinion).</li>
 </ul>
 </div>
-<div id="probability-distributions" class="section level2" number="5.3">
+<div id="probability-distributions" class="section level2" number="5.4">
 <h2>
-<span class="header-section-number">5.3</span> Probability Distributions<a class="anchor" aria-label="anchor" href="#probability-distributions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> Probability Distributions<a class="anchor" aria-label="anchor" href="#probability-distributions"><i class="fas fa-link"></i></a>
 </h2>
 <p>In previous labs we learned that it is possible to sample numbers from particular distributions in R.</p>
 <pre><code><a href="https://rdrr.io/r/stats/Distributions.html">#see all the distribution functions
 ?distributions</a></code></pre>
-<div id="normal-distribution-1" class="section level3" number="5.3.1">
+<div id="normal-distribution-1" class="section level3" number="5.4.1">
 <h3>
-<span class="header-section-number">5.3.1</span> Normal Distribution<a class="anchor" aria-label="anchor" href="#normal-distribution-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1</span> Normal Distribution<a class="anchor" aria-label="anchor" href="#normal-distribution-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>We use <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> to sample numbers from a normal distribution:</p>
 <div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
@@ -171,9 +178,9 @@
 <ol start="2" style="list-style-type: decimal">
 <li>We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with <code>d</code>, <code>p</code>, <code>q</code>, and <code>r</code>, so there are <code>dnorm</code>, <code>pnorm</code>, <code>qnorm</code>, and <code>rnorm</code> functions for the normal distribution (and other distributions).</li>
 </ol>
-<div id="rnorm" class="section level4" number="5.3.1.1">
+<div id="rnorm" class="section level4" number="5.4.1.1">
 <h4>
-<span class="header-section-number">5.3.1.1</span> rnorm()<a class="anchor" aria-label="anchor" href="#rnorm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1.1</span> rnorm()<a class="anchor" aria-label="anchor" href="#rnorm"><i class="fas fa-link"></i></a>
 </h4>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">rnorm(n, mean = 0, sd = 1)</a></code> samples observations (or random deviates) from a normal distribution with specified mean and standard deviation.</p>
 <div class="sourceCode" id="cb775"><pre class="downlit sourceCode r">
@@ -181,9 +188,9 @@
 <pre><code>##  [1] -0.50041787  0.06936582  1.06386499  0.50565899  1.79366518  0.50117600
 ##  [7]  0.24892247 -0.26883304 -0.36899345 -1.91838783</code></pre>
 </div>
-<div id="dnorm" class="section level4" number="5.3.1.2">
+<div id="dnorm" class="section level4" number="5.4.1.2">
 <h4>
-<span class="header-section-number">5.3.1.2</span> dnorm()<a class="anchor" aria-label="anchor" href="#dnorm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1.2</span> dnorm()<a class="anchor" aria-label="anchor" href="#dnorm"><i class="fas fa-link"></i></a>
 </h4>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">dnorm(x, mean = 0, sd = 1, log = FALSE)</a></code> is the probability density function. It returns the probability density of the distribution for any value that can be obtained from the distribution.</p>
 <p>For example, in the above histogram, we can see that the distribution produces values roughly between -3 and 3, or perhaps -4 to 4. We also see that as values approach 0, they happen more often. So, the probability density changes across the distribution. We can plot this directly using <code>dorm()</code>, by supplying a sequence of value, say from -4 to 4.</p>
@@ -295,9 +302,9 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.006209665</code></pre>
 </div>
-<div id="qnorm" class="section level4" number="5.3.1.3">
+<div id="qnorm" class="section level4" number="5.4.1.3">
 <h4>
-<span class="header-section-number">5.3.1.3</span> qnorm<a class="anchor" aria-label="anchor" href="#qnorm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.1.3</span> qnorm<a class="anchor" aria-label="anchor" href="#qnorm"><i class="fas fa-link"></i></a>
 </h4>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)</a></code> is similar to <code>pnorm</code>, but it takes a probability as an input, and returns a specific point value (or quantile) on the x-axis. More formally, you specify a proportional area under the curve starting from the left, and the function tells which number that area corresponds to.</p>
 <p>For the remaining we assume mean=0 and sd =1.</p>
@@ -318,29 +325,29 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 <pre><code>## [1] 1.644854</code></pre>
 </div>
 </div>
-<div id="summary" class="section level3" number="5.3.2">
+<div id="summary" class="section level3" number="5.4.2">
 <h3>
-<span class="header-section-number">5.3.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4.2</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
 </h3>
 <p>Focusing on the normal distribution functions, we have learned that chance can produce different kinds of numbers from a normal distribution. And, we can use the <code>dnorm</code>, <code>qnorm</code>, and <code>pnorm</code> functions to exactly compute the specific probabilities that <strong>certain ranges of values</strong> occur.</p>
 </div>
 </div>
-<div id="conceptual-sampling-distributions" class="section level2" number="5.4">
+<div id="conceptual-sampling-distributions" class="section level2" number="5.5">
 <h2>
-<span class="header-section-number">5.4</span> Conceptual: Sampling Distributions<a class="anchor" aria-label="anchor" href="#conceptual-sampling-distributions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5</span> Conceptual: Sampling Distributions<a class="anchor" aria-label="anchor" href="#conceptual-sampling-distributions"><i class="fas fa-link"></i></a>
 </h2>
 <p>When we collect data we assume they come from some “distribution”, which “causes” some numbers to occur more than others. The data we collect is a “sample” or portion of the “distribution”.</p>
 <p>We know that when we sample from distributions chance can play a role. Specifically, by chance alone one sample of observations could look different from another sample, even if they came from the same distribution. In other words, <strong>we recognize that the process of sampling from a distribution involves variability or uncertainty</strong>.</p>
 <p>We can use <strong>sampling distributions</strong> as a tool to help us understand and predict how our sampling process will behave. This way we can have information about how variable or uncertain our samples are.</p>
-<div id="confusing-jargon" class="section level3" number="5.4.1">
+<div id="confusing-jargon" class="section level3" number="5.5.1">
 <h3>
-<span class="header-section-number">5.4.1</span> Confusing jargon<a class="anchor" aria-label="anchor" href="#confusing-jargon"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.1</span> Confusing jargon<a class="anchor" aria-label="anchor" href="#confusing-jargon"><i class="fas fa-link"></i></a>
 </h3>
 <p>Throughout this course you will come across terms like, “sampling distributions”, “the sampling distribution of the sample mean”, “the sampling distribution of any sample statistic”, “the standard deviation of the sampling distribution of the sample mean is the standard error of the mean”. Although all of these sentence are hard to parse and in my opinion very jargony, they all represent very important ideas that need to be distinguished and well understood. We are going to work on these things in this lab.</p>
 </div>
-<div id="the-sample-mean" class="section level3" number="5.4.2">
+<div id="the-sample-mean" class="section level3" number="5.5.2">
 <h3>
-<span class="header-section-number">5.4.2</span> The sample mean<a class="anchor" aria-label="anchor" href="#the-sample-mean"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.2</span> The sample mean<a class="anchor" aria-label="anchor" href="#the-sample-mean"><i class="fas fa-link"></i></a>
 </h3>
 <p>For all of the remaining examples we will use a normal distribution with mean = 0 and sd =1.</p>
 <p>We already know what the sample mean is and how to calculate it in R. Here is an example of calculating a sample mean, where the number of observations (n) in the sample is 10.</p>
@@ -348,9 +355,9 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.04183193</code></pre>
 </div>
-<div id="multiple-sample-means" class="section level3" number="5.4.3">
+<div id="multiple-sample-means" class="section level3" number="5.5.3">
 <h3>
-<span class="header-section-number">5.4.3</span> Multiple sample means<a class="anchor" aria-label="anchor" href="#multiple-sample-means"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.3</span> Multiple sample means<a class="anchor" aria-label="anchor" href="#multiple-sample-means"><i class="fas fa-link"></i></a>
 </h3>
 <p>We can repeat the above process as many times as we like, each time creating a sample of 10 observations and computing the mean.</p>
 <p>Here is an example of creating 5 sample means from 5 sets of 10 observations.</p>
@@ -373,9 +380,9 @@ By default, <code>pnorm</code> calculates the lower tail, or the area under the 
 <p>The mean of the distribution that the samples come from is 0, what do we expect the mean of the samples to be? In general, we expect 0, but we can see that not all of the sample means are exactly 0.</p>
 <p>How much variability can we expect for our sample mean? In other words, if we are going to obtain a sample of 10 numbers from this distribution, <strong>what kinds of sample means could we get?</strong>.</p>
 </div>
-<div id="the-sampling-distribution-of-the-sample-means" class="section level3" number="5.4.4">
+<div id="the-sampling-distribution-of-the-sample-means" class="section level3" number="5.5.4">
 <h3>
-<span class="header-section-number">5.4.4</span> The sampling distribution of the sample means<a class="anchor" aria-label="anchor" href="#the-sampling-distribution-of-the-sample-means"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.4</span> The sampling distribution of the sample means<a class="anchor" aria-label="anchor" href="#the-sampling-distribution-of-the-sample-means"><i class="fas fa-link"></i></a>
 </h3>
 <p>The answer to the question <strong>what kinds of sample means could we get?</strong> is “the sampling distribution of the sample means”. In other words, if you do the work to actually find out and create a bunch of samples, and then find their means, then you have a bunch of sample means, and all of these numbers form a distribution. This distribution is effectively showing you all of the different ways that random chance can produce particular sample means.</p>
 <p>Let’s make a distribution of sample means. We will create 10,000 samples, each with 10 observations, and compute the mean for each. We will save and look at all of the means in a histogram.</p>
@@ -388,9 +395,9 @@ The above is a histogram representing the means for 10,000 samples. We can refer
 <p>If you wanted to know what to expect from a single sample mean (if you knew you were taking values from this normal distribution), then you could look at this sampling distribution.</p>
 <p>Sample means close to 0 happen the most. So, most of the time, when you take a sample from this distribution, the mean of that sample will be 0. It is rare for a sample mean to be larger than .5. It is very very rare for a sample mean to be larger than 1.</p>
 </div>
-<div id="the-standard-error-the-mean" class="section level3" number="5.4.5">
+<div id="the-standard-error-the-mean" class="section level3" number="5.5.5">
 <h3>
-<span class="header-section-number">5.4.5</span> The standard error the mean<a class="anchor" aria-label="anchor" href="#the-standard-error-the-mean"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5.5</span> The standard error the mean<a class="anchor" aria-label="anchor" href="#the-standard-error-the-mean"><i class="fas fa-link"></i></a>
 </h3>
 <p>We have not discussed the concept or definition of the standard error the mean in the lecture portion of this class. However, we have seen that the mean for a sample taken from a distribution has expected variability, specifically the fact that there is a distribution of different sample means shows that there is variability.</p>
 <p>What descriptive statistic have we already discussed that provides measures of variability? One option is the standard deviation. For example, we could do the following to measure the variability associated with a distribution of sample means.</p>
@@ -420,15 +427,15 @@ The above is a histogram representing the means for 10,000 samples. We can refer
 <pre><code>## [1] 0.3162278</code></pre>
 </div>
 </div>
-<div id="lab-5-generalization-assignment" class="section level2" number="5.5">
+<div id="lab-5-generalization-assignment" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">5.5</span> Lab 5 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-5-generalization-assignment"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> Lab 5 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-5-generalization-assignment"><i class="fas fa-link"></i></a>
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rjp7kmIo2Qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions-4" class="section level3" number="5.5.1">
+<div id="instructions-4" class="section level3" number="5.6.1">
 <h3>
-<span class="header-section-number">5.5.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-4"><i class="fas fa-link"></i></a>
 </h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
@@ -442,9 +449,9 @@ The above is a histogram representing the means for 10,000 samples. We can refer
 <li>There are five problems to solve</li>
 </ol>
 </div>
-<div id="problems-4" class="section level3" number="5.5.2">
+<div id="problems-4" class="section level3" number="5.6.2">
 <h3>
-<span class="header-section-number">5.5.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-4"><i class="fas fa-link"></i></a>
 </h3>
 <ol style="list-style-type: decimal">
 <li><p>Trust but verify. We trust that the <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> will generate random deviates in accordance with the definition of the normal distribution. For example, we learned in this lab, that a normal distribution with mean = 0, and sd =1 , should only produce values larger than 2.5 with a specific small probability, that is P(x&gt;2.5) = 0.006209665. Verify this is approximately the case by randomly sampling 1 million numbers from this distribution, and calculate what proportion of numbers are larger than 2.5. (1 point)</p></li>
@@ -471,27 +478,28 @@ The above is a histogram representing the means for 10,000 samples. We can refer
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#sampling-distributions"><span class="header-section-number">5</span> Sampling Distributions</a></li>
-<li><a class="nav-link" href="#review"><span class="header-section-number">5.1</span> Review</a></li>
-<li><a class="nav-link" href="#overview-4"><span class="header-section-number">5.2</span> Overview</a></li>
+<li><a class="nav-link" href="#readings"><span class="header-section-number">5.1</span> Readings</a></li>
+<li><a class="nav-link" href="#review"><span class="header-section-number">5.2</span> Review</a></li>
+<li><a class="nav-link" href="#overview-4"><span class="header-section-number">5.3</span> Overview</a></li>
 <li>
-<a class="nav-link" href="#probability-distributions"><span class="header-section-number">5.3</span> Probability Distributions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#normal-distribution-1"><span class="header-section-number">5.3.1</span> Normal Distribution</a></li>
-<li><a class="nav-link" href="#summary"><span class="header-section-number">5.3.2</span> Summary</a></li>
+<a class="nav-link" href="#probability-distributions"><span class="header-section-number">5.4</span> Probability Distributions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#normal-distribution-1"><span class="header-section-number">5.4.1</span> Normal Distribution</a></li>
+<li><a class="nav-link" href="#summary"><span class="header-section-number">5.4.2</span> Summary</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#conceptual-sampling-distributions"><span class="header-section-number">5.4</span> Conceptual: Sampling Distributions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#confusing-jargon"><span class="header-section-number">5.4.1</span> Confusing jargon</a></li>
-<li><a class="nav-link" href="#the-sample-mean"><span class="header-section-number">5.4.2</span> The sample mean</a></li>
-<li><a class="nav-link" href="#multiple-sample-means"><span class="header-section-number">5.4.3</span> Multiple sample means</a></li>
-<li><a class="nav-link" href="#the-sampling-distribution-of-the-sample-means"><span class="header-section-number">5.4.4</span> The sampling distribution of the sample means</a></li>
-<li><a class="nav-link" href="#the-standard-error-the-mean"><span class="header-section-number">5.4.5</span> The standard error the mean</a></li>
+<a class="nav-link" href="#conceptual-sampling-distributions"><span class="header-section-number">5.5</span> Conceptual: Sampling Distributions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#confusing-jargon"><span class="header-section-number">5.5.1</span> Confusing jargon</a></li>
+<li><a class="nav-link" href="#the-sample-mean"><span class="header-section-number">5.5.2</span> The sample mean</a></li>
+<li><a class="nav-link" href="#multiple-sample-means"><span class="header-section-number">5.5.3</span> Multiple sample means</a></li>
+<li><a class="nav-link" href="#the-sampling-distribution-of-the-sample-means"><span class="header-section-number">5.5.4</span> The sampling distribution of the sample means</a></li>
+<li><a class="nav-link" href="#the-standard-error-the-mean"><span class="header-section-number">5.5.5</span> The standard error the mean</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#lab-5-generalization-assignment"><span class="header-section-number">5.5</span> Lab 5 Generalization Assignment</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#instructions-4"><span class="header-section-number">5.5.1</span> Instructions</a></li>
-<li><a class="nav-link" href="#problems-4"><span class="header-section-number">5.5.2</span> Problems</a></li>
+<a class="nav-link" href="#lab-5-generalization-assignment"><span class="header-section-number">5.6</span> Lab 5 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-4"><span class="header-section-number">5.6.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-4"><span class="header-section-number">5.6.2</span> Problems</a></li>
 </ul>
 </li>
 </ul>

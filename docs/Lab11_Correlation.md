@@ -1,6 +1,6 @@
+
+
 # Correlation
-
-
 
 "10/8/2020 | Last Compiled: 2020-12-07"
 
@@ -60,10 +60,7 @@ plot(A,B)
 
 ```r
 cor(A,B)  
-```
-
-```
-## [1] 0.9246348
+#> [1] 0.9246348
 ```
 
 The x or y inputs can also be matrices. In this case, the correlation between each column of A and the vector in B is computed
@@ -73,20 +70,17 @@ The x or y inputs can also be matrices. In this case, the correlation between ea
 A <- matrix(rnorm(100,0,1),ncol=10,nrow=10) 
 B <- c(1,3,2,4,3,5,4,5,6,7)
 cor(A,B)
-```
-
-```
-##             [,1]
-##  [1,]  0.4605366
-##  [2,]  0.1057736
-##  [3,] -0.3871806
-##  [4,] -0.1394319
-##  [5,] -0.2553026
-##  [6,]  0.4852164
-##  [7,]  0.3671844
-##  [8,]  0.1772073
-##  [9,] -0.1963986
-## [10,] -0.4899254
+#>               [,1]
+#>  [1,] -0.149591667
+#>  [2,] -0.093486332
+#>  [3,]  0.043355374
+#>  [4,] -0.009305997
+#>  [5,]  0.304553867
+#>  [6,] -0.310538433
+#>  [7,]  0.054887741
+#>  [8,] -0.002121928
+#>  [9,] -0.595286204
+#> [10,] -0.304395016
 ```
 If both x and y are matrices, then the correlation between each column of X and Y are computed.
 
@@ -95,15 +89,12 @@ If both x and y are matrices, then the correlation between each column of X and 
 A <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 B <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 cor(A,B)
-```
-
-```
-##             [,1]        [,2]       [,3]       [,4]       [,5]
-## [1,] -0.05621172 -0.01925229 -0.8890875 -0.5869445 0.13598340
-## [2,] -0.18471909 -0.73670064  0.5387684  0.3954848 0.02388314
-## [3,] -0.80363063 -0.22550588  0.1684848 -0.3657332 0.30372552
-## [4,] -0.56603184  0.40815187 -0.4239296 -0.7023332 0.70056387
-## [5,] -0.22554200 -0.68663316  0.4199453  0.3439231 0.87135590
+#>            [,1]        [,2]       [,3]       [,4]       [,5]
+#> [1,] -0.2743451 -0.04889331 0.74520963 0.91489288  0.6188221
+#> [2,] -0.8491074  0.59200763 0.65248632 0.23593466 -0.5056840
+#> [3,]  0.4935011 -0.56293963 0.06550691 0.56657389  0.8790991
+#> [4,] -0.5651423  0.75331545 0.75264882 0.05986537  0.4711307
+#> [5,]  0.2913020 -0.39049580 0.25282148 0.63366183  0.8844350
 ```
 ### cor and n-1
 
@@ -114,22 +105,14 @@ It's worth noting that `cor()` divides by n-1, so it is a function for computing
 A <- c(1,2,3,4,5)
 B <- c(5,2,3,1,4)
 cor(A,B)
-```
+#> [1] -0.3
 
-```
-## [1] -0.3
-```
-
-```r
 # long-form using z-score method
 
 A_z <- (A-mean(A))/sd(A)
 B_z <- (B-mean(B))/sd(B)
 sum(A_z * B_z) / 4 # n-1, 5-1 = 4
-```
-
-```
-## [1] -0.3
+#> [1] -0.3
 ```
 
 ### Additional `cor()` functionality
@@ -143,10 +126,7 @@ Another more advanced feature is handling of missing values. For example, below 
 A <- c(1,2,3,4,5)
 B <- c(5,2,3,1,NA)
 cor(A,B)
-```
-
-```
-## [1] NA
+#> [1] NA
 ```
 
 However, the `use=` option can be set to handle missing data in different ways. For example, the `complete.obs` option removes the fifth pair altogether, and compues the correlation on the remaining pairs that have complete cases.
@@ -154,10 +134,7 @@ However, the `use=` option can be set to handle missing data in different ways. 
 
 ```r
 cor(A,B,use="complete.obs")
-```
-
-```
-## [1] -0.8315218
+#> [1] -0.8315218
 ```
 
 ### cor.test()
@@ -176,20 +153,17 @@ From the help file for `cor.test()`, "If method is "pearson", the test statistic
 A <- c(1,2,3,4,5)
 B <- c(5,2,3,1,4)
 cor.test(A,B)
-```
-
-```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  A and B
-## t = -0.5447, df = 3, p-value = 0.6238
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.9348345  0.7918544
-## sample estimates:
-##  cor 
-## -0.3
+#> 
+#> 	Pearson's product-moment correlation
+#> 
+#> data:  A and B
+#> t = -0.5447, df = 3, p-value = 0.6238
+#> alternative hypothesis: true correlation is not equal to 0
+#> 95 percent confidence interval:
+#>  -0.9348345  0.7918544
+#> sample estimates:
+#>  cor 
+#> -0.3
 ```
 `cor.test()` also return a list object that can be saved and accessed at a later point.
 
@@ -200,37 +174,16 @@ B <- c(5,2,3,1,4)
 results <- cor.test(A,B)
 
 results$statistic
-```
-
-```
-##          t 
-## -0.5447048
-```
-
-```r
+#>          t 
+#> -0.5447048
 results$parameter
-```
-
-```
-## df 
-##  3
-```
-
-```r
+#> df 
+#>  3
 results$p.value
-```
-
-```
-## [1] 0.6238377
-```
-
-```r
+#> [1] 0.6238377
 results$estimate
-```
-
-```
-##  cor 
-## -0.3
+#>  cor 
+#> -0.3
 ```
 
 ## Conceptual I: The simple cross product as a measure of correlation
@@ -257,10 +210,7 @@ plot(X,Y)
 
 ```r
 cor(X,Y)
-```
-
-```
-## [1] 1
+#> [1] 1
 ```
 A negative correlation is when a pair of measures tends go in opposite directions from each other. When a value of X is small, a paired value on Y is usually large. When a value of X is large, a paired value on Y is usually small. Here, X and Y again co-vary, except in opposite ways. A perfect negative example of this is:
 
@@ -276,10 +226,7 @@ plot(X,Y)
 
 ```r
 cor(X,Y)
-```
-
-```
-## [1] -1
+#> [1] -1
 ```
 
 The idea of zero correlation is that there isn't an association between the paired values. If a value of X goes up or down, the paired value on Y does whatever it wants.
@@ -298,10 +245,7 @@ plot(X,Y)
 
 ```r
 cor(X,Y)
-```
-
-```
-## [1] -0.04242424
+#> [1] -0.3818182
 ```
 
 ### Crossproducts and correlation
@@ -316,10 +260,7 @@ X <- 1:10
 Y <- 1:10
 
 X*Y
-```
-
-```
-##  [1]   1   4   9  16  25  36  49  64  81 100
+#>  [1]   1   4   9  16  25  36  49  64  81 100
 ```
 
 The sum of cross products involves adding up all of the values:
@@ -327,10 +268,7 @@ The sum of cross products involves adding up all of the values:
 
 ```r
 sum(X*Y)
-```
-
-```
-## [1] 385
+#> [1] 385
 ```
 
 The sum of crossproducts is also a measure of correlation or association between variables X and Y. However, the range of values it can take depend on the values in X and Y (they are not standardized).
@@ -344,10 +282,7 @@ Consider these questions, and assume that X contains the values from 1 to 10, an
 X <- 1:10
 Y <- 1:10
 sum(X*Y)
-```
-
-```
-## [1] 385
+#> [1] 385
 ```
 
 Notice in this arrangement, the smallest value of X and Y (1) are paired together, the next largest value (2) are paired, and so on up until 10. This pairing creates the largest sum of crossproducts. It is also represents a perfect positive correlation.
@@ -359,10 +294,7 @@ Notice in this arrangement, the smallest value of X and Y (1) are paired togethe
 X <- 1:10
 Y <- 10:1
 sum(X*Y)
-```
-
-```
-## [1] 220
+#> [1] 220
 ```
 
 When the numbers are arranged to produce a perfect negative correlation, the sum of the cross products is at it's minimum possible value.
@@ -372,10 +304,7 @@ When the numbers are arranged to produce a perfect negative correlation, the sum
 
 ```r
 sum(sample(1:10)*sample(1:10))
-```
-
-```
-## [1] 340
+#> [1] 303
 ```
 
 
@@ -388,18 +317,9 @@ hist(sim_sums)
 
 ```r
 min(sim_sums)
-```
-
-```
-## [1] 236
-```
-
-```r
+#> [1] 226
 max(sim_sums)
-```
-
-```
-## [1] 374
+#> [1] 377
 ```
 
 ## Conceptual II: Statistical inference for correlation
@@ -417,10 +337,7 @@ For example, if we randomly sample 10 values from a normal distribution into X, 
 X <- rnorm(10,0,1)
 Y <- rnorm(10,0,1)
 cor(X,Y)
-```
-
-```
-## [1] -0.07385902
+#> [1] -0.4152839
 ```
 
 What happens if we do the above 10 times?
@@ -428,11 +345,8 @@ What happens if we do the above 10 times?
 
 ```r
 replicate(10,cor(rnorm(10,0,1),rnorm(10,0,1)))
-```
-
-```
-##  [1] -0.40868461  0.25602219 -0.05383703  0.22386736  0.48781773  0.49698238
-##  [7]  0.41846151 -0.23201513 -0.53857999 -0.14178104
+#>  [1]  0.53326172  0.45756969 -0.29581255 -0.60466118 -0.37431851 -0.43264668
+#>  [7]  0.01171446  0.18340664  0.22989572 -0.36701048
 ```
 
 How about 1000 times?
@@ -447,26 +361,11 @@ hist(rand_1000)
 
 ```r
 mean(rand_1000)
-```
-
-```
-## [1] 0.01058259
-```
-
-```r
+#> [1] -0.01023313
 max(rand_1000)
-```
-
-```
-## [1] 0.9095369
-```
-
-```r
+#> [1] 0.8727551
 min(rand_1000)
-```
-
-```
-## [1] -0.8403529
+#> [1] -0.8378403
 ```
 
 In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of $r$ values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It's clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.
@@ -485,26 +384,11 @@ hist(rand_1000)
 
 ```r
 mean(rand_1000)
-```
-
-```
-## [1] -0.003668171
-```
-
-```r
+#> [1] 0.003455237
 max(rand_1000)
-```
-
-```
-## [1] 0.4146871
-```
-
-```r
+#> [1] 0.3293139
 min(rand_1000)
-```
-
-```
-## [1] -0.3656941
+#> [1] -0.3370171
 ```
 
 ### Permutation test 
@@ -551,6 +435,7 @@ knitr::kable(all)
 |infectious  |     10|        2|
 
 ```r
+
 ggplot(all,aes(x=Length,y=Meanings))+
   geom_point()+
   geom_text_repel(aes(label=Words))
@@ -564,30 +449,24 @@ According to the `cor.test()` function, the correlation in the sample data is un
 
 ```r
 cor.test(Length,Meanings)
-```
-
-```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  Length and Meanings
-## t = -4.5644, df = 18, p-value = 0.0002403
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.8873588 -0.4289759
-## sample estimates:
-##        cor 
-## -0.7324543
+#> 
+#> 	Pearson's product-moment correlation
+#> 
+#> data:  Length and Meanings
+#> t = -4.5644, df = 18, p-value = 0.0002403
+#> alternative hypothesis: true correlation is not equal to 0
+#> 95 percent confidence interval:
+#>  -0.8873588 -0.4289759
+#> sample estimates:
+#>        cor 
+#> -0.7324543
 ```
 
 Instead of using the `cor.test()` function, we can use the concept of a permutation test to construct our own null distribution. The basic idea is to imagine that the values in the `Length` and `Meanings` variables could be randomly repaired, and then a new correlation coefficient measured. If we did this procedure several thousand times we would create a null distribution representing the kinds of $r$ values that could have been obtained by chance. 
 
 ```r
 cor(sample(Length),sample(Meanings))
-```
-
-```
-## [1] -0.01190983
+#> [1] -0.09527861
 ```
 
 
@@ -599,11 +478,9 @@ hist(sim_rs)
 <img src="Lab11_Correlation_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 ```r
-length(sim_rs[sim_rs <= cor(Length,Meanings)])/1000
-```
 
-```
-## [1] 0
+length(sim_rs[sim_rs <= cor(Length,Meanings)])/1000
+#> [1] 0
 ```
 
 ## Lab 11 Generalization Assignment

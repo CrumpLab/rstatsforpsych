@@ -1,6 +1,6 @@
+
+
 # Binomial Test
-
-
 
 "10/8/2020 | Last Compiled: 2020-12-07"
 
@@ -43,20 +43,17 @@ binom.test(x = 65,
            n = 100,
            p = .5,
            alternative='greater')
-```
-
-```
-## 
-## 	Exact binomial test
-## 
-## data:  65 and 100
-## number of successes = 65, number of trials = 100, p-value = 0.001759
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.5639164 1.0000000
-## sample estimates:
-## probability of success 
-##                   0.65
+#> 
+#> 	Exact binomial test
+#> 
+#> data:  65 and 100
+#> number of successes = 65, number of trials = 100, p-value = 0.001759
+#> alternative hypothesis: true probability of success is greater than 0.5
+#> 95 percent confidence interval:
+#>  0.5639164 1.0000000
+#> sample estimates:
+#> probability of success 
+#>                   0.65
 ```
 A researcher might report the results of a binomial test this way:
 
@@ -74,13 +71,8 @@ test_results <- binom.test(x = 65,
            alternative='greater')
 
 test_results$p.value
-```
+#> [1] 0.001758821
 
-```
-## [1] 0.001758821
-```
-
-```r
 # values can embedded using `r test_results$p.value`
 ```
 
@@ -152,10 +144,7 @@ Remember two things. First, this is a discrete probability distribution. Each of
 
 ```r
 sum(dbinom(0:100,100,.5))
-```
-
-```
-## [1] 1
+#> [1] 1
 ```
 
 To return to our example, what is the probability of getting 65 or more successes? 
@@ -163,10 +152,7 @@ To return to our example, what is the probability of getting 65 or more successe
 
 ```r
 sum(dbinom(65:100,100,.5))
-```
-
-```
-## [1] 0.001758821
+#> [1] 0.001758821
 ```
 
 This is the same probability that `binom.test()` returned.
@@ -178,10 +164,7 @@ A binomial test is often conducted to make inferences about a data point. So, fo
 
 ```r
 sum(dbinom(7:10,10,.5))
-```
-
-```
-## [1] 0.171875
+#> [1] 0.171875
 ```
 
 which, is the same as the p-value in:
@@ -189,20 +172,17 @@ which, is the same as the p-value in:
 
 ```r
 binom.test(x=7,n=10,alternative="greater")
-```
-
-```
-## 
-## 	Exact binomial test
-## 
-## data:  7 and 10
-## number of successes = 7, number of trials = 10, p-value = 0.1719
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.3933758 1.0000000
-## sample estimates:
-## probability of success 
-##                    0.7
+#> 
+#> 	Exact binomial test
+#> 
+#> data:  7 and 10
+#> number of successes = 7, number of trials = 10, p-value = 0.1719
+#> alternative hypothesis: true probability of success is greater than 0.5
+#> 95 percent confidence interval:
+#>  0.3933758 1.0000000
+#> sample estimates:
+#> probability of success 
+#>                    0.7
 ```
 It is worth recognizing that the above example only scratches the surface of the full binomial model. For example, there are 11 possible outcomes, 0 heads to all 10 heads. Each of the outcomes has it's own probability. Here is a table that shows all of the probabilities for all of the possible outcomes:
 
@@ -271,6 +251,7 @@ knitr::kable(task_designs)
 |               1|         0.5|        1.0|            0.5|
 
 ```r
+
 # 2 trials
 task_designs <- data.frame( number_of_heads = 0:2,
                           probability = dbinom(x=0:2,size=2,prob= .5),
@@ -288,6 +269,7 @@ knitr::kable(task_designs)
 |               2|        0.25|       1.00|           0.25|
 
 ```r
+
 # 3 trials
 task_designs <- data.frame( number_of_heads = 0:3,
                           probability = dbinom(x=0:3,size=3,prob= .5),
@@ -306,6 +288,7 @@ knitr::kable(task_designs)
 |               3|       0.125|      1.000|           0.00|
 
 ```r
+
 # etc...
 ```
 
@@ -318,20 +301,17 @@ For example, if there are 100 trials, then the probability of getting 51% correc
 
 ```r
 binom.test(51,100,.5,alternative="greater")
-```
-
-```
-## 
-## 	Exact binomial test
-## 
-## data:  51 and 100
-## number of successes = 51, number of trials = 100, p-value = 0.4602
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.4234107 1.0000000
-## sample estimates:
-## probability of success 
-##                   0.51
+#> 
+#> 	Exact binomial test
+#> 
+#> data:  51 and 100
+#> number of successes = 51, number of trials = 100, p-value = 0.4602
+#> alternative hypothesis: true probability of success is greater than 0.5
+#> 95 percent confidence interval:
+#>  0.4234107 1.0000000
+#> sample estimates:
+#> probability of success 
+#>                   0.51
 ```
 
 However, if there are 1000 trials...
@@ -339,40 +319,34 @@ However, if there are 1000 trials...
 
 ```r
 binom.test(510,1000,.5,alternative="greater")
-```
-
-```
-## 
-## 	Exact binomial test
-## 
-## data:  510 and 1000
-## number of successes = 510, number of trials = 1000, p-value = 0.274
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.4835011 1.0000000
-## sample estimates:
-## probability of success 
-##                   0.51
+#> 
+#> 	Exact binomial test
+#> 
+#> data:  510 and 1000
+#> number of successes = 510, number of trials = 1000, p-value = 0.274
+#> alternative hypothesis: true probability of success is greater than 0.5
+#> 95 percent confidence interval:
+#>  0.4835011 1.0000000
+#> sample estimates:
+#> probability of success 
+#>                   0.51
 ```
 And if there are 10,000 trials...
 
 
 ```r
 binom.test(5100,10000,.5,alternative="greater")
-```
-
-```
-## 
-## 	Exact binomial test
-## 
-## data:  5100 and 10000
-## number of successes = 5100, number of trials = 10000, p-value = 0.02329
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.501726 1.000000
-## sample estimates:
-## probability of success 
-##                   0.51
+#> 
+#> 	Exact binomial test
+#> 
+#> data:  5100 and 10000
+#> number of successes = 5100, number of trials = 10000, p-value = 0.02329
+#> alternative hypothesis: true probability of success is greater than 0.5
+#> 95 percent confidence interval:
+#>  0.501726 1.000000
+#> sample estimates:
+#> probability of success 
+#>                   0.51
 ```
 
 

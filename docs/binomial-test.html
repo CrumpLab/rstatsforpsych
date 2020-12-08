@@ -59,6 +59,7 @@
 <li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
 <li><a class="" href="practice-problems.html">Practice problems</a></li>
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
 <li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
@@ -122,37 +123,37 @@
 <p>Binomial tests are commonly used in situations where a researcher wants to know whether or not a subject was guessing, or truly was able to perform some task. For example, in comparative cognition, a pigeon researcher might ask whether a pigeon can discriminate between different classes of visual stimuli, such as red vs. green, or circles vs. squares, or buildings vs. trees.</p>
 <p>Imagine a pigeon was given a 2AFC task (two-alternative forced-choice task) to discriminate between pictures of circular shapes and angular shapes. On each trial the pigeon is shown two pictures, one circular and one angular. They are rewarded when they correctly peck on the circular shape.</p>
 <p>Pigeon A received 100 trials, and pecked the correct circular shape on 65% of the trials. We can conduct and report a binomial test as follows, using the <code><a href="https://rdrr.io/r/stats/binom.test.html">binom.test()</a></code> function.</p>
-<div class="sourceCode" id="cb878"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">?</span><span class="va">binom.test</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">65</span>,
            n <span class="op">=</span> <span class="fl">100</span>,
            p <span class="op">=</span> <span class="fl">.5</span>,
-           alternative<span class="op">=</span><span class="st">'greater'</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  65 and 100
-## number of successes = 65, number of trials = 100, p-value = 0.001759
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.5639164 1.0000000
-## sample estimates:
-## probability of success 
-##                   0.65</code></pre>
+           alternative<span class="op">=</span><span class="st">'greater'</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Exact binomial test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  65 and 100</span>
+<span class="co">#&gt; number of successes = 65, number of trials = 100, p-value = 0.001759</span>
+<span class="co">#&gt; alternative hypothesis: true probability of success is greater than 0.5</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  0.5639164 1.0000000</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; probability of success </span>
+<span class="co">#&gt;                   0.65</span></code></pre></div>
 <p>A researcher might report the results of a binomial test this way:</p>
 <p>Pigeon A was 65% correct (p &lt; .05, binomial test).</p>
 <p>Pigeon A was 65% (p &lt;= .0018, binomial test).</p>
 <p>It is also possible to embed the results of a binomial test into the text of an .Rmd document. First, save the results to a variable:</p>
-<div class="sourceCode" id="cb880"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">65</span>,
            n <span class="op">=</span> <span class="fl">100</span>,
            p <span class="op">=</span><span class="fl">.5</span>,
            alternative<span class="op">=</span><span class="st">'greater'</span><span class="op">)</span>
 
-<span class="va">test_results</span><span class="op">$</span><span class="va">p.value</span></code></pre></div>
-<pre><code>## [1] 0.001758821</code></pre>
-<div class="sourceCode" id="cb882"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># values can embedded using `r test_results$p.value`</span></code></pre></div>
+<span class="va">test_results</span><span class="op">$</span><span class="va">p.value</span>
+<span class="co">#&gt; [1] 0.001758821</span>
+
+<span class="co"># values can embedded using `r test_results$p.value`</span></code></pre></div>
 <p>So, it is now possible to write:</p>
 <p>Pigeon A was 65% correct (p &lt;= 0.0017588)</p>
 </div>
@@ -204,7 +205,7 @@ probability of success
 </h2>
 <p>Although we can use the <code><a href="https://rdrr.io/r/stats/binom.test.html">binom.test()</a></code> function to conduct a binomial test, we can also use the family of binom functions that we have already come across occasionally.</p>
 <p>For example, if there are 100 trials, there are a limited number of possible outcomes. There could be 0 successes all the way to 100 successes. That’s it. If we model this in terms of 50% for a success/failure, then this histogram shows the binomial distribution for this situation:</p>
-<div class="sourceCode" id="cb884"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>,position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span><span class="op">+</span>
@@ -213,38 +214,38 @@ probability of success
 <div class="inline-figure">
 <img src="Lab7_Binomial_files/figure-html/unnamed-chunk-4-1.png" width="672">
 Remember two things. First, this is a discrete probability distribution. Each of the number of successes is an integer, you can’t have 5.5 successes. Also, each of the successes is associated with a particular probability. The area under the curve should sum to 1, reflecting the fact that there is a 100% chance that one of the outcomes will occur:</div>
-<div class="sourceCode" id="cb885"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">100</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
 <p>To return to our example, what is the probability of getting 65 or more successes?</p>
-<div class="sourceCode" id="cb887"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">65</span><span class="op">:</span><span class="fl">100</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.001758821</code></pre>
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">65</span><span class="op">:</span><span class="fl">100</span>,<span class="fl">100</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.001758821</span></code></pre></div>
 <p>This is the same probability that <code><a href="https://rdrr.io/r/stats/binom.test.html">binom.test()</a></code> returned.</p>
 <div id="the-test-and-the-model" class="section level3" number="7.4.1">
 <h3>
 <span class="header-section-number">7.4.1</span> The test and the model<a class="anchor" aria-label="anchor" href="#the-test-and-the-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>A binomial test is often conducted to make inferences about a data point. So, for example, you flipped a coin 10 times and got 7 heads out of 10. The binomial test is:</p>
-<div class="sourceCode" id="cb889"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.171875</code></pre>
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.171875</span></code></pre></div>
 <p>which, is the same as the p-value in:</p>
-<div class="sourceCode" id="cb891"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">7</span>,n<span class="op">=</span><span class="fl">10</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  7 and 10
-## number of successes = 7, number of trials = 10, p-value = 0.1719
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.3933758 1.0000000
-## sample estimates:
-## probability of success 
-##                    0.7</code></pre>
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">7</span>,n<span class="op">=</span><span class="fl">10</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Exact binomial test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  7 and 10</span>
+<span class="co">#&gt; number of successes = 7, number of trials = 10, p-value = 0.1719</span>
+<span class="co">#&gt; alternative hypothesis: true probability of success is greater than 0.5</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  0.3933758 1.0000000</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; probability of success </span>
+<span class="co">#&gt;                    0.7</span></code></pre></div>
 <p>It is worth recognizing that the above example only scratches the surface of the full binomial model. For example, there are 11 possible outcomes, 0 heads to all 10 heads. Each of the outcomes has it’s own probability. Here is a table that shows all of the probabilities for all of the possible outcomes:</p>
-<div class="sourceCode" id="cb893"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coin_flips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span> number_of_heads <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>,
                           probability <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>,size<span class="op">=</span><span class="fl">10</span>,prob<span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
                           cumulative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">10</span>, prob <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
@@ -345,7 +346,7 @@ Remember two things. First, this is a discrete probability distribution. Each of
 </h3>
 <p>There are costs and benefits to changing task design. Some costs could include a longer experiment that takes more time and resources to run. Some benefits include being more confident that you are measuring “non-chance” phenomena.</p>
 <p>If you were designing a task to evaluate a subject making correct or incorrect decisions, how many trials would you want to have in your experiment? Here are some possibilities:</p>
-<div class="sourceCode" id="cb894"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># 1 trial</span>
 <span class="va">task_designs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span> number_of_heads <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,
                           probability <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>,size<span class="op">=</span><span class="fl">1</span>,prob<span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
@@ -374,8 +375,9 @@ Remember two things. First, this is a discrete probability distribution. Each of
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb895"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 2 trials</span>
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># 2 trials</span>
 <span class="va">task_designs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span> number_of_heads <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span>,
                           probability <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">2</span>,size<span class="op">=</span><span class="fl">2</span>,prob<span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
                           cumulative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">2</span>, prob <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
@@ -409,8 +411,9 @@ Remember two things. First, this is a discrete probability distribution. Each of
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb896"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 3 trials</span>
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># 3 trials</span>
 <span class="va">task_designs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span> number_of_heads <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span>,
                           probability <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">dbinom</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">3</span>,size<span class="op">=</span><span class="fl">3</span>,prob<span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
                           cumulative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">pbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">3</span>, size <span class="op">=</span> <span class="fl">3</span>, prob <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,
@@ -450,52 +453,53 @@ Remember two things. First, this is a discrete probability distribution. Each of
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb897"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># etc...</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># etc...</span></code></pre></div>
 <p>I could keep listing more tables and increasing the number of trials by 1 each time. And, each time I would generate another binomial model. Each of these tables represent all of the possible outcomes in each of the different designs, as well as the probabilities that each of the outcomes would occur by chance. The general rule of thumb is that as the number of trials increase, the range of possible outcomes by chance narrows toward 50% successes and 50% failures.</p>
 <p>Consider a value that is very close to 50%, like 51%. If you found a participant performed at 51% you might want to say that level of performance could easily have been obtained by chance. However, that inference strongly depends on the number of trials.</p>
 <p>For example, if there are 100 trials, then the probability of getting 51% correct or greater are pretty good.</p>
-<div class="sourceCode" id="cb898"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">51</span>,<span class="fl">100</span>,<span class="fl">.5</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  51 and 100
-## number of successes = 51, number of trials = 100, p-value = 0.4602
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.4234107 1.0000000
-## sample estimates:
-## probability of success 
-##                   0.51</code></pre>
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">51</span>,<span class="fl">100</span>,<span class="fl">.5</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Exact binomial test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  51 and 100</span>
+<span class="co">#&gt; number of successes = 51, number of trials = 100, p-value = 0.4602</span>
+<span class="co">#&gt; alternative hypothesis: true probability of success is greater than 0.5</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  0.4234107 1.0000000</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; probability of success </span>
+<span class="co">#&gt;                   0.51</span></code></pre></div>
 <p>However, if there are 1000 trials…</p>
-<div class="sourceCode" id="cb900"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">510</span>,<span class="fl">1000</span>,<span class="fl">.5</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  510 and 1000
-## number of successes = 510, number of trials = 1000, p-value = 0.274
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.4835011 1.0000000
-## sample estimates:
-## probability of success 
-##                   0.51</code></pre>
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">510</span>,<span class="fl">1000</span>,<span class="fl">.5</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Exact binomial test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  510 and 1000</span>
+<span class="co">#&gt; number of successes = 510, number of trials = 1000, p-value = 0.274</span>
+<span class="co">#&gt; alternative hypothesis: true probability of success is greater than 0.5</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  0.4835011 1.0000000</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; probability of success </span>
+<span class="co">#&gt;                   0.51</span></code></pre></div>
 <p>And if there are 10,000 trials…</p>
-<div class="sourceCode" id="cb902"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">5100</span>,<span class="fl">10000</span>,<span class="fl">.5</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##  Exact binomial test
-## 
-## data:  5100 and 10000
-## number of successes = 5100, number of trials = 10000, p-value = 0.02329
-## alternative hypothesis: true probability of success is greater than 0.5
-## 95 percent confidence interval:
-##  0.501726 1.000000
-## sample estimates:
-## probability of success 
-##                   0.51</code></pre>
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span><span class="op">(</span><span class="fl">5100</span>,<span class="fl">10000</span>,<span class="fl">.5</span>,alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Exact binomial test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  5100 and 10000</span>
+<span class="co">#&gt; number of successes = 5100, number of trials = 10000, p-value = 0.02329</span>
+<span class="co">#&gt; alternative hypothesis: true probability of success is greater than 0.5</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  0.501726 1.000000</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; probability of success </span>
+<span class="co">#&gt;                   0.51</span></code></pre></div>
 <!-- A binomial test is often used to reject the possibility that a data pattern could be explained by a binomial process. In human studies, it is worth pointing out that it is -->
 <!-- However, the use of binomial tests for inference, especially in human studies involving choice behavior is questionable. For example, a binomial process has several formal properties, such as independence. Each coin flip in the model is completely independent. However, several studies have shown that people are not very good at generating random sequences--their choices are not independent. So, if we believe that people are not very good at being random like a binomial process, why would we ever care to test the probability that a binomial process could explain human data? We already have very good reasons for rejecting a binomial model in the first place. -->
 </div>

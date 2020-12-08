@@ -59,6 +59,7 @@
 <li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
 <li><a class="" href="practice-problems.html">Practice problems</a></li>
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
 <li><a class="active" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
@@ -115,9 +116,9 @@
 <span class="header-section-number">2.3</span> Means Demo<a class="anchor" aria-label="anchor" href="#means-demo"><i class="fas fa-link"></i></a>
 </h2>
 <p>This a quick piece of example code showing some steps to calculate and graph means from a data set in R using the <a href="https://www.tidyverse.org">tidyverse</a>. You will need to install the tidyverse libraries on your system before you can run the code below:</p>
-<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load libraries</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
@@ -164,8 +165,9 @@
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># plot the means</span>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># plot the means</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">means_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">feed</span>, y<span class="op">=</span><span class="va">means</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
@@ -174,20 +176,17 @@
 <span class="header-section-number">2.3.1</span> Base R descriptive statistics functions<a class="anchor" aria-label="anchor" href="#base-r-descriptive-statistics-functions"><i class="fas fa-link"></i></a>
 </h3>
 <p>Base R comes with functions for many common descriptive statistics. In general, these functions take a vector of number as an input, and return the statistic as an output. Here are some examples computing statistics on the sequence of integers from 1 to 10.</p>
-<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># arithmetic mean</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># median</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># sample standard deviation (n-1)</span></code></pre></div>
-<pre><code>## [1] 3.02765</code></pre>
-<div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># sample variance (n-1)</span></code></pre></div>
-<pre><code>## [1] 9.166667</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># arithmetic mean</span>
+<span class="co">#&gt; [1] 5.5</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># median</span>
+<span class="co">#&gt; [1] 5.5</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># sample standard deviation (n-1)</span>
+<span class="co">#&gt; [1] 3.02765</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># sample variance (n-1)</span>
+<span class="co">#&gt; [1] 9.166667</span></code></pre></div>
 <p>At the same time, base R does not have existing functions for every descriptive statistic, or custom descriptive statistics that you might want to make yourself. For example, there is no mode function. You would have to find another package with a mode function, or write your own.</p>
 </div>
 </div>
@@ -202,15 +201,13 @@
 <li>conduct a simulation in R to demonstrate that the mean is the only number that causes the sum of the deviations from the mean to equal zero.</li>
 </ol>
 <p>We can use the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function to calculate arithmetic means in R. These examples show calculating means of different vectors inputted to the mean function.</p>
-<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb604"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb606"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 261.3099</code></pre>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.5</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">chickwts</span><span class="op">$</span><span class="va">weight</span><span class="op">)</span>
+<span class="co">#&gt; [1] 261.3099</span></code></pre></div>
 <p>In order to calculate means we need a set of numbers to start with. In a research context, the sets of numbers will be data points from a research project. And, we will learn throughout this course how to input real data, manipulate it, and calculate descriptive and inferential statistics. However, in this section, we will use R to create sets of numbers, rather than input data.</p>
 <div id="arithmetic-mean" class="section level3" number="2.4.1">
 <h3>
@@ -219,20 +216,20 @@
 <p>The mean is the sum of the numbers, divided by the number of numbers:</p>
 <p><span class="math inline">\(\bar{X} = \frac{\sum_i^n{Xi}}{n}\)</span></p>
 <p>If we wanted to break these steps down in R to compute the mean for the sequence 1 to 10, it could look like this:</p>
-<div class="sourceCode" id="cb608"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="co"># create a vector</span>
 <span class="va">sum_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># store the sum</span>
 <span class="va">length_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># store the length (n)</span>
 <span class="va">mean_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="co"># store the sum/n</span>
-<span class="va">mean_a</span> <span class="co"># report the mean</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
+<span class="va">mean_a</span> <span class="co"># report the mean</span>
+<span class="co">#&gt; [1] 5.5</span></code></pre></div>
 </div>
 <div id="writing-a-custom-mean-function" class="section level3" number="2.4.2">
 <h3>
 <span class="header-section-number">2.4.2</span> Writing a custom mean function<a class="anchor" aria-label="anchor" href="#writing-a-custom-mean-function"><i class="fas fa-link"></i></a>
 </h3>
 <p>How would you write your own custom version of the mean function? Here are a few examples:</p>
-<div class="sourceCode" id="cb610"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># A long-form mean function that shows each step</span>
 <span class="va">my_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">sum_x</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># store the sum</span>
@@ -241,10 +238,10 @@
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">mean_x</span><span class="op">)</span> <span class="co"># output the mean</span>
 <span class="op">}</span>
 
-<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
+<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.5</span></code></pre></div>
 <p>The above example is “long” because it writes out each step of computing the mean on each line. Sometimes it is desirable to make the steps in your function clear and easy to follow. It is also possible and sometimes desirable to rewrite the function so it accomplishes the same steps in a short number of lines of code. Below I show an example of systematically rewriting the above function to make it take fewer lines of code. We will see that the <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> statement is not necessary, and that the <code>{}</code> are not necessary if the function can be written on one line.</p>
-<div class="sourceCode" id="cb612"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># return() is not necessary if the function ends with a</span>
 <span class="co"># variable name being printed</span>
 <span class="va">my_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -254,32 +251,32 @@
   <span class="va">mean_x</span> <span class="co"># output the mean</span>
 <span class="op">}</span>
 
-<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb614"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># end with the mean computation</span>
+<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.5</span>
+
+<span class="co"># end with the mean computation</span>
 <span class="va">my_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">sum_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># store the sum</span>
   <span class="va">length_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># store the length (n)</span>
   <span class="va">sum_x</span><span class="op">/</span><span class="va">length_x</span> <span class="co"># compute and output the mean</span>
 <span class="op">}</span>
 
-<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb616"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># no intermediate saving of sum or length</span>
+<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.5</span>
+
+<span class="co"># no intermediate saving of sum or length</span>
 <span class="va">my_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># compute and output the mean</span>
 <span class="op">}</span>
 
-<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode" id="cb618"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># one-liner</span>
+<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.5</span>
+
+<span class="co"># one-liner</span>
 <span class="va">my_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 
-<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.5</code></pre>
+<span class="fu">my_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.5</span></code></pre></div>
 </div>
 <div id="demonstrate-that-the-mean-is-the-point-from-which-the-sum-of-the-deviations-is-0." class="section level3" number="2.4.3">
 <h3>
@@ -287,17 +284,17 @@
 </h3>
 <p>We learned that the mean of a set of numbers is the point where the sum of the deviations equal 0. Our problem is to use R to demonstrate this property of the mean. How can we do that?</p>
 <p>Let’s break down the steps. We need some numbers:</p>
-<div class="sourceCode" id="cb620"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">64</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p>We need to be able to compute the sum of the deviations. That is we wish to compute the differences between one number (which is going to be the mean), and all of the numbers in our set. These are the deviations. Then we want to add them all up to arrive at the sum of the deviations.</p>
 <p>How can we find the deviations between the numbers in <code>scores</code>, and some number of our choice? Let’s pick the number 5. It turns out that we can simply subtract 5 from <code>scores</code>. And we will produce a vector of differences or deviations</p>
-<div class="sourceCode" id="cb621"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scores</span><span class="op">-</span><span class="fl">5</span></code></pre></div>
-<pre><code>##  [1] -4 59  0 -1 -2 -1  0  1  2  3 -2</code></pre>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">scores</span><span class="op">-</span><span class="fl">5</span>
+<span class="co">#&gt;  [1] -4 59  0 -1 -2 -1  0  1  2  3 -2</span></code></pre></div>
 <p>Then, we can find the sum:</p>
-<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 55</code></pre>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">5</span><span class="op">)</span>
+<span class="co">#&gt; [1] 55</span></code></pre></div>
 <p>Notice that the sum of the deviations (between the numbers in <code>scores</code> and 5) does not equal 0. So, Clearly, the mean of our numbers must not be 5. The mean is the value that would cause the deviations to sum to 0.</p>
 </div>
 <div id="simulations-to-approximate-the-mean" class="section level3" number="2.4.4">
@@ -305,61 +302,53 @@
 <span class="header-section-number">2.4.4</span> Simulations to approximate the mean<a class="anchor" aria-label="anchor" href="#simulations-to-approximate-the-mean"><i class="fas fa-link"></i></a>
 </h3>
 <p>We could very quickly show that the mean of <code>scores</code> causes the deviations to sum to 0. For example, the mean is 10, and the sum of the deviations between the scores and the mean is 0.</p>
-<div class="sourceCode" id="cb625"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scores</span> <span class="co"># the scores</span></code></pre></div>
-<pre><code>##  [1]  1 64  5  4  3  4  5  6  7  8  3</code></pre>
-<div class="sourceCode" id="cb627"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span> <span class="co"># the mean</span></code></pre></div>
-<pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb629"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scores</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span> <span class="co">#the vector of deviations from the mean</span></code></pre></div>
-<pre><code>##  [1] -9 54 -5 -6 -7 -6 -5 -4 -3 -2 -7</code></pre>
-<div class="sourceCode" id="cb631"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span><span class="op">)</span> <span class="co"># the sum</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">scores</span> <span class="co"># the scores</span>
+<span class="co">#&gt;  [1]  1 64  5  4  3  4  5  6  7  8  3</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span> <span class="co"># the mean</span>
+<span class="co">#&gt; [1] 10</span>
+
+<span class="va">scores</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span> <span class="co">#the vector of deviations from the mean</span>
+<span class="co">#&gt;  [1] -9 54 -5 -6 -7 -6 -5 -4 -3 -2 -7</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span><span class="op">)</span> <span class="co"># the sum</span>
+<span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>Instead, let’s use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look at our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.</p>
 <p>Basically, this is this the process of what I want to do…but I don’t want to write 64 lines of code either…</p>
-<div class="sourceCode" id="cb633"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 99</code></pre>
-<div class="sourceCode" id="cb635"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 88</code></pre>
-<div class="sourceCode" id="cb637"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 77</code></pre>
-<div class="sourceCode" id="cb639"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 66</code></pre>
-<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 55</code></pre>
-<div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">6</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 44</code></pre>
-<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## and so on to 64</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt; [1] 99</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; [1] 88</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+<span class="co">#&gt; [1] 77</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt; [1] 66</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">5</span><span class="op">)</span>
+<span class="co">#&gt; [1] 55</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="fl">6</span><span class="op">)</span>
+<span class="co">#&gt; [1] 44</span>
+<span class="co">## and so on to 64</span></code></pre></div>
 <p>If we want to repeatedly apply a similar computation in R, remember we can use a <code>for</code> loop. We will test all of the integers between the smallest value and largest value. So, we first create a sequence of those numbers called <code>numbers_to_test</code>. And, then we use a loop to compute the sum of deviations between the scores and each of the test numbers.</p>
-<div class="sourceCode" id="cb646"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span> </code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb648"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 64</code></pre>
-<div class="sourceCode" id="cb650"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">numbers_to_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span> 
+<span class="co">#&gt; [1] 1</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span>
+<span class="co">#&gt; [1] 64</span>
+<span class="va">numbers_to_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span>
 
 <span class="va">sum_deviations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># create an empty vector to store sums</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">numbers_to_test</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">sum_deviations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="va">i</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="va">sum_deviations</span></code></pre></div>
-<pre><code>##  [1]   99   88   77   66   55   44   33   22   11    0  -11  -22  -33  -44  -55
-## [16]  -66  -77  -88  -99 -110 -121 -132 -143 -154 -165 -176 -187 -198 -209 -220
-## [31] -231 -242 -253 -264 -275 -286 -297 -308 -319 -330 -341 -352 -363 -374 -385
-## [46] -396 -407 -418 -429 -440 -451 -462 -473 -484 -495 -506 -517 -528 -539 -550
-## [61] -561 -572 -583 -594</code></pre>
+<span class="va">sum_deviations</span>
+<span class="co">#&gt;  [1]   99   88   77   66   55   44   33   22   11    0  -11  -22  -33  -44  -55</span>
+<span class="co">#&gt; [16]  -66  -77  -88  -99 -110 -121 -132 -143 -154 -165 -176 -187 -198 -209 -220</span>
+<span class="co">#&gt; [31] -231 -242 -253 -264 -275 -286 -297 -308 -319 -330 -341 -352 -363 -374 -385</span>
+<span class="co">#&gt; [46] -396 -407 -418 -429 -440 -451 -462 -473 -484 -495 -506 -517 -528 -539 -550</span>
+<span class="co">#&gt; [61] -561 -572 -583 -594</span></code></pre></div>
 <p>We just computed our first simulation and produced these 64 sums of deviations, displayed above. Our question was to approximate the mean, by finding a value that produces a sum of deviations closest to 0. A final step is to evaluate the results of our simulation to answer the question.</p>
 <p>Let’s discuss three ways to get at the answer. First, we could look at the above sums and see that the 10th value is a 0, this means that the number 10 produced the sum of deviations closest to 0 (equaling 0 because 10 is the mean).</p>
 </div>
@@ -368,12 +357,12 @@
 <span class="header-section-number">2.4.5</span> Plotting the results<a class="anchor" aria-label="anchor" href="#plotting-the-results"><i class="fas fa-link"></i></a>
 </h3>
 <p>Second, we could visualize the sum of the deviations. We could quickly do that with the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function.</p>
-<div class="sourceCode" id="cb652"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
 <p>We are looking for the value on the x-axis that causes the sum of the deviations on the y-axis to be closest to 0. One way to help locate this value could be to look at the absolute values. Absolute values remove the negative (-) sign from numbers, leaving everything positive. You can convert to absolute values in R using <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></p>
 <p>Now, it is easy to see that 10 produces the sum of deviations closest to 0 (in this case it produces a value of 0, because 10 is also the mean).</p>
-<div class="sourceCode" id="cb653"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
 </div>
@@ -382,18 +371,18 @@
 <span class="header-section-number">2.4.6</span> Locating the result using which()<a class="anchor" aria-label="anchor" href="#locating-the-result-using-which"><i class="fas fa-link"></i></a>
 </h3>
 <p>Finally, we could use other R functions to help us compute the answer. For example, we could use the <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function. This function can be used to determine the indices or position of “logically” obtained values in a vector. Is a long way of saying we want R to tell us which position in the vector contains the 0</p>
-<div class="sourceCode" id="cb654"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#find the positions in vector that equal 0</span>
-<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sum_deviations</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb656"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#show the value in position 10</span>
-<span class="va">sum_deviations</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb658"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#all in one</span>
-<span class="va">sum_deviations</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sum_deviations</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">]</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sum_deviations</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10</span>
+
+<span class="co">#show the value in position 10</span>
+<span class="va">sum_deviations</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>
+<span class="co">#&gt; [1] 0</span>
+
+<span class="co">#all in one</span>
+<span class="va">sum_deviations</span><span class="op">[</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sum_deviations</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">]</span>
+<span class="co">#&gt; [1] 0</span></code></pre></div>
 </div>
 <div id="minor-details" class="section level3" number="2.4.7">
 <h3>
@@ -401,8 +390,9 @@
 </h3>
 <p>The above approach worked pretty well. By a simulation process, we found that 10 produced a sum of deviations that equaled 0. None of the other numbers produced a sum of deviations that equaled 0. However, our example code won’t work very well for other sets of numbers.</p>
 <p>For example, if we used the set of number from 1 to 20, where the mean is 10.5, we find that none of the sums of deviations ever get to 0 (that’s because we are only testing integers between 1 and 20). And, our <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function will never find a number that is exactly equal to 0.</p>
-<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">scores</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>
 <span class="va">numbers_to_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span>
 
 <span class="va">sum_deviations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># create an empty vector to store sums</span>
@@ -410,23 +400,22 @@
   <span class="va">sum_deviations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">scores</span><span class="op">-</span><span class="va">i</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="va">sum_deviations</span></code></pre></div>
-<pre><code>##  [1]  190  170  150  130  110   90   70   50   30   10  -10  -30  -50  -70  -90
-## [16] -110 -130 -150 -170 -190</code></pre>
-<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sum_deviations</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
-<pre><code>## integer(0)</code></pre>
+<span class="va">sum_deviations</span>
+<span class="co">#&gt;  [1]  190  170  150  130  110   90   70   50   30   10  -10  -30  -50  -70  -90</span>
+<span class="co">#&gt; [16] -110 -130 -150 -170 -190</span>
+<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sum_deviations</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span>
+<span class="co">#&gt; integer(0)</span></code></pre></div>
 <p>Here, we need to modify the comparison in the <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function to return “approximate” numbers that give the sums of deviations closest to zero.</p>
-<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 10 11</code></pre>
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10 11</span></code></pre></div>
 </div>
 <div id="advanced-example-writing-a-function-for-our-demonstration" class="section level3" number="2.4.8">
 <h3>
 <span class="header-section-number">2.4.8</span> Advanced Example: Writing a function for our demonstration<a class="anchor" aria-label="anchor" href="#advanced-example-writing-a-function-for-our-demonstration"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this example I show how the above simulation could be written as a function. This function could then be used to approximate a mean for any set of scores, and test values.</p>
-<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">approximate_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">scores</span>,<span class="va">test_sequence</span><span class="op">)</span><span class="op">{</span>
   <span class="va">sum_deviations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">test_sequence</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
@@ -438,12 +427,12 @@
 
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">8</span>,<span class="fl">7</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">.1</span><span class="op">)</span>
-<span class="fu">approximate_mean</span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.4</code></pre>
-<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#actual mean</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5.380952</code></pre>
+<span class="fu">approximate_mean</span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.4</span>
+
+<span class="co">#actual mean</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5.380952</span></code></pre></div>
 </div>
 </div>
 <div id="practical-i-inputting-real-data-and-calculating-descriptive-statistics-with-tidyverse" class="section level2" number="2.5">
@@ -463,7 +452,7 @@
 <p>First, we need to have some “real data” to import. <a href="https://crumplab.github.io/psyc7709Lab/downloads/open_data.zip">Download this zip file</a>. It contains a folder <code>open_data</code>, which several data files taken from published psychology papers (whose authors made their data publicly available).</p>
 <p>In order to follow along with this example, unzip the file, then copy or move the <code>open_data</code> folder into your R project folder. The <code>open_data</code> folder should be in the same R project folder as the .Rmd document you are using for this lab.</p>
 <p>We will use the gapminder data set, which includes measures on life expectancy, population, and gdp per capita, as a function of year, country, and continent. First, we load the <code>gapminder.csv</code> file (csv stands for comma separated value) using the <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> function.</p>
-<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"open_data/gapminder.csv"</span>, 
                              sep <span class="op">=</span> <span class="st">","</span>,
                              header <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></code></pre></div>
@@ -474,15 +463,13 @@
 <span class="header-section-number">2.5.2</span> Calculating means<a class="anchor" aria-label="anchor" href="#calculating-means"><i class="fas fa-link"></i></a>
 </h3>
 <p>What is mean of each of the measures?</p>
-<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gapminder_data</span><span class="op">$</span><span class="va">lifeExp</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 59.47444</code></pre>
-<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gapminder_data</span><span class="op">$</span><span class="va">pop</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 29601212</code></pre>
-<div class="sourceCode" id="cb675"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gapminder_data</span><span class="op">$</span><span class="va">gdpPercap</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 7215.327</code></pre>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gapminder_data</span><span class="op">$</span><span class="va">lifeExp</span><span class="op">)</span>
+<span class="co">#&gt; [1] 59.47444</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gapminder_data</span><span class="op">$</span><span class="va">pop</span><span class="op">)</span>
+<span class="co">#&gt; [1] 29601212</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gapminder_data</span><span class="op">$</span><span class="va">gdpPercap</span><span class="op">)</span>
+<span class="co">#&gt; [1] 7215.327</span></code></pre></div>
 </div>
 <div id="dplyr-group_by-then-summarize" class="section level3" number="2.5.3">
 <h3>
@@ -495,7 +482,7 @@
 <li>summarize the data using a mean function</li>
 <li>output a table of results</li>
 </ol>
-<div class="sourceCode" id="cb677"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
 <span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op">%&gt;%</span>
@@ -532,7 +519,7 @@
 </tbody>
 </table></div>
 <p>Change the name of the variable inside <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to change which factor you want to evaluate (e.g., enter year, or country). You can include multiple factors:</p>
-<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span>,<span class="va">country</span><span class="op">)</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span>
@@ -584,7 +571,7 @@
 <span class="header-section-number">2.5.4</span> More dplyr examples<a class="anchor" aria-label="anchor" href="#more-dplyr-examples"><i class="fas fa-link"></i></a>
 </h3>
 <p>It is possible to add multiple functions inside summarize. Here we calculate the mean, median, standard deviation, and variance for Life Expectancy as a function of continent.</p>
-<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>,
@@ -603,7 +590,7 @@
 <h3>
 <span class="header-section-number">2.6.1</span> Bar graph<a class="anchor" aria-label="anchor" href="#bar-graph-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span>
@@ -612,7 +599,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
 <p>Some options for modifying the plot:</p>
-<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, y <span class="op">=</span> <span class="va">mean_lifeExp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Mean Life Expectancy"</span><span class="op">)</span><span class="op">+</span>
@@ -625,15 +612,15 @@
 <h3>
 <span class="header-section-number">2.6.2</span> Line graph<a class="anchor" aria-label="anchor" href="#line-graph-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, y <span class="op">=</span> <span class="va">mean_lifeExp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## geom_path: Each group consists of only one observation. Do you need to adjust
-## the group aesthetic?</code></pre>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span>
+<span class="co">#&gt; the group aesthetic?</span></code></pre></div>
 <p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="672">
 Note we get a message about adjusting the group aesthestic, and even though we asked ggplot to draw lines connecting the dots, we get a line graph. This is a good example of unexpected behavior that often requires a quick google. I copied the message the into google and found that setting <code>group=1</code> produced the lines I was expecting:</p>
-<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, 
                         y <span class="op">=</span> <span class="va">mean_lifeExp</span>,
                         group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -646,7 +633,7 @@ Note we get a message about adjusting the group aesthestic, and even though we a
 <span class="header-section-number">2.6.3</span> Error bars<a class="anchor" aria-label="anchor" href="#error-bars"><i class="fas fa-link"></i></a>
 </h3>
 <p>It is common to present means in bar graphs or line graphs along with error bars to indicate variability around the mean. To do this with ggplot we need to calculate measures of variability for each condition, and then use those values as error bars. In this example I add a single standard deviation above and below the means as error bars.</p>
-<div class="sourceCode" id="cb685"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">gapminder_data</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op">%&gt;%</span>
                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_lifeExp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>,
@@ -658,8 +645,9 @@ Note we get a message about adjusting the group aesthestic, and even though we a
                     ymax <span class="op">=</span> <span class="va">mean_lifeExp</span> <span class="op">+</span> <span class="va">sd_lifeExp</span><span class="op">)</span>,
                 width <span class="op">=</span> <span class="fl">.25</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
-<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, 
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, 
                         y <span class="op">=</span> <span class="va">mean_lifeExp</span>,
                         group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>

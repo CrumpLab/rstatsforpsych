@@ -1,16 +1,14 @@
+```{r, include = FALSE}
+source("global_stuff.R")
+```
+
 # Simulation and Power Analysis {.unnumbered}
 
 "11/8/2020 | Last Compiled: `r Sys.Date()`"
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  message = FALSE,
-  warning = FALSE,
-  cache = TRUE
-)
-```
+## Reading
+
+@crumpAnsweringQuestionsData2018, Chapter 12 on [Effect size and power](https://crumplab.github.io/statistics/thinking-about-answering-questions-with-data.html)
 
 ## Overview
 

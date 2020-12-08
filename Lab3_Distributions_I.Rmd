@@ -1,8 +1,8 @@
-# Distributions I
-
-```{r, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE, message = FALSE, warning = FALSE)
+```{r, include = FALSE}
+source("global_stuff.R")
 ```
+
+# Distributions I
 
 "9/2/2020 | Last Compiled: `r Sys.Date()`"
 

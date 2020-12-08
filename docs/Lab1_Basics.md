@@ -1,3 +1,5 @@
+
+
 # (PART) Labs {.unnumbered}
 
 # R Basics
@@ -27,10 +29,7 @@ Gauss didn't have R, but we do, so we can solve the problem very quickly too:
 
 ```r
 sum(1:100)
-```
-
-```
-## [1] 5050
+#> [1] 5050
 ```
 
 Using `sum()`, it is simple and fast to solve Gauss's problem in R. You could easily find other sums by changing the 1 or the 100
@@ -38,18 +37,9 @@ Using `sum()`, it is simple and fast to solve Gauss's problem in R. You could ea
 
 ```r
 sum(5:10)
-```
-
-```
-## [1] 45
-```
-
-```r
+#> [1] 45
 sum(100:200)
-```
-
-```
-## [1] 15150
+#> [1] 15150
 ```
 
 There are many details going on behind the scenes in R that allow the `sum()` function do its work. One detail is how to get R to create a sequence of numbers, another is how to take an action like adding up all the numbers in the sequence. Two major concepts here are *variables* for storing information (like sequences of numbers), and *functions* that take actions to transform an input (a number sequence) to a desired output (a sum of the number sequence). 
@@ -63,26 +53,11 @@ There are multiple ways to create number sequences in R. A sequence of integers 
 
 ```r
 1:5
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 1:10
-```
-
-```
-##  [1]  1  2  3  4  5  6  7  8  9 10
-```
-
-```r
+#>  [1]  1  2  3  4  5  6  7  8  9 10
 5:-5
-```
-
-```
-##  [1]  5  4  3  2  1  0 -1 -2 -3 -4 -5
+#>  [1]  5  4  3  2  1  0 -1 -2 -3 -4 -5
 ```
 
 ### seq()
@@ -106,60 +81,24 @@ Let's take a look at using the `seq()` function to generate sequences of numbers
 
 #seq(from, to)
 seq(from = 1, to = 5)
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 seq(1, 5)
-```
+#> [1] 1 2 3 4 5
 
-```
-## [1] 1 2 3 4 5
-```
-
-```r
 #seq(from, to, by= )
 seq(from = 1, to = 5, by = 2)
-```
-
-```
-## [1] 1 3 5
-```
-
-```r
+#> [1] 1 3 5
 seq(1, 5, .5)
-```
-
-```
-## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0
-```
-
-```r
+#> [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0
 seq(1, 10, 2)
-```
+#> [1] 1 3 5 7 9
 
-```
-## [1] 1 3 5 7 9
-```
-
-```r
 #seq(from, to, length.out= )
 seq(from = 1, to = 2, length.out =5)
-```
+#> [1] 1.00 1.25 1.50 1.75 2.00
 
-```
-## [1] 1.00 1.25 1.50 1.75 2.00
-```
-
-```r
 seq(5)
-```
-
-```
-## [1] 1 2 3 4 5
+#> [1] 1 2 3 4 5
 ```
 
 ## Problem 2: Summing any constant series
@@ -171,10 +110,7 @@ For example, find the sum of the series 100 to 200, going up by five.
 
 ```r
 sum( seq(100,200,5) )
-```
-
-```
-## [1] 3150
+#> [1] 3150
 ```
 
 It is also possible to write the analytic formula in R, and compare results, remember that:
@@ -192,18 +128,10 @@ Xn <- 200
 step <- 5
 
 (((Xn - X1)/step) + 1) * ((X1 + Xn)/2)
-```
+#> [1] 3150
 
-```
-## [1] 3150
-```
-
-```r
 ( ( (Xn-X1)/step ) + 1 ) * ( (X1+Xn)/2 )
-```
-
-```
-## [1] 3150
+#> [1] 3150
 ```
 
 
@@ -216,28 +144,19 @@ Remember Gauss added up the numbers from 1 to 100 by imagining two number lines:
 
 ```r
 1:100
-```
-
-```
-##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-##  [91]  91  92  93  94  95  96  97  98  99 100
-```
-
-```r
+#>   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+#>  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+#>  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+#>  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+#>  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+#>  [91]  91  92  93  94  95  96  97  98  99 100
 100:1
-```
-
-```
-##   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84  83
-##  [19]  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67  66  65
-##  [37]  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50  49  48  47
-##  [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
-##  [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
-##  [91]  10   9   8   7   6   5   4   3   2   1
+#>   [1] 100  99  98  97  96  95  94  93  92  91  90  89  88  87  86  85  84  83
+#>  [19]  82  81  80  79  78  77  76  75  74  73  72  71  70  69  68  67  66  65
+#>  [37]  64  63  62  61  60  59  58  57  56  55  54  53  52  51  50  49  48  47
+#>  [55]  46  45  44  43  42  41  40  39  38  37  36  35  34  33  32  31  30  29
+#>  [73]  28  27  26  25  24  23  22  21  20  19  18  17  16  15  14  13  12  11
+#>  [91]  10   9   8   7   6   5   4   3   2   1
 ```
 
 He noted that the sum of the columns always added up to 101 (e.g., 1+100 = 101, 2+99 = 101, etc.). It is possible to demonstrate this in R because we can directly add both number lines:
@@ -245,15 +164,12 @@ He noted that the sum of the columns always added up to 101 (e.g., 1+100 = 101, 
 
 ```r
 1:100 + 100:1
-```
-
-```
-##   [1] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
-##  [19] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
-##  [37] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
-##  [55] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
-##  [73] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
-##  [91] 101 101 101 101 101 101 101 101 101 101
+#>   [1] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+#>  [19] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+#>  [37] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+#>  [55] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+#>  [73] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+#>  [91] 101 101 101 101 101 101 101 101 101 101
 ```
 
 Each time we created a sequence of numbers (e.g., from 1 to 100) we were creating an object called a `numeric vector` in R. Vectors can store multiple numbers. 
@@ -275,10 +191,7 @@ If you want to double-check that a variable exists in memory, enter its name int
 
 ```r
 a
-```
-
-```
-## [1] 1 2 3 4 5
+#> [1] 1 2 3 4 5
 ```
 
 You can clear (remove) a variable using `rm()`. And, you can clear the entire global environment using `Session > Clear Workspace...` from the RStudio menu.
@@ -294,19 +207,11 @@ You can also check the `class` of a variable in R using the `class()` function. 
 ```r
 a <- 1:10
 class(a)
-```
+#> [1] "integer"
 
-```
-## [1] "integer"
-```
-
-```r
 b <- seq(1,2,.25)
 class(b)
-```
-
-```
-## [1] "numeric"
+#> [1] "numeric"
 ```
 
 ### c()
@@ -341,18 +246,9 @@ Just like a train has a specific number of cars, a vector has a specific number 
 
 ```r
 length(letters)
-```
-
-```
-## [1] 3
-```
-
-```r
+#> [1] 3
 length(words)
-```
-
-```
-## [1] 6
+#> [1] 6
 ```
 
 ### More on combining
@@ -371,26 +267,11 @@ Remember that vectors have different classes depending on what kind of elements 
 
 ```r
 class(c(1,2,3))
-```
-
-```
-## [1] "numeric"
-```
-
-```r
+#> [1] "numeric"
 class(c("A","B","C"))
-```
-
-```
-## [1] "character"
-```
-
-```r
+#> [1] "character"
 class(c(TRUE,FALSE,TRUE))
-```
-
-```
-## [1] "logical"
+#> [1] "logical"
 ```
 
 It is possible to combine vectors that start with different classes, but R may give an error, or it will convert one class into another. To go back to the train car analogy, R doesn't like trains that have different kinds of cars...it wants the whole train to be passenger cars, or the whole train to be oil tankers.
@@ -399,10 +280,7 @@ It is possible to combine vectors that start with different classes, but R may g
 ```r
 # the numbers are converted to characters
 c(1,2,3,"a","b","c")
-```
-
-```
-## [1] "1" "2" "3" "a" "b" "c"
+#> [1] "1" "2" "3" "a" "b" "c"
 ```
 
 ### Indexing a vector
@@ -421,34 +299,13 @@ The following examples use `[]` to index specific elements of the vector `a`. Th
 
 ```r
 a[1] # first element
-```
-
-```
-## [1] 1
-```
-
-```r
+#> [1] 1
 a[2] # second element
-```
-
-```
-## [1] 6
-```
-
-```r
+#> [1] 6
 a[1:3] # 1st to 3rd elements
-```
-
-```
-## [1] 1 6 3
-```
-
-```r
+#> [1] 1 6 3
 a[c(1,5)] # elements 1 and 5
-```
-
-```
-## [1] 1 8
+#> [1] 1 8
 ```
 
 It is also possible to assign new values to specific elements of a vector:
@@ -458,20 +315,12 @@ It is also possible to assign new values to specific elements of a vector:
 # assign 100 to the first slot of a
 a[1] <- 100
 a
-```
+#> [1] 100   6   3   2   8   9
 
-```
-## [1] 100   6   3   2   8   9
-```
-
-```r
 # assign the value 1 to slots 5 to 6 of a
 a[5:6] <- 1
 a
-```
-
-```
-## [1] 100   6   3   2   1   1
+#> [1] 100   6   3   2   1   1
 ```
 
 ### Growing a vector
@@ -484,10 +333,7 @@ Below I begin with an empty (NULL) vector. I use the `c()` command, but I don't 
 ```r
 a <- c()
 a
-```
-
-```
-## NULL
+#> NULL
 ```
 
 We can add a slot to this vector by combining a new element to the existing variable. Here we combine `a` with 1, and then assign the result back into `a`, replacing it's original NULL value.
@@ -496,10 +342,7 @@ We can add a slot to this vector by combining a new element to the existing vari
 ```r
 a <- c(a,1)
 a
-```
-
-```
-## [1] 1
+#> [1] 1
 ```
 
 If we keep doing this, we will keep adding 1s, to the end of `a`.
@@ -508,37 +351,16 @@ If we keep doing this, we will keep adding 1s, to the end of `a`.
 ```r
 a <- c(a,1)
 a
-```
-
-```
-## [1] 1 1
-```
-
-```r
+#> [1] 1 1
 a <- c(a,1) # c(1,1,1)
 a
-```
-
-```
-## [1] 1 1 1
-```
-
-```r
+#> [1] 1 1 1
 a <- c(a,1)
 a
-```
-
-```
-## [1] 1 1 1 1
-```
-
-```r
+#> [1] 1 1 1 1
 a <- c(a,1)
 a
-```
-
-```
-## [1] 1 1 1 1 1
+#> [1] 1 1 1 1 1
 ```
 
 Consider this alternative method for growing a vector:
@@ -547,46 +369,23 @@ Consider this alternative method for growing a vector:
 ```r
 a <- c()
 a
-```
+#> NULL
 
-```
-## NULL
-```
-
-```r
 a[1] <- 1
 a
-```
+#> [1] 1
 
-```
-## [1] 1
-```
-
-```r
 a[2] <- 1
 a
-```
+#> [1] 1 1
 
-```
-## [1] 1 1
-```
-
-```r
 a[3] <- 1
 a
-```
+#> [1] 1 1 1
 
-```
-## [1] 1 1 1
-```
-
-```r
 a[10] <- 1
 a
-```
-
-```
-##  [1]  1  1  1 NA NA NA NA NA NA  1
+#>  [1]  1  1  1 NA NA NA NA NA NA  1
 ```
 
 
@@ -605,10 +404,7 @@ my_sum <- function(x) {
 }
 
 my_sum(1:100)
-```
-
-```
-## [1] 5050
+#> [1] 5050
 ```
 
 
@@ -628,10 +424,7 @@ When you sum up a series of numbers in your head, say the numbers 1 to 5, you ar
 
 ```r
 sum(1:5)
-```
-
-```
-## [1] 15
+#> [1] 15
 ```
 
 Consider how this could look in R. This is one example of producing an algorithm in R. Everytime we run the below script, we always end up with a sum of 15, because the answer is demanded by the series of steps that I wrote down.
@@ -640,46 +433,20 @@ Consider how this could look in R. This is one example of producing an algorithm
 ```r
 a <- 1:5
 a
-```
+#> [1] 1 2 3 4 5
 
-```
-## [1] 1 2 3 4 5
-```
-
-```r
 the_sum <- a[1]+a[2]
 the_sum
-```
-
-```
-## [1] 3
-```
-
-```r
+#> [1] 3
 the_sum <- the_sum + a[3]
 the_sum
-```
-
-```
-## [1] 6
-```
-
-```r
+#> [1] 6
 the_sum <- the_sum + a[4]
 the_sum
-```
-
-```
-## [1] 10
-```
-
-```r
+#> [1] 10
 the_sum <- the_sum + a[5]
 the_sum
-```
-
-```
-## [1] 15
+#> [1] 15
 ```
 ## Loops
 
@@ -718,14 +485,11 @@ The loop will automatically stop once it reaches the last item in the vector. Th
 for(i in 1:5){
   print("hello")
 }
-```
-
-```
-## [1] "hello"
-## [1] "hello"
-## [1] "hello"
-## [1] "hello"
-## [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
 ```
 
 
@@ -734,14 +498,11 @@ for(i in 1:5){
 for(i in 1:5){
   print(i)
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 
@@ -751,14 +512,11 @@ my_sequence <- 1:5
 for(i in my_sequence){
   print(i)
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 
@@ -769,14 +527,11 @@ my_sequence <- c(1,5,2,3,4)
 for(i in my_sequence){
   print(i)
 }
-```
-
-```
-## [1] 1
-## [1] 5
-## [1] 2
-## [1] 3
-## [1] 4
+#> [1] 1
+#> [1] 5
+#> [1] 2
+#> [1] 3
+#> [1] 4
 ```
 
 
@@ -786,13 +541,10 @@ my_things <- c("A","B","C","D")
 for(i in my_things){
   print(i)
 }
-```
-
-```
-## [1] "A"
-## [1] "B"
-## [1] "C"
-## [1] "D"
+#> [1] "A"
+#> [1] "B"
+#> [1] "C"
+#> [1] "D"
 ```
 
 ### Breaking a loop
@@ -808,14 +560,11 @@ for(i in 1:10){
     break
   }
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 ### While loops
@@ -831,14 +580,11 @@ while (i < 6) {
   print(i)
   i = i+1 #add one each step of the loop
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 ### Repeat loops
@@ -855,14 +601,11 @@ repeat{
     break
   }
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 
@@ -873,14 +616,11 @@ Braces are not needed on one line
 
 ```r
 for(i in 1:5) print(i)
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 Using the value of the iterator to assign in values systematically to another variable.
@@ -893,23 +633,16 @@ for(i in 1:5){
   x[i] <- 1  # assign 1 to the ith slot in x
 }
 x
-```
+#> [1] 1 1 1 1 1
 
-```
-## [1] 1 1 1 1 1
-```
 
-```r
 # put the numbers 1-5 in the first 5 positions of x
 x <-c()
 for(i in 1:5){
   x[i] <- i
 }
 x
-```
-
-```
-## [1] 1 2 3 4 5
+#> [1] 1 2 3 4 5
 ```
 
 Using a loop to add up numbers in a vector.
@@ -925,18 +658,9 @@ for (i in a) {
 }
 
 the_sum
-```
-
-```
-## [1] 150
-```
-
-```r
+#> [1] 150
 sum(a) #check against the sum function
-```
-
-```
-## [1] 150
+#> [1] 150
 ```
 
 The above example shows the use of a `for` loop to compute the sum of the numbers in the vector `a`. This is an example of using a loop in an algorithm. At the end we checked out custom script against the `sum()` function, and we see that we arrived at the same answer.
@@ -974,10 +698,7 @@ print_hello_world <- function(){
 
 # use the function
 print_hello_world()
-```
-
-```
-## [1] "hello world"
+#> [1] "hello world"
 ```
 
 This function simply takes an input, and then returns the input without modifying it. 
@@ -992,19 +713,10 @@ return_input <- function(input){
 # then we return(input), which will result in a 1
 # because the function internally assigns 1 to the input
 return_input(1)
-```
-
-```
-## [1] 1
-```
-
-```r
+#> [1] 1
 a <- "something"
 return_input(a)
-```
-
-```
-## [1] "something"
+#> [1] "something"
 ```
 
 This function takes an input, then creates an internal variable called temp and assigns input+1. Then the contents of temp is returned. Note there, is no checking of the input, so it will return an erro if you input a character (can't add one to a character in R)
@@ -1016,18 +728,9 @@ add_one <- function(input){
   return(temp)
 }
 add_one(1)
-```
-
-```
-## [1] 2
-```
-
-```r
+#> [1] 2
 add_one("a") #this will cause an error
-```
-
-```
-## Error in input + 1: non-numeric argument to binary operator
+#> Error in input + 1: non-numeric argument to binary operator
 ```
 
 This function adds some input checking. We only add one if the input is a numeric type. Otherwise, we use `stop()` to return an error message to the console
@@ -1043,18 +746,9 @@ add_one <- function(input){
   }
 }
 add_one(1)
-```
-
-```
-## [1] 2
-```
-
-```r
+#> [1] 2
 add_one("a")
-```
-
-```
-## Error in add_one("a"): input must be numeric
+#> Error in add_one("a"): input must be numeric
 ```
 
 A function with three inputs
@@ -1071,10 +765,7 @@ add_multiply <- function(input, x_plus, x_times){
 # x_times <- 3
 # will return (1+2)*3 = 9
 add_multiply(1,2,3)
-```
-
-```
-## [1] 9
+#> [1] 9
 ```
 
 
@@ -1113,10 +804,7 @@ Demonstrate that your function correctly produces the sum for the series below:
 
 ```r
 seq(10,100,10)
-```
-
-```
-##  [1]  10  20  30  40  50  60  70  80  90 100
+#>  [1]  10  20  30  40  50  60  70  80  90 100
 ```
 
 5. Write a custom function that generates a constant series between any start and end values, with any constant, and finds the sum. Have your function output both the sequence and the sum. For this problem, feel free to use the existing `seq()` and `sum()` functions in your custom function. Demonstrate the function correctly prints out the above sequence (10 to 100 in steps of 10), and its sum.

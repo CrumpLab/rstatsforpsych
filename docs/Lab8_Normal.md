@@ -1,6 +1,6 @@
+
+
 # Z tests
-
-
 
 "10/8/2020 | Last Compiled: 2020-12-07"
 
@@ -36,18 +36,10 @@ u <- 0
 sigma <- 1
 
 1/(sigma*sqrt(2*pi)) * exp(1)^(-.5*((x-u)/sigma)^2)
-```
+#> [1] 0.2419707
 
-```
-## [1] 0.2419707
-```
-
-```r
 dnorm(1,0,1)
-```
-
-```
-## [1] 0.2419707
+#> [1] 0.2419707
 ```
 
 The second reminder is that all normal distributions have the same shape. It is important to understand what "having the same shape" means. Let's look at two different normal distributions. The first one has mean = 0, and sd = 1. The second has mean = 25, and sd = 5. The two graphs appear to show different shapes, the first is taller and narrower than the second.
@@ -114,23 +106,15 @@ plot_df %>%
          x <= 2) %>%
   select(score) %>%
   sum()/sum(first_one)
-```
+#> [1] 0.1443879
 
-```
-## [1] 0.1443879
-```
-
-```r
 plot_df %>%
   filter(dist == "second",
          x > 30,
          x <= 35) %>%
   select(score) %>%
   sum()/sum(second_one)
-```
-
-```
-## [1] 0.1443879
+#> [1] 0.1443879
 ```
 
 The above values should approximate the values below from the `pnorm()` function.
@@ -138,18 +122,10 @@ The above values should approximate the values below from the `pnorm()` function
 
 ```r
 pnorm(2,0,1) - pnorm(1,0,1)
-```
+#> [1] 0.1359051
 
-```
-## [1] 0.1359051
-```
-
-```r
 pnorm(35,25,5)- pnorm(30,25,5)
-```
-
-```
-## [1] 0.1359051
+#> [1] 0.1359051
 ```
 
 ### Convenience
@@ -174,6 +150,7 @@ We can use the formula to draw a graph relating different values in Celsius, to 
 
 
 ```r
+
 celsius <- seq(-50,50,1)
 fahrenheit <- seq(-50,50,1) * (9/5) + 32
 
@@ -288,10 +265,7 @@ Instead of developing a test for normality, let's try something pretty straightf
 
 ```r
 pnorm(1,0,1) - pnorm(0,0,1)
-```
-
-```
-## [1] 0.3413447
+#> [1] 0.3413447
 ```
 
 We could ask if we find the same proportion of numbers falling between 0 and 1 standard deviations in the sampling distribution that we created...and we see the value is pretty close.
@@ -300,10 +274,7 @@ We could ask if we find the same proportion of numbers falling between 0 and 1 s
 ```r
 to_z <- (sample_means-mean(sample_means))/sd(sample_means)
 length(to_z[to_z > 0 & to_z < 1])/10000
-```
-
-```
-## [1] 0.3384
+#> [1] 0.3322
 ```
 
 We've just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.
@@ -326,28 +297,15 @@ The "z-test" and "z-scores" are the same when you have an N of 1. For example, i
 ```r
 # one-tailed
 pnorm(5,1,3, lower.tail=FALSE)
-```
+#> [1] 0.09121122
 
-```
-## [1] 0.09121122
-```
-
-```r
 # using zscores
 pnorm((5-1)/3,0,1, lower.tail=FALSE)
-```
+#> [1] 0.09121122
 
-```
-## [1] 0.09121122
-```
-
-```r
 # two-tailed
 pnorm(5,1,3, lower.tail=FALSE)*2
-```
-
-```
-## [1] 0.1824224
+#> [1] 0.1824224
 ```
 
 ### N > 1 example
@@ -372,18 +330,9 @@ We can estimate them from the simulation:
 
 ```r
 mean(sample_means)
-```
-
-```
-## [1] 55.00255
-```
-
-```r
+#> [1] 55.01157
 sd(sample_means)
-```
-
-```
-## [1] 1.570411
+#> [1] 1.566849
 ```
 
 Or, we could use analytic formulas to "know" what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.
@@ -397,10 +346,7 @@ where $\sigma$ is the standard deviation of the parent population (5), and N is 
 
 ```r
 5/sqrt(10)
-```
-
-```
-## [1] 1.581139
+#> [1] 1.581139
 ```
 
 So, now we have found the parameters of the normal distribution we are actually interested in, which is **the sampling distribution of the sample means** for this particular situation. And, we can do z-tests if we want (using the mean and sd from the sampling distribution). 
@@ -411,29 +357,16 @@ So, now we have found the parameters of the normal distribution we are actually 
 ```r
 # use mean and sd in pnorm
 pnorm(60, 55, 5/sqrt(10), lower.tail=FALSE )
-```
+#> [1] 0.0007827011
 
-```
-## [1] 0.0007827011
-```
-
-```r
 # OR, convert to a zscore first
 zscore <- (60-55)/(5/sqrt(10))
 pnorm(zscore,0,1, lower.tail = FALSE)
-```
+#> [1] 0.0007827011
 
-```
-## [1] 0.0007827011
-```
-
-```r
 # this is similar to what the simulation showed:
 length(sample_means[sample_means > 60])/10000
-```
-
-```
-## [1] 0.0012
+#> [1] 3e-04
 ```
 
 
@@ -466,21 +399,15 @@ When we assume that sample means from group A and B come from the exact same dis
 
 ```r
 length(mean_differences[mean_differences > 3])/10000
+#> [1] 0.0872
 ```
 
-```
-## [1] 0.0899
-```
-
-According to a simulation, scores of 3% or greater occur with p <= 0.0899. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
+According to a simulation, scores of 3% or greater occur with p <= 0.0872. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
 
 
 ```r
 length(mean_differences[mean_differences > 3 | mean_differences < -3])/10000
-```
-
-```
-## [1] 0.1801
+#> [1] 0.1774
 ```
 
 These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.
@@ -499,10 +426,7 @@ We could estimate this value from our simulation by calculating the standard dev
 
 ```r
 sd(mean_differences)
-```
-
-```
-## [1] 2.24557
+#> [1] 2.227231
 ```
 
 It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:
@@ -514,10 +438,7 @@ This formula is required because the distribution of mean differences is a subtr
 
 ```r
 (sqrt(2)*5)/sqrt(10)
-```
-
-```
-## [1] 2.236068
+#> [1] 2.236068
 ```
 
 ### doing the z-test
@@ -529,10 +450,7 @@ So, is doing better than 3%, or showing a group difference of at least 3% someth
 #one-tailed test
 zscore <- (58-55)/((sqrt(2)*5)/sqrt(10))
 pnorm(zscore,0,1, lower.tail = FALSE)
-```
-
-```
-## [1] 0.08985625
+#> [1] 0.08985625
 ```
 
 As you can see, the p-value we found by the z-test is basically the same as the one we found with the simulation approach. 

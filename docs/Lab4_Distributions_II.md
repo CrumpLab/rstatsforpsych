@@ -1,6 +1,6 @@
+
+
 # Distributions II
-
-
 
 "9/17/2020 | Last Compiled: 2020-12-07"
 
@@ -34,12 +34,9 @@ Each number should come up about 10000/6 = 1666.667 times.
 ```r
 rolls <- sample(1:6,1000, replace=TRUE)
 table(rolls)
-```
-
-```
-## rolls
-##   1   2   3   4   5   6 
-## 169 172 156 163 181 159
+#> rolls
+#>   1   2   3   4   5   6 
+#> 173 172 172 164 171 148
 ```
 
 2. With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.
@@ -50,12 +47,9 @@ one <- sample(1:6,1000, replace=TRUE)
 two <- sample(1:6,1000, replace=TRUE)
 combined <- one+two
 table(combined)/1000
-```
-
-```
-## combined
-##     2     3     4     5     6     7     8     9    10    11    12 
-## 0.023 0.050 0.093 0.114 0.136 0.171 0.123 0.101 0.094 0.063 0.032
+#> combined
+#>     2     3     4     5     6     7     8     9    10    11    12 
+#> 0.026 0.051 0.081 0.101 0.130 0.166 0.156 0.124 0.087 0.051 0.027
 ```
 Let's compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:
 
@@ -65,31 +59,25 @@ first <- rep(x= 1:6, each = 6)
 second <- rep(x= 1:6, times = 6)
 sum_rolls <- first+second
 table(sum_rolls)/length(sum_rolls)
-```
+#> sum_rolls
+#>          2          3          4          5          6          7          8 
+#> 0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667 0.13888889 
+#>          9         10         11         12 
+#> 0.11111111 0.08333333 0.05555556 0.02777778
 
-```
-## sum_rolls
-##          2          3          4          5          6          7          8 
-## 0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667 0.13888889 
-##          9         10         11         12 
-## 0.11111111 0.08333333 0.05555556 0.02777778
-```
-
-```r
 ## compare
 sim_result <- table(combined)/1000
 true_probs <- table(sum_rolls)/length(sum_rolls)
 
 ## Difference
 true_probs-sim_result
-```
-
-```
-## sum_rolls
-##            2            3            4            5            6            7 
-##  0.004777778  0.005555556 -0.009666667 -0.002888889  0.002888889 -0.004333333 
-##            8            9           10           11           12 
-##  0.015888889  0.010111111 -0.010666667 -0.007444444 -0.004222222
+#> sum_rolls
+#>             2             3             4             5             6 
+#>  0.0017777778  0.0045555556  0.0023333333  0.0101111111  0.0088888889 
+#>             7             8             9            10            11 
+#>  0.0006666667 -0.0171111111 -0.0128888889 -0.0036666667  0.0045555556 
+#>            12 
+#>  0.0007777778
 ```
 ### Event generators
 
@@ -100,11 +88,8 @@ Remember that you can use `sample()` to generate events with specific probabilit
 
 ```r
 sample(c("A","B"), 20, replace = TRUE, prob = c(.8, .2))
-```
-
-```
-##  [1] "B" "A" "A" "A" "A" "A" "A" "B" "A" "B" "B" "A" "A" "B" "A" "A" "A" "A" "A"
-## [20] "A"
+#>  [1] "A" "A" "A" "B" "A" "A" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "A"
+#> [20] "A"
 ```
 
 2. Generate letters from the alphabet such that each letter could occur with equal probability. Generate 50 letters:
@@ -114,32 +99,21 @@ Note, conveniently, R contains a variable called `letters`, that is a vector of 
 
 ```r
 letters
-```
+#>  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+#> [20] "t" "u" "v" "w" "x" "y" "z"
 
-```
-##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-## [20] "t" "u" "v" "w" "x" "y" "z"
-```
-
-```r
 LETTERS
-```
-
-```
-##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
-## [20] "T" "U" "V" "W" "X" "Y" "Z"
+#>  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+#> [20] "T" "U" "V" "W" "X" "Y" "Z"
 ```
 
 
 
 ```r
 sample(letters,50,replace=TRUE)
-```
-
-```
-##  [1] "b" "g" "x" "o" "b" "u" "t" "w" "n" "b" "c" "f" "c" "s" "g" "e" "o" "k" "m"
-## [20] "n" "e" "g" "a" "m" "j" "m" "h" "h" "i" "k" "p" "v" "l" "o" "o" "u" "d" "z"
-## [39] "b" "p" "b" "g" "u" "n" "y" "j" "u" "z" "x" "y"
+#>  [1] "b" "j" "e" "e" "p" "b" "j" "o" "c" "c" "r" "o" "e" "n" "o" "j" "s" "i" "g"
+#> [20] "w" "e" "g" "i" "h" "r" "q" "q" "p" "c" "p" "h" "z" "l" "k" "k" "g" "i" "g"
+#> [39] "x" "u" "b" "u" "b" "s" "e" "y" "q" "f" "d" "y"
 ```
 
 3. Create a random string generator that creates strings of random letters. For example a string of 5 random letters could look like "fjwud". Generate 50 random letter strings, each with 5 random letters in it.
@@ -153,13 +127,8 @@ my_strings <- matrix(my_letters, ncol=5)
 
 # each row is a word, need to collapse the column to create a string
 paste(my_strings[1,], collapse="")
-```
+#> [1] "jpnvh"
 
-```
-## [1] "iochm"
-```
-
-```r
 # loop to collapse all of the rows into words
 random_strings <-c()
 for(i in 1:dim(my_strings)[1]){
@@ -167,15 +136,12 @@ for(i in 1:dim(my_strings)[1]){
 }
 
 random_strings
-```
-
-```
-##  [1] "iochm" "uvaii" "lavuh" "sqjvz" "ntdaa" "qppup" "vjwnv" "novma" "aixeq"
-## [10] "eobqa" "imbow" "vsdru" "wiadp" "sgott" "dhlan" "pnwvs" "kxjgc" "quglg"
-## [19] "mcltz" "wlyai" "vqnzd" "izdsg" "xxrmt" "gdduz" "beefy" "dyacv" "xvkzv"
-## [28] "ifuhw" "sfmfu" "lbpph" "rkxng" "otvgc" "bwhpg" "nhqna" "lzxyi" "qijut"
-## [37] "xmlib" "gpqom" "uflsq" "nehjx" "syajx" "doesu" "rgvqu" "dibqu" "sukvg"
-## [46] "kkrtp" "ztuip" "krczt" "vpplu" "rkzck"
+#>  [1] "jpnvh" "loosy" "dmrkb" "mokpe" "srlow" "xhotk" "ufyec" "pgugx" "trlhu"
+#> [10] "iddob" "irgdc" "wocsx" "ytyao" "trheb" "xzwne" "anusm" "wdjpe" "okubt"
+#> [19] "sxuuj" "ttmgu" "cmxlx" "lkims" "fvzxn" "jvmpb" "nssks" "bmrve" "jetgn"
+#> [28] "cnmvb" "djqyc" "bbbxq" "eisds" "cxxji" "mphxs" "mgupa" "hnssx" "thgkk"
+#> [37] "ssalo" "dwwah" "zfkpn" "mcrqs" "styop" "mgnxk" "oyhwc" "wcika" "wehme"
+#> [46] "wbxnu" "hyypj" "rkqic" "uxjye" "dtjaz"
 ```
 
 ## Concept II: Experiencing probability
@@ -197,25 +163,17 @@ sim_results <- replicate(10000,
                          )
 number_of_heads <- colSums(sim_results)
 table(number_of_heads)/10000
-```
+#> number_of_heads
+#>      0      1      2      3      4      5      6      7      8      9     10 
+#> 0.0009 0.0095 0.0429 0.1231 0.2068 0.2411 0.2061 0.1138 0.0437 0.0103 0.0018
 
-```
-## number_of_heads
-##      0      1      2      3      4      5      6      7      8      9     10 
-## 0.0005 0.0102 0.0462 0.1144 0.1969 0.2547 0.2057 0.1174 0.0436 0.0095 0.0009
-```
-
-```r
 # alternative solution using rbinom
 
 number_of_heads <- rbinom(10000,10,prob=.5)
 table(number_of_heads)/10000
-```
-
-```
-## number_of_heads
-##      0      1      2      3      4      5      6      7      8      9     10 
-## 0.0015 0.0099 0.0429 0.1122 0.1999 0.2463 0.2062 0.1260 0.0433 0.0113 0.0005
+#> number_of_heads
+#>      0      1      2      3      4      5      6      7      8      9     10 
+#> 0.0011 0.0085 0.0404 0.1170 0.2083 0.2433 0.2067 0.1201 0.0410 0.0126 0.0010
 ```
 2. If you flipped a coin 10000 times, you would find many different kinds of short-run sequences. For example, HH, HT, TH, and TT. What is the probability of each of these kinds of sequences?
 
@@ -231,15 +189,10 @@ for(i in 2:length(flips)){
 }
 
 table(sequence)/sum(table(sequence))
-```
+#> sequence
+#>        HH        HT        TH        TT 
+#> 0.2489249 0.2497250 0.2498250 0.2515252
 
-```
-## sequence
-##        HH        HT        TH        TT 
-## 0.2588259 0.2513251 0.2513251 0.2385239
-```
-
-```r
 ## 3 element sequences
 
 flips <- sample(c("H","T"), 10000, replace=TRUE)
@@ -255,12 +208,9 @@ for(i in 3:length(flips)){
 }
 
 table(sequence)/sum(table(sequence))
-```
-
-```
-## sequence
-##       HHH       HHT       HTH       HTT       THH       THT       TTH       TTT 
-## 0.1276255 0.1238248 0.1242248 0.1247249 0.1238248 0.1250250 0.1246249 0.1261252
+#> sequence
+#>       HHH       HHT       HTH       HTT       THH       THT       TTH       TTT 
+#> 0.1214243 0.1269254 0.1286257 0.1241248 0.1270254 0.1258252 0.1241248 0.1219244
 ```
 
 ## Concept III: Subjective Probability
@@ -303,6 +253,7 @@ When would you be confident you had the correct belief about the probability of 
 
 
 ```r
+
 simulated_sequence <- c(rbinom(100,1,.5),
                         rbinom(100,1,.6))
 
@@ -352,14 +303,11 @@ Your assignment instructions are the following:
 my_paragraph <- "This is a paragraph, with some stuff in it. This is another sentence in the paragraph"
 the_letters <- unlist(strsplit(my_paragraph, split=""))
 the_letters
-```
-
-```
-##  [1] "T" "h" "i" "s" " " "i" "s" " " "a" " " "p" "a" "r" "a" "g" "r" "a" "p" "h"
-## [20] "," " " "w" "i" "t" "h" " " "s" "o" "m" "e" " " "s" "t" "u" "f" "f" " " "i"
-## [39] "n" " " "i" "t" "." " " "T" "h" "i" "s" " " "i" "s" " " "a" "n" "o" "t" "h"
-## [58] "e" "r" " " "s" "e" "n" "t" "e" "n" "c" "e" " " "i" "n" " " "t" "h" "e" " "
-## [77] "p" "a" "r" "a" "g" "r" "a" "p" "h"
+#>  [1] "T" "h" "i" "s" " " "i" "s" " " "a" " " "p" "a" "r" "a" "g" "r" "a" "p" "h"
+#> [20] "," " " "w" "i" "t" "h" " " "s" "o" "m" "e" " " "s" "t" "u" "f" "f" " " "i"
+#> [39] "n" " " "i" "t" "." " " "T" "h" "i" "s" " " "i" "s" " " "a" "n" "o" "t" "h"
+#> [58] "e" "r" " " "s" "e" "n" "t" "e" "n" "c" "e" " " "i" "n" " " "t" "h" "e" " "
+#> [77] "p" "a" "r" "a" "g" "r" "a" "p" "h"
 ```
 
 

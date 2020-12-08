@@ -1,3 +1,7 @@
+```{r, include = FALSE}
+source("global_stuff.R")
+```
+
 # Practice problems {.unnumbered}
 
 "8/27/2020 | Last Compiled: `r Sys.Date()`"

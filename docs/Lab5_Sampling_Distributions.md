@@ -1,6 +1,6 @@
+
+
 # Sampling Distributions
-
-
 
 "10/2/2020 | Last Compiled: 2020-12-07"
 
@@ -50,11 +50,8 @@ We use `rnorm()` to sample numbers from a normal distribution:
 
 ```r
 rnorm(n=10, mean = 0, sd = 1)
-```
-
-```
-##  [1]  0.72827882 -0.92200292 -0.06506031 -0.56874871  1.00305053 -0.41048896
-##  [7]  0.31679233 -0.82457118 -0.82487830  1.07872301
+#>  [1] -2.9140591  0.3947141  0.3414945  0.7858585  1.1519034  1.1862566
+#>  [7] -1.5463673  0.2515280 -1.0092558  1.7839389
 ```
 
 We can 'see' the distribution by sampling a large number of observations, and plotting them in a histogram:
@@ -81,34 +78,19 @@ How often did we sample a value larger than 2.5? What is the probability that ch
 
 ```r
 some_data$observations[some_data$observations > 2.5]
-```
-
-```
-##  [1] 2.619051 3.173680 3.418734 2.706189 2.987490 2.556825 2.543277 3.030613
-##  [9] 2.784710 3.589647 2.523578 2.884610 2.737284 2.910478 2.699579 2.592171
-## [17] 2.887627 2.762073 2.657049 2.523820 2.667680 2.558692 2.915544 2.585908
-## [25] 2.628490 3.054475 2.500383 2.998071 2.518553 2.760501 2.588048 2.823324
-## [33] 2.783715 3.388079 2.942723 2.619064 2.751581 2.521358 2.901560 2.810077
-## [41] 3.219068 3.226081 3.107316 2.749460 2.521745 2.626917 3.043616 2.760957
-## [49] 3.130286 2.616313 3.245079 2.521663 3.254855 3.277282 3.547010 3.268435
-## [57] 2.842228 2.677835 2.649183 2.807950 2.752898 3.085298 3.068534 3.057687
-## [65] 2.844420 2.786219 3.236080 2.604231
-```
-
-```r
+#>  [1] 2.750990 2.736575 2.657008 2.551106 3.313766 2.653190 2.608528 2.611656
+#>  [9] 2.661387 3.061398 2.525422 2.514616 2.725104 2.650962 2.716407 2.982892
+#> [17] 2.870402 2.836020 2.614699 3.140700 2.785550 2.690057 2.580511 2.762561
+#> [25] 2.547494 2.576790 3.712095 3.013260 3.287446 2.961388 2.727736 2.681205
+#> [33] 2.539632 2.860896 2.543354 2.532548 2.660360 2.500030 2.535074 2.593819
+#> [41] 2.501541 2.918530 2.794644 3.482080 2.545278 2.762676 2.502802 2.530624
+#> [49] 2.674710 2.764437 3.083836 3.232420 2.587158 2.538073 2.699309 2.561491
+#> [57] 3.049182 2.839057 2.643097 3.406934 2.511632 2.718322 2.567967 2.608653
+#> [65] 3.892057 3.052204 2.998525 2.651921 2.507884
 length(some_data$observations[some_data$observations > 2.5])
-```
-
-```
-## [1] 68
-```
-
-```r
+#> [1] 69
 length(some_data$observations[some_data$observations > 2.5])/10000
-```
-
-```
-## [1] 0.0068
+#> [1] 0.0069
 ```
 2. We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with `d`, `p`, `q`, and `r`, so there are `dnorm`, `pnorm`, `qnorm`, and `rnorm` functions for the normal distribution (and other distributions).
 
@@ -120,11 +102,8 @@ length(some_data$observations[some_data$observations > 2.5])/10000
 
 ```r
 rnorm(n=10, mean = 0, sd = 1)
-```
-
-```
-##  [1] -0.50041787  0.06936582  1.06386499  0.50565899  1.79366518  0.50117600
-##  [7]  0.24892247 -0.26883304 -0.36899345 -1.91838783
+#>  [1] -1.5116145  0.8824265 -0.7576481 -1.1461829 -0.4271150  0.9125245
+#>  [7] -0.4460432  0.2139275 -0.6578751  0.5829467
 ```
 
 #### dnorm()
@@ -157,6 +136,7 @@ knitr::kable(some_data)
 | 0.0001338|  4|
 
 ```r
+
 ggplot(some_data, aes(x=x, y=density)) +
   geom_point()
 ```
@@ -202,10 +182,7 @@ For example, what is the area under the curve starting from the left (e.g., nega
 
 ```r
 pnorm(2.5, mean=0, sd = 1)
-```
-
-```
-## [1] 0.9937903
+#> [1] 0.9937903
 ```
 
 This is the "complement" of our question. That is 99.37903% of all values drawn from the distribution are expected to be **less than 2.5**. We have just determined the probability of getting a number smaller than 2.5, otherwise known as the lower tail.
@@ -232,18 +209,10 @@ To calculate the the probability of getting a number larger than a particular va
 
 ```r
 1 - pnorm(2.5, mean=0, sd = 1)
-```
+#> [1] 0.006209665
 
-```
-## [1] 0.006209665
-```
-
-```r
 pnorm(2.5, mean=0, sd = 1, lower.tail=FALSE)
-```
-
-```
-## [1] 0.006209665
+#> [1] 0.006209665
 ```
 
 #### qnorm
@@ -257,10 +226,7 @@ What number on the x-axis is the location where 25% of the values are smaller th
 
 ```r
 qnorm(.25, mean= 0, sd =1)
-```
-
-```
-## [1] -0.6744898
+#> [1] -0.6744898
 ```
 
 What number on the x-axis is the location where 50% of the values are smaller than that value?
@@ -268,10 +234,7 @@ What number on the x-axis is the location where 50% of the values are smaller th
 
 ```r
 qnorm(.5, mean= 0, sd =1)
-```
-
-```
-## [1] 0
+#> [1] 0
 ```
 
 What is the number where 95% of the values are larger than that number?
@@ -279,18 +242,10 @@ What is the number where 95% of the values are larger than that number?
 
 ```r
 qnorm(.95, mean= 0, sd =1, lower.tail = FALSE)
-```
+#> [1] -1.644854
 
-```
-## [1] -1.644854
-```
-
-```r
 qnorm(.05, mean = 0 , sd =1, lower.tail = FALSE)
-```
-
-```
-## [1] 1.644854
+#> [1] 1.644854
 ```
 
 ### Summary
@@ -318,10 +273,7 @@ We already know what the sample mean is and how to calculate it in R. Here is an
 
 ```r
 mean(rnorm(10, mean=0, sd =1))
-```
-
-```
-## [1] 0.04183193
+#> [1] -0.3353103
 ```
 
 ### Multiple sample means
@@ -333,42 +285,15 @@ Here is an example of creating 5 sample means from 5 sets of 10 observations.
 
 ```r
 mean(rnorm(10, mean=0, sd =1))
-```
-
-```
-## [1] 0.2030156
-```
-
-```r
+#> [1] -0.0798736
 mean(rnorm(10, mean=0, sd =1))
-```
-
-```
-## [1] -0.5608278
-```
-
-```r
+#> [1] -0.1877272
 mean(rnorm(10, mean=0, sd =1))
-```
-
-```
-## [1] 0.5978975
-```
-
-```r
+#> [1] -0.6130524
 mean(rnorm(10, mean=0, sd =1))
-```
-
-```
-## [1] -0.384792
-```
-
-```r
+#> [1] 0.5037525
 mean(rnorm(10, mean=0, sd =1))
-```
-
-```
-## [1] 0.04033531
+#> [1] -0.08347792
 ```
 
 Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.
@@ -412,10 +337,7 @@ The standard deviation of the sample means would give us an idea of how much var
 ```r
 sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 sd(sample_means)
-```
-
-```
-## [1] 0.3132954
+#> [1] 0.314824
 ```
 
 The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.
@@ -433,20 +355,12 @@ We can also compare the SEM from the formula to the one we obtained by simulatio
 # simulation SEM
 sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 sd(sample_means)
-```
+#> [1] 0.3161247
 
-```
-## [1] 0.3167199
-```
-
-```r
 # analytic SEM
 
 1/sqrt(10)
-```
-
-```
-## [1] 0.3162278
+#> [1] 0.3162278
 ```
 
 

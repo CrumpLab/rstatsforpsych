@@ -59,6 +59,7 @@
 <li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
 <li><a class="active" href="practice-problems.html">Practice problems</a></li>
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
 <li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
@@ -137,13 +138,13 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># four divided by two gives no remainder</span>
 <span class="co"># the mod function shows 0</span>
-<span class="fl">4</span><span class="op">%%</span><span class="fl">2</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 5 divided by two gives a remainder</span>
+<span class="fl">4</span><span class="op">%%</span><span class="fl">2</span>
+<span class="co">#&gt; [1] 0</span>
+
+<span class="co"># 5 divided by two gives a remainder</span>
 <span class="co"># the mod function shows 1</span>
-<span class="fl">5</span><span class="op">%%</span><span class="fl">2</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<span class="fl">5</span><span class="op">%%</span><span class="fl">2</span>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
 <li>List all of the prime numbers from 1 to 1000.</li>
 </ol>
@@ -171,17 +172,17 @@
 </li>
 <li>be creative and see if you can find multiple solutions. Here is an example for two ways to compute the mean.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># using sum and length</span>
 <span class="va">mean_A</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">some_numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
-<span class="fu">mean_A</span><span class="op">(</span><span class="va">some_numbers</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># no intrinsics</span>
+<span class="fu">mean_A</span><span class="op">(</span><span class="va">some_numbers</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3</span>
+
+<span class="co"># no intrinsics</span>
 <span class="va">mean_B</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">counter</span> <span class="op">&lt;-</span> <span class="fl">0</span>
   <span class="va">total_sum</span> <span class="op">&lt;-</span><span class="fl">0</span>
@@ -192,35 +193,33 @@
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">total_sum</span><span class="op">/</span><span class="va">counter</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">mean_B</span><span class="op">(</span><span class="va">some_numbers</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<span class="fu">mean_B</span><span class="op">(</span><span class="va">some_numbers</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3</span></code></pre></div>
 <ol start="11" style="list-style-type: decimal">
 <li>Count the number of characters in a string variable</li>
 </ol>
 <ul>
 <li>use <code><a href="https://rdrr.io/r/base/strsplit.html">strsplit()</a></code> to split a character vector</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="st">"adskfjhkadsjfh"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span></code></pre></div>
-<pre><code>## [[1]]
-##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># note that strsplit returns its result in a list</span>
+<span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt;  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</span>
+
+<span class="co"># note that strsplit returns its result in a list</span>
 <span class="va">b</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span>
-<span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># access all elements in list 1</span></code></pre></div>
-<pre><code>##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># access first element of list 1</span></code></pre></div>
-<pre><code>## [1] "a"</code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># lists can be unlisted</span>
+<span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># access all elements in list 1</span>
+<span class="co">#&gt;  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</span>
+<span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co"># access first element of list 1</span>
+<span class="co">#&gt; [1] "a"</span>
+
+<span class="co"># lists can be unlisted</span>
 <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span>
-<span class="va">d</span>  <span class="co"># all elements in character vector</span></code></pre></div>
-<pre><code>##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co">#first element</span></code></pre></div>
-<pre><code>## [1] "a"</code></pre>
+<span class="va">d</span>  <span class="co"># all elements in character vector</span>
+<span class="co">#&gt;  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"</span>
+<span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="co">#first element</span>
+<span class="co">#&gt; [1] "a"</span></code></pre></div>
 <ol start="12" style="list-style-type: decimal">
 <li>Count the number of words in a string variable</li>
 </ol>
@@ -228,11 +227,11 @@
 <li>use <code>strsplit</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="st">"this is a sentence"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">" "</span><span class="op">)</span> <span class="co"># use a space as the splitting character</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] "this"     "is"       "a"        "sentence"</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">" "</span><span class="op">)</span> <span class="co"># use a space as the splitting character</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] "this"     "is"       "a"        "sentence"</span></code></pre></div>
 <ol start="13" style="list-style-type: decimal">
 <li>Count the number of sentences in a string variable</li>
 </ol>
@@ -246,12 +245,12 @@
 <li>
 <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> function can help count individual occurences</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
-<pre><code>## a
-## 1 2 3 4 5 6 7 
-## 1 3 6 4 2 1 1</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
+<span class="co">#&gt; a</span>
+<span class="co">#&gt; 1 2 3 4 5 6 7 </span>
+<span class="co">#&gt; 1 3 6 4 2 1 1</span></code></pre></div>
 <ul>
 <li>How would you do this without the table function?</li>
 </ul>
@@ -261,31 +260,31 @@
 <ul>
 <li>For example given the word hello, can you run a test to see if it is contained in the test sentence?</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_word</span> <span class="op">&lt;-</span> <span class="st">"hello"</span>
 <span class="va">test_sentence</span> <span class="op">&lt;-</span><span class="st">"is the word hello in this sentence"</span></code></pre></div>
 <ul>
 <li>consider using <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code>
 </li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">5</span>
 <span class="va">d</span> <span class="op">&lt;-</span> <span class="fl">8</span>
 
 <span class="co"># question is b in a?</span>
-<span class="va">b</span><span class="op">%in%</span><span class="va">a</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># is d in a?</span>
-<span class="va">d</span><span class="op">%in%</span><span class="va">a</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<span class="va">b</span><span class="op">%in%</span><span class="va">a</span>
+<span class="co">#&gt; [1] TRUE</span>
+
+<span class="co"># is d in a?</span>
+<span class="va">d</span><span class="op">%in%</span><span class="va">a</span>
+<span class="co">#&gt; [1] FALSE</span></code></pre></div>
 <ol start="16" style="list-style-type: decimal">
 <li>Put the current computer time in milliseconds into a variable</li>
 </ol>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">1000</span>, digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1607349089384.54</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">1000</span>, digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1607353020518.23</span></code></pre></div>
 <ol start="17" style="list-style-type: decimal">
 <li><p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p></li>
 <li><p>Read a .txt file or .csv file into a variable</p></li>
@@ -308,7 +307,7 @@
 <ul>
 <li>here’s how you make a matrix full of 0s</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, ncol<span class="op">=</span><span class="fl">20</span>,nrow<span class="op">=</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
 <ol start="21" style="list-style-type: decimal">
 <li>Output any matrix to a txt file using commas or tabs to separate column values, and new lines to separate row values</li>
@@ -330,22 +329,21 @@
 <ul>
 <li>Here a few bits that might be useful</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># a number mod three will return 0 if it divides evenly</span>
-<span class="fl">6</span><span class="op">%%</span><span class="fl">3</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># a number mod five will return 0 if it divides evenly</span>
-<span class="fl">10</span><span class="op">%%</span><span class="fl">5</span></code></pre></div>
-<pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># examples of replacing elements of a vector</span>
+<span class="fl">6</span><span class="op">%%</span><span class="fl">3</span>
+<span class="co">#&gt; [1] 0</span>
+<span class="co"># a number mod five will return 0 if it divides evenly</span>
+<span class="fl">10</span><span class="op">%%</span><span class="fl">5</span>
+<span class="co">#&gt; [1] 0</span>
+
+<span class="co"># examples of replacing elements of a vector</span>
 <span class="va">a</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="va">a</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">&lt;-</span><span class="st">"Fizz"</span>
-<span class="va">a</span></code></pre></div>
-<pre><code>## [1] "1"    "2"    "Fizz" "4"    "5"</code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># notice that a starts as a numeric vector</span>
+<span class="va">a</span>
+<span class="co">#&gt; [1] "1"    "2"    "Fizz" "4"    "5"</span>
+
+<span class="co"># notice that a starts as a numeric vector</span>
 <span class="co"># but changes to an all character vector after "Fizz" is added</span></code></pre></div>
 </div>
 <div id="frequency-counts" class="section level3" number="0.10.2">
@@ -356,16 +354,16 @@
 <ul>
 <li>here’s the easy way to do this</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">&lt;-</span><span class="st">"some text that has some letters"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##   a e h l m o r s t x 
-## 5 2 5 2 1 2 2 1 4 6 1</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">a</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   a e h l m o r s t x </span>
+<span class="co">#&gt; 5 2 5 2 1 2 2 1 4 6 1</span></code></pre></div>
 <ul>
 <li>Can you do this without using table? Attempt this problem using <code>data.frame</code>. Here are some more tips</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># data.frame is data format that produces named columns of data</span>
 
 <span class="co"># creates two vectors</span>
@@ -374,36 +372,34 @@
 
 <span class="co"># make a data.frame from two vectors</span>
 <span class="va">new_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">numbers</span>,<span class="va">letters</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">new_df</span><span class="op">)</span></code></pre></div>
-<pre><code>##   numbers letters
-## 1       1       a
-## 2       2       b
-## 3       3       c
-## 4       4       d
-## 5       5       e</code></pre>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># access individual columns of dataframe</span>
-<span class="va">new_df</span><span class="op">$</span><span class="va">numbers</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_df</span><span class="op">$</span><span class="va">letters</span></code></pre></div>
-<pre><code>## [1] "a" "b" "c" "d" "e"</code></pre>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># get names of data.frame</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new_df</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "numbers" "letters"</code></pre>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># break the problem into steps</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">new_df</span><span class="op">)</span>
+<span class="co">#&gt;   numbers letters</span>
+<span class="co">#&gt; 1       1       a</span>
+<span class="co">#&gt; 2       2       b</span>
+<span class="co">#&gt; 3       3       c</span>
+<span class="co">#&gt; 4       4       d</span>
+<span class="co">#&gt; 5       5       e</span>
+
+<span class="co"># access individual columns of dataframe</span>
+<span class="va">new_df</span><span class="op">$</span><span class="va">numbers</span>
+<span class="co">#&gt; [1] 1 2 3 4 5</span>
+<span class="va">new_df</span><span class="op">$</span><span class="va">letters</span>
+<span class="co">#&gt; [1] "a" "b" "c" "d" "e"</span>
+
+<span class="co"># get names of data.frame</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new_df</span><span class="op">)</span>
+<span class="co">#&gt; [1] "numbers" "letters"</span>
+
+<span class="co"># break the problem into steps</span>
 <span class="co"># first part of problem is to identify all unique character in the string</span>
 <span class="va">a</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">b</span><span class="op">&lt;-</span><span class="st">"a string with some letters"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">b</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "a" " " "s" "t" "r" "i" "n" "g" "w" "h" "o" "m" "e" "l"</code></pre>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># second part is to go through each of the unique letters in the list of unique letters, and for each count the number of times they appear in the original text</span>
+<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1 2 3 4 5</span>
+<span class="va">b</span><span class="op">&lt;-</span><span class="st">"a string with some letters"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">b</span>,split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "a" " " "s" "t" "r" "i" "n" "g" "w" "h" "o" "m" "e" "l"</span>
+
+<span class="co"># second part is to go through each of the unique letters in the list of unique letters, and for each count the number of times they appear in the original text</span>
 <span class="co"># store the results in a data.frame with two columns, one with the letter names, and another with the counts</span></code></pre></div>
 </div>
 <div id="test-the-random-number-generator" class="section level3" number="0.10.3">
@@ -411,7 +407,7 @@
 <span class="header-section-number">0.10.3</span> Test the Random Number Generator<a class="anchor" aria-label="anchor" href="#test-the-random-number-generator"><i class="fas fa-link"></i></a>
 </h3>
 <p>Test the random number generator for a flat distribution. Generate a few million random numbers between 0 and 100. Count the number of 0s, 1s, 2s, 3s, etc. all the way up to 100. Look at the counts for each of the numbers and determine if they are relatively equal. For example, you could plot the counts in Excel to make a histogram. If all of the bars are close to being flat, then each number had an equal chance of being selected, and the random number generator is working without bias.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
 </div>
@@ -420,27 +416,27 @@
 <span class="header-section-number">0.10.4</span> Create a multiplication table<a class="anchor" aria-label="anchor" href="#create-a-multiplication-table"><i class="fas fa-link"></i></a>
 </h3>
 <p>Generate a matrix for a multiplication table. For example, the labels for the columns could be the numbers 1 to 10, and the labels for the rows could be the numbers 1 to 10. The contents of each of the cells in the matrix should be correct answer for multiplying the column value by the row value.</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># you can multiply all numbers in a vector in one go</span>
 <span class="va">a</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span><span class="op">)</span>
-<span class="va">a</span><span class="op">*</span><span class="fl">2</span></code></pre></div>
-<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># you can nest loops</span>
+<span class="va">a</span><span class="op">*</span><span class="fl">2</span>
+<span class="co">#&gt;  [1]  2  4  6  8 10 12 14 16 18 20</span>
+
+<span class="co"># you can nest loops</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">{</span>
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">*</span><span class="va">j</span><span class="op">)</span>
   <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] 2
-## [1] 3
-## [1] 2
-## [1] 4
-## [1] 6
-## [1] 3
-## [1] 6
-## [1] 9</code></pre>
+<span class="op">}</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="co">#&gt; [1] 6</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; [1] 6</span>
+<span class="co">#&gt; [1] 9</span></code></pre></div>
 </div>
 <div id="encrypt-and-decrypt-the-alphabet" class="section level3" number="0.10.5">
 <h3>
@@ -448,7 +444,7 @@
 </h3>
 <p>Turn any normal english text into an encrypted version of the text, and be able to turn any decrypted text back into normal english text. A simple encryption would be to scramble the alphabet such that each letter corresponds to a new randomly chosen (but unique) letter.
 - The following code shows an example using numbers</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">original_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">2</span><span class="op">)</span>
 <span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">original_sequence</span><span class="op">)</span>
 <span class="va">scrambled_numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span>
@@ -464,22 +460,21 @@
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">encrypted_sequence</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">encrypt_numbers</span><span class="op">(</span><span class="va">original_sequence</span>,<span class="va">encryption_key</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] 1 2 3 5 4 2 2 3 2 5 4 2</code></pre>
+<span class="fu">encrypt_numbers</span><span class="op">(</span><span class="va">original_sequence</span>,<span class="va">encryption_key</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 1 3 4 2 5 3 3 4 3 2 5 3</span></code></pre></div>
 <ul>
 <li>here is a different approach making use of the <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> function</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">original_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">2</span><span class="op">)</span>
 <span class="va">original_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">original_sequence</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">original_sequence</span><span class="op">)</span> <span class="co"># show names of levels in factor</span></code></pre></div>
-<pre><code>## [1] "1" "2" "3" "4" "5"</code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_sequence</span> <span class="op">&lt;-</span> <span class="va">original_sequence</span> <span class="co"># copy</span>
+<span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">original_sequence</span><span class="op">)</span> <span class="co"># show names of levels in factor</span>
+<span class="co">#&gt; [1] "1" "2" "3" "4" "5"</span>
+<span class="va">new_sequence</span> <span class="op">&lt;-</span> <span class="va">original_sequence</span> <span class="co"># copy</span>
 <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">new_sequence</span><span class="op">)</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span> <span class="co"># rename the levels</span>
-<span class="va">new_sequence</span> <span class="co"># all elements are now changed</span></code></pre></div>
-<pre><code>##  [1] 5 4 3 2 1 4 4 3 4 2 1 4
-## Levels: 5 4 3 2 1</code></pre>
+<span class="va">new_sequence</span> <span class="co"># all elements are now changed</span>
+<span class="co">#&gt;  [1] 5 4 3 2 1 4 4 3 4 2 1 4</span>
+<span class="co">#&gt; Levels: 5 4 3 2 1</span></code></pre></div>
 </div>
 <div id="snakes-and-ladders" class="section level3" number="0.10.6">
 <h3>
@@ -487,29 +482,28 @@
 </h3>
 <div class="inline-figure"><img src="imgs/SnakesLadders.png" width="130"></div>
 <p>Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rolling a dice with sample</span>
-<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt; [1] 6</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
 <p>-tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># try one simulation</span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># try one simulation</span>
 <span class="va">total_sum</span><span class="op">&lt;-</span><span class="fl">0</span>
 <span class="va">number_of_rolls</span><span class="op">&lt;-</span><span class="fl">0</span>
 <span class="kw">while</span><span class="op">(</span><span class="va">total_sum</span> <span class="op">&lt;</span> <span class="fl">25</span><span class="op">)</span><span class="op">{</span>
   <span class="va">number_of_rolls</span> <span class="op">&lt;-</span> <span class="va">number_of_rolls</span><span class="op">+</span><span class="fl">1</span>
   <span class="va">total_sum</span> <span class="op">&lt;-</span><span class="va">total_sum</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="va">number_of_rolls</span></code></pre></div>
-<pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># record the results from multiple simulations</span>
+<span class="va">number_of_rolls</span>
+<span class="co">#&gt; [1] 6</span>
+
+<span class="co"># record the results from multiple simulations</span>
 
 <span class="va">save_rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">sims</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">{</span>
@@ -521,8 +515,8 @@
   <span class="op">}</span>
   <span class="va">save_rolls</span><span class="op">[</span><span class="va">sims</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">number_of_rolls</span>
 <span class="op">}</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">save_rolls</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 7.87</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">save_rolls</span><span class="op">)</span>
+<span class="co">#&gt; [1] 7.41</span></code></pre></div>
 <ul>
 <li>how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.</li>
 </ul>

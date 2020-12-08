@@ -1,8 +1,12 @@
+
+
 # Simulation and Power Analysis {.unnumbered}
 
 "11/8/2020 | Last Compiled: 2020-12-07"
 
+## Reading
 
+@crumpAnsweringQuestionsData2018, Chapter 12 on [Effect size and power](https://crumplab.github.io/statistics/thinking-about-answering-questions-with-data.html)
 
 ## Overview
 

@@ -1,6 +1,6 @@
+
+
 # Descriptives
-
-
 
 "9/2/2020 | Last Compiled: 2020-12-07"
 
@@ -59,6 +59,7 @@ knitr::kable(means_df)
 |sunflower | 328.9167|
 
 ```r
+
 # plot the means
 ggplot(means_df, aes(x=feed, y=means)) +
   geom_bar(stat="identity")
@@ -78,34 +79,13 @@ Base R comes with functions for many common descriptive statistics. In general, 
 a <- 1:10
 
 mean(a) # arithmetic mean
-```
-
-```
-## [1] 5.5
-```
-
-```r
+#> [1] 5.5
 median(a) # median
-```
-
-```
-## [1] 5.5
-```
-
-```r
+#> [1] 5.5
 sd(a) # sample standard deviation (n-1)
-```
-
-```
-## [1] 3.02765
-```
-
-```r
+#> [1] 3.02765
 var(a) # sample variance (n-1)
-```
-
-```
-## [1] 9.166667
+#> [1] 9.166667
 ```
 
 At the same time, base R does not have existing functions for every descriptive statistic, or custom descriptive statistics that you might want to make yourself. For example, there is no mode function. You would have to find another package with a mode function, or write your own.
@@ -123,26 +103,11 @@ We can use the `mean()` function to calculate arithmetic means in R. These examp
 
 ```r
 mean(1:10)
-```
-
-```
-## [1] 5.5
-```
-
-```r
+#> [1] 5.5
 mean(c(1,2,3))
-```
-
-```
-## [1] 2
-```
-
-```r
+#> [1] 2
 mean(chickwts$weight)
-```
-
-```
-## [1] 261.3099
+#> [1] 261.3099
 ```
 
 In order to calculate means we need a set of numbers to start with. In a research context, the sets of numbers will be data points from a research project. And, we will learn throughout this course how to input real data, manipulate it, and calculate descriptive and inferential statistics. However, in this section, we will use R to create sets of numbers, rather than input data. 
@@ -162,10 +127,7 @@ sum_a <- sum(a) # store the sum
 length_a <- length(a) # store the length (n)
 mean_a <- sum(a)/length(a) # store the sum/n
 mean_a # report the mean
-```
-
-```
-## [1] 5.5
+#> [1] 5.5
 ```
 
 ### Writing a custom mean function
@@ -183,10 +145,7 @@ my_mean <- function(x) {
 }
 
 my_mean(1:10)
-```
-
-```
-## [1] 5.5
+#> [1] 5.5
 ```
 
 The above example is "long" because it writes out each step of computing the mean on each line. Sometimes it is desirable to make the steps in your function clear and easy to follow. It is also possible and sometimes desirable to rewrite the function so it accomplishes the same steps in a short number of lines of code. Below I show an example of systematically rewriting the above function to make it take fewer lines of code. We will see that the `return()` statement is not necessary, and that the `{}` are not necessary if the function can be written on one line.
@@ -203,13 +162,8 @@ my_mean <- function(x) {
 }
 
 my_mean(1:10)
-```
+#> [1] 5.5
 
-```
-## [1] 5.5
-```
-
-```r
 # end with the mean computation
 my_mean <- function(x) {
   sum_x <- sum(x) # store the sum
@@ -218,34 +172,21 @@ my_mean <- function(x) {
 }
 
 my_mean(1:10)
-```
+#> [1] 5.5
 
-```
-## [1] 5.5
-```
-
-```r
 # no intermediate saving of sum or length
 my_mean <- function(x) {
   sum(x)/length(x) # compute and output the mean
 }
 
 my_mean(1:10)
-```
+#> [1] 5.5
 
-```
-## [1] 5.5
-```
-
-```r
 # one-liner
 my_mean <- function(x) sum(x)/length(x)
 
 my_mean(1:10)
-```
-
-```
-## [1] 5.5
+#> [1] 5.5
 ```
 
 ### Demonstrate that the mean is the point from which the sum of the deviations is 0.
@@ -266,10 +207,7 @@ How can we find the deviations between the numbers in `scores`, and some number 
 
 ```r
 scores-5
-```
-
-```
-##  [1] -4 59  0 -1 -2 -1  0  1  2  3 -2
+#>  [1] -4 59  0 -1 -2 -1  0  1  2  3 -2
 ```
 
 Then, we can find the sum:
@@ -277,10 +215,7 @@ Then, we can find the sum:
 
 ```r
 sum(scores-5)
-```
-
-```
-## [1] 55
+#> [1] 55
 ```
 
 Notice that the sum of the deviations (between the numbers in `scores` and 5) does not equal 0. So, Clearly, the mean of our numbers must not be 5. The mean is the value that would cause the deviations to sum to 0.
@@ -292,34 +227,16 @@ We could very quickly show that the mean of `scores` causes the deviations to su
 
 ```r
 scores # the scores
-```
+#>  [1]  1 64  5  4  3  4  5  6  7  8  3
 
-```
-##  [1]  1 64  5  4  3  4  5  6  7  8  3
-```
-
-```r
 mean(scores) # the mean
-```
+#> [1] 10
 
-```
-## [1] 10
-```
-
-```r
 scores-mean(scores) #the vector of deviations from the mean
-```
+#>  [1] -9 54 -5 -6 -7 -6 -5 -4 -3 -2 -7
 
-```
-##  [1] -9 54 -5 -6 -7 -6 -5 -4 -3 -2 -7
-```
-
-```r
 sum(scores-mean(scores)) # the sum
-```
-
-```
-## [1] 0
+#> [1] 0
 ```
 
 Instead, let's use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look at our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.
@@ -329,53 +246,17 @@ Basically, this is this the process of what I want to do...but I don't want to w
 
 ```r
 sum(scores-1)
-```
-
-```
-## [1] 99
-```
-
-```r
+#> [1] 99
 sum(scores-2)
-```
-
-```
-## [1] 88
-```
-
-```r
+#> [1] 88
 sum(scores-3)
-```
-
-```
-## [1] 77
-```
-
-```r
+#> [1] 77
 sum(scores-4)
-```
-
-```
-## [1] 66
-```
-
-```r
+#> [1] 66
 sum(scores-5)
-```
-
-```
-## [1] 55
-```
-
-```r
+#> [1] 55
 sum(scores-6)
-```
-
-```
-## [1] 44
-```
-
-```r
+#> [1] 44
 ## and so on to 64
 ```
 
@@ -384,21 +265,9 @@ If we want to repeatedly apply a similar computation in R, remember we can use a
 
 ```r
 min(scores) 
-```
-
-```
-## [1] 1
-```
-
-```r
+#> [1] 1
 max(scores)
-```
-
-```
-## [1] 64
-```
-
-```r
+#> [1] 64
 numbers_to_test <- min(scores):max(scores)
 
 sum_deviations <-c() # create an empty vector to store sums
@@ -407,14 +276,11 @@ for(i in numbers_to_test) {
 }
 
 sum_deviations
-```
-
-```
-##  [1]   99   88   77   66   55   44   33   22   11    0  -11  -22  -33  -44  -55
-## [16]  -66  -77  -88  -99 -110 -121 -132 -143 -154 -165 -176 -187 -198 -209 -220
-## [31] -231 -242 -253 -264 -275 -286 -297 -308 -319 -330 -341 -352 -363 -374 -385
-## [46] -396 -407 -418 -429 -440 -451 -462 -473 -484 -495 -506 -517 -528 -539 -550
-## [61] -561 -572 -583 -594
+#>  [1]   99   88   77   66   55   44   33   22   11    0  -11  -22  -33  -44  -55
+#> [16]  -66  -77  -88  -99 -110 -121 -132 -143 -154 -165 -176 -187 -198 -209 -220
+#> [31] -231 -242 -253 -264 -275 -286 -297 -308 -319 -330 -341 -352 -363 -374 -385
+#> [46] -396 -407 -418 -429 -440 -451 -462 -473 -484 -495 -506 -517 -528 -539 -550
+#> [61] -561 -572 -583 -594
 ```
 We just computed our first simulation and produced these 64 sums of deviations, displayed above. Our question was to approximate the mean, by finding a value that produces a sum of deviations closest to 0. A final step is to evaluate the results of our simulation to answer the question.
 
@@ -451,28 +317,15 @@ Finally, we could use other R functions to help us compute the answer. For examp
 ```r
 #find the positions in vector that equal 0
 which(sum_deviations == 0)
-```
+#> [1] 10
 
-```
-## [1] 10
-```
-
-```r
 #show the value in position 10
 sum_deviations[10]
-```
+#> [1] 0
 
-```
-## [1] 0
-```
-
-```r
 #all in one
 sum_deviations[ which(sum_deviations == 0) ]
-```
-
-```
-## [1] 0
+#> [1] 0
 ```
 
 ### Minor details
@@ -483,6 +336,7 @@ For example, if we used the set of number from 1 to 20, where the mean is 10.5, 
 
 
 ```r
+
 scores <- 1:20
 numbers_to_test <- min(scores):max(scores)
 
@@ -492,19 +346,10 @@ for(i in numbers_to_test) {
 }
 
 sum_deviations
-```
-
-```
-##  [1]  190  170  150  130  110   90   70   50   30   10  -10  -30  -50  -70  -90
-## [16] -110 -130 -150 -170 -190
-```
-
-```r
+#>  [1]  190  170  150  130  110   90   70   50   30   10  -10  -30  -50  -70  -90
+#> [16] -110 -130 -150 -170 -190
 which(sum_deviations == 0)
-```
-
-```
-## integer(0)
+#> integer(0)
 ```
 
 Here, we need to modify the comparison in the `which()` function to return "approximate" numbers that give the sums of deviations closest to zero.
@@ -512,10 +357,7 @@ Here, we need to modify the comparison in the `which()` function to return "appr
 
 ```r
 which(abs(sum_deviations) == min(abs(sum_deviations)))
-```
-
-```
-## [1] 10 11
+#> [1] 10 11
 ```
 
 ### Advanced Example: Writing a function for our demonstration
@@ -536,19 +378,11 @@ approximate_mean <- function(scores,test_sequence){
 a <- c(1,4,3,2,4,3,5,4,6,5,7,6,8,7,9,8,7,6,7,6,5)
 b <- seq(0,10,.1)
 approximate_mean(a,b)
-```
+#> [1] 5.4
 
-```
-## [1] 5.4
-```
-
-```r
 #actual mean
 mean(a)
-```
-
-```
-## [1] 5.380952
+#> [1] 5.380952
 ```
 
 ## Practical I: Inputting real data and calculating descriptive statistics with tidyverse
@@ -584,26 +418,11 @@ What is mean of each of the measures?
 
 ```r
 mean(gapminder_data$lifeExp)
-```
-
-```
-## [1] 59.47444
-```
-
-```r
+#> [1] 59.47444
 mean(gapminder_data$pop)
-```
-
-```
-## [1] 29601212
-```
-
-```r
+#> [1] 29601212
 mean(gapminder_data$gdpPercap)
-```
-
-```
-## [1] 7215.327
+#> [1] 7215.327
 ```
 
 ### dplyr (group_by then summarize)
@@ -715,11 +534,8 @@ ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
 ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
   geom_point()+
   geom_line()
-```
-
-```
-## geom_path: Each group consists of only one observation. Do you need to adjust
-## the group aesthetic?
+#> geom_path: Each group consists of only one observation. Do you need to adjust
+#> the group aesthetic?
 ```
 
 <img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="672" />
@@ -757,6 +573,7 @@ ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
 <img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 ```r
+
 ggplot(group_means, aes(x = continent, 
                         y = mean_lifeExp,
                         group = 1))+

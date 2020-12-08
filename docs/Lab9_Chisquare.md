@@ -1,6 +1,6 @@
+
+
 # Chi Square
-
-
 
 "10/8/2020 | Last Compiled: 2020-12-07"
 
@@ -58,55 +58,25 @@ Toss a coin 50 times and receive 20 heads and 30 tails. Conduct a chi-square tes
 ```r
 my_vals <- c(20,30)
 (xsq <- chisq.test(my_vals))
-```
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  my_vals
+#> X-squared = 2, df = 1, p-value = 0.1573
 
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  my_vals
-## X-squared = 2, df = 1, p-value = 0.1573
-```
-
-```r
 xsq$statistic
-```
-
-```
-## X-squared 
-##         2
-```
-
-```r
+#> X-squared 
+#>         2
 xsq$observed
-```
-
-```
-## [1] 20 30
-```
-
-```r
+#> [1] 20 30
 xsq$expected
-```
-
-```
-## [1] 25 25
-```
-
-```r
+#> [1] 25 25
 xsq$residuals
-```
+#> [1] -1  1
 
-```
-## [1] -1  1
-```
 
-```r
 sum(((xsq$observed - xsq$expected)^2) / xsq$expected)
-```
-
-```
-## [1] 2
+#> [1] 2
 ```
 
 It is possible to specify different theoretical probabilities:
@@ -115,14 +85,11 @@ It is possible to specify different theoretical probabilities:
 ```r
 my_vals <- c(20,30)
 chisq.test(my_vals, p = c(.25,.75))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  my_vals
-## X-squared = 6, df = 1, p-value = 0.01431
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  my_vals
+#> X-squared = 6, df = 1, p-value = 0.01431
 ```
 
 The vector can be any length, e.g., roll a dice 120 times and count the number of times each number from 1 to 6 occurs, then conduct a chi-square test of independence:
@@ -131,14 +98,11 @@ The vector can be any length, e.g., roll a dice 120 times and count the number o
 ```r
 my_vals <- c(20,30,10,10,30,30)
 chisq.test(my_vals)
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  my_vals
-## X-squared = 22.308, df = 5, p-value = 0.0004576
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  my_vals
+#> X-squared = 22.308, df = 5, p-value = 0.0004576
 ```
 
 ### Independence test for a contingency table
@@ -153,75 +117,36 @@ M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
 dimnames(M) <- list(gender = c("F", "M"),
                     party = c("Democrat","Independent", "Republican"))
 (Xsq <- chisq.test(M))  # Prints test summary
-```
-
-```
-## 
-## 	Pearson's Chi-squared test
-## 
-## data:  M
-## X-squared = 30.07, df = 2, p-value = 2.954e-07
-```
-
-```r
+#> 
+#> 	Pearson's Chi-squared test
+#> 
+#> data:  M
+#> X-squared = 30.07, df = 2, p-value = 2.954e-07
 Xsq$observed   # observed counts (same as M)
-```
-
-```
-##       party
-## gender Democrat Independent Republican
-##      F      762         327        468
-##      M      484         239        477
-```
-
-```r
+#>       party
+#> gender Democrat Independent Republican
+#>      F      762         327        468
+#>      M      484         239        477
 Xsq$expected   # expected counts under the null
-```
-
-```
-##       party
-## gender Democrat Independent Republican
-##      F 703.6714    319.6453   533.6834
-##      M 542.3286    246.3547   411.3166
-```
-
-```r
+#>       party
+#> gender Democrat Independent Republican
+#>      F 703.6714    319.6453   533.6834
+#>      M 542.3286    246.3547   411.3166
 Xsq$residuals  # Pearson residuals
-```
-
-```
-##       party
-## gender   Democrat Independent Republican
-##      F  2.1988558   0.4113702 -2.8432397
-##      M -2.5046695  -0.4685829  3.2386734
-```
-
-```r
+#>       party
+#> gender   Democrat Independent Republican
+#>      F  2.1988558   0.4113702 -2.8432397
+#>      M -2.5046695  -0.4685829  3.2386734
 Xsq$stdres     # standardized residuals
-```
-
-```
-##       party
-## gender   Democrat Independent Republican
-##      F  4.5020535   0.6994517 -5.3159455
-##      M -4.5020535  -0.6994517  5.3159455
-```
-
-```r
+#>       party
+#> gender   Democrat Independent Republican
+#>      F  4.5020535   0.6994517 -5.3159455
+#>      M -4.5020535  -0.6994517  5.3159455
 Xsq$p.value
-```
-
-```
-## [1] 2.953589e-07
-```
-
-```r
+#> [1] 2.953589e-07
 Xsq$statistic
-```
-
-```
-## X-squared 
-##  30.07015
+#> X-squared 
+#>  30.07015
 ```
 
 
@@ -291,50 +216,35 @@ knitr::kable(coin_toss)
 |T       | 27| 25|  2|    4| 0.16|
 
 ```r
+
 # compute chi-square
 sum(coin_toss$div)
-```
+#> [1] 0.32
 
-```
-## [1] 0.32
-```
-
-```r
 # compute chi-square 
 O <- c(23,27)
 E <- c(25,25)
 sum(((O-E)^2)/E)
-```
+#> [1] 0.32
 
-```
-## [1] 0.32
-```
-
-```r
 # compute chi-square
 chisq.test(x=c(23,27))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  c(23, 27)
-## X-squared = 0.32, df = 1, p-value = 0.5716
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  c(23, 27)
+#> X-squared = 0.32, df = 1, p-value = 0.5716
 ```
 The above shows two ways to compute $\chi^2$ for this example, including using the base R function $chisq.test()$. The obtained value of .32 in our case is fairly small because the differences between the obtained and expected frequencies were fairly small. If the differences were larger, then the $\chi^2$ sample statistic would be much larger, e.g:
 
 
 ```r
 chisq.test(x=c(47,3))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  c(47, 3)
-## X-squared = 38.72, df = 1, p-value = 4.892e-10
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  c(47, 3)
+#> X-squared = 38.72, df = 1, p-value = 4.892e-10
 ```
 Both times the base R function returned the $\chi^2$ sample statistic (computed from the data and assumed theoretical frequencies). The function also return information about degrees of freedom (df), and a p-value. These additional values refer to information from a $\chi^2$ distribution. Under appropriate conditions, the $\chi^2$ sample statistic can be compared to a $\chi^2$ distribution for the purposes of statistical inference.
 
@@ -351,6 +261,7 @@ hist(rnorm(10000,0,1), breaks = 100)
 <img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 ```r
+
 # chi-squared with k = 1
 hist(rnorm(10000,0,1)^2, breaks = 100)
 ```
@@ -452,6 +363,7 @@ We can get a glimpse of what the $\chi^2$ distribution looks like across a range
 
 
 ```r
+
 plot_df <- data.frame(values = c(dchisq(x=seq(0,20,length.out = 100), df=1),
                                  dchisq(x=seq(0,20,length.out = 100), df=3),
                                  dchisq(x=seq(0,20,length.out = 100), df=5),
@@ -494,10 +406,7 @@ What is the expected mean of a unit normal distribution?
 
 ```r
 mean(rnorm(10000,0,1))
-```
-
-```
-## [1] 0.02189166
+#> [1] 0.0003396297
 ```
 
 If we square all of the values that we sample from a unit normal distribution (equivalent to $\chi^2$ with $k=1$), then what would the mean of those squared values be?
@@ -505,10 +414,7 @@ If we square all of the values that we sample from a unit normal distribution (e
 
 ```r
 mean(rnorm(10000,0,1)^2)
-```
-
-```
-## [1] 0.9824043
+#> [1] 0.9919701
 ```
 
 It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a $\chi^2$ is the same as the $k$ parameter, also called degrees of freedom.
@@ -518,10 +424,7 @@ For example, the mean of 10,000 numbers drawn from a $\chi^2$ with k = 10, is:
 
 ```r
 mean(rchisq(10000,10))
-```
-
-```
-## [1] 10.00042
+#> [1] 10.00973
 ```
 
 Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1...summing up 10 ones, gives you 10. The same expectations can be applied to $\chi^2$ distributions of any $k$.
@@ -541,6 +444,7 @@ hist(rbinom(10000,10,.5), breaks=seq(0,10,1))
 <img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ```r
+
 # flip a coin 100 times
 hist(rbinom(10000,100,.5), breaks=seq(20,80,1))
 ```
@@ -555,10 +459,7 @@ We could use the binomial test, and compute the exact probability.
 
 ```r
 pbinom(2,10,.5, lower.tail = TRUE)*2
-```
-
-```
-## [1] 0.109375
+#> [1] 0.109375
 ```
 
 We could also use a $\chi^2$ test as an approximation:
@@ -566,14 +467,11 @@ We could also use a $\chi^2$ test as an approximation:
 
 ```r
 chisq.test(c(2,8))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  c(2, 8)
-## X-squared = 3.6, df = 1, p-value = 0.05778
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  c(2, 8)
+#> X-squared = 3.6, df = 1, p-value = 0.05778
 ```
 
 In this case there wouldn't be a good reason to use the $\chi^2$ test, because the binomial test provides an exact probability. Also, because the expected frequencies are very small here, the p-value $\chi^2$ test is about half as small as it should be.
@@ -584,64 +482,37 @@ However, if we consider sets of coin flips that are much larger than 10, we incr
 
 ```r
 pbinom(40,100,.5, lower.tail = TRUE)*2
-```
-
-```
-## [1] 0.05688793
-```
-
-```r
+#> [1] 0.05688793
 chisq.test(c(40,60))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  c(40, 60)
-## X-squared = 4, df = 1, p-value = 0.0455
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  c(40, 60)
+#> X-squared = 4, df = 1, p-value = 0.0455
 ```
 
 
 ```r
 pbinom(450,1000,.5, lower.tail = TRUE)*2
-```
-
-```
-## [1] 0.001730536
-```
-
-```r
+#> [1] 0.001730536
 chisq.test(c(450,550))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  c(450, 550)
-## X-squared = 10, df = 1, p-value = 0.001565
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  c(450, 550)
+#> X-squared = 10, df = 1, p-value = 0.001565
 ```
 
 
 ```r
 pbinom(4900,10000,.5, lower.tail = TRUE)*2
-```
-
-```
-## [1] 0.04658553
-```
-
-```r
+#> [1] 0.04658553
 chisq.test(c(4900,5100))
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  c(4900, 5100)
-## X-squared = 4, df = 1, p-value = 0.0455
+#> 
+#> 	Chi-squared test for given probabilities
+#> 
+#> data:  c(4900, 5100)
+#> X-squared = 4, df = 1, p-value = 0.0455
 ```
 
 ## Lab 9 Generalization Assignment
@@ -680,10 +551,7 @@ To recap, the authors measured a choice made by 21 infants. The age of each infa
 
 ```r
 pchisq(18.24, 19, lower.tail = FALSE)
-```
-
-```
-## [1] 0.5064639
+#> [1] 0.5064639
 ```
 
 However, it appears that the authors treated the infant's ages, measured a continuous variable, as a categorical variable. And, as it happened, there were two infants who happened to be exactly 11.66 months old. As a result, there were 21 infants, and 20 different age categories. If a contingency table is constructed to represent 20 age categories, and 2 choice options, you get a 20x2 table. This table has (20-1)(2-1) = 19 degrees of freedom. In my solution video I showed an example of how the authors might have constructed that table from their data, and I was able to obtain the same chi-square value that they reported, suggesting that they did construct such a table.
@@ -697,12 +565,9 @@ Here is an example contingency table with 5 subjects. In this case, each column 
 
 ```r
 replicate(5,sample(c(1,0),2))
-```
-
-```
-##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    0    1    1    1
-## [2,]    0    1    0    0    0
+#>      [,1] [,2] [,3] [,4] [,5]
+#> [1,]    1    0    1    1    0
+#> [2,]    0    1    0    0    1
 ```
 
 This is a contingency table, so it is possible to compute a chi-square test on this table.
@@ -710,14 +575,11 @@ This is a contingency table, so it is possible to compute a chi-square test on t
 
 ```r
 chisq.test(replicate(5,sample(c(1,0),2)))
-```
-
-```
-## 
-## 	Pearson's Chi-squared test
-## 
-## data:  replicate(5, sample(c(1, 0), 2))
-## X-squared = 5, df = 4, p-value = 0.2873
+#> 
+#> 	Pearson's Chi-squared test
+#> 
+#> data:  replicate(5, sample(c(1, 0), 2))
+#> X-squared = 5, df = 4, p-value = 0.2873
 ```
 However, look at what happens. We obtain a chi-squared value of 5. And, this is what will always happen, no matter what choices each subject makes:
 
@@ -726,14 +588,11 @@ Every time this function runs, the choices made by each simulated subject are ra
 
 ```r
 chisq.test(replicate(5,sample(c(1,0),2)))
-```
-
-```
-## 
-## 	Pearson's Chi-squared test
-## 
-## data:  replicate(5, sample(c(1, 0), 2))
-## X-squared = 5, df = 4, p-value = 0.2873
+#> 
+#> 	Pearson's Chi-squared test
+#> 
+#> data:  replicate(5, sample(c(1, 0), 2))
+#> X-squared = 5, df = 4, p-value = 0.2873
 ```
 This is effectively what the authors did. For example, consider what would happen to the authors data if they excluded the two infants who had the exact same age. That table would have choices from 19 infants.
 
@@ -742,14 +601,11 @@ We can simulate any possible outcome this way:
 
 ```r
 chisq.test(replicate(19,sample(c(1,0),2)))
-```
-
-```
-## 
-## 	Pearson's Chi-squared test
-## 
-## data:  replicate(19, sample(c(1, 0), 2))
-## X-squared = 19, df = 18, p-value = 0.3918
+#> 
+#> 	Pearson's Chi-squared test
+#> 
+#> data:  replicate(19, sample(c(1, 0), 2))
+#> X-squared = 19, df = 18, p-value = 0.3918
 ```
 
 No matter choices the infants make (either A or B), they will always make one of them, and not the other. And, the observed chi-square value will always be the same as the number of subjects. So, this test does more to confirm the number of the infants used in the experiment than it does to assess the independence of age from the choices. 

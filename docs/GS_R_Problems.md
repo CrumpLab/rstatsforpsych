@@ -1,3 +1,5 @@
+
+
 # Practice problems {.unnumbered}
 
 "8/27/2020 | Last Compiled: 2020-12-07"
@@ -55,20 +57,12 @@ function_name(some_input)
 # four divided by two gives no remainder
 # the mod function shows 0
 4%%2
-```
+#> [1] 0
 
-```
-## [1] 0
-```
-
-```r
 # 5 divided by two gives a remainder
 # the mod function shows 1
 5%%2
-```
-
-```
-## [1] 1
+#> [1] 1
 ```
 
 7.  List all of the prime numbers from 1 to 1000.
@@ -94,13 +88,8 @@ mean_A <- function(x){
 
 some_numbers <- c(1,2,3,4,5)
 mean_A(some_numbers)
-```
+#> [1] 3
 
-```
-## [1] 3
-```
-
-```r
 # no intrinsics
 mean_B <- function(x){
   counter <- 0
@@ -113,10 +102,7 @@ mean_B <- function(x){
 }
 
 mean_B(some_numbers)
-```
-
-```
-## [1] 3
+#> [1] 3
 ```
 
   
@@ -126,47 +112,22 @@ mean_B(some_numbers)
 ```r
 a <- "adskfjhkadsjfh"
 strsplit(a,split="")
-```
+#> [[1]]
+#>  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"
 
-```
-## [[1]]
-##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"
-```
-
-```r
 # note that strsplit returns its result in a list
 b <-strsplit(a,split="")
 b[[1]] # access all elements in list 1
-```
-
-```
-##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"
-```
-
-```r
+#>  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"
 b[[1]][1] # access first element of list 1
-```
+#> [1] "a"
 
-```
-## [1] "a"
-```
-
-```r
 # lists can be unlisted
 d <- unlist(strsplit(a,split=""))
 d  # all elements in character vector
-```
-
-```
-##  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"
-```
-
-```r
+#>  [1] "a" "d" "s" "k" "f" "j" "h" "k" "a" "d" "s" "j" "f" "h"
 d[1] #first element
-```
-
-```
-## [1] "a"
+#> [1] "a"
 ```
 
 12. Count the number of words in a string variable
@@ -175,11 +136,8 @@ d[1] #first element
 ```r
 a <- "this is a sentence"
 strsplit(a,split=" ") # use a space as the splitting character
-```
-
-```
-## [[1]]
-## [1] "this"     "is"       "a"        "sentence"
+#> [[1]]
+#> [1] "this"     "is"       "a"        "sentence"
 ```
 
 13. Count the number of sentences in a string variable
@@ -190,12 +148,9 @@ strsplit(a,split=" ") # use a space as the splitting character
 ```r
 a <- c(1,3,2,3,2,3,2,3,4,5,4,3,4,3,4,5,6,7)
 table(a)
-```
-
-```
-## a
-## 1 2 3 4 5 6 7 
-## 1 3 6 4 2 1 1
+#> a
+#> 1 2 3 4 5 6 7 
+#> 1 3 6 4 2 1 1
 ```
   - How would you do this without the table function?
 15. Do a logical test to see if one word is found within the text of another string variable.
@@ -216,19 +171,11 @@ d <- 8
 
 # question is b in a?
 b%in%a
-```
+#> [1] TRUE
 
-```
-## [1] TRUE
-```
-
-```r
 # is d in a?
 d%in%a
-```
-
-```
-## [1] FALSE
+#> [1] FALSE
 ```
 
 
@@ -238,10 +185,7 @@ d%in%a
 
 ```r
 print(as.numeric(Sys.time())*1000, digits=15)
-```
-
-```
-## [1] 1607349089384.54
+#> [1] 1607353020518.23
 ```
 
 
@@ -278,33 +222,17 @@ List the numbers from 1 to 100 with the following constraints. If the number can
 ```r
 # a number mod three will return 0 if it divides evenly
 6%%3
-```
-
-```
-## [1] 0
-```
-
-```r
+#> [1] 0
 # a number mod five will return 0 if it divides evenly
 10%%5
-```
+#> [1] 0
 
-```
-## [1] 0
-```
-
-```r
 # examples of replacing elements of a vector
 a<-c(1,2,3,4,5)
 a[3]<-"Fizz"
 a
-```
+#> [1] "1"    "2"    "Fizz" "4"    "5"
 
-```
-## [1] "1"    "2"    "Fizz" "4"    "5"
-```
-
-```r
 # notice that a starts as a numeric vector
 # but changes to an all character vector after "Fizz" is added
 ```
@@ -318,12 +246,9 @@ Take text as input, and be able to produce a table that shows the counts for eac
 ```r
 a<-"some text that has some letters"
 table(unlist(strsplit(a,split="")))
-```
-
-```
-## 
-##   a e h l m o r s t x 
-## 5 2 5 2 1 2 2 1 4 6 1
+#> 
+#>   a e h l m o r s t x 
+#> 5 2 5 2 1 2 2 1 4 6 1
 ```
   - Can you do this without using table? Attempt this problem using `data.frame`. Here are some more tips
 
@@ -338,66 +263,35 @@ letters <-c("a","b","c","d","e")
 # make a data.frame from two vectors
 new_df <- data.frame(numbers,letters)
 print(new_df)
-```
+#>   numbers letters
+#> 1       1       a
+#> 2       2       b
+#> 3       3       c
+#> 4       4       d
+#> 5       5       e
 
-```
-##   numbers letters
-## 1       1       a
-## 2       2       b
-## 3       3       c
-## 4       4       d
-## 5       5       e
-```
-
-```r
 # access individual columns of dataframe
 new_df$numbers
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 new_df$letters
-```
+#> [1] "a" "b" "c" "d" "e"
 
-```
-## [1] "a" "b" "c" "d" "e"
-```
-
-```r
 # get names of data.frame
 names(new_df)
-```
+#> [1] "numbers" "letters"
 
-```
-## [1] "numbers" "letters"
-```
-
-```r
 # break the problem into steps
 # first part of problem is to identify all unique character in the string
 a<-c(1,2,3,4,5,2,2,3,2,3)
 unique(a)
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 b<-"a string with some letters"
 unique(unlist(strsplit(b,split="")))
-```
+#>  [1] "a" " " "s" "t" "r" "i" "n" "g" "w" "h" "o" "m" "e" "l"
 
-```
-##  [1] "a" " " "s" "t" "r" "i" "n" "g" "w" "h" "o" "m" "e" "l"
-```
-
-```r
 # second part is to go through each of the unique letters in the list of unique letters, and for each count the number of times they appear in the original text
 # store the results in a data.frame with two columns, one with the letter names, and another with the counts
+
 ```
 
 
@@ -421,31 +315,23 @@ Generate a matrix for a multiplication table. For example, the labels for the co
 # you can multiply all numbers in a vector in one go
 a<-c(1,2,3,4,5,6,7,8,9,10)
 a*2
-```
+#>  [1]  2  4  6  8 10 12 14 16 18 20
 
-```
-##  [1]  2  4  6  8 10 12 14 16 18 20
-```
-
-```r
 # you can nest loops
 for(i in 1:3){
   for(j in 1:3){
     print(i*j)
   }
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 2
-## [1] 4
-## [1] 6
-## [1] 3
-## [1] 6
-## [1] 9
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 2
+#> [1] 4
+#> [1] 6
+#> [1] 3
+#> [1] 6
+#> [1] 9
 ```
 
 
@@ -472,10 +358,7 @@ encrypt_numbers <-function(input_sequence,key){
 }
 
 encrypt_numbers(original_sequence,encryption_key)
-```
-
-```
-##  [1] 1 2 3 5 4 2 2 3 2 5 4 2
+#>  [1] 1 3 4 2 5 3 3 4 3 2 5 3
 ```
   
   - here is a different approach making use of the `factor()` function
@@ -485,21 +368,12 @@ encrypt_numbers(original_sequence,encryption_key)
 original_sequence <- c(1,2,3,4,5,2,2,3,2,4,5,2)
 original_sequence <- as.factor(original_sequence)
 levels(original_sequence) # show names of levels in factor
-```
-
-```
-## [1] "1" "2" "3" "4" "5"
-```
-
-```r
+#> [1] "1" "2" "3" "4" "5"
 new_sequence <- original_sequence # copy
 levels(new_sequence)<-c(5,4,3,2,1) # rename the levels
 new_sequence # all elements are now changed
-```
-
-```
-##  [1] 5 4 3 2 1 4 4 3 4 2 1 4
-## Levels: 5 4 3 2 1
+#>  [1] 5 4 3 2 1 4 4 3 4 2 1 4
+#> Levels: 5 4 3 2 1
 ```
 
 
@@ -514,32 +388,18 @@ Your task here is to write an algorithm that can simulate playing the above depi
 ```r
 # rolling a dice with sample
 sample(c(1,2,3,4,5,6),1)
-```
-
-```
-## [1] 1
-```
-
-```r
+#> [1] 6
 sample(c(1,2,3,4,5,6),1)
-```
-
-```
-## [1] 5
-```
-
-```r
+#> [1] 3
 sample(c(1,2,3,4,5,6),1)
-```
-
-```
-## [1] 5
+#> [1] 1
 ```
 
   -tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?
 
 
 ```r
+
 # try one simulation
 total_sum<-0
 number_of_rolls<-0
@@ -548,13 +408,8 @@ while(total_sum < 25){
   total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
 }
 number_of_rolls
-```
+#> [1] 6
 
-```
-## [1] 7
-```
-
-```r
 # record the results from multiple simulations
 
 save_rolls <- c()
@@ -568,10 +423,7 @@ for(sims in 1:100){
   save_rolls[sims] <- number_of_rolls
 }
 mean(save_rolls)
-```
-
-```
-## [1] 7.87
+#> [1] 7.41
 ```
   
   - how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.

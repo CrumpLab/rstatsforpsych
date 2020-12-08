@@ -1,6 +1,6 @@
+
+
 # Statistical Inference
-
-
 
 "10/8/2020 | Last Compiled: 2020-12-07"
 
@@ -60,10 +60,7 @@ A permutation is a reordering of a sequence. For example, we can easily re-order
 ```r
 a <- c(1,2,3,4,5)
 sample(a)
-```
-
-```
-## [1] 5 4 2 3 1
+#> [1] 1 5 3 4 2
 ```
 
 The number of permutations (unique re-orderings) for n distinct items is $n!$
@@ -73,10 +70,7 @@ Therefore, if we take 5 numbers from the distinct values 1, 2, 3, 4, 5, we will 
 
 ```r
 5*4*3*2*1
-```
-
-```
-## [1] 120
+#> [1] 120
 ```
 
 If you were to put the numbers 1, 2, 3, 4, 5 into a basket, and randomly take them out, what are the chances you take them out in the order 1,2,3,4,5?
@@ -86,10 +80,7 @@ Well, that is 1 order out of 120, so 1/120 =
 
 ```r
 1/120
-```
-
-```
-## [1] 0.008333333
+#> [1] 0.008333333
 ```
 
 Let's quickly test this:
@@ -107,10 +98,7 @@ for(i in 1:10000){
 }
 
 count_examples/10000
-```
-
-```
-## [1] 0.0079
+#> [1] 0.0069
 ```
 
 A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.
@@ -136,14 +124,14 @@ knitr::kable(example_outcome)
 
 |group | person| ball|
 |:-----|------:|----:|
-|A     |      1|    6|
-|A     |      2|    7|
-|A     |      3|    3|
-|A     |      4|    4|
-|B     |      1|    5|
-|B     |      2|    8|
-|B     |      3|    1|
-|B     |      4|    2|
+|A     |      1|    7|
+|A     |      2|    1|
+|A     |      3|    6|
+|A     |      4|    8|
+|B     |      1|    4|
+|B     |      2|    2|
+|B     |      3|    3|
+|B     |      4|    5|
 
 What are the chances that sum of the balls in Group A will be very different from the sum of the balls chosen by Group B? We could figure these kinds of questions out if we had access to all of the permutations. Let's make a matrix of all of the possible permutations.
 
@@ -188,10 +176,7 @@ What is the largest difference observed in our `possible_differences` vector? Ch
 
 ```r
 max(possible_differences)
-```
-
-```
-## [1] 16
+#> [1] 16
 ```
 
 Let's now answer some specific questions. What is the probability that the difference in the group sums will be larger than 16? Because we have just determined that this is impossible, we can confidently say 0. 
@@ -199,10 +184,7 @@ Let's now answer some specific questions. What is the probability that the diffe
 
 ```r
 possible_differences[possible_differences > 16]
-```
-
-```
-## numeric(0)
+#> numeric(0)
 ```
 
 What is the probability that the absolute value of the difference in the group sums will be larger than 10?
@@ -219,10 +201,7 @@ Then we figure out how many differences are larger than  10, and divide by the t
 
 ```r
 length(absolute_differences[absolute_differences > 10])/length(absolute_differences)
-```
-
-```
-## [1] 0.1142857
+#> [1] 0.1142857
 ```
 
 ### Interim Summary: General Principles
@@ -250,10 +229,7 @@ Overall the mean for group A was:
 
 ```r
 mean(group_A)
-```
-
-```
-## [1] 81.25
+#> [1] 81.25
 ```
 
 And, the mean for group B was:
@@ -261,10 +237,7 @@ And, the mean for group B was:
 
 ```r
 mean(group_B)
-```
-
-```
-## [1] 73
+#> [1] 73
 ```
 
 So, group A, who got a million dollars, on average did better on the midterm than group B. The difference was 81.25 - 73 = 8.25.
@@ -272,10 +245,7 @@ So, group A, who got a million dollars, on average did better on the midterm tha
 
 ```r
 mean(group_A) - mean(group_B)
-```
-
-```
-## [1] 8.25
+#> [1] 8.25
 ```
 
 #### What caused the difference?
@@ -329,10 +299,7 @@ We could be more precise and calculate the odds of getting a difference of 8.25 
 
 ```r
 length(possible_differences[possible_differences >= 8.25]) / length(possible_differences)
-```
-
-```
-## [1] 0.1142857
+#> [1] 0.1142857
 ```
 
 So...to return the cartoon character metaphor, we have a who dunnit question. Was Mickey Mouse with the million dollars that caused the difference of 8.25? Or was it Donald Duck with random chance that accidentally produced a difference of 8.25? We know that Mr. Duck only produces a difference of 8.25 or larger 10% of the time...Is that enough to say that Mr. Duck DID NOT DO IT? I don't think so. He clearly could have done it. Can we be absolutely certain that it was the million dollar manipulation? No. Have we learned anything useful at all? I think so, it seems we got a result that is irregular from the perspective of chance. This might give me some confidence that the experimental manipulation actually caused the difference, and not the act of randomly assigning participants to groups. 
@@ -356,26 +323,11 @@ We can then calculate the mean of each group, and look at the difference.
 
 ```r
 mean(group_A)
-```
-
-```
-## [1] 64.82171
-```
-
-```r
+#> [1] 65.00427
 mean(group_B)
-```
-
-```
-## [1] 66.50917
-```
-
-```r
+#> [1] 64.35203
 mean(group_A)-mean(group_B)
-```
-
-```
-## [1] -1.687465
+#> [1] 0.6522375
 ```
 
 In some general sense if the manipulation works, that is it **causes a difference**, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, **however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups**.
@@ -391,13 +343,8 @@ new_A_mean <- mean(resample[1:50])
 new_B_mean <- mean(resample[51:100])
 new_difference <- new_A_mean-new_B_mean
 new_difference
-```
+#> [1] -1.032973
 
-```
-## [1] -0.3251556
-```
-
-```r
 # Simulate the above process 10000 times
 mean_differences <- c()
 for(i in 1:10000){
@@ -429,10 +376,7 @@ We can also use this distribution to calculate specific probabilities concerning
 
 ```r
 length(mean_differences[mean_differences >=4 ])/length(mean_differences)
-```
-
-```
-## [1] 0.0283
+#> [1] 0.0274
 ```
 
 ## P1: Randomization test with real data
@@ -461,14 +405,11 @@ library(dplyr)
 the_data %>% 
   group_by(CONDITION) %>%
   summarize(group_means = mean(Intellect_Rating))
-```
-
-```
-## # A tibble: 2 x 2
-##   CONDITION group_means
-##       <int>       <dbl>
-## 1         0        3.65
-## 2         1        5.63
+#> # A tibble: 2 x 2
+#>   CONDITION group_means
+#>       <int>       <dbl>
+#> 1         0        3.65
+#> 2         1        5.63
 ```
 
 We can see that the audio only group (1) received higher intellect ratings (5.63) than the read only group (0), 3.64. The difference, or effect was about 2. 
@@ -484,52 +425,47 @@ simulation_data <- the_data %>%
 # example of randomizing the scores across conditions
 simulation_data %>%
   mutate(Intellect_Rating = sample(Intellect_Rating))
-```
+#>    CONDITION Intellect_Rating
+#> 1          1        6.0000000
+#> 2          1        7.0000000
+#> 3          1        7.6666667
+#> 4          0        1.0000000
+#> 5          0        3.3333333
+#> 6          0        5.0000000
+#> 7          1        5.6666667
+#> 8          0        3.6666667
+#> 9          1        5.6666667
+#> 10         0        3.3333333
+#> 11         0        4.6666667
+#> 12         1        9.0000000
+#> 13         1        6.6666667
+#> 14         0        6.0000000
+#> 15         0        6.0000000
+#> 16         1        6.3333333
+#> 17         1        0.6666667
+#> 18         1        4.6666667
+#> 19         0        2.3333333
+#> 20         0        4.6666667
+#> 21         0        3.3333333
+#> 22         0        3.6666667
+#> 23         0        6.0000000
+#> 24         1        5.0000000
+#> 25         1        1.6666667
+#> 26         1        1.6666667
+#> 27         0        5.6666667
+#> 28         1        5.3333333
+#> 29         1        3.6666667
+#> 30         1        4.6666667
+#> 31         0        2.0000000
+#> 32         0        6.6666667
+#> 33         1        5.0000000
+#> 34         1        3.6666667
+#> 35         0        2.3333333
+#> 36         1        9.0000000
+#> 37         0        5.6666667
+#> 38         1        6.0000000
+#> 39         1        3.6666667
 
-```
-##    CONDITION Intellect_Rating
-## 1          1        5.6666667
-## 2          1        5.0000000
-## 3          1        3.3333333
-## 4          0        1.6666667
-## 5          0        3.3333333
-## 6          0        9.0000000
-## 7          1        3.6666667
-## 8          0        3.6666667
-## 9          1        9.0000000
-## 10         0        4.6666667
-## 11         0        3.6666667
-## 12         1        6.6666667
-## 13         1        1.0000000
-## 14         0        7.6666667
-## 15         0        6.3333333
-## 16         1        4.6666667
-## 17         1        3.6666667
-## 18         1        5.6666667
-## 19         0        5.0000000
-## 20         0        5.3333333
-## 21         0        6.0000000
-## 22         0        3.6666667
-## 23         0        6.6666667
-## 24         1        3.3333333
-## 25         1        4.6666667
-## 26         1        2.3333333
-## 27         0        1.6666667
-## 28         1        4.6666667
-## 29         1        5.6666667
-## 30         1        2.3333333
-## 31         0        6.0000000
-## 32         0        5.0000000
-## 33         1        6.0000000
-## 34         1        6.0000000
-## 35         0        6.0000000
-## 36         1        5.6666667
-## 37         0        2.0000000
-## 38         1        0.6666667
-## 39         1        7.0000000
-```
-
-```r
 # example of calculating a new mean difference
 
 new_data <- simulation_data %>%
@@ -538,33 +474,15 @@ new_data <- simulation_data %>%
   summarize(new_means = mean(Intellect_Rating), .groups="drop")
 
 new_data
-```
-
-```
-## # A tibble: 2 x 2
-##   CONDITION new_means
-##       <int>     <dbl>
-## 1         0      4.48
-## 2         1      4.92
-```
-
-```r
+#> # A tibble: 2 x 2
+#>   CONDITION new_means
+#>       <int>     <dbl>
+#> 1         0      5.06
+#> 2         1      4.43
 new_data[new_data$CONDITION == 0,]$new_means
-```
-
-```
-## [1] 4.481481
-```
-
-```r
+#> [1] 5.055556
 new_data[new_data$CONDITION == 1,]$new_means
-```
-
-```
-## [1] 4.920635
-```
-
-```r
+#> [1] 4.428571
 new_difference <- new_data[new_data$CONDITION == 1,]$new_means-new_data[new_data$CONDITION == 0,]$new_means
 
 # Run a randomization test
@@ -598,10 +516,7 @@ It's pretty clear in this example that a mean difference of 2 rarely occurred ac
 
 ```r
 length(possible_differences[possible_differences >= 2]) / length(possible_differences)
-```
-
-```
-## [1] 0
+#> [1] 0
 ```
 
 What can be concluded from this exercise? Should we conclude that that experimental manipulation actually caused the difference in Intellect ratings? Should we conclude that chance did not produce the difference?
@@ -623,28 +538,18 @@ the_data <- read.csv("open_data/SchroederEpley2015data.csv", header = TRUE)
 the_data %>% 
   group_by(CONDITION) %>%
   summarize(group_means = mean(Intellect_Rating))
-```
+#> # A tibble: 2 x 2
+#>   CONDITION group_means
+#>       <int>       <dbl>
+#> 1         0        3.65
+#> 2         1        5.63
 
-```
-## # A tibble: 2 x 2
-##   CONDITION group_means
-##       <int>       <dbl>
-## 1         0        3.65
-## 2         1        5.63
-```
-
-```r
 # how many participants per group?
 table(the_data$CONDITION)
-```
+#> 
+#>  0  1 
+#> 18 21
 
-```
-## 
-##  0  1 
-## 18 21
-```
-
-```r
 # create permutations
 mean_differences <- c()
 for(i in 1:10000){

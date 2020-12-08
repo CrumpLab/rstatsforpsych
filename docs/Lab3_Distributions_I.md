@@ -1,6 +1,6 @@
+
+
 # Distributions I
-
-
 
 "9/2/2020 | Last Compiled: 2020-12-07"
 
@@ -45,10 +45,7 @@ When we use sample, we can create discrete distributions and sample from them. B
 
 ```r
 sample(x= 1:2, size = 2)
-```
-
-```
-## [1] 2 1
+#> [1] 2 1
 ```
 
 2. Create a distribution with two equally possible numbers, sample from it 10 times (note must set replace=TRUE, because we are sampling more items than exist in the vector):
@@ -56,10 +53,7 @@ sample(x= 1:2, size = 2)
 
 ```r
 sample(x= 1:2, size = 10, replace = TRUE)
-```
-
-```
-##  [1] 1 2 1 1 2 1 2 1 1 2
+#>  [1] 2 2 1 1 2 2 2 1 1 2
 ```
 
 3. Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times
@@ -67,10 +61,7 @@ sample(x= 1:2, size = 10, replace = TRUE)
 
 ```r
 sample(x= 1:2, size = 10, replace = TRUE, prob=c(.9,.1))
-```
-
-```
-##  [1] 1 1 1 1 1 1 1 1 1 1
+#>  [1] 1 2 1 1 2 1 1 2 1 1
 ```
 
 4. Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return "heads" or "tails".
@@ -78,11 +69,8 @@ sample(x= 1:2, size = 10, replace = TRUE, prob=c(.9,.1))
 
 ```r
 sample(x = c("heads","tails"), size=10, replace= TRUE) 
-```
-
-```
-##  [1] "heads" "heads" "heads" "tails" "tails" "tails" "tails" "heads" "heads"
-## [10] "heads"
+#>  [1] "heads" "tails" "heads" "tails" "tails" "heads" "tails" "heads" "tails"
+#> [10] "tails"
 ```
 
 5. Create a distribution that has the numbers 1 to 1000, and allows them to be sampled with equal probability. Sample 10 numbers from this distribution without replacement (if you have sampled one number, you are not allowed to sample it again because it has been taken out):
@@ -90,10 +78,7 @@ sample(x = c("heads","tails"), size=10, replace= TRUE)
 
 ```r
 sample(x= 1:1000, size = 10, replace = FALSE)
-```
-
-```
-##  [1] 733 354 204 435 278 598  79 875 463 460
+#>  [1] 277 208 837 814  75 492 841 847 719 704
 ```
 
 ### Normal distribution
@@ -105,20 +90,12 @@ To sample random deviates from a normal distribution, use the `rnorm(n, mean = 0
 
 ```r
 rnorm(n= 10,mean = 0, sd = 1)
-```
+#>  [1] -0.6205916  0.1080475 -0.3815423 -0.6242661  0.9667522 -0.9231609
+#>  [7]  0.5330538  1.3612077  0.5654421 -0.5738990
 
-```
-##  [1]  0.79680747 -0.04431444 -0.85356807 -0.38846600 -0.69136999 -0.86033924
-##  [7] -0.33889780 -1.12573542 -0.07471057 -1.95648908
-```
-
-```r
 rnorm(10,0,1)
-```
-
-```
-##  [1]  1.8391151 -1.0570314 -0.3235842 -1.2049140 -1.5977929  0.8620560
-##  [7]  0.9034647  0.7606043 -0.7822502 -2.0054921
+#>  [1]  0.1581810 -1.9928215 -0.4290687  1.2985554  1.0347357  1.1762725
+#>  [7]  0.6672085 -0.5236141 -0.6811292 -1.4808057
 ```
 
 2. Visualize the sample quickly with `hist()`
@@ -192,10 +169,7 @@ hist(runif(10000,100,1000))
 ```r
 my_sample <- runif(100,0,1)
 length(my_sample[my_sample < .05])
-```
-
-```
-## [1] 4
+#> [1] 4
 ```
 
 ### Other distributions
@@ -240,37 +214,13 @@ In Chapter 5, Vokey and Allen discuss skewness and kurtosis as additional descri
 library(moments)
 my_sample <- rnorm(1000,0,1)
 mean(my_sample)
-```
-
-```
-## [1] 0.03965391
-```
-
-```r
+#> [1] -0.0160362
 sd(my_sample)
-```
-
-```
-## [1] 1.01795
-```
-
-```r
+#> [1] 0.9836153
 skewness(my_sample)
-```
-
-```
-## [1] 0.05159677
-```
-
-```r
+#> [1] 0.06439033
 kurtosis(my_sample)
-```
-
-```
-## [1] 3.024779
-```
-
-```r
+#> [1] 2.847791
 hist(my_sample)
 ```
 
@@ -281,37 +231,13 @@ hist(my_sample)
 ```r
 my_sample <- rexp(1000,2)
 mean(my_sample)
-```
-
-```
-## [1] 0.4942242
-```
-
-```r
+#> [1] 0.4994639
 sd(my_sample)
-```
-
-```
-## [1] 0.4928924
-```
-
-```r
+#> [1] 0.5109935
 skewness(my_sample)
-```
-
-```
-## [1] 1.877632
-```
-
-```r
+#> [1] 2.19753
 kurtosis(my_sample)
-```
-
-```
-## [1] 7.559505
-```
-
-```r
+#> [1] 10.65415
 hist(my_sample)
 ```
 
@@ -408,6 +334,7 @@ ggplot(sim_data,aes(x=n,y=sample_mean))+
 <img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 ```r
+
 ggplot(sim_data,aes(x=n,y=sample_sd))+
   geom_point()+
   geom_line()+

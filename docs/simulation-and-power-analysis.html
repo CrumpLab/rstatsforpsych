@@ -59,6 +59,7 @@
 <li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
 <li><a class="" href="practice-problems.html">Practice problems</a></li>
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
 <li class="book-part">Labs</li>
 <li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
 <li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
@@ -85,9 +86,15 @@
 <h1>Simulation and Power Analysis<a class="anchor" aria-label="anchor" href="#simulation-and-power-analysis"><i class="fas fa-link"></i></a>
 </h1>
 <p>“11/8/2020 | Last Compiled: 2020-12-07”</p>
-<div id="overview-10" class="section level2" number="10.8">
+<div id="reading-6" class="section level2" number="10.8">
 <h2>
-<span class="header-section-number">10.8</span> Overview<a class="anchor" aria-label="anchor" href="#overview-10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.8</span> Reading<a class="anchor" aria-label="anchor" href="#reading-6"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Crump et al. (<a href="references.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, Chapter 12 on <a href="https://crumplab.github.io/statistics/thinking-about-answering-questions-with-data.html">Effect size and power</a></p>
+</div>
+<div id="overview-10" class="section level2" number="10.9">
+<h2>
+<span class="header-section-number">10.9</span> Overview<a class="anchor" aria-label="anchor" href="#overview-10"><i class="fas fa-link"></i></a>
 </h2>
 <p>Part of the semester long project is to conduct a simulation-based power-analysis. This document provides some background on power-analyses and use of simulations for sample-size and design planning. Attempts will be made to integrate additional examples in the remaining labs this semester and next as we move on to more complicated designs and statistical tests.</p>
 <ol style="list-style-type: decimal">
@@ -96,9 +103,9 @@
 <li>Understand how real data ought to behave given the assumptions you are making about the data.</li>
 </ol>
 </div>
-<div id="null-hypothesis" class="section level2" number="10.9">
+<div id="null-hypothesis" class="section level2" number="10.10">
 <h2>
-<span class="header-section-number">10.9</span> Null-hypothesis<a class="anchor" aria-label="anchor" href="#null-hypothesis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.10</span> Null-hypothesis<a class="anchor" aria-label="anchor" href="#null-hypothesis"><i class="fas fa-link"></i></a>
 </h2>
 <p>In general, the null-hypothesis is the hypothesis that your experimental manipulation didn’t work. Or, the hypothesis of no differences.</p>
 <p>We can simulate null-hypotheses in R for any experimental design. We do this in the following way:</p>
@@ -108,11 +115,11 @@
 <li>Compute a test-statistic for each simulation, save it, then repeat to create the sampling distribution of the test statistic.</li>
 <li>The sampling distribution of the test-statistic is the null-distribution. We use it to set an alpha criterion, and then do hypothesis testing.</li>
 </ol>
-<div id="null-for-a-t-test" class="section level3" number="10.9.1">
+<div id="null-for-a-t-test" class="section level3" number="10.10.1">
 <h3>
-<span class="header-section-number">10.9.1</span> Null for a t-test<a class="anchor" aria-label="anchor" href="#null-for-a-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.10.1</span> Null for a t-test<a class="anchor" aria-label="anchor" href="#null-for-a-t-test"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb1093"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb376"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># samples A and B come from the same normal distribution</span>
 <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
 <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
@@ -135,7 +142,7 @@
 <span class="co"># plot the null-distribution of p-values</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
-<div class="sourceCode" id="cb1094"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
@@ -143,13 +150,13 @@
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
-<div id="alternative-hypothesis" class="section level2" number="10.10">
+<div id="alternative-hypothesis" class="section level2" number="10.11">
 <h2>
-<span class="header-section-number">10.10</span> Alternative hypothesis<a class="anchor" aria-label="anchor" href="#alternative-hypothesis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.11</span> Alternative hypothesis<a class="anchor" aria-label="anchor" href="#alternative-hypothesis"><i class="fas fa-link"></i></a>
 </h2>
 <p>The very general alternative to the null hypothesis (no differences), is often called the <strong>alternative</strong> hypothesis: that the manipulation does cause a difference. More specifically, there are an infinite number of possible alternative hypotheses, each involving a difference of a specific size.</p>
 <p>Consider this. How often will we find a p-value less than .05 if there was a mean difference of 5 between sample A and B. Let’s use all of the same parameters as before, except this time we sample from different distributions for A and B.</p>
-<div class="sourceCode" id="cb1095"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb378"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
   <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
@@ -168,16 +175,16 @@
 <span class="co"># plot the distribution of p-values</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
-<div class="sourceCode" id="cb1096"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
 <span class="co">#&gt; [1] 0.581</span></code></pre></div>
 <p>We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).</p>
 </div>
-<div id="power-and-effect-size" class="section level2" number="10.11">
+<div id="power-and-effect-size" class="section level2" number="10.12">
 <h2>
-<span class="header-section-number">10.11</span> Power and Effect Size<a class="anchor" aria-label="anchor" href="#power-and-effect-size"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.12</span> Power and Effect Size<a class="anchor" aria-label="anchor" href="#power-and-effect-size"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Power</strong>: the probability of rejecting a null-hypothesis, given that there is a true effect of some size.</p>
 <p><strong>Effect-size</strong>: In general, it’s the assumed size of the difference. In the above example, we assumed a difference of 5, so the assumed effect-size was 5.</p>
@@ -191,17 +198,17 @@
 </ol>
 <p>Power is a property of a design. The power of a design increases when sample-size increases. The power of a design increases when the actual true effect-size increases. The power of a design increases then the alpha criterion increases (e.g, going from .05 to .1, making it easier to reject the null).</p>
 </div>
-<div id="power-analysis-with-r" class="section level2" number="10.12">
+<div id="power-analysis-with-r" class="section level2" number="10.13">
 <h2>
-<span class="header-section-number">10.12</span> Power analysis with R<a class="anchor" aria-label="anchor" href="#power-analysis-with-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.13</span> Power analysis with R<a class="anchor" aria-label="anchor" href="#power-analysis-with-r"><i class="fas fa-link"></i></a>
 </h2>
 <p>There are many packages and functions for power analysis. Power analysis is important for planning a design. For example, you can determine how many subjects you need in order to have a high probability of detecting a true effect (of a particular size) if it is really there.</p>
-<div id="pwr-package" class="section level3" number="10.12.1">
+<div id="pwr-package" class="section level3" number="10.13.1">
 <h3>
-<span class="header-section-number">10.12.1</span> pwr package<a class="anchor" aria-label="anchor" href="#pwr-package"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.13.1</span> pwr package<a class="anchor" aria-label="anchor" href="#pwr-package"><i class="fas fa-link"></i></a>
 </h3>
 <p>Here is an example of using the <code>pwr</code> package to find the power for an independent sample t-test, with n=10, to detect an effect-size of 1. This answer is similar to our simulations answer. The simulation would converge on this answer if we increased the number of simulations.</p>
-<div class="sourceCode" id="cb1097"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb380"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,
            d<span class="op">=</span><span class="fl">1</span>,
@@ -221,12 +228,12 @@
 <p>As I mentioned there are many functions for directly computing power in R. Feel free to use them. In this class, we learn how to use simulation to conduct power analyses. This can be a redundant approach that is not necessary, given there are other functions we can use. Additionally, we will not get exact solutions (but approximate ones). Nevertheless, the existing power functions can be limited and may not apply to your design. The simulation approach can be extended to any design. Learning how to run the simulations will also improve your statistical sensibilities, and power calculations will become less of a black box.</p>
 <p>Two more things before moving onto simulation: power-curves, and sample-size planning.</p>
 </div>
-<div id="power-curves" class="section level3" number="10.12.2">
+<div id="power-curves" class="section level3" number="10.13.2">
 <h3>
-<span class="header-section-number">10.12.2</span> power-curves<a class="anchor" aria-label="anchor" href="#power-curves"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.13.2</span> power-curves<a class="anchor" aria-label="anchor" href="#power-curves"><i class="fas fa-link"></i></a>
 </h3>
 <p>A design’s power is in relation to the true effect-size. The same design has different levels of power to detect different sized effects. Let’s make a power curve to see the power of a t-test for independent samples (n=10) to detect a range of effect-sizes</p>
-<div class="sourceCode" id="cb1098"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb381"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
 <span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -247,9 +254,9 @@
 <p>If you do not know the power-curve for your design, then you do not know how sensitive your design is for detecting effects of particular sizes. You might accidentally be using an under powered design, with only a very small chance of detecting an effect of a size you are interested in.</p>
 <p>If you do know the power-curve for your design, you will be in a better position to plan your experiment, for example by modifying the number of subjects that you run.</p>
 </div>
-<div id="sample-size-planning" class="section level3" number="10.12.3">
+<div id="sample-size-planning" class="section level3" number="10.13.3">
 <h3>
-<span class="header-section-number">10.12.3</span> Sample-size planning<a class="anchor" aria-label="anchor" href="#sample-size-planning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.13.3</span> Sample-size planning<a class="anchor" aria-label="anchor" href="#sample-size-planning"><i class="fas fa-link"></i></a>
 </h3>
 <p>Here is one way to plan for the number of subjects that you need to find an effect of interest.</p>
 <ol style="list-style-type: decimal">
@@ -258,7 +265,7 @@
 </ol>
 <p>It’s not clear how you establish a smallest effect-size of interest. But let’s say you are interested in detecting an effect of at least d = .2. This means that two conditions would differ by at least a .2 standard deviation shift. If you find something smaller than that, let’s say you wouldn’t care about it because it wouldn’t be big enough for you to care. How many subjects do you need to have a high powered design, one that would almost always reject the null-hypothesis?</p>
 <p>This is for an independent samples t-test:</p>
-<div class="sourceCode" id="cb1099"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb382"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">num_subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span><span class="op">)</span>
 <span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">num_subjects</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
@@ -278,9 +285,9 @@
 <p>Well, it looks like you need many subjects to have high power. For example, if you want to detect the effect 95% of the time, you would need around 650 subjects. It’s worth doing this kind of analysis to see if your design checks out. You don’t want to waste your time running an experiment that is designed to fail (even when the true effect is real).</p>
 </div>
 </div>
-<div id="simulation-approach-to-power-calculations" class="section level2" number="10.13">
+<div id="simulation-approach-to-power-calculations" class="section level2" number="10.14">
 <h2>
-<span class="header-section-number">10.13</span> Simulation approach to power calculations<a class="anchor" aria-label="anchor" href="#simulation-approach-to-power-calculations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.14</span> Simulation approach to power calculations<a class="anchor" aria-label="anchor" href="#simulation-approach-to-power-calculations"><i class="fas fa-link"></i></a>
 </h2>
 <p>The simulation approach to power analysis involves these steps:</p>
 <ol style="list-style-type: decimal">
@@ -291,12 +298,12 @@
 <li>Compute power by determining the proportion of simulated p-values that are less than your alpha criterion.</li>
 </ol>
 <p>For all simulations, increasing number of simulations will improve the accuracy of your results. We will use 1000 simulations throughout. 10,000 would be better, but might take just a little bit longer.</p>
-<div id="simulated-power-for-a-t-test" class="section level3" number="10.13.1">
+<div id="simulated-power-for-a-t-test" class="section level3" number="10.14.1">
 <h3>
-<span class="header-section-number">10.13.1</span> Simulated power for a t-test<a class="anchor" aria-label="anchor" href="#simulated-power-for-a-t-test"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.14.1</span> Simulated power for a t-test<a class="anchor" aria-label="anchor" href="#simulated-power-for-a-t-test"><i class="fas fa-link"></i></a>
 </h3>
 <p>A power curve for n=10.</p>
-<div class="sourceCode" id="cb1100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb383"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to run a simulated t-test</span>
 <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
@@ -324,13 +331,13 @@
 <p>In this case, there is no obvious benefit to computing the power-curve by simulation. The answer we get is similar to the answer we got before using the <code>pwr</code> package, but our simulation answer is more noisy. Why bother the simulation?</p>
 <p>One answer to the why bother question is that you can simulate deeper aspects of the design and get more refined answers without having to work through the math.</p>
 </div>
-<div id="simulating-cell-size" class="section level3" number="10.13.2">
+<div id="simulating-cell-size" class="section level3" number="10.14.2">
 <h3>
-<span class="header-section-number">10.13.2</span> Simulating cell-size<a class="anchor" aria-label="anchor" href="#simulating-cell-size"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.14.2</span> Simulating cell-size<a class="anchor" aria-label="anchor" href="#simulating-cell-size"><i class="fas fa-link"></i></a>
 </h3>
 <p>Many experimental designs involve multiple measurements, or trials, for each subject in each condition. How many trials should we require for each subject in each condition? Traditional power analysis doesn’t make it easy to answer this question. However, the power of a design will depend not only on the number subjects, but also the number trials used to estimate the mean for each subject in each condition.</p>
 <p>Consider a simple Stroop experiment. The researcher is interested in measuring a Stroop effect of at least d=.1 (e.g., the difference between mean congruent trials is .1 standard deviations smaller than mean incongruent trials). How many subjects are required? And, how many trials should each subject perform in the congruent and incongruent conditions? Let’s use simulation to find out.</p>
-<div class="sourceCode" id="cb1101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb384"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to run a simulated t-test</span>
 <span class="co"># nsubs sets number of subjects</span>
 <span class="co"># ntrials to change number of trials</span>
@@ -372,7 +379,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
-<div class="sourceCode" id="cb1102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># a vectorized version of the loop</span>
 <span class="co"># run simulation for each effect size 1000 times</span>
@@ -387,23 +394,23 @@
 <p>To my eye, it looks like 30 subjects with 100 trials in each condition would give you a very high power to find a Stroop effect of d=.1.</p>
 </div>
 </div>
-<div id="closing-thoughts" class="section level2" number="10.14">
+<div id="closing-thoughts" class="section level2" number="10.15">
 <h2>
-<span class="header-section-number">10.14</span> Closing thoughts<a class="anchor" aria-label="anchor" href="#closing-thoughts"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.15</span> Closing thoughts<a class="anchor" aria-label="anchor" href="#closing-thoughts"><i class="fas fa-link"></i></a>
 </h2>
 <p>The simulation approach is powerful and flexible. It can be applied whenever you can formalize your assumptions about the data. And, your simulations can be highly customized to account for all kinds of nuances, like different numbers of subjects, different distributions, assumptions about noise, etc. If you are wondering what your design can do, maybe you should simulate it.</p>
 </div>
-<div id="more-examples" class="section level2" number="10.15">
+<div id="more-examples" class="section level2" number="10.16">
 <h2>
-<span class="header-section-number">10.15</span> More example(s)<a class="anchor" aria-label="anchor" href="#more-examples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.16</span> More example(s)<a class="anchor" aria-label="anchor" href="#more-examples"><i class="fas fa-link"></i></a>
 </h2>
 <p>As I find time I will try to add more examples here, especially out of the box examples to illustrate how simulation can be applied.</p>
-<div id="one-way-anova" class="section level3" number="10.15.1">
+<div id="one-way-anova" class="section level3" number="10.16.1">
 <h3>
-<span class="header-section-number">10.15.1</span> One-Way ANOVA<a class="anchor" aria-label="anchor" href="#one-way-anova"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.16.1</span> One-Way ANOVA<a class="anchor" aria-label="anchor" href="#one-way-anova"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s extend our simulation based approach to the one-way ANOVA. Let’s assume a between-subjects design, with one factor that has four levels: A, B, C, and D. There will be 20 subjects in each group. What is the power curve for this design to detect effects of various size? Immediately, the situation becomes complicated, there are numerous ways that the means for A, B, C, and D could vary. Let’s assume the simplest case, three of them are the same, and one of them is different by some amount of standard deviations. We will compute the main effect, and report the proportion of significant experiments as we increase the effect size for the fourth group.</p>
-<div class="sourceCode" id="cb1103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb386"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to run a simulated t-test</span>
 <span class="va">sim_power_anova</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
@@ -436,7 +443,7 @@
 <div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
 <p>It looks like this design (1 factor, between-subjects, 20 subjects per group) has high power to detect an effect of d=1, specifically when one of the groups differs from the others by d=1.</p>
 <p>However, most effects in psychology are smalls, d=.2 is very common. How, many subjects does this design require to have high power (let’s say above .95, although most people use .8) to detect that small effect?</p>
-<div class="sourceCode" id="cb1104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_power_anova</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
   <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
@@ -468,14 +475,14 @@
 <div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
 <p>The simulations suggests we need about 560 subjects in each group to have power .95 to detect the effect (d=.2). That’s a total of 2240 subjects. Reality can be surprising when it comes to power analysis. It is better to be surprised about your design before you run your experiment, not after.</p>
 </div>
-<div id="correlation-between-traits-and-behavior" class="section level3" number="10.15.2">
+<div id="correlation-between-traits-and-behavior" class="section level3" number="10.16.2">
 <h3>
-<span class="header-section-number">10.15.2</span> Correlation between traits and behavior<a class="anchor" aria-label="anchor" href="#correlation-between-traits-and-behavior"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.16.2</span> Correlation between traits and behavior<a class="anchor" aria-label="anchor" href="#correlation-between-traits-and-behavior"><i class="fas fa-link"></i></a>
 </h3>
 <p>A common research strategy is to measure putative correlations between people’s traits and their behavior. For example, a researcher might prepare a questionnaire with several questions. Perhaps the questions are about their political views, or about their life satisfaction, or anything else. The research might ask some group of people to answer the questions, and to also perform some task. At the end of the experiment, they might ask if different kinds of people (measured by the questionnaire) perform differently on the behavioral measure. For example, we might have people answer several questions about their openness to new experiences, we might also measure their performance on a working memory task. A research question might be, do people who are more open to experience perform better on a working memory task? The answer would lie in a correlation between the answers on the questions, and the performance on the task. Let’s simulate this kind of situation, say for 20 subjects. Each subject answers 20 questions, and they perform a behavioral task. At the end of the experiment, we correlate the answers on each question, with the performance on the task. What kind of correlations would we expect by chance alone? Let’s say the participants are all random robots. They answer each question randomly, and their performance on the behavioral task is sampled randomly from some normal distribution. If everything is random, shouldn’t we expect to find no correlations?</p>
 <p>Details:</p>
 <p>Let’s assume that each question involves a likert scale from 1 to 7. Each person randomly picks a number from 1 to 7 for each question. Let’s assume performance on the behavioral task is sampled from a normal distribution with mean = 0, and sd = 1.</p>
-<div class="sourceCode" id="cb1105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get 20 random answers for all 20 subjects and 20 questions</span>
 <span class="co"># columns will be individual subjects 1 to 20</span>
 <span class="co"># rows will be questions 1 to 20</span>
@@ -495,7 +502,7 @@
 <p>The histogram shows that a range of correlations between individual questions and behavior can emerge just by chance alone. If you run the above code a few times, you will see that the histogram changes a bit because of random chance.</p>
 <p>Oftentimes researchers might not know which question on the questionnaire is the best question. That is, the one that best correlates with behavior. Consider a researcher who computes all of the correlations between each question and behavior, and then chooses the question with highest correlation (positive or negative) as the best question. After all, it has the highest correlation. After choosing this question, they might suggest that behavior is strongly correlated with how people answer this question.</p>
 <p>Let’s try to find out by simulation what kinds of large correlations can occur just by chance alone. We will run the above many times, and each time we will save the absolute value of the largest correlation between a question and behavior. Just how large can these correlations be by chance alone?</p>
-<div class="sourceCode" id="cb1106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb389"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">save_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span> <span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
   <span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">20</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">20</span><span class="op">)</span>
@@ -512,7 +519,7 @@
 <div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
 <p>The simulation shows that chance alone in this situation can produce very large correlations, as large as .8 or .9 (although not very often).</p>
 <p>The situation changes somewhat if many more subjects are run. Let’s do the same as above, but run 200 subjects, rather than 20.</p>
-<div class="sourceCode" id="cb1107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">save_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span> <span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
   <span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">200</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">200</span><span class="op">)</span>
@@ -539,30 +546,31 @@
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#simulation-and-power-analysis">Simulation and Power Analysis</a></li>
-<li><a class="nav-link" href="#overview-10"><span class="header-section-number">10.8</span> Overview</a></li>
+<li><a class="nav-link" href="#reading-6"><span class="header-section-number">10.8</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-10"><span class="header-section-number">10.9</span> Overview</a></li>
 <li>
-<a class="nav-link" href="#null-hypothesis"><span class="header-section-number">10.9</span> Null-hypothesis</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#null-for-a-t-test"><span class="header-section-number">10.9.1</span> Null for a t-test</a></li></ul>
+<a class="nav-link" href="#null-hypothesis"><span class="header-section-number">10.10</span> Null-hypothesis</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#null-for-a-t-test"><span class="header-section-number">10.10.1</span> Null for a t-test</a></li></ul>
 </li>
-<li><a class="nav-link" href="#alternative-hypothesis"><span class="header-section-number">10.10</span> Alternative hypothesis</a></li>
-<li><a class="nav-link" href="#power-and-effect-size"><span class="header-section-number">10.11</span> Power and Effect Size</a></li>
+<li><a class="nav-link" href="#alternative-hypothesis"><span class="header-section-number">10.11</span> Alternative hypothesis</a></li>
+<li><a class="nav-link" href="#power-and-effect-size"><span class="header-section-number">10.12</span> Power and Effect Size</a></li>
 <li>
-<a class="nav-link" href="#power-analysis-with-r"><span class="header-section-number">10.12</span> Power analysis with R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#pwr-package"><span class="header-section-number">10.12.1</span> pwr package</a></li>
-<li><a class="nav-link" href="#power-curves"><span class="header-section-number">10.12.2</span> power-curves</a></li>
-<li><a class="nav-link" href="#sample-size-planning"><span class="header-section-number">10.12.3</span> Sample-size planning</a></li>
+<a class="nav-link" href="#power-analysis-with-r"><span class="header-section-number">10.13</span> Power analysis with R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#pwr-package"><span class="header-section-number">10.13.1</span> pwr package</a></li>
+<li><a class="nav-link" href="#power-curves"><span class="header-section-number">10.13.2</span> power-curves</a></li>
+<li><a class="nav-link" href="#sample-size-planning"><span class="header-section-number">10.13.3</span> Sample-size planning</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#simulation-approach-to-power-calculations"><span class="header-section-number">10.13</span> Simulation approach to power calculations</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#simulated-power-for-a-t-test"><span class="header-section-number">10.13.1</span> Simulated power for a t-test</a></li>
-<li><a class="nav-link" href="#simulating-cell-size"><span class="header-section-number">10.13.2</span> Simulating cell-size</a></li>
+<a class="nav-link" href="#simulation-approach-to-power-calculations"><span class="header-section-number">10.14</span> Simulation approach to power calculations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simulated-power-for-a-t-test"><span class="header-section-number">10.14.1</span> Simulated power for a t-test</a></li>
+<li><a class="nav-link" href="#simulating-cell-size"><span class="header-section-number">10.14.2</span> Simulating cell-size</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#closing-thoughts"><span class="header-section-number">10.14</span> Closing thoughts</a></li>
+<li><a class="nav-link" href="#closing-thoughts"><span class="header-section-number">10.15</span> Closing thoughts</a></li>
 <li>
-<a class="nav-link" href="#more-examples"><span class="header-section-number">10.15</span> More example(s)</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#one-way-anova"><span class="header-section-number">10.15.1</span> One-Way ANOVA</a></li>
-<li><a class="nav-link" href="#correlation-between-traits-and-behavior"><span class="header-section-number">10.15.2</span> Correlation between traits and behavior</a></li>
+<a class="nav-link" href="#more-examples"><span class="header-section-number">10.16</span> More example(s)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#one-way-anova"><span class="header-section-number">10.16.1</span> One-Way ANOVA</a></li>
+<li><a class="nav-link" href="#correlation-between-traits-and-behavior"><span class="header-section-number">10.16.2</span> Correlation between traits and behavior</a></li>
 </ul>
 </li>
 </ul>

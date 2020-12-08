@@ -11,6 +11,7 @@ rmd_files:
 - "GS_R_intro.Rmd"
 - "GS_R_Problems.Rmd"
 - "GS_R_Reference.Rmd"
+- "GS_R_Resources.Rmd"
 
 - "Lab1_Basics.Rmd"
 - "Lab2_Descriptives.Rmd"

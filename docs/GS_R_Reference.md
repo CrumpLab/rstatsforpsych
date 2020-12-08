@@ -1,3 +1,5 @@
+
+
 # Coding Reference {.unnumbered}
 
 
@@ -25,28 +27,15 @@ Variables have classes that describe their contents.
 ```r
 x <- 1
 class(x)
-```
+#> [1] "numeric"
 
-```
-## [1] "numeric"
-```
-
-```r
 y <- "1"
 class(y)
-```
+#> [1] "character"
 
-```
-## [1] "character"
-```
-
-```r
 z <- TRUE
 class(z)
-```
-
-```
-## [1] "logical"
+#> [1] "logical"
 ```
 
 Classes allow and disallow some commands. For example, you can't add a numeric to a character:
@@ -54,10 +43,7 @@ Classes allow and disallow some commands. For example, you can't add a numeric t
 
 ```r
 x+y
-```
-
-```
-## Error in x + y: non-numeric argument to binary operator
+#> Error in x + y: non-numeric argument to binary operator
 ```
 
 Classes can be converted:
@@ -66,10 +52,7 @@ Classes can be converted:
 ```r
 y <- as.numeric(y)
 x+y
-```
-
-```
-## [1] 2
+#> [1] 2
 ```
 
 ### Vectors
@@ -84,65 +67,32 @@ There are multiple ways to create a vector
 ```r
 a <- c() # create a NULL vector
 a
-```
+#> NULL
 
-```
-## NULL
-```
-
-```r
 a <- 1:5 # assign a sequence to a name
 a
-```
+#> [1] 1 2 3 4 5
 
-```
-## [1] 1 2 3 4 5
-```
-
-```r
 a <- c(1,2,3,4,5) # assign a vector made with combine c()
 a
-```
+#> [1] 1 2 3 4 5
 
-```
-## [1] 1 2 3 4 5
-```
-
-```r
 #pre-assign an empty vector
 a <- vector(mode = "numeric", length=10)
 a
-```
+#>  [1] 0 0 0 0 0 0 0 0 0 0
 
-```
-##  [1] 0 0 0 0 0 0 0 0 0 0
-```
-
-```r
 a <- vector(mode = "integer", length=10)
 a
-```
+#>  [1] 0 0 0 0 0 0 0 0 0 0
 
-```
-##  [1] 0 0 0 0 0 0 0 0 0 0
-```
-
-```r
 a <- vector(mode = "logical", length=10)
 a
-```
+#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
-```
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-```
-
-```r
 a <- vector(mode = "character", length=10)
 a
-```
-
-```
-##  [1] "" "" "" "" "" "" "" "" "" ""
+#>  [1] "" "" "" "" "" "" "" "" "" ""
 ```
 
 `length()` returns the number of elements in the vector
@@ -150,23 +100,9 @@ a
 
 ```r
 a < c(1,4,5)
-```
-
-```
-## Warning in a < c(1, 4, 5): longer object length is not a multiple of shorter
-## object length
-```
-
-```
-##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
-```
-
-```r
+#>  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 length(a)
-```
-
-```
-## [1] 10
+#> [1] 10
 ```
 
 
@@ -180,27 +116,13 @@ x <- 1:5
 y <- 6:10
 
 x
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 y
-```
+#> [1]  6  7  8  9 10
 
-```
-## [1]  6  7  8  9 10
-```
-
-```r
 z <- c(x,y)
 z
-```
-
-```
-##  [1]  1  2  3  4  5  6  7  8  9 10
+#>  [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
 However, if you attempt to combine vectors of different classes, R will throw an error, or it will coerce (convert) one of the vectors into the class of the other.
@@ -211,27 +133,13 @@ x <- 1:5
 y <- c("a","b","c","d","e")
 
 x
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 y
-```
+#> [1] "a" "b" "c" "d" "e"
 
-```
-## [1] "a" "b" "c" "d" "e"
-```
-
-```r
 z <- c(x,y)
 z
-```
-
-```
-##  [1] "1" "2" "3" "4" "5" "a" "b" "c" "d" "e"
+#>  [1] "1" "2" "3" "4" "5" "a" "b" "c" "d" "e"
 ```
 
 #### Vector Indexing
@@ -245,34 +153,16 @@ The general syntax is `vector_name[positions]`, where `vector_name` is the name 
 a <- c(23,34,45,56,67,78,89)
 
 a[1] # returns the element in position 1
-```
+#> [1] 23
 
-```
-## [1] 23
-```
-
-```r
 a[1:3] # returns elements in positions 1 to 3
-```
+#> [1] 23 34 45
 
-```
-## [1] 23 34 45
-```
-
-```r
 a[c(4,5,6)]
-```
+#> [1] 56 67 78
 
-```
-## [1] 56 67 78
-```
-
-```r
 a[c(1,1,1)]
-```
-
-```
-## [1] 23 23 23
+#> [1] 23 23 23
 ```
 
 Logical vectors can indicate positions. In this case, elements in TRUE positions will be returned
@@ -282,26 +172,13 @@ Logical vectors can indicate positions. In this case, elements in TRUE positions
 a <- c(45,56,78)
 
 a[c(TRUE, FALSE, FALSE)]
-```
+#> [1] 45
 
-```
-## [1] 45
-```
-
-```r
 a[c(FALSE, TRUE, FALSE)]
-```
+#> [1] 56
 
-```
-## [1] 56
-```
-
-```r
 a[c(FALSE, FALSE, TRUE)]
-```
-
-```
-## [1] 78
+#> [1] 78
 ```
 
 #### Vector indexing and assignment
@@ -312,28 +189,15 @@ Vector indexing can also be used to assign new elements to the indexed positions
 ```r
 a <- c(45,56,78)
 a
-```
+#> [1] 45 56 78
 
-```
-## [1] 45 56 78
-```
-
-```r
 a[3] <- 100
 a
-```
+#> [1]  45  56 100
 
-```
-## [1]  45  56 100
-```
-
-```r
 a[1:3] <- "Hello"
 a
-```
-
-```
-## [1] "Hello" "Hello" "Hello"
+#> [1] "Hello" "Hello" "Hello"
 ```
 
 #### Logical indexing
@@ -345,43 +209,20 @@ Vectors can be indexing using logical comparisons (see section on logic for furt
 a <- c(1,3,2,4,3,4)
 
 a == 4 # create logical vector of positions containing 4
-```
+#> [1] FALSE FALSE FALSE  TRUE FALSE  TRUE
 
-```
-## [1] FALSE FALSE FALSE  TRUE FALSE  TRUE
-```
-
-```r
 # inserting the above into a[] finds the elements equal to 4
 a[a == 4] # elements equal to 4
-```
+#> [1] 4 4
 
-```
-## [1] 4 4
-```
-
-```r
 a[a < 4] # elements less than 4
-```
+#> [1] 1 3 2 3
 
-```
-## [1] 1 3 2 3
-```
-
-```r
 a[a <= 4] # elements less than or equal to 4
-```
+#> [1] 1 3 2 4 3 4
 
-```
-## [1] 1 3 2 4 3 4
-```
-
-```r
 a[a != 1] # elements not equal to 1
-```
-
-```
-## [1] 3 2 4 3 4
+#> [1] 3 2 4 3 4
 ```
 
 ### Data.frame
@@ -392,18 +233,9 @@ Data.frames are 2-d storage objects, like a table (or excel sheet), they have co
 ```r
 a <- data.frame() # make an empty data.frame
 a
-```
-
-```
-## data frame with 0 columns and 0 rows
-```
-
-```r
+#> data frame with 0 columns and 0 rows
 class(a)
-```
-
-```
-## [1] "data.frame"
+#> [1] "data.frame"
 ```
 
 #### Data.frame creation
@@ -418,13 +250,10 @@ z <- c(TRUE, TRUE,TRUE)
 
 a <- data.frame(x,y,z)
 a
-```
-
-```
-##   x y    z
-## 1 1 a TRUE
-## 2 2 b TRUE
-## 3 3 c TRUE
+#>   x y    z
+#> 1 1 a TRUE
+#> 2 2 b TRUE
+#> 3 3 c TRUE
 ```
 
 `dim()` returns the number of rows and columns in the data.frame
@@ -432,10 +261,7 @@ a
 
 ```r
 dim(a)
-```
-
-```
-## [1] 3 3
+#> [1] 3 3
 ```
 #### Indexing by column name
 
@@ -444,71 +270,31 @@ Each column in a data.frame has a name, and can be accessed using the `$` syntax
 
 ```r
 names(a)
-```
+#> [1] "x" "y" "z"
 
-```
-## [1] "x" "y" "z"
-```
-
-```r
 a$x
-```
+#> [1] 1 2 3
 
-```
-## [1] 1 2 3
-```
-
-```r
 a$y
-```
+#> [1] "a" "b" "c"
 
-```
-## [1] "a" "b" "c"
-```
-
-```r
 a$z
-```
+#> [1] TRUE TRUE TRUE
 
-```
-## [1] TRUE TRUE TRUE
-```
-
-```r
 #re-name by assigning a new vector 
 names(a) <- c("new_x","Why","Zee")
 a
-```
+#>   new_x Why  Zee
+#> 1     1   a TRUE
+#> 2     2   b TRUE
+#> 3     3   c TRUE
 
-```
-##   new_x Why  Zee
-## 1     1   a TRUE
-## 2     2   b TRUE
-## 3     3   c TRUE
-```
-
-```r
 a$new_x
-```
-
-```
-## [1] 1 2 3
-```
-
-```r
+#> [1] 1 2 3
 a$Why
-```
-
-```
-## [1] "a" "b" "c"
-```
-
-```r
+#> [1] "a" "b" "c"
 a$Zee
-```
-
-```
-## [1] TRUE TRUE TRUE
+#> [1] TRUE TRUE TRUE
 ```
 #### Indexing with `[rows,columns]`
 
@@ -517,69 +303,36 @@ Data.frames have rows and columns, and can be indexed using `[rows,columns]` not
 
 ```r
 a
-```
+#>   new_x Why  Zee
+#> 1     1   a TRUE
+#> 2     2   b TRUE
+#> 3     3   c TRUE
 
-```
-##   new_x Why  Zee
-## 1     1   a TRUE
-## 2     2   b TRUE
-## 3     3   c TRUE
-```
-
-```r
 a[1,] # row 1
-```
+#>   new_x Why  Zee
+#> 1     1   a TRUE
 
-```
-##   new_x Why  Zee
-## 1     1   a TRUE
-```
-
-```r
 a[,1] # column 1
-```
+#> [1] 1 2 3
 
-```
-## [1] 1 2 3
-```
-
-```r
 a[1:2,] # rows 1 to 2
-```
+#>   new_x Why  Zee
+#> 1     1   a TRUE
+#> 2     2   b TRUE
 
-```
-##   new_x Why  Zee
-## 1     1   a TRUE
-## 2     2   b TRUE
-```
-
-```r
 a[,1:2] # columns 1 to 2
-```
+#>   new_x Why
+#> 1     1   a
+#> 2     2   b
+#> 3     3   c
 
-```
-##   new_x Why
-## 1     1   a
-## 2     2   b
-## 3     3   c
-```
-
-```r
 a[1:2,1:2] #rows 1 to 2 and columns 1 to 2
-```
+#>   new_x Why
+#> 1     1   a
+#> 2     2   b
 
-```
-##   new_x Why
-## 1     1   a
-## 2     2   b
-```
-
-```r
 a[1:2,'new_x'] # Column names can be used
-```
-
-```
-## [1] 1 2
+#> [1] 1 2
 ```
 
 #### row and column binding
@@ -590,39 +343,25 @@ It is possible to add more rows using `rbind()`, and add more columns using `cbi
 ```r
 # row bind a copy of a to itself
 a
-```
-
-```
-##   new_x Why  Zee
-## 1     1   a TRUE
-## 2     2   b TRUE
-## 3     3   c TRUE
-```
-
-```r
+#>   new_x Why  Zee
+#> 1     1   a TRUE
+#> 2     2   b TRUE
+#> 3     3   c TRUE
 a <- rbind(a,a)
 dim(a)
-```
+#> [1] 6 3
 
-```
-## [1] 6 3
-```
-
-```r
 # create a new vector, add it as a new column
 my_new <- c(1,4,3,2,4,5)
 a <- cbind(a,my_new)
 a
-```
-
-```
-##   new_x Why  Zee my_new
-## 1     1   a TRUE      1
-## 2     2   b TRUE      4
-## 3     3   c TRUE      3
-## 4     1   a TRUE      2
-## 5     2   b TRUE      4
-## 6     3   c TRUE      5
+#>   new_x Why  Zee my_new
+#> 1     1   a TRUE      1
+#> 2     2   b TRUE      4
+#> 3     3   c TRUE      3
+#> 4     1   a TRUE      2
+#> 5     2   b TRUE      4
+#> 6     3   c TRUE      5
 ```
 #### Indexing and assignment
 
@@ -631,48 +370,35 @@ The elements in a data.frame can be re-assigned by `your_dataframe[row:position]
 
 ```r
 a
-```
+#>   new_x Why  Zee my_new
+#> 1     1   a TRUE      1
+#> 2     2   b TRUE      4
+#> 3     3   c TRUE      3
+#> 4     1   a TRUE      2
+#> 5     2   b TRUE      4
+#> 6     3   c TRUE      5
 
-```
-##   new_x Why  Zee my_new
-## 1     1   a TRUE      1
-## 2     2   b TRUE      4
-## 3     3   c TRUE      3
-## 4     1   a TRUE      2
-## 5     2   b TRUE      4
-## 6     3   c TRUE      5
-```
-
-```r
 a[,1] <- 5 #assign column 1 all 5s
 
 a$Why <- c("new","words","are","going","in","here")
 a
-```
+#>   new_x   Why  Zee my_new
+#> 1     5   new TRUE      1
+#> 2     5 words TRUE      4
+#> 3     5   are TRUE      3
+#> 4     5 going TRUE      2
+#> 5     5    in TRUE      4
+#> 6     5  here TRUE      5
 
-```
-##   new_x   Why  Zee my_new
-## 1     5   new TRUE      1
-## 2     5 words TRUE      4
-## 3     5   are TRUE      3
-## 4     5 going TRUE      2
-## 5     5    in TRUE      4
-## 6     5  here TRUE      5
-```
-
-```r
 a[6,3] <- FALSE # row 6, column 3
 a
-```
-
-```
-##   new_x   Why   Zee my_new
-## 1     5   new  TRUE      1
-## 2     5 words  TRUE      4
-## 3     5   are  TRUE      3
-## 4     5 going  TRUE      2
-## 5     5    in  TRUE      4
-## 6     5  here FALSE      5
+#>   new_x   Why   Zee my_new
+#> 1     5   new  TRUE      1
+#> 2     5 words  TRUE      4
+#> 3     5   are  TRUE      3
+#> 4     5 going  TRUE      2
+#> 5     5    in  TRUE      4
+#> 6     5  here FALSE      5
 ```
 
 #### Logical indexing
@@ -682,12 +408,9 @@ It is also possible to index a data.frame with logical comparisons. For example,
 
 ```r
 a[a$my_new == 4,]
-```
-
-```
-##   new_x   Why  Zee my_new
-## 2     5 words TRUE      4
-## 5     5    in TRUE      4
+#>   new_x   Why  Zee my_new
+#> 2     5 words TRUE      4
+#> 5     5    in TRUE      4
 ```
 
 ### Lists
@@ -704,22 +427,19 @@ z <- data.frame(a= 1:5, b=1:5, c=1:5)
 my_list <- list(x, y, z)
 
 my_list
-```
-
-```
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] 1 2 3 4 5
-## 
-## [[3]]
-##   a b c
-## 1 1 1 1
-## 2 2 2 2
-## 3 3 3 3
-## 4 4 4 4
-## 5 5 5 5
+#> [[1]]
+#> [1] 1
+#> 
+#> [[2]]
+#> [1] 1 2 3 4 5
+#> 
+#> [[3]]
+#>   a b c
+#> 1 1 1 1
+#> 2 2 2 2
+#> 3 3 3 3
+#> 4 4 4 4
+#> 5 5 5 5
 ```
 
 #### List indexing
@@ -729,31 +449,18 @@ Access elements in the list using `[[]]`
 
 ```r
 my_list[[1]]
-```
+#> [1] 1
 
-```
-## [1] 1
-```
-
-```r
 my_list[[2]]
-```
+#> [1] 1 2 3 4 5
 
-```
-## [1] 1 2 3 4 5
-```
-
-```r
 my_list[[3]]
-```
-
-```
-##   a b c
-## 1 1 1 1
-## 2 2 2 2
-## 3 3 3 3
-## 4 4 4 4
-## 5 5 5 5
+#>   a b c
+#> 1 1 1 1
+#> 2 2 2 2
+#> 3 3 3 3
+#> 4 4 4 4
+#> 5 5 5 5
 ```
 
 #### Named elements
@@ -768,80 +475,43 @@ z <- data.frame(a= 1:5, b=1:5, c=1:5)
 my_list <- list(ex = x, why = y,zee=  z)
 
 my_list
-```
+#> $ex
+#> [1] 1
+#> 
+#> $why
+#> [1] 1 2 3 4 5
+#> 
+#> $zee
+#>   a b c
+#> 1 1 1 1
+#> 2 2 2 2
+#> 3 3 3 3
+#> 4 4 4 4
+#> 5 5 5 5
 
-```
-## $ex
-## [1] 1
-## 
-## $why
-## [1] 1 2 3 4 5
-## 
-## $zee
-##   a b c
-## 1 1 1 1
-## 2 2 2 2
-## 3 3 3 3
-## 4 4 4 4
-## 5 5 5 5
-```
-
-```r
 my_list$ex
-```
-
-```
-## [1] 1
-```
-
-```r
+#> [1] 1
 my_list$why
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 my_list$zee
-```
+#>   a b c
+#> 1 1 1 1
+#> 2 2 2 2
+#> 3 3 3 3
+#> 4 4 4 4
+#> 5 5 5 5
 
-```
-##   a b c
-## 1 1 1 1
-## 2 2 2 2
-## 3 3 3 3
-## 4 4 4 4
-## 5 5 5 5
-```
-
-```r
 my_list[["ex"]]
-```
-
-```
-## [1] 1
-```
-
-```r
+#> [1] 1
 my_list[["why"]]
-```
-
-```
-## [1] 1 2 3 4 5
-```
-
-```r
+#> [1] 1 2 3 4 5
 my_list[["zee"]]
-```
-
-```
-##   a b c
-## 1 1 1 1
-## 2 2 2 2
-## 3 3 3 3
-## 4 4 4 4
-## 5 5 5 5
+#>   a b c
+#> 1 1 1 1
+#> 2 2 2 2
+#> 3 3 3 3
+#> 4 4 4 4
+#> 5 5 5 5
 ```
 
 #### Add/Remove elements in lists
@@ -853,43 +523,35 @@ It is possible to assign new names elements to a list, e.g.:
 my_list[["new_thing"]] <- 12345
 
 my_list
-```
+#> $ex
+#> [1] 1
+#> 
+#> $why
+#> [1] 1 2 3 4 5
+#> 
+#> $zee
+#>   a b c
+#> 1 1 1 1
+#> 2 2 2 2
+#> 3 3 3 3
+#> 4 4 4 4
+#> 5 5 5 5
+#> 
+#> $new_thing
+#> [1] 12345
 
-```
-## $ex
-## [1] 1
-## 
-## $why
-## [1] 1 2 3 4 5
-## 
-## $zee
-##   a b c
-## 1 1 1 1
-## 2 2 2 2
-## 3 3 3 3
-## 4 4 4 4
-## 5 5 5 5
-## 
-## $new_thing
-## [1] 12345
-```
-
-```r
 #set an element to NULL removes it
 my_list[["zee"]] <- NULL
 
 my_list
-```
-
-```
-## $ex
-## [1] 1
-## 
-## $why
-## [1] 1 2 3 4 5
-## 
-## $new_thing
-## [1] 12345
+#> $ex
+#> [1] 1
+#> 
+#> $why
+#> [1] 1 2 3 4 5
+#> 
+#> $new_thing
+#> [1] 12345
 ```
 
 ## Logic
@@ -901,34 +563,14 @@ Logic statements are used to compare two things, or two sets of things. The outp
 
 ```r
 1==1 # is 1 equal to 1?
-```
-
-```
-## [1] TRUE
-```
-
-```r
+#> [1] TRUE
 1==2 # is 1 equal to 2?
-```
+#> [1] FALSE
 
-```
-## [1] FALSE
-```
-
-```r
 c(1,2,3) == c(2,1,3) # compares each element with each element
-```
-
-```
-## [1] FALSE FALSE  TRUE
-```
-
-```r
+#> [1] FALSE FALSE  TRUE
 1 == c(2,1,3)
-```
-
-```
-## [1] FALSE  TRUE FALSE
+#> [1] FALSE  TRUE FALSE
 ```
 
 ### not equal to !=
@@ -936,93 +578,37 @@ c(1,2,3) == c(2,1,3) # compares each element with each element
 
 ```r
 1!=1 # is 1 equal to 1?
-```
-
-```
-## [1] FALSE
-```
-
-```r
+#> [1] FALSE
 1!=2 # is 1 equal to 2?
-```
+#> [1] TRUE
 
-```
-## [1] TRUE
-```
-
-```r
 c(1,2,3) != c(2,1,3) # compares each element with each element
-```
-
-```
-## [1]  TRUE  TRUE FALSE
-```
-
-```r
+#> [1]  TRUE  TRUE FALSE
 1 != c(2,1,3)
-```
-
-```
-## [1]  TRUE FALSE  TRUE
+#> [1]  TRUE FALSE  TRUE
 ```
 
 ### Greater than/ less than 
 
 
 ```r
+
 1 > 1 # is 1 greater than 1?
-```
-
-```
-## [1] FALSE
-```
-
-```r
+#> [1] FALSE
 5 > 1 # is 5 greater than 1?
-```
-
-```
-## [1] TRUE
-```
-
-```r
+#> [1] TRUE
 3 < 2 # is 3 less than 2?
-```
-
-```
-## [1] FALSE
-```
-
-```r
+#> [1] FALSE
 3 < 1 # is 3 less than 1?
-```
+#> [1] FALSE
 
-```
-## [1] FALSE
-```
-
-```r
 c(1,2,3) > c(2,1,3) # ask the question element by element
-```
-
-```
-## [1] FALSE  TRUE FALSE
-```
-
-```r
+#> [1] FALSE  TRUE FALSE
 c(1,2,3) < c(2,1,3)
-```
+#> [1]  TRUE FALSE FALSE
 
-```
-## [1]  TRUE FALSE FALSE
-```
-
-```r
 2 > c(1,2,3) # is greater than each of the numbers
-```
-
-```
-## [1]  TRUE FALSE FALSE
+#> [1]  TRUE FALSE FALSE
 ```
 
 ### >= <=
@@ -1032,58 +618,21 @@ Is something greater than or equal to something else
 
 ```r
 1 >= 1 # is 1 greater than 1?
-```
-
-```
-## [1] TRUE
-```
-
-```r
+#> [1] TRUE
 5 >= 1 # is 5 greater than 1?
-```
-
-```
-## [1] TRUE
-```
-
-```r
+#> [1] TRUE
 3 <= 2 # is 3 less than 2?
-```
-
-```
-## [1] FALSE
-```
-
-```r
+#> [1] FALSE
 3 <= 1 # is 3 less than 1?
-```
+#> [1] FALSE
 
-```
-## [1] FALSE
-```
-
-```r
 c(1,2,3) >= c(2,1,3) # ask the question element by element
-```
-
-```
-## [1] FALSE  TRUE  TRUE
-```
-
-```r
+#> [1] FALSE  TRUE  TRUE
 c(1,2,3) <= c(2,1,3)
-```
+#> [1]  TRUE FALSE  TRUE
 
-```
-## [1]  TRUE FALSE  TRUE
-```
-
-```r
 2 >= c(1,2,3) # is greater than each of the numbers
-```
-
-```
-## [1]  TRUE  TRUE FALSE
+#> [1]  TRUE  TRUE FALSE
 ```
 
 ### AND
@@ -1094,28 +643,15 @@ The ampersand `&` is used for AND, which allows use to evaluate whether two or m
 ```r
 # is 16 divisible by 4 AND 8
 16%%4 == 0 & 16%%8 ==0
-```
+#> [1] TRUE
 
-```
-## [1] TRUE
-```
-
-```r
 # is 16 divisible by 4 AND 3
 16%%4 == 0 & 16%%3 ==0
-```
+#> [1] FALSE
 
-```
-## [1] FALSE
-```
-
-```r
 # is 16 divisible by 8 and 4 and 2
 16%%4 == 0 & 16%%8 ==0 & 16%%2 ==0
-```
-
-```
-## [1] TRUE
+#> [1] TRUE
 ```
 
 ### OR
@@ -1126,21 +662,13 @@ The `|` is used for OR, which allows use to evaluate at least one of the propert
 ```r
 # is 16 divisible by 4 OR 8
 16%%4 == 0 | 16%%8 ==0
-```
+#> [1] TRUE
 
-```
-## [1] TRUE
-```
-
-```r
 # is 16 divisible by 4 OR 3
 # it is divisible by 4, so the answer is TRUE
 # because at least one of the comparisons is TRUE
 16%%4 == 0 | 16%%3 ==0
-```
-
-```
-## [1] TRUE
+#> [1] TRUE
 ```
 
 ### TRUE FALSE
@@ -1150,34 +678,14 @@ When R returns values as TRUE or FALSE, it return a logical variable. It also tr
 
 ```r
 c(1,2,3) == c(1,2,3)
-```
-
-```
-## [1] TRUE TRUE TRUE
-```
-
-```r
+#> [1] TRUE TRUE TRUE
 sum(c(1,2,3) == c(1,2,3))
-```
+#> [1] 3
 
-```
-## [1] 3
-```
-
-```r
 c(1,2,3) == c(2,1,3)
-```
-
-```
-## [1] FALSE FALSE  TRUE
-```
-
-```r
+#> [1] FALSE FALSE  TRUE
 sum(c(1,2,3) == c(2,1,3))
-```
-
-```
-## [1] 1
+#> [1] 1
 ```
 
 
@@ -1199,23 +707,16 @@ if(a==1){
 } else {
   print("A is not 1") # this is what happens if a is not 1
 }
-```
+#> [1] 1
 
-```
-## [1] 1
-```
 
-```r
 a <- 2 # define a to be a 1
 if(a==1){  
   print(a) # this is what happens if a==1
 } else {
   print("A is not 1") # this is what happens if a is not 1
 }
-```
-
-```
-## [1] "A is not 1"
+#> [1] "A is not 1"
 ```
 
 Normally we find IF and ELSE in a loop like this:
@@ -1234,16 +735,13 @@ for(i in a){
     print("I'm not a 1") # what to do when i is not 1
   }
 }
-```
-
-```
-## [1] "I'm a 1"
-## [1] "I'm not a 1"
-## [1] "I'm a 1"
-## [1] "I'm not a 1"
-## [1] "I'm not a 1"
-## [1] "I'm not a 1"
-## [1] "I'm a 1"
+#> [1] "I'm a 1"
+#> [1] "I'm not a 1"
+#> [1] "I'm a 1"
+#> [1] "I'm not a 1"
+#> [1] "I'm not a 1"
+#> [1] "I'm not a 1"
+#> [1] "I'm a 1"
 ```
 
 We can have multiple conditions in our if statements. See the next section on loops for more info about using loops.
@@ -1266,16 +764,13 @@ for(i in a){
     print("I'm not any of the above") #what to do when none are true
   }
 }
-```
-
-```
-## [1] "I'm a 1"
-## [1] "I'm a 2"
-## [1] "I'm a 3"
-## [1] "I'm a 1"
-## [1] "I'm a 2"
-## [1] "I'm not any of the above"
-## [1] "I'm a 1"
+#> [1] "I'm a 1"
+#> [1] "I'm a 2"
+#> [1] "I'm a 3"
+#> [1] "I'm a 1"
+#> [1] "I'm a 2"
+#> [1] "I'm not any of the above"
+#> [1] "I'm a 1"
 ```
 
 ## Loops
@@ -1312,14 +807,11 @@ The loop will automatically stop once it reaches the last item in the vector. Th
 for(i in 1:5){
   print("hello")
 }
-```
-
-```
-## [1] "hello"
-## [1] "hello"
-## [1] "hello"
-## [1] "hello"
-## [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
+#> [1] "hello"
 ```
 
 
@@ -1328,14 +820,11 @@ for(i in 1:5){
 for(i in 1:5){
   print(i)
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 
@@ -1345,14 +834,11 @@ x <- 1:5
 for(i in x){
   print(i)
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 
@@ -1363,14 +849,11 @@ my_sequence <- c(1,5,2,3,4)
 for(i in my_sequence){
   print(i)
 }
-```
-
-```
-## [1] 1
-## [1] 5
-## [1] 2
-## [1] 3
-## [1] 4
+#> [1] 1
+#> [1] 5
+#> [1] 2
+#> [1] 3
+#> [1] 4
 ```
 
 
@@ -1380,13 +863,10 @@ my_things <- c("A","B","C","D")
 for(i in my_things){
   print(i)
 }
-```
-
-```
-## [1] "A"
-## [1] "B"
-## [1] "C"
-## [1] "D"
+#> [1] "A"
+#> [1] "B"
+#> [1] "C"
+#> [1] "D"
 ```
 
 ### Breaking a loop
@@ -1402,13 +882,10 @@ for(i in 1:10){
     break
   }
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
 ```
 
 ### While loops
@@ -1424,14 +901,11 @@ while (i < 6) {
   print(i)
   i = i+1 #add one eachs step of the loop
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 ### Repeat loops
@@ -1448,14 +922,11 @@ repeat{
     break
   }
 }
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 
@@ -1466,14 +937,11 @@ Braces are not needed on one line
 
 ```r
 for(i in 1:5) print(i)
-```
-
-```
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 4
-## [1] 5
+#> [1] 1
+#> [1] 2
+#> [1] 3
+#> [1] 4
+#> [1] 5
 ```
 
 Using the value of the iterator to assign in values systematically to another variable.
@@ -1486,23 +954,15 @@ for(i in 1:5){
   x[i] <- 1  # assign 1 to the ith slot in x
 }
 x
-```
+#> [1] 1 1 1 1 1
 
-```
-## [1] 1 1 1 1 1
-```
-
-```r
 # put the numbers 1-5 in the first 5 positions of x
 x <-c()
 for(i in 1:5){
   x[i] <- i
 }
 x
-```
-
-```
-## [1] 1 2 3 4 5
+#> [1] 1 2 3 4 5
 ```
 
 Make your own counter, when you need one
@@ -1521,13 +981,8 @@ for(i in a){  # i will the values of a in each position
   }
 }
 odd
-```
+#> [1] "odd"  "even" "odd"  "odd"  "odd"  "even" "even" "even"
 
-```
-## [1] "odd"  "even" "odd"  "odd"  "odd"  "even" "even" "even"
-```
-
-```r
 # An alternative strategy
 
 a <- c(1,4,3,5,7,6,8,2)
@@ -1541,52 +996,45 @@ for(i in 1:length(a)){
   }
 }
 odd
-```
-
-```
-## [1] "odd"  "even" "odd"  "odd"  "odd"  "even" "even" "even"
+#> [1] "odd"  "even" "odd"  "odd"  "odd"  "even" "even" "even"
 ```
 
 Nesting loops
 
 
 ```r
+
 for(i in 1:5){
   for(j in 1:5){
    print(c(i,j))
   }
 }
-```
+#> [1] 1 1
+#> [1] 1 2
+#> [1] 1 3
+#> [1] 1 4
+#> [1] 1 5
+#> [1] 2 1
+#> [1] 2 2
+#> [1] 2 3
+#> [1] 2 4
+#> [1] 2 5
+#> [1] 3 1
+#> [1] 3 2
+#> [1] 3 3
+#> [1] 3 4
+#> [1] 3 5
+#> [1] 4 1
+#> [1] 4 2
+#> [1] 4 3
+#> [1] 4 4
+#> [1] 4 5
+#> [1] 5 1
+#> [1] 5 2
+#> [1] 5 3
+#> [1] 5 4
+#> [1] 5 5
 
-```
-## [1] 1 1
-## [1] 1 2
-## [1] 1 3
-## [1] 1 4
-## [1] 1 5
-## [1] 2 1
-## [1] 2 2
-## [1] 2 3
-## [1] 2 4
-## [1] 2 5
-## [1] 3 1
-## [1] 3 2
-## [1] 3 3
-## [1] 3 4
-## [1] 3 5
-## [1] 4 1
-## [1] 4 2
-## [1] 4 3
-## [1] 4 4
-## [1] 4 5
-## [1] 5 1
-## [1] 5 2
-## [1] 5 3
-## [1] 5 4
-## [1] 5 5
-```
-
-```r
 # example of using nested loops to fill the contents
 # of a matrix
 
@@ -1597,15 +1045,12 @@ for(i in 1:5){
   }
 }
 my_matrix
-```
-
-```
-##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    2    3    4    5
-## [2,]    2    4    6    8   10
-## [3,]    3    6    9   12   15
-## [4,]    4    8   12   16   20
-## [5,]    5   10   15   20   25
+#>      [,1] [,2] [,3] [,4] [,5]
+#> [1,]    1    2    3    4    5
+#> [2,]    2    4    6    8   10
+#> [3,]    3    6    9   12   15
+#> [4,]    4    8   12   16   20
+#> [5,]    5   10   15   20   25
 ```
 
 break exits out of the immediate loop
@@ -1627,10 +1072,7 @@ for(i in 1:5){
   }
 }
 sum_of_i_j
-```
-
-```
-##  [1] 2 3 4 5 6 3 4 5 6 4 5 6 5 6 6
+#>  [1] 2 3 4 5 6 3 4 5 6 4 5 6 5 6 6
 ```
 
 ## Functions
@@ -1661,10 +1103,7 @@ print_hello_world <- function(){
 
 # use the function
 print_hello_world()
-```
-
-```
-## [1] "hello world"
+#> [1] "hello world"
 ```
 
 This function simply takes an input, and then returns the input without modifying it. 
@@ -1679,19 +1118,11 @@ return_input <- function(input){
 # then we return(input), which will result in a 1
 # because the function internally assigns 1 to the input
 return_input(1)
-```
+#> [1] 1
 
-```
-## [1] 1
-```
-
-```r
 a <- "something"
 return_input(a)
-```
-
-```
-## [1] "something"
+#> [1] "something"
 ```
 
 This function takes an input, then creates an internal variable called temp and assigns input+1. Then the contents of temp is returned. Note there, is no checking of the input, so it will return an erro if you input a character (can't add one to a character in R)
@@ -1704,18 +1135,9 @@ add_one <- function(input){
 }
 
 add_one(1)
-```
-
-```
-## [1] 2
-```
-
-```r
+#> [1] 2
 add_one("a")
-```
-
-```
-## Error in input + 1: non-numeric argument to binary operator
+#> Error in input + 1: non-numeric argument to binary operator
 ```
 
 This function adds some input checking. We only add one if the input is a numeric type. Otheriwse, we use `stop()` to return an error message to the console
@@ -1732,18 +1154,9 @@ add_one <- function(input){
 }
 
 add_one(1)
-```
-
-```
-## [1] 2
-```
-
-```r
+#> [1] 2
 add_one("a")
-```
-
-```
-## Error in add_one("a"): input must be numeric
+#> Error in add_one("a"): input must be numeric
 ```
 
 A function with three inputs
@@ -1760,10 +1173,7 @@ add_multiply <- function(input, x_plus,x_times){
 # x_times <- 3
 # will return (1+2)*3 = 9
 add_multiply(1,2,3)
-```
-
-```
-## [1] 9
+#> [1] 9
 ```
 
 ## Tidyverse
@@ -1798,16 +1208,61 @@ fake_data <- data.frame(subjects,
 knitr::kable(head(fake_data))
 ```
 
-
-
-| subjects|   grades| age|likes_chocolate |favorite_color |
-|--------:|--------:|---:|:---------------|:--------------|
-|        1| 55.84970|  18|TRUE            |b              |
-|        2| 72.72373|  18|TRUE            |g              |
-|        3| 62.56238|  19|TRUE            |y              |
-|        4| 65.28392|  18|TRUE            |v              |
-|        5| 68.83558|  19|FALSE           |o              |
-|        6| 51.93467|  20|TRUE            |o              |
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> subjects </th>
+   <th style="text-align:right;"> grades </th>
+   <th style="text-align:right;"> age </th>
+   <th style="text-align:left;"> likes_chocolate </th>
+   <th style="text-align:left;"> favorite_color </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 56.58092 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> b </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 59.37456 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> v </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 64.98730 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> v </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 71.42697 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> v </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 64.29252 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> r </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 70.14565 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> i </td>
+  </tr>
+</tbody>
+</table>
 
 ### group_by and summarize
 
@@ -1818,64 +1273,30 @@ knitr::kable(head(fake_data))
 
 ```r
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 fake_data %>%
   group_by(likes_chocolate) %>%
   summarize(mean_grade = mean(grades),
             sd_grad = sd(grades))
-```
+#> # A tibble: 2 x 3
+#>   likes_chocolate mean_grade sd_grad
+#>   <lgl>                <dbl>   <dbl>
+#> 1 FALSE                 65.3    4.91
+#> 2 TRUE                  58.5    1.31
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
-## # A tibble: 2 x 3
-##   likes_chocolate mean_grade sd_grad
-##   <lgl>                <dbl>   <dbl>
-## 1 FALSE                 62.7    8.69
-## 2 TRUE                  62.6    6.78
-```
-
-```r
 fake_data %>%
   group_by(likes_chocolate,age) %>%
   summarize(mean_grade = mean(grades),
             sd_grad = sd(grades))
-```
-
-```
-## `summarise()` regrouping output by 'likes_chocolate' (override with `.groups` argument)
-```
-
-```
-## # A tibble: 4 x 4
-## # Groups:   likes_chocolate [2]
-##   likes_chocolate   age mean_grade  sd_grad
-##   <lgl>           <int>      <dbl>    <dbl>
-## 1 FALSE              19       62.7 8.69    
-## 2 TRUE               18       64.6 8.46    
-## 3 TRUE               19       62.6 0.000358
-## 4 TRUE               20       60.7 8.84
+#> # A tibble: 5 x 4
+#> # Groups:   likes_chocolate [2]
+#>   likes_chocolate   age mean_grade sd_grad
+#>   <lgl>           <int>      <dbl>   <dbl>
+#> 1 FALSE              18       65.7    7.98
+#> 2 FALSE              19       70.1   NA   
+#> 3 FALSE              20       63.8    1.74
+#> 4 TRUE               18       59.4   NA   
+#> 5 TRUE               19       57.5   NA
 ```
 
 ### filter
@@ -1886,31 +1307,21 @@ Filter out rows depending on logical comparisons
 ```r
 fake_data %>%
   filter(grades < 65)
-```
+#>   subjects   grades age likes_chocolate favorite_color
+#> 1        1 56.58092  18           FALSE              b
+#> 2        2 59.37456  18            TRUE              v
+#> 3        3 64.98730  20           FALSE              v
+#> 4        5 64.29252  20           FALSE              r
+#> 5        7 57.52814  19            TRUE              b
+#> 6        8 64.83739  20           FALSE              v
+#> 7        9 61.26770  20           FALSE              v
 
-```
-##   subjects   grades age likes_chocolate favorite_color
-## 1        1 55.84970  18            TRUE              b
-## 2        3 62.56238  19            TRUE              y
-## 3        6 51.93467  20            TRUE              o
-## 4        7 56.55077  19           FALSE              r
-## 5        8 60.60156  20            TRUE              v
-## 6        9 62.56289  19            TRUE              v
-```
-
-```r
 fake_data %>%
   filter(grades < 65,
          likes_chocolate == TRUE)
-```
-
-```
-##   subjects   grades age likes_chocolate favorite_color
-## 1        1 55.84970  18            TRUE              b
-## 2        3 62.56238  19            TRUE              y
-## 3        6 51.93467  20            TRUE              o
-## 4        8 60.60156  20            TRUE              v
-## 5        9 62.56289  19            TRUE              v
+#>   subjects   grades age likes_chocolate favorite_color
+#> 1        2 59.37456  18            TRUE              v
+#> 2        7 57.52814  19            TRUE              b
 ```
 
 ### select
@@ -1921,39 +1332,31 @@ Select specific columns
 ```r
 fake_data %>%
   select(grades)
-```
+#>      grades
+#> 1  56.58092
+#> 2  59.37456
+#> 3  64.98730
+#> 4  71.42697
+#> 5  64.29252
+#> 6  70.14565
+#> 7  57.52814
+#> 8  64.83739
+#> 9  61.26770
+#> 10 69.06229
 
-```
-##      grades
-## 1  55.84970
-## 2  72.72373
-## 3  62.56238
-## 4  65.28392
-## 5  68.83558
-## 6  51.93467
-## 7  56.55077
-## 8  60.60156
-## 9  62.56289
-## 10 69.61198
-```
-
-```r
 fake_data %>%
   select(grades,likes_chocolate)
-```
-
-```
-##      grades likes_chocolate
-## 1  55.84970            TRUE
-## 2  72.72373            TRUE
-## 3  62.56238            TRUE
-## 4  65.28392            TRUE
-## 5  68.83558           FALSE
-## 6  51.93467            TRUE
-## 7  56.55077           FALSE
-## 8  60.60156            TRUE
-## 9  62.56289            TRUE
-## 10 69.61198            TRUE
+#>      grades likes_chocolate
+#> 1  56.58092           FALSE
+#> 2  59.37456            TRUE
+#> 3  64.98730           FALSE
+#> 4  71.42697           FALSE
+#> 5  64.29252           FALSE
+#> 6  70.14565           FALSE
+#> 7  57.52814            TRUE
+#> 8  64.83739           FALSE
+#> 9  61.26770           FALSE
+#> 10 69.06229           FALSE
 ```
 ### mutate
 
@@ -1965,20 +1368,17 @@ fake_data <- fake_data %>%
   mutate(new_thing = 0)
 
 fake_data
-```
-
-```
-##    subjects   grades age likes_chocolate favorite_color new_thing
-## 1         1 55.84970  18            TRUE              b         0
-## 2         2 72.72373  18            TRUE              g         0
-## 3         3 62.56238  19            TRUE              y         0
-## 4         4 65.28392  18            TRUE              v         0
-## 5         5 68.83558  19           FALSE              o         0
-## 6         6 51.93467  20            TRUE              o         0
-## 7         7 56.55077  19           FALSE              r         0
-## 8         8 60.60156  20            TRUE              v         0
-## 9         9 62.56289  19            TRUE              v         0
-## 10       10 69.61198  20            TRUE              y         0
+#>    subjects   grades age likes_chocolate favorite_color new_thing
+#> 1         1 56.58092  18           FALSE              b         0
+#> 2         2 59.37456  18            TRUE              v         0
+#> 3         3 64.98730  20           FALSE              v         0
+#> 4         4 71.42697  18           FALSE              v         0
+#> 5         5 64.29252  20           FALSE              r         0
+#> 6         6 70.14565  19           FALSE              i         0
+#> 7         7 57.52814  19            TRUE              b         0
+#> 8         8 64.83739  20           FALSE              v         0
+#> 9         9 61.26770  20           FALSE              v         0
+#> 10       10 69.06229  18           FALSE              i         0
 ```
 
 ## ggplot2
@@ -2030,9 +1430,10 @@ ggplot(plot_df, aes(x=a,y=b))+
   geom_point()
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-63-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-1.png" width="672" />
 
 ```r
+
 # customize, add regression line
 ggplot(plot_df, aes(x=a,y=b))+
   geom_point(size=2)+
@@ -2045,11 +1446,7 @@ ggplot(plot_df, aes(x=a,y=b))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-63-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-2.png" width="672" />
 
 ### bar graph
 
@@ -2071,9 +1468,10 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means))+
   geom_bar(stat="identity")
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-1.png" width="672" />
 
 ```r
+
 # adding error bars, customizing
 
 ggplot(plot_df, aes(x=factor_one,y=dv_means))+
@@ -2089,7 +1487,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-2.png" width="672" />
 
 2 factor
 
@@ -2113,9 +1511,10 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   geom_bar(stat="identity", position="dodge")
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-1.png" width="672" />
 
 ```r
+
 # adding error bars, customizing
 
 ggplot(plot_df, aes(x=factor_one,y=dv_means,
@@ -2136,7 +1535,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-2.png" width="672" />
 
 3 factor
 
@@ -2165,7 +1564,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   facet_wrap(~factor_three)
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-1.png" width="672" />
 
 ### Line Graph
 
@@ -2188,9 +1587,10 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   geom_line()
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-1.png" width="672" />
 
 ```r
+
 # adding error bars, customizing
 
 ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
@@ -2207,7 +1607,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-2.png" width="672" />
 
 2 factor
 
@@ -2233,7 +1633,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   geom_line()
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-69-1.png" width="672" />
 
 
 ### Histogram
@@ -2245,7 +1645,7 @@ a<-rnorm(100,0,1)
 hist(a)
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-70-1.png" width="672" />
 
 
 ```r
@@ -2258,7 +1658,7 @@ ggplot(plot_df, aes(x=score))+
                  color="white")
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-70-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-71-1.png" width="672" />
 
 ## knitr
 
@@ -2381,11 +1781,24 @@ df <- data.frame(A=1,
 knitr::kable(df)
 ```
 
-
-
-|  A|  B|  C|  D|
-|--:|--:|--:|--:|
-|  1|  2|  3|  4|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> D </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+</tbody>
+</table>
 
 ### xtable
 
@@ -2403,17 +1816,63 @@ data(tli) # loads a sample data frame
 knitr::kable(xtable(fm1))
 ```
 
-
-
-|          | Df|      Sum Sq|   Mean Sq|   F value|    Pr(>F)|
-|:---------|--:|-----------:|---------:|---------:|---------:|
-|sex       |  1|    75.37255|  75.37255| 0.3751912| 0.5416830|
-|ethnicty  |  3|  2572.14918| 857.38306| 4.2679008| 0.0071831|
-|grade     |  1|    36.30740|  36.30740| 0.1807318| 0.6717271|
-|disadvg   |  1|    59.30338|  59.30338| 0.2952017| 0.5882062|
-|Residuals | 93| 18682.86749| 200.89105|        NA|        NA|
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> Sum Sq </th>
+   <th style="text-align:right;"> Mean Sq </th>
+   <th style="text-align:right;"> F value </th>
+   <th style="text-align:right;"> Pr(&gt;F) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> sex </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 75.37255 </td>
+   <td style="text-align:right;"> 75.37255 </td>
+   <td style="text-align:right;"> 0.3751912 </td>
+   <td style="text-align:right;"> 0.5416830 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ethnicty </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2572.14918 </td>
+   <td style="text-align:right;"> 857.38306 </td>
+   <td style="text-align:right;"> 4.2679008 </td>
+   <td style="text-align:right;"> 0.0071831 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> grade </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 36.30740 </td>
+   <td style="text-align:right;"> 36.30740 </td>
+   <td style="text-align:right;"> 0.1807318 </td>
+   <td style="text-align:right;"> 0.6717271 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> disadvg </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 59.30338 </td>
+   <td style="text-align:right;"> 59.30338 </td>
+   <td style="text-align:right;"> 0.2952017 </td>
+   <td style="text-align:right;"> 0.5882062 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 93 </td>
+   <td style="text-align:right;"> 18682.86749 </td>
+   <td style="text-align:right;"> 200.89105 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
 
 ```r
+
 # Note this will print a table in latex for .pdf
 # xtable(fm1)
 ```
@@ -2429,20 +1888,6 @@ There are many great things about `kableExtra`. One great thing is that `kableEx
 
 ```r
 library(kableExtra)
-```
-
-```
-## 
-## Attaching package: 'kableExtra'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     group_rows
-```
-
-```r
 df <- data.frame(A=1,
                  B=2,
                  C=3,
@@ -2529,23 +1974,15 @@ nums <- c(1,2,3,4)
 # vectorized approach
 # R automatically adds 1 to all of the numbers
 nums+1
-```
+#> [1] 2 3 4 5
 
-```
-## [1] 2 3 4 5
-```
-
-```r
 # loop approach
 # much longer to write out
 for(i in 1:length(nums)){
   nums[i] <- nums[i]+1
 }
 nums
-```
-
-```
-## [1] 2 3 4 5
+#> [1] 2 3 4 5
 ```
 
 How about adding two vectors together, so we add the first two numbers together, then the second two numbers etc.
@@ -2557,23 +1994,15 @@ B <- c(1,2,3,4)
 
 # vectorized approach
 A+B
-```
+#> [1] 2 4 6 8
 
-```
-## [1] 2 4 6 8
-```
-
-```r
 # loop approach
 the_sum <-c()
 for(i in 1:length(A)){
   the_sum[i] <- A[i]+B[i]
 }
 the_sum
-```
-
-```
-## [1] 2 4 6 8
+#> [1] 2 4 6 8
 ```
 
 How about comparing the identity of the elements in two vectors to see if they are the same or not?
@@ -2585,13 +2014,8 @@ B <- c("d","e","f","g")
 
 #vectorized approach
 A==B
-```
+#> [1] FALSE  TRUE  TRUE  TRUE
 
-```
-## [1] FALSE  TRUE  TRUE  TRUE
-```
-
-```r
 # loop approach
 compared <-c()
 for(i in 1:length(A)){
@@ -2602,10 +2026,7 @@ for(i in 1:length(A)){
   }
 }
 compared
-```
-
-```
-## [1] FALSE  TRUE  TRUE  TRUE
+#> [1] FALSE  TRUE  TRUE  TRUE
 ```
 
 
@@ -2619,19 +2040,11 @@ compared
 ```r
 # returns 1 randomly sampled number from 1 to 10
 sample(1:10,1)
-```
+#> [1] 2
 
-```
-## [1] 5
-```
-
-```r
 # let's repeat the above 10 times using replicate
 replicate(10,sample(1:10,1))
-```
-
-```
-##  [1] 9 8 5 4 7 4 3 5 8 7
+#>  [1] 2 3 3 2 2 3 6 3 5 3
 ```
 
 The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times. 
@@ -2648,13 +2061,10 @@ ttest_result <- function(){
 
 # get 10 t-values from repeating the above 10 times
 replicate(10, ttest_result() )
-```
-
-```
-##          t          t          t          t          t          t          t 
-##  1.2285797 -1.2046597 -0.3494351  0.7185505  0.5159204 -1.3921941 -0.5216106 
-##          t          t          t 
-##  0.6332596 -1.2184595 -0.5722303
+#>           t           t           t           t           t           t 
+#>  0.15636587  0.23690079 -1.96390822  1.47177723  1.44657680  0.01866863 
+#>           t           t           t           t 
+#>  0.31326337  0.13466271  0.37451843  0.04935578
 ```
 
 ### apply family
@@ -2682,38 +2092,25 @@ add_one <- function(x){
 
 # returns a list, containing the answers
 lapply(some_numbers, add_one)
-```
+#> [[1]]
+#> [1] 2
+#> 
+#> [[2]]
+#> [1] 3
+#> 
+#> [[3]]
+#> [1] 4
+#> 
+#> [[4]]
+#> [1] 5
 
-```
-## [[1]]
-## [1] 2
-## 
-## [[2]]
-## [1] 3
-## 
-## [[3]]
-## [1] 4
-## 
-## [[4]]
-## [1] 5
-```
-
-```r
 # unlists the list
 unlist(lapply(some_numbers,add_one))
-```
+#> [1] 2 3 4 5
 
-```
-## [1] 2 3 4 5
-```
-
-```r
 # sapply does the unlisting for you
 sapply(some_numbers, add_one)
-```
-
-```
-## [1] 2 3 4 5
+#> [1] 2 3 4 5
 ```
 
 An alternative syntax for lapply and sapply let's you define the function you want to apply inside the `lapply` or `sapply` function.
@@ -2725,28 +2122,19 @@ In this case, each element in the vector `some_numbers` will become the `x` valu
 some_numbers <- c(1,2,3,4)
 
 lapply(some_numbers, FUN = function(x){x+1})
-```
-
-```
-## [[1]]
-## [1] 2
-## 
-## [[2]]
-## [1] 3
-## 
-## [[3]]
-## [1] 4
-## 
-## [[4]]
-## [1] 5
-```
-
-```r
+#> [[1]]
+#> [1] 2
+#> 
+#> [[2]]
+#> [1] 3
+#> 
+#> [[3]]
+#> [1] 4
+#> 
+#> [[4]]
+#> [1] 5
 sapply(some_numbers, FUN = function(x){x+1})
-```
-
-```
-## [1] 2 3 4 5
+#> [1] 2 3 4 5
 ```
 
 
@@ -2763,10 +2151,7 @@ random_matrix <- matrix(sample(1:10,25, replace=TRUE),ncol=5)
 # applies the sum function to each row
 # 1 tells apply to go across rows
 apply(random_matrix,1,sum)
-```
-
-```
-## [1] 33 20 39 29 17
+#> [1] 13 33 29 22 32
 ```
 
 The sum of each column
@@ -2776,10 +2161,7 @@ The sum of each column
 # applies the sum function to each column
 # 2 tells apply to go across columns
 apply(random_matrix, 2, sum)
-```
-
-```
-## [1] 28 31 20 21 38
+#> [1] 34 28 20 31 16
 ```
 
 Let's say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.
@@ -2794,49 +2176,46 @@ Let's use apply to conduct 10 one-sample t-tests, one for each column. In this e
 
 ```r
 apply(sample_matrix,2,t.test, mu=0)
-```
-
-```
-## [[1]]
-## 
-## 	One Sample t-test
-## 
-## data:  newX[, i]
-## t = -0.21055, df = 9, p-value = 0.8379
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  -0.7203009  0.5976341
-## sample estimates:
-##   mean of x 
-## -0.06133339 
-## 
-## 
-## [[2]]
-## 
-## 	One Sample t-test
-## 
-## data:  newX[, i]
-## t = -0.2568, df = 9, p-value = 0.8031
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  -0.7290393  0.5803925
-## sample estimates:
-##   mean of x 
-## -0.07432344 
-## 
-## 
-## [[3]]
-## 
-## 	One Sample t-test
-## 
-## data:  newX[, i]
-## t = -0.89387, df = 9, p-value = 0.3947
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  -0.8796071  0.3813526
-## sample estimates:
-##  mean of x 
-## -0.2491273
+#> [[1]]
+#> 
+#> 	One Sample t-test
+#> 
+#> data:  newX[, i]
+#> t = -2.1847, df = 9, p-value = 0.05674
+#> alternative hypothesis: true mean is not equal to 0
+#> 95 percent confidence interval:
+#>  -1.01638915  0.01770334
+#> sample estimates:
+#>  mean of x 
+#> -0.4993429 
+#> 
+#> 
+#> [[2]]
+#> 
+#> 	One Sample t-test
+#> 
+#> data:  newX[, i]
+#> t = 0.66287, df = 9, p-value = 0.524
+#> alternative hypothesis: true mean is not equal to 0
+#> 95 percent confidence interval:
+#>  -0.4402054  0.8051194
+#> sample estimates:
+#> mean of x 
+#>  0.182457 
+#> 
+#> 
+#> [[3]]
+#> 
+#> 	One Sample t-test
+#> 
+#> data:  newX[, i]
+#> t = -1.0223, df = 9, p-value = 0.3333
+#> alternative hypothesis: true mean is not equal to 0
+#> 95 percent confidence interval:
+#>  -1.1106937  0.4192932
+#> sample estimates:
+#>  mean of x 
+#> -0.3457003
 ```
 
 What if we wanted to return only the t-values, rather than whole output?
@@ -2845,10 +2224,7 @@ You might try this, but it doesn't work
 
 ```r
 apply(sample_matrix,2,t.test$statistic, mu=0)
-```
-
-```
-## Error in t.test$statistic: object of type 'closure' is not subsettable
+#> Error in t.test$statistic: object of type 'closure' is not subsettable
 ```
 
 So, we write a custom function
@@ -2860,10 +2236,7 @@ apply(sample_matrix, 2,
         t_out <- t.test(x,mu=0)
         return(t_out$statistic)
       })
-```
-
-```
-## [1] -0.2105502 -0.2568004 -0.8938669
+#> [1] -2.1847023  0.6628735 -1.0222681
 ```
 
 

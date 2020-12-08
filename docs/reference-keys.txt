@@ -88,6 +88,9 @@ replicate
 apply-family
 lapply-and-sapply
 apply
+statistics-textbooks-we-are-using
+other-online-textbooks
+a-longer-list
 r-basics
 reading-and-walkthrough-video
 overview
@@ -290,6 +293,7 @@ power-curve-as-a-function-of-effect-size
 lab-10-generalization-assignment
 instructions-9
 problems-9
+reading-6
 overview-10
 null-hypothesis
 null-for-a-t-test
@@ -307,7 +311,7 @@ more-examples
 one-way-anova
 correlation-between-traits-and-behavior
 correlation
-reading-6
+reading-7
 overview-11
 historical-background-1
 additional-reading

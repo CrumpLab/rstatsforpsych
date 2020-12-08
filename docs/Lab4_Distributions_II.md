@@ -2,7 +2,7 @@
 
 # Distributions II
 
-"9/17/2020 | Last Compiled: 2020-12-07"
+"9/17/2020 | Last Compiled: 2020-12-08"
 
 ## Reading
 

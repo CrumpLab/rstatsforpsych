@@ -2,7 +2,7 @@
 
 # Textbooks and Other Resources {.unnumbered}
 
-This is not (yet...maybe one day who knows) a complete statistics textbook for statistics or R. It is a series of weekly exercises that could be used as labs in statistics courses for psychology students. They are aimed at iniating novice students into learning a programming environment for statistics like R, but also at using R as a teaching tool to aid conceptual understanding of statistics.
+This is not (yet...maybe one day who knows) a complete statistics textbook for statistics or R. It is a series of weekly exercises that could be used as labs in statistics courses for psychology students. They are aimed at initiating novice students into learning a programming environment for statistics like R, but also at using R as a teaching tool to aid conceptual understanding of statistics.
 
 ## Statistics textbooks we are using
 
@@ -10,14 +10,16 @@ Students taking this course at Brooklyn College are also taking a separate serie
 
 1. @vokeyThinkingData7th2018, [pdf available online](http://people.uleth.ca/~vokey/pdf/thinking.pdf)
 2. @abdiExperimentalDesignAnalysis2009, portions may be downloadable from google scholar, otherwise try to find a printed copy somewhere.
-3. @crumpAnsweringQuestionsData2018, <https://crumplab.github.io/statistics/>
+3. @crumpAnsweringQuestionsData2018, <https://crumplab.github.io/statistics/>, and some the lab manual for R <https://crumplab.github.io/statisticsLab/>
 
 ## Other online textbooks
 
-There are increasing numbers of excellent, free, and online resources for learning statistics and R, here are two:
+There are increasing numbers of excellent, free, and online resources for learning statistics and R, here are some:
 
 1. Danielle Navarro's [Learning Statistics with R](https://learningstatisticswithr.com)
 2. Russell Poldracks's [Statistical Thinking for the 21st Century](https://statsthinking21.org)
+3. Martin Speekenbrink's [Statistics: data analysis and modelling](https://mspeekenbrink.github.io/sdam-book/), and companion R book [An R companion to Statistics: data analysis and modelling](https://mspeekenbrink.github.io/sdam-r-companion/)
+4. Into python instead? Check out Todd Gureckis' [Lab in Cognition and Perception](http://gureckislab.org/courses/fall20/labincp/intro.html)
 
 ## A longeR list
 

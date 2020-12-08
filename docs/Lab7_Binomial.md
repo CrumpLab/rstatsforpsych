@@ -2,7 +2,7 @@
 
 # Binomial Test
 
-"10/8/2020 | Last Compiled: 2020-12-07"
+"10/8/2020 | Last Compiled: 2020-12-08"
 
 >Extraordinary claims require extraordinary evidence (ECREE) -  Carl Sagan
 

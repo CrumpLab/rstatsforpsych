@@ -258,7 +258,7 @@ The shape of $\chi^2$ distribution depends on a parameter called $k$. When, $k =
 hist(rnorm(10000,0,1), breaks = 100)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 ```r
 
@@ -266,7 +266,7 @@ hist(rnorm(10000,0,1), breaks = 100)
 hist(rnorm(10000,0,1)^2, breaks = 100)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-2.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-10-2.png" width="100%" />
 
 R has distribution functions for $\chi^2$, including `dchisq()`, `pchisq()`, `qchisq()`, `rchisq()`. So, if we sampled random deviates using `rchisq()`, with k = 1 (equivalent to df = 1), we should get the same histogram as above:
 
@@ -275,7 +275,7 @@ R has distribution functions for $\chi^2$, including `dchisq()`, `pchisq()`, `qc
 hist(rchisq(10000,1), breaks=100)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 So, at its simplest, $\chi^2$ is just the normal distribution squared.
 
@@ -303,7 +303,7 @@ ggplot(plot_df, aes(x=values))+
   facet_wrap(~source)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 
 ```r
@@ -321,7 +321,7 @@ ggplot(plot_df, aes(x=values))+
   facet_wrap(~source)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 
 ```r
@@ -339,7 +339,7 @@ ggplot(plot_df, aes(x=values))+
   facet_wrap(~source)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 
 ```r
@@ -357,7 +357,7 @@ ggplot(plot_df, aes(x=values))+
   facet_wrap(~source)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 We can get a glimpse of what the $\chi^2$ distribution looks like across a range of $k$ by plotting the pdf (probability density function), using `dchisq()`.
 
@@ -381,7 +381,7 @@ ggplot(plot_df, aes(x = x, y=values, color=k, group=k))+
   scale_x_continuous(breaks=0:20)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 ### Developing intuitions about $\chi^2$
 
 1. Let's say you randomly sampled 5 numbers from a unit normal distribution (mean = 0 and sd =1), and then you squared those numbers, and then added them all up. What would you expect this number to be?
@@ -392,7 +392,7 @@ a<- replicate(10000,sum(rnorm(5,0,1)^2))
 hist(a)
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 
 The answer is that this number will be distributed as a $\chi^2$ with $k=5$, referring to the situation of summing the squares of 5 samples from a unit normal distribution.
@@ -406,7 +406,7 @@ What is the expected mean of a unit normal distribution?
 
 ```r
 mean(rnorm(10000,0,1))
-#> [1] 0.0003396297
+#> [1] -0.003677052
 ```
 
 If we square all of the values that we sample from a unit normal distribution (equivalent to $\chi^2$ with $k=1$), then what would the mean of those squared values be?
@@ -414,7 +414,7 @@ If we square all of the values that we sample from a unit normal distribution (e
 
 ```r
 mean(rnorm(10000,0,1)^2)
-#> [1] 0.9919701
+#> [1] 1.007915
 ```
 
 It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a $\chi^2$ is the same as the $k$ parameter, also called degrees of freedom.
@@ -424,7 +424,7 @@ For example, the mean of 10,000 numbers drawn from a $\chi^2$ with k = 10, is:
 
 ```r
 mean(rchisq(10000,10))
-#> [1] 10.00973
+#> [1] 9.991172
 ```
 
 Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1...summing up 10 ones, gives you 10. The same expectations can be applied to $\chi^2$ distributions of any $k$.
@@ -441,7 +441,7 @@ First, we can visually see that a binomial distribution becomes normally distrib
 hist(rbinom(10000,10,.5), breaks=seq(0,10,1))
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-1.png" width="100%" />
 
 ```r
 
@@ -449,7 +449,7 @@ hist(rbinom(10000,10,.5), breaks=seq(0,10,1))
 hist(rbinom(10000,100,.5), breaks=seq(20,80,1))
 ```
 
-<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-2.png" width="672" />
+<img src="Lab9_Chisquare_files/figure-html/unnamed-chunk-21-2.png" width="100%" />
 Second, let's develop a sense of the idea that the $\chi^2$ test is approximation of the binomial test. 
 
 Consider another coin flipping scenario. Let's say a coin is flipped 10 times, and there are 2 heads. What is the p-value for a two-tailed test, specifically the probabiltiy of getting 2 or less heads, or 8 or more heads.?
@@ -566,8 +566,8 @@ Here is an example contingency table with 5 subjects. In this case, each column 
 ```r
 replicate(5,sample(c(1,0),2))
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    1    0    1    1    0
-#> [2,]    0    1    0    0    1
+#> [1,]    1    1    0    1    0
+#> [2,]    0    0    1    0    1
 ```
 
 This is a contingency table, so it is possible to compute a chi-square test on this table.

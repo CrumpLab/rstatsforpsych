@@ -16,10 +16,11 @@ Students taking this course at Brooklyn College are also taking a separate serie
 
 There are increasing numbers of excellent, free, and online resources for learning statistics and R, here are some:
 
-1. Danielle Navarro's [Learning Statistics with R](https://learningstatisticswithr.com)
+1. Danielle Navarro's [Learning Statistics with R](https://learningstatisticswithr.com) and website for learning R [R for Psychological Science](https://psyr.djnavarro.net)
 2. Russell Poldracks's [Statistical Thinking for the 21st Century](https://statsthinking21.org)
 3. Martin Speekenbrink's [Statistics: data analysis and modelling](https://mspeekenbrink.github.io/sdam-book/), and companion R book [An R companion to Statistics: data analysis and modelling](https://mspeekenbrink.github.io/sdam-r-companion/)
 4. Into python instead? Check out Todd Gureckis' [Lab in Cognition and Perception](http://gureckislab.org/courses/fall20/labincp/intro.html)
+5. Looking for stats videos, check out Erin Buchanan's STATISTICS OF DOOM! on youtube: <https://www.youtube.com/channel/UCMdihazndR0f9XBoSXWqnYg>
 
 ## A longeR list
 

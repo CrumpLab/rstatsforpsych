@@ -284,7 +284,7 @@
 </ol>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">1000</span>, digits<span class="op">=</span><span class="fl">15</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1607353020518.23</span></code></pre></div>
+<span class="co">#&gt; [1] 1607480572704.37</span></code></pre></div>
 <ol start="17" style="list-style-type: decimal">
 <li><p>Measure how long a piece of code takes to run by measuring the time before the code is run, and after the code is run, and taking the difference to find the total time</p></li>
 <li><p>Read a .txt file or .csv file into a variable</p></li>
@@ -461,7 +461,7 @@
 <span class="op">}</span>
 
 <span class="fu">encrypt_numbers</span><span class="op">(</span><span class="va">original_sequence</span>,<span class="va">encryption_key</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 1 3 4 2 5 3 3 4 3 2 5 3</span></code></pre></div>
+<span class="co">#&gt;  [1] 3 5 4 1 2 5 5 4 5 1 2 5</span></code></pre></div>
 <ul>
 <li>here is a different approach making use of the <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code> function</li>
 </ul>
@@ -480,14 +480,14 @@
 <h3>
 <span class="header-section-number">0.10.6</span> Snakes and Ladders<a class="anchor" aria-label="anchor" href="#snakes-and-ladders"><i class="fas fa-link"></i></a>
 </h3>
-<div class="inline-figure"><img src="imgs/SnakesLadders.png" width="130"></div>
+<div class="inline-figure"><img src="imgs/SnakesLadders.png" width="100%"></div>
 <p>Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># rolling a dice with sample</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] 6</span>
+<span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; [1] 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1</span></code></pre></div>
 <p>-tip: consider a simpler version of the problem. How many times do you need to roll a dice so that all of the dice rolls add up to 25 or greater?</p>
@@ -501,7 +501,7 @@
   <span class="va">total_sum</span> <span class="op">&lt;-</span><span class="va">total_sum</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="va">number_of_rolls</span>
-<span class="co">#&gt; [1] 6</span>
+<span class="co">#&gt; [1] 8</span>
 
 <span class="co"># record the results from multiple simulations</span>
 
@@ -516,7 +516,7 @@
   <span class="va">save_rolls</span><span class="op">[</span><span class="va">sims</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">number_of_rolls</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">save_rolls</span><span class="op">)</span>
-<span class="co">#&gt; [1] 7.41</span></code></pre></div>
+<span class="co">#&gt; [1] 7.74</span></code></pre></div>
 <ul>
 <li>how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.</li>
 </ul>

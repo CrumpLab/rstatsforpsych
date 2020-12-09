@@ -1221,45 +1221,45 @@ knitr::kable(head(fake_data))
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 56.58092 </td>
+   <td style="text-align:right;"> 69.03042 </td>
    <td style="text-align:right;"> 18 </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> b </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> g </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 59.37456 </td>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> v </td>
+   <td style="text-align:right;"> 63.57233 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> y </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 64.98730 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> v </td>
+   <td style="text-align:right;"> 61.90138 </td>
+   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> o </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 71.42697 </td>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> v </td>
+   <td style="text-align:right;"> 74.80167 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> y </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 64.29252 </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 58.80694 </td>
+   <td style="text-align:right;"> 18 </td>
    <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> r </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 70.14565 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> i </td>
+   <td style="text-align:right;"> 68.09122 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> v </td>
   </tr>
 </tbody>
 </table>
@@ -1281,8 +1281,8 @@ fake_data %>%
 #> # A tibble: 2 x 3
 #>   likes_chocolate mean_grade sd_grad
 #>   <lgl>                <dbl>   <dbl>
-#> 1 FALSE                 65.3    4.91
-#> 2 TRUE                  58.5    1.31
+#> 1 FALSE                 66.5    6.59
+#> 2 TRUE                  67.8    4.81
 
 fake_data %>%
   group_by(likes_chocolate,age) %>%
@@ -1292,11 +1292,11 @@ fake_data %>%
 #> # Groups:   likes_chocolate [2]
 #>   likes_chocolate   age mean_grade sd_grad
 #>   <lgl>           <int>      <dbl>   <dbl>
-#> 1 FALSE              18       65.7    7.98
-#> 2 FALSE              19       70.1   NA   
-#> 3 FALSE              20       63.8    1.74
-#> 4 TRUE               18       59.4   NA   
-#> 5 TRUE               19       57.5   NA
+#> 1 FALSE              18       58.8   NA   
+#> 2 FALSE              19       68.4    5.78
+#> 3 TRUE               18       65.5    5.04
+#> 4 TRUE               19       65.1   NA   
+#> 5 TRUE               20       71.4    4.75
 ```
 
 ### filter
@@ -1308,20 +1308,16 @@ Filter out rows depending on logical comparisons
 fake_data %>%
   filter(grades < 65)
 #>   subjects   grades age likes_chocolate favorite_color
-#> 1        1 56.58092  18           FALSE              b
-#> 2        2 59.37456  18            TRUE              v
-#> 3        3 64.98730  20           FALSE              v
-#> 4        5 64.29252  20           FALSE              r
-#> 5        7 57.52814  19            TRUE              b
-#> 6        8 64.83739  20           FALSE              v
-#> 7        9 61.26770  20           FALSE              v
+#> 1        2 63.57233  19           FALSE              y
+#> 2        3 61.90138  18            TRUE              o
+#> 3        5 58.80694  18           FALSE              r
+#> 4        8 63.26356  19           FALSE              y
 
 fake_data %>%
   filter(grades < 65,
          likes_chocolate == TRUE)
 #>   subjects   grades age likes_chocolate favorite_color
-#> 1        2 59.37456  18            TRUE              v
-#> 2        7 57.52814  19            TRUE              b
+#> 1        3 61.90138  18            TRUE              o
 ```
 
 ### select
@@ -1333,30 +1329,30 @@ Select specific columns
 fake_data %>%
   select(grades)
 #>      grades
-#> 1  56.58092
-#> 2  59.37456
-#> 3  64.98730
-#> 4  71.42697
-#> 5  64.29252
-#> 6  70.14565
-#> 7  57.52814
-#> 8  64.83739
-#> 9  61.26770
-#> 10 69.06229
+#> 1  69.03042
+#> 2  63.57233
+#> 3  61.90138
+#> 4  74.80167
+#> 5  58.80694
+#> 6  68.09122
+#> 7  73.86248
+#> 8  63.26356
+#> 9  72.93247
+#> 10 65.12974
 
 fake_data %>%
   select(grades,likes_chocolate)
 #>      grades likes_chocolate
-#> 1  56.58092           FALSE
-#> 2  59.37456            TRUE
-#> 3  64.98730           FALSE
-#> 4  71.42697           FALSE
-#> 5  64.29252           FALSE
-#> 6  70.14565           FALSE
-#> 7  57.52814            TRUE
-#> 8  64.83739           FALSE
-#> 9  61.26770           FALSE
-#> 10 69.06229           FALSE
+#> 1  69.03042            TRUE
+#> 2  63.57233           FALSE
+#> 3  61.90138            TRUE
+#> 4  74.80167            TRUE
+#> 5  58.80694           FALSE
+#> 6  68.09122            TRUE
+#> 7  73.86248           FALSE
+#> 8  63.26356           FALSE
+#> 9  72.93247           FALSE
+#> 10 65.12974            TRUE
 ```
 ### mutate
 
@@ -1369,16 +1365,16 @@ fake_data <- fake_data %>%
 
 fake_data
 #>    subjects   grades age likes_chocolate favorite_color new_thing
-#> 1         1 56.58092  18           FALSE              b         0
-#> 2         2 59.37456  18            TRUE              v         0
-#> 3         3 64.98730  20           FALSE              v         0
-#> 4         4 71.42697  18           FALSE              v         0
-#> 5         5 64.29252  20           FALSE              r         0
-#> 6         6 70.14565  19           FALSE              i         0
-#> 7         7 57.52814  19            TRUE              b         0
-#> 8         8 64.83739  20           FALSE              v         0
-#> 9         9 61.26770  20           FALSE              v         0
-#> 10       10 69.06229  18           FALSE              i         0
+#> 1         1 69.03042  18            TRUE              g         0
+#> 2         2 63.57233  19           FALSE              y         0
+#> 3         3 61.90138  18            TRUE              o         0
+#> 4         4 74.80167  20            TRUE              y         0
+#> 5         5 58.80694  18           FALSE              r         0
+#> 6         6 68.09122  20            TRUE              v         0
+#> 7         7 73.86248  19           FALSE              b         0
+#> 8         8 63.26356  19           FALSE              y         0
+#> 9         9 72.93247  19           FALSE              y         0
+#> 10       10 65.12974  19            TRUE              y         0
 ```
 
 ## ggplot2
@@ -1430,7 +1426,7 @@ ggplot(plot_df, aes(x=a,y=b))+
   geom_point()
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-1.png" width="100%" />
 
 ```r
 
@@ -1446,7 +1442,7 @@ ggplot(plot_df, aes(x=a,y=b))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-2.png" width="100%" />
 
 ### bar graph
 
@@ -1468,7 +1464,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means))+
   geom_bar(stat="identity")
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-1.png" width="100%" />
 
 ```r
 
@@ -1487,7 +1483,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-2.png" width="100%" />
 
 2 factor
 
@@ -1511,7 +1507,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   geom_bar(stat="identity", position="dodge")
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-1.png" width="100%" />
 
 ```r
 
@@ -1535,7 +1531,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-2.png" width="100%" />
 
 3 factor
 
@@ -1564,7 +1560,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   facet_wrap(~factor_three)
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-1.png" width="100%" />
 
 ### Line Graph
 
@@ -1587,7 +1583,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   geom_line()
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-1.png" width="100%" />
 
 ```r
 
@@ -1607,7 +1603,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-2.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-2.png" width="100%" />
 
 2 factor
 
@@ -1633,7 +1629,7 @@ ggplot(plot_df, aes(x=factor_one,y=dv_means,
   geom_line()
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-69-1.png" width="100%" />
 
 
 ### Histogram
@@ -1645,7 +1641,7 @@ a<-rnorm(100,0,1)
 hist(a)
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-70-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-70-1.png" width="100%" />
 
 
 ```r
@@ -1658,7 +1654,7 @@ ggplot(plot_df, aes(x=score))+
                  color="white")
 ```
 
-<img src="GS_R_Reference_files/figure-html/unnamed-chunk-71-1.png" width="672" />
+<img src="GS_R_Reference_files/figure-html/unnamed-chunk-71-1.png" width="100%" />
 
 ## knitr
 
@@ -2040,11 +2036,11 @@ compared
 ```r
 # returns 1 randomly sampled number from 1 to 10
 sample(1:10,1)
-#> [1] 2
+#> [1] 1
 
 # let's repeat the above 10 times using replicate
 replicate(10,sample(1:10,1))
-#>  [1] 2 3 3 2 2 3 6 3 5 3
+#>  [1]  5  1  9  1  7  4  2 10  2  8
 ```
 
 The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times. 
@@ -2061,10 +2057,10 @@ ttest_result <- function(){
 
 # get 10 t-values from repeating the above 10 times
 replicate(10, ttest_result() )
-#>           t           t           t           t           t           t 
-#>  0.15636587  0.23690079 -1.96390822  1.47177723  1.44657680  0.01866863 
-#>           t           t           t           t 
-#>  0.31326337  0.13466271  0.37451843  0.04935578
+#>          t          t          t          t          t          t          t 
+#>  0.7462134  0.1265805  1.6177355  0.3190185 -0.3212202 -0.1425219  0.6180752 
+#>          t          t          t 
+#> -0.2880227  0.2400779 -0.3862252
 ```
 
 ### apply family
@@ -2151,7 +2147,7 @@ random_matrix <- matrix(sample(1:10,25, replace=TRUE),ncol=5)
 # applies the sum function to each row
 # 1 tells apply to go across rows
 apply(random_matrix,1,sum)
-#> [1] 13 33 29 22 32
+#> [1] 24 24 35 16 26
 ```
 
 The sum of each column
@@ -2161,7 +2157,7 @@ The sum of each column
 # applies the sum function to each column
 # 2 tells apply to go across columns
 apply(random_matrix, 2, sum)
-#> [1] 34 28 20 31 16
+#> [1] 22 20 28 18 37
 ```
 
 Let's say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.
@@ -2181,13 +2177,13 @@ apply(sample_matrix,2,t.test, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  newX[, i]
-#> t = -2.1847, df = 9, p-value = 0.05674
+#> t = -0.15555, df = 9, p-value = 0.8798
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.01638915  0.01770334
+#>  -0.6103617  0.5318253
 #> sample estimates:
 #>  mean of x 
-#> -0.4993429 
+#> -0.0392682 
 #> 
 #> 
 #> [[2]]
@@ -2195,13 +2191,13 @@ apply(sample_matrix,2,t.test, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  newX[, i]
-#> t = 0.66287, df = 9, p-value = 0.524
+#> t = -0.66068, df = 9, p-value = 0.5254
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -0.4402054  0.8051194
+#>  -1.1479343  0.6289721
 #> sample estimates:
-#> mean of x 
-#>  0.182457 
+#>  mean of x 
+#> -0.2594811 
 #> 
 #> 
 #> [[3]]
@@ -2209,13 +2205,13 @@ apply(sample_matrix,2,t.test, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  newX[, i]
-#> t = -1.0223, df = 9, p-value = 0.3333
+#> t = -2.6149, df = 9, p-value = 0.02804
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.1106937  0.4192932
+#>  -1.10948184 -0.08024462
 #> sample estimates:
 #>  mean of x 
-#> -0.3457003
+#> -0.5948632
 ```
 
 What if we wanted to return only the t-values, rather than whole output?
@@ -2236,7 +2232,7 @@ apply(sample_matrix, 2,
         t_out <- t.test(x,mu=0)
         return(t_out$statistic)
       })
-#> [1] -2.1847023  0.6628735 -1.0222681
+#> [1] -0.1555452 -0.6606843 -2.6148959
 ```
 
 

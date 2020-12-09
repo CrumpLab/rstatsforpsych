@@ -1192,24 +1192,7 @@ favorite_color
 1
 </td>
 <td style="text-align:right;">
-56.58092
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:left;">
-b
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-59.37456
+69.03042
 </td>
 <td style="text-align:right;">
 18
@@ -1218,7 +1201,24 @@ b
 TRUE
 </td>
 <td style="text-align:left;">
-v
+g
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+63.57233
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+y
 </td>
 </tr>
 <tr>
@@ -1226,16 +1226,16 @@ v
 3
 </td>
 <td style="text-align:right;">
-64.98730
+61.90138
 </td>
 <td style="text-align:right;">
-20
+18
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-v
+o
 </td>
 </tr>
 <tr>
@@ -1243,16 +1243,16 @@ v
 4
 </td>
 <td style="text-align:right;">
-71.42697
+74.80167
 </td>
 <td style="text-align:right;">
-18
+20
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-v
+y
 </td>
 </tr>
 <tr>
@@ -1260,10 +1260,10 @@ v
 5
 </td>
 <td style="text-align:right;">
-64.29252
+58.80694
 </td>
 <td style="text-align:right;">
-20
+18
 </td>
 <td style="text-align:left;">
 FALSE
@@ -1277,16 +1277,16 @@ r
 6
 </td>
 <td style="text-align:right;">
-70.14565
+68.09122
 </td>
 <td style="text-align:right;">
-19
+20
 </td>
 <td style="text-align:left;">
-FALSE
+TRUE
 </td>
 <td style="text-align:left;">
-i
+v
 </td>
 </tr>
 </tbody>
@@ -1307,8 +1307,8 @@ i
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;                &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE                 65.3    4.91</span>
-<span class="co">#&gt; 2 TRUE                  58.5    1.31</span>
+<span class="co">#&gt; 1 FALSE                 66.5    6.59</span>
+<span class="co">#&gt; 2 TRUE                  67.8    4.81</span>
 
 <span class="va">fake_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">likes_chocolate</span>,<span class="va">age</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -1318,11 +1318,11 @@ i
 <span class="co">#&gt; # Groups:   likes_chocolate [2]</span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;           &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE              18       65.7    7.98</span>
-<span class="co">#&gt; 2 FALSE              19       70.1   NA   </span>
-<span class="co">#&gt; 3 FALSE              20       63.8    1.74</span>
-<span class="co">#&gt; 4 TRUE               18       59.4   NA   </span>
-<span class="co">#&gt; 5 TRUE               19       57.5   NA</span></code></pre></div>
+<span class="co">#&gt; 1 FALSE              18       58.8   NA   </span>
+<span class="co">#&gt; 2 FALSE              19       68.4    5.78</span>
+<span class="co">#&gt; 3 TRUE               18       65.5    5.04</span>
+<span class="co">#&gt; 4 TRUE               19       65.1   NA   </span>
+<span class="co">#&gt; 5 TRUE               20       71.4    4.75</span></code></pre></div>
 </div>
 <div id="filter" class="section level3" number="0.18.2">
 <h3>
@@ -1333,20 +1333,16 @@ i
 <code class="sourceCode R"><span class="va">fake_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">grades</span> <span class="op">&lt;</span> <span class="fl">65</span><span class="op">)</span>
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 56.58092  18           FALSE              b</span>
-<span class="co">#&gt; 2        2 59.37456  18            TRUE              v</span>
-<span class="co">#&gt; 3        3 64.98730  20           FALSE              v</span>
-<span class="co">#&gt; 4        5 64.29252  20           FALSE              r</span>
-<span class="co">#&gt; 5        7 57.52814  19            TRUE              b</span>
-<span class="co">#&gt; 6        8 64.83739  20           FALSE              v</span>
-<span class="co">#&gt; 7        9 61.26770  20           FALSE              v</span>
+<span class="co">#&gt; 1        2 63.57233  19           FALSE              y</span>
+<span class="co">#&gt; 2        3 61.90138  18            TRUE              o</span>
+<span class="co">#&gt; 3        5 58.80694  18           FALSE              r</span>
+<span class="co">#&gt; 4        8 63.26356  19           FALSE              y</span>
 
 <span class="va">fake_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">grades</span> <span class="op">&lt;</span> <span class="fl">65</span>,
          <span class="va">likes_chocolate</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        2 59.37456  18            TRUE              v</span>
-<span class="co">#&gt; 2        7 57.52814  19            TRUE              b</span></code></pre></div>
+<span class="co">#&gt; 1        3 61.90138  18            TRUE              o</span></code></pre></div>
 </div>
 <div id="select" class="section level3" number="0.18.3">
 <h3>
@@ -1357,30 +1353,30 @@ i
 <code class="sourceCode R"><span class="va">fake_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">grades</span><span class="op">)</span>
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  56.58092</span>
-<span class="co">#&gt; 2  59.37456</span>
-<span class="co">#&gt; 3  64.98730</span>
-<span class="co">#&gt; 4  71.42697</span>
-<span class="co">#&gt; 5  64.29252</span>
-<span class="co">#&gt; 6  70.14565</span>
-<span class="co">#&gt; 7  57.52814</span>
-<span class="co">#&gt; 8  64.83739</span>
-<span class="co">#&gt; 9  61.26770</span>
-<span class="co">#&gt; 10 69.06229</span>
+<span class="co">#&gt; 1  69.03042</span>
+<span class="co">#&gt; 2  63.57233</span>
+<span class="co">#&gt; 3  61.90138</span>
+<span class="co">#&gt; 4  74.80167</span>
+<span class="co">#&gt; 5  58.80694</span>
+<span class="co">#&gt; 6  68.09122</span>
+<span class="co">#&gt; 7  73.86248</span>
+<span class="co">#&gt; 8  63.26356</span>
+<span class="co">#&gt; 9  72.93247</span>
+<span class="co">#&gt; 10 65.12974</span>
 
 <span class="va">fake_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">grades</span>,<span class="va">likes_chocolate</span><span class="op">)</span>
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  56.58092           FALSE</span>
-<span class="co">#&gt; 2  59.37456            TRUE</span>
-<span class="co">#&gt; 3  64.98730           FALSE</span>
-<span class="co">#&gt; 4  71.42697           FALSE</span>
-<span class="co">#&gt; 5  64.29252           FALSE</span>
-<span class="co">#&gt; 6  70.14565           FALSE</span>
-<span class="co">#&gt; 7  57.52814            TRUE</span>
-<span class="co">#&gt; 8  64.83739           FALSE</span>
-<span class="co">#&gt; 9  61.26770           FALSE</span>
-<span class="co">#&gt; 10 69.06229           FALSE</span></code></pre></div>
+<span class="co">#&gt; 1  69.03042            TRUE</span>
+<span class="co">#&gt; 2  63.57233           FALSE</span>
+<span class="co">#&gt; 3  61.90138            TRUE</span>
+<span class="co">#&gt; 4  74.80167            TRUE</span>
+<span class="co">#&gt; 5  58.80694           FALSE</span>
+<span class="co">#&gt; 6  68.09122            TRUE</span>
+<span class="co">#&gt; 7  73.86248           FALSE</span>
+<span class="co">#&gt; 8  63.26356           FALSE</span>
+<span class="co">#&gt; 9  72.93247           FALSE</span>
+<span class="co">#&gt; 10 65.12974            TRUE</span></code></pre></div>
 </div>
 <div id="mutate" class="section level3" number="0.18.4">
 <h3>
@@ -1393,16 +1389,16 @@ i
 
 <span class="va">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 56.58092  18           FALSE              b         0</span>
-<span class="co">#&gt; 2         2 59.37456  18            TRUE              v         0</span>
-<span class="co">#&gt; 3         3 64.98730  20           FALSE              v         0</span>
-<span class="co">#&gt; 4         4 71.42697  18           FALSE              v         0</span>
-<span class="co">#&gt; 5         5 64.29252  20           FALSE              r         0</span>
-<span class="co">#&gt; 6         6 70.14565  19           FALSE              i         0</span>
-<span class="co">#&gt; 7         7 57.52814  19            TRUE              b         0</span>
-<span class="co">#&gt; 8         8 64.83739  20           FALSE              v         0</span>
-<span class="co">#&gt; 9         9 61.26770  20           FALSE              v         0</span>
-<span class="co">#&gt; 10       10 69.06229  18           FALSE              i         0</span></code></pre></div>
+<span class="co">#&gt; 1         1 69.03042  18            TRUE              g         0</span>
+<span class="co">#&gt; 2         2 63.57233  19           FALSE              y         0</span>
+<span class="co">#&gt; 3         3 61.90138  18            TRUE              o         0</span>
+<span class="co">#&gt; 4         4 74.80167  20            TRUE              y         0</span>
+<span class="co">#&gt; 5         5 58.80694  18           FALSE              r         0</span>
+<span class="co">#&gt; 6         6 68.09122  20            TRUE              v         0</span>
+<span class="co">#&gt; 7         7 73.86248  19           FALSE              b         0</span>
+<span class="co">#&gt; 8         8 63.26356  19           FALSE              y         0</span>
+<span class="co">#&gt; 9         9 72.93247  19           FALSE              y         0</span>
+<span class="co">#&gt; 10       10 65.12974  19            TRUE              y         0</span></code></pre></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2" number="0.19">
@@ -1476,7 +1472,7 @@ i
 <span class="co"># basic scatterplot</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">a</span>,y<span class="op">=</span><span class="va">b</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-1.png" width="100%"></div>
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># customize, add regression line</span>
@@ -1489,7 +1485,7 @@ i
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"I made a scatterplot"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-2.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-64-2.png" width="100%"></div>
 </div>
 <div id="bar-graph" class="section level3" number="0.19.4">
 <h3>
@@ -1509,7 +1505,7 @@ i
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">factor_one</span>,y<span class="op">=</span><span class="va">dv_means</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-1.png" width="100%"></div>
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># adding error bars, customizing</span>
@@ -1525,7 +1521,7 @@ i
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"I made a bar graph"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-2.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-65-2.png" width="100%"></div>
 <p>2 factor</p>
 <div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Create a dataframe</span>
@@ -1544,7 +1540,7 @@ i
                     group<span class="op">=</span><span class="va">factor_two</span>,
                     color<span class="op">=</span><span class="va">factor_two</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span>, position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-1.png" width="100%"></div>
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># adding error bars, customizing</span>
@@ -1565,7 +1561,7 @@ i
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Bar graph 2 factors"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-2.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-66-2.png" width="100%"></div>
 <p>3 factor</p>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Create a dataframe</span>
@@ -1589,7 +1585,7 @@ i
                     color<span class="op">=</span><span class="va">factor_two</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span>, position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">factor_three</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-67-1.png" width="100%"></div>
 </div>
 <div id="line-graph" class="section level3" number="0.19.5">
 <h3>
@@ -1610,7 +1606,7 @@ i
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">factor_one</span>,y<span class="op">=</span><span class="va">dv_means</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-1.png" width="100%"></div>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># adding error bars, customizing</span>
@@ -1627,7 +1623,7 @@ i
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"I made a line graph"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size<span class="op">=</span><span class="fl">12</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-2.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-68-2.png" width="100%"></div>
 <p>2 factor</p>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Create a dataframe</span>
@@ -1648,7 +1644,7 @@ i
                     linetype<span class="op">=</span><span class="va">factor_two</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-69-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-69-1.png" width="100%"></div>
 </div>
 <div id="histogram" class="section level3" number="0.19.6">
 <h3>
@@ -1658,7 +1654,7 @@ i
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-70-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-70-1.png" width="100%"></div>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span>
@@ -1667,7 +1663,7 @@ i
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">score</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">10</span>,
                  color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-71-1.png" width="672"></div>
+<div class="inline-figure"><img src="GS_R_Reference_files/figure-html/unnamed-chunk-71-1.png" width="100%"></div>
 </div>
 </div>
 <div id="knitr" class="section level2" number="0.20">
@@ -2149,11 +2145,11 @@ D
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># returns 1 randomly sampled number from 1 to 10</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; [1] 1</span>
 
 <span class="co"># let's repeat the above 10 times using replicate</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 2 3 3 2 2 3 6 3 5 3</span></code></pre></div>
+<span class="co">#&gt;  [1]  5  1  9  1  7  4  2 10  2  8</span></code></pre></div>
 <p>The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times.</p>
 <p>For example, we write a function to run a one-sample t-test on a random sample drawn from a normal distribution</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
@@ -2165,10 +2161,10 @@ D
 
 <span class="co"># get 10 t-values from repeating the above 10 times</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu">ttest_result</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span>
-<span class="co">#&gt;           t           t           t           t           t           t </span>
-<span class="co">#&gt;  0.15636587  0.23690079 -1.96390822  1.47177723  1.44657680  0.01866863 </span>
-<span class="co">#&gt;           t           t           t           t </span>
-<span class="co">#&gt;  0.31326337  0.13466271  0.37451843  0.04935578</span></code></pre></div>
+<span class="co">#&gt;          t          t          t          t          t          t          t </span>
+<span class="co">#&gt;  0.7462134  0.1265805  1.6177355  0.3190185 -0.3212202 -0.1425219  0.6180752 </span>
+<span class="co">#&gt;          t          t          t </span>
+<span class="co">#&gt; -0.2880227  0.2400779 -0.3862252</span></code></pre></div>
 </div>
 <div id="apply-family" class="section level3" number="0.23.3">
 <h3>
@@ -2245,13 +2241,13 @@ D
 <span class="co"># applies the sum function to each row</span>
 <span class="co"># 1 tells apply to go across rows</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">random_matrix</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span>
-<span class="co">#&gt; [1] 13 33 29 22 32</span></code></pre></div>
+<span class="co">#&gt; [1] 24 24 35 16 26</span></code></pre></div>
 <p>The sum of each column</p>
 <div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># applies the sum function to each column</span>
 <span class="co"># 2 tells apply to go across columns</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">random_matrix</span>, <span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span>
-<span class="co">#&gt; [1] 34 28 20 31 16</span></code></pre></div>
+<span class="co">#&gt; [1] 22 20 28 18 37</span></code></pre></div>
 <p>Let’s say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.</p>
 <div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sample_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
@@ -2263,13 +2259,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = -2.1847, df = 9, p-value = 0.05674</span>
+<span class="co">#&gt; t = -0.15555, df = 9, p-value = 0.8798</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.01638915  0.01770334</span>
+<span class="co">#&gt;  -0.6103617  0.5318253</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x </span>
-<span class="co">#&gt; -0.4993429 </span>
+<span class="co">#&gt; -0.0392682 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
@@ -2277,13 +2273,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = 0.66287, df = 9, p-value = 0.524</span>
+<span class="co">#&gt; t = -0.66068, df = 9, p-value = 0.5254</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.4402054  0.8051194</span>
+<span class="co">#&gt;  -1.1479343  0.6289721</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt;  0.182457 </span>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; -0.2594811 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]</span>
@@ -2291,13 +2287,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = -1.0223, df = 9, p-value = 0.3333</span>
+<span class="co">#&gt; t = -2.6149, df = 9, p-value = 0.02804</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.1106937  0.4192932</span>
+<span class="co">#&gt;  -1.10948184 -0.08024462</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x </span>
-<span class="co">#&gt; -0.3457003</span></code></pre></div>
+<span class="co">#&gt; -0.5948632</span></code></pre></div>
 <p>What if we wanted to return only the t-values, rather than whole output?</p>
 <p>You might try this, but it doesn’t work</p>
 <div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
@@ -2310,7 +2306,7 @@ D
         <span class="va">t_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">x</span>,mu<span class="op">=</span><span class="fl">0</span><span class="op">)</span>
         <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">t_out</span><span class="op">$</span><span class="va">statistic</span><span class="op">)</span>
       <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; [1] -2.1847023  0.6628735 -1.0222681</span></code></pre></div>
+<span class="co">#&gt; [1] -0.1555452 -0.6606843 -2.6148959</span></code></pre></div>
 
 </div>
 </div>

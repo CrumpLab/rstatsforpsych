@@ -3,5 +3,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   message = FALSE,
   warning = FALSE,
-  cache = TRUE
+  cache = TRUE,
+  out.width = '100%'
 )

@@ -50,8 +50,8 @@ We use `rnorm()` to sample numbers from a normal distribution:
 
 ```r
 rnorm(n=10, mean = 0, sd = 1)
-#>  [1] -2.9140591  0.3947141  0.3414945  0.7858585  1.1519034  1.1862566
-#>  [7] -1.5463673  0.2515280 -1.0092558  1.7839389
+#>  [1] -1.0019349 -1.0519557 -0.3011568  1.2220209  0.1025381  1.0983615
+#>  [7]  0.1640728  1.4291822  0.7122542  0.8019979
 ```
 
 We can 'see' the distribution by sampling a large number of observations, and plotting them in a histogram:
@@ -67,7 +67,7 @@ ggplot(some_data, aes(x=observations)) +
                  fill= 'orange')
 ```
 
-<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-3-1.png" width="100%" />
 
 We can see in this example that using random chance to sample from this distribution caused these numbers to be observed. So, we can see that "chance did something". We can also see that chance did some things more than others. Values close to 0 were sampled much more often than values larger 2.5.
 
@@ -78,19 +78,20 @@ How often did we sample a value larger than 2.5? What is the probability that ch
 
 ```r
 some_data$observations[some_data$observations > 2.5]
-#>  [1] 2.750990 2.736575 2.657008 2.551106 3.313766 2.653190 2.608528 2.611656
-#>  [9] 2.661387 3.061398 2.525422 2.514616 2.725104 2.650962 2.716407 2.982892
-#> [17] 2.870402 2.836020 2.614699 3.140700 2.785550 2.690057 2.580511 2.762561
-#> [25] 2.547494 2.576790 3.712095 3.013260 3.287446 2.961388 2.727736 2.681205
-#> [33] 2.539632 2.860896 2.543354 2.532548 2.660360 2.500030 2.535074 2.593819
-#> [41] 2.501541 2.918530 2.794644 3.482080 2.545278 2.762676 2.502802 2.530624
-#> [49] 2.674710 2.764437 3.083836 3.232420 2.587158 2.538073 2.699309 2.561491
-#> [57] 3.049182 2.839057 2.643097 3.406934 2.511632 2.718322 2.567967 2.608653
-#> [65] 3.892057 3.052204 2.998525 2.651921 2.507884
+#>  [1] 2.928525 2.781648 2.868732 2.552076 2.727173 3.154145 2.681787 2.864008
+#>  [9] 3.191691 2.624065 2.646727 2.731566 2.739447 2.679715 2.521466 2.834034
+#> [17] 2.863045 2.810554 3.516797 2.799241 2.791296 2.572595 2.778810 2.850113
+#> [25] 2.681773 3.034754 2.805372 2.990966 2.674465 3.102878 2.736407 2.669546
+#> [33] 2.579411 3.141679 3.025064 2.563732 3.372532 2.810153 2.657164 2.673537
+#> [41] 3.866567 2.764349 2.612303 3.414172 2.897619 5.325133 2.632761 2.512114
+#> [49] 2.625397 3.020722 2.757451 2.633909 2.694776 3.115221 2.814079 3.009813
+#> [57] 2.799929 2.660804 2.977252 2.979958 2.627102 3.367223 2.630621 2.502218
+#> [65] 2.685564 2.621895 2.511339 3.141363 2.614251 2.651630 2.568692 2.571659
+#> [73] 3.451340
 length(some_data$observations[some_data$observations > 2.5])
-#> [1] 69
+#> [1] 73
 length(some_data$observations[some_data$observations > 2.5])/10000
-#> [1] 0.0069
+#> [1] 0.0073
 ```
 2. We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with `d`, `p`, `q`, and `r`, so there are `dnorm`, `pnorm`, `qnorm`, and `rnorm` functions for the normal distribution (and other distributions).
 
@@ -102,8 +103,8 @@ length(some_data$observations[some_data$observations > 2.5])/10000
 
 ```r
 rnorm(n=10, mean = 0, sd = 1)
-#>  [1] -1.5116145  0.8824265 -0.7576481 -1.1461829 -0.4271150  0.9125245
-#>  [7] -0.4460432  0.2139275 -0.6578751  0.5829467
+#>  [1]  1.6196756  0.6847015 -0.2484228 -0.8445940 -0.8467085 -0.7368235
+#>  [7] -0.8444813 -1.4188080 -0.4046103  1.4017983
 ```
 
 #### dnorm()
@@ -141,7 +142,7 @@ ggplot(some_data, aes(x=x, y=density)) +
   geom_point()
 ```
 
-<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-6-1.png" width="100%" />
 To generate a plot of the full distribution in R, you could calculate additional intervening values on the x-axis, and use a line plot.
 
 
@@ -153,7 +154,7 @@ ggplot(some_data, aes(x=x, y=density)) +
   geom_line()
 ```
 
-<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-7-1.png" width="100%" />
 Note, that this probability density function could be consulted to ask a question like, what is the probability of getting a value larger than 2.5? The answer is given by the area under the curve (in red).
 
 
@@ -172,7 +173,7 @@ ggplot(some_data, aes(x=x, y=density)) +
               aes(ymin=0,ymax=density))
 ```
 
-<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 ### pnorm
 
 `pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)` takes a given value that the distribution could produce as an input called `q` for quantile. The function then returns the proportional area under the curve up to that value. 
@@ -201,7 +202,7 @@ ggplot(some_data, aes(x=x, y=density)) +
               aes(ymin=0,ymax=density))
 ```
 
-<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 By default, `pnorm` calculates the lower tail, or the area under the curve from the `q` value point to the left side of the plot. 
 
 To calculate the the probability of getting a number larger than a particular value you can take the complement, or set `lower.tail=FALSE`
@@ -273,7 +274,7 @@ We already know what the sample mean is and how to calculate it in R. Here is an
 
 ```r
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.3353103
+#> [1] 0.3376038
 ```
 
 ### Multiple sample means
@@ -285,15 +286,15 @@ Here is an example of creating 5 sample means from 5 sets of 10 observations.
 
 ```r
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.0798736
+#> [1] -0.139616
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.1877272
+#> [1] -0.6549391
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.6130524
+#> [1] -0.1269689
 mean(rnorm(10, mean=0, sd =1))
-#> [1] 0.5037525
+#> [1] -0.06684122
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.08347792
+#> [1] 0.3020679
 ```
 
 Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.
@@ -314,7 +315,7 @@ sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 hist(sample_means)
 ```
 
-<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 The above is a histogram representing the means for 10,000 samples. We can refer to this as a sampling distribution of the sample means. It is how sample means (in this one particular situation) are generally distributed.
 
 If you wanted to know what to expect from a single sample mean (if you knew you were taking values from this normal distribution), then you could look at this sampling distribution. 
@@ -337,7 +338,7 @@ The standard deviation of the sample means would give us an idea of how much var
 ```r
 sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 sd(sample_means)
-#> [1] 0.314824
+#> [1] 0.3177668
 ```
 
 The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.
@@ -355,7 +356,7 @@ We can also compare the SEM from the formula to the one we obtained by simulatio
 # simulation SEM
 sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 sd(sample_means)
-#> [1] 0.3161247
+#> [1] 0.3172985
 
 # analytic SEM
 

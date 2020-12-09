@@ -37,7 +37,7 @@ B <- rnorm(n=10,mean=10, sd=5)
 
 # the pvalue for this one pretend simulation
 t.test(A,B,var.equal=TRUE)$p.value
-#> [1] 0.5374531
+#> [1] 0.4465779
 
 # running the simulation
 # everytime we run this function we do one simulated experiment and return the p-value
@@ -54,13 +54,13 @@ outcomes <- replicate(1000,sim_null())
 hist(outcomes)
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-2-1.png" width="100%" />
 
 ```r
 
 # proportion of simulated experiments had a p-value less than .05
 length(outcomes[outcomes<.05])/1000
-#> [1] 0.052
+#> [1] 0.048
 ```
 
 We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.
@@ -76,7 +76,7 @@ Consider this. How often will we find a p-value less than .05 if there was a mea
   A <- rnorm(n=10,mean=10, sd=5)
   B <- rnorm(n=10,mean=15, sd=5)
   t.test(A,B,var.equal=TRUE)$p.value
-#> [1] 0.02286011
+#> [1] 0.04564235
 
 # make the mean for B 15 (5 more than A)
 sim_alternative <- function(){
@@ -92,13 +92,13 @@ outcomes <- replicate(1000,sim_alternative())
 hist(outcomes)
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-3-1.png" width="100%" />
 
 ```r
 
 # proportion of simulated experiments had a p-value less than .05
 length(outcomes[outcomes<.05])/1000
-#> [1] 0.581
+#> [1] 0.556
 ```
 
 We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).
@@ -176,7 +176,7 @@ ggplot(plot_df, aes(x=effect_sizes,
   geom_line()
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 
 This power curve applies to all independent-sample t-tests with n=10. It is a property, or fact about those designs. Every design has it's own power curve. The power curve shows us what **should** happen (on average), when the **true** state of the world involves effects of different sizes.
 
@@ -214,7 +214,7 @@ ggplot(plot_df, aes(x=num_subjects,
   geom_line()
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-6-1.png" width="100%" />
 
 Well, it looks like you need many subjects to have high power. For example, if you want to detect the effect 95% of the time, you would need around 650 subjects. It's worth doing this kind of analysis to see if your design checks out. You don't want to waste your time running an experiment that is designed to fail (even when the true effect is real).
 
@@ -261,7 +261,7 @@ ggplot(plot_df, aes(x=effect_sizes,
   geom_line()
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-7-1.png" width="100%" />
 
 In this case, there is no obvious benefit to computing the power-curve by simulation. The answer we get is similar to the answer we got before using the `pwr` package, but our simulation answer is more noisy. Why bother the simulation?
 
@@ -317,7 +317,7 @@ ggplot(plot_df, aes(x=subjects,
   geom_line()
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 ```r
 
@@ -380,7 +380,7 @@ ggplot(plot_df, aes(x=effect_sizes,
   geom_line()
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 
 It looks like this design (1 factor, between-subjects, 20 subjects per group) has high power to detect an effect of d=1, specifically when one of the groups differs from the others by d=1.
 
@@ -418,7 +418,7 @@ ggplot(plot_df, aes(x=subjects,
   geom_line()
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 The simulations suggests we need about 560 subjects in each group to have power .95 to detect the effect (d=.2). That's a total of 2240 subjects. Reality can be surprising when it comes to power analysis. It is better to be surprised about your design before you run your experiment, not after.
 
@@ -449,7 +449,7 @@ for(i in 1:20){
 hist(save_correlations)
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 The histogram shows that a range of correlations between individual questions and behavior can emerge just by chance alone. If you run the above code a few times, you will see that the histogram changes a bit because of random chance. 
 
@@ -474,7 +474,7 @@ for( j in 1:10000){
 hist(save_max)
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 The simulation shows that chance alone in this situation can produce very large correlations, as large as .8 or .9 (although not very often). 
 
@@ -497,6 +497,6 @@ for( j in 1:10000){
 hist(save_max)
 ```
 
-<img src="SP_Power_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="SP_Power_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 Now, chance doesn't do much better than .25.

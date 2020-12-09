@@ -60,7 +60,7 @@ A permutation is a reordering of a sequence. For example, we can easily re-order
 ```r
 a <- c(1,2,3,4,5)
 sample(a)
-#> [1] 1 5 3 4 2
+#> [1] 3 4 2 1 5
 ```
 
 The number of permutations (unique re-orderings) for n distinct items is $n!$
@@ -98,7 +98,7 @@ for(i in 1:10000){
 }
 
 count_examples/10000
-#> [1] 0.0069
+#> [1] 0.0081
 ```
 
 A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.
@@ -124,14 +124,14 @@ knitr::kable(example_outcome)
 
 |group | person| ball|
 |:-----|------:|----:|
-|A     |      1|    7|
+|A     |      1|    2|
 |A     |      2|    1|
-|A     |      3|    6|
-|A     |      4|    8|
-|B     |      1|    4|
-|B     |      2|    2|
+|A     |      3|    4|
+|A     |      4|    5|
+|B     |      1|    6|
+|B     |      2|    8|
 |B     |      3|    3|
-|B     |      4|    5|
+|B     |      4|    7|
 
 What are the chances that sum of the balls in Group A will be very different from the sum of the balls chosen by Group B? We could figure these kinds of questions out if we had access to all of the permutations. Let's make a matrix of all of the possible permutations.
 
@@ -167,7 +167,7 @@ What do these possible differences look like? Let's make a histogram.
 hist(possible_differences)
 ```
 
-<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 Let's do a sanity check. What is the biggest possible difference that could be obtained? That would occur if one group chose the 4 smallest numbers (1,2,3,4), which sums to 10; and the other group chose the 4 biggest numbers (5,6,7,8), which sums to 26. Therefore, the largest possible difference is 26-10 = 16.
 
@@ -288,7 +288,7 @@ qplot(possible_differences)+
   theme_classic()
 ```
 
-<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-20-1.png" width="100%" />
 
 The histogram shows all of the possible differences we could have obtained by randomly sampling the participants into the different groups. The red line shows the difference that was obtained. These are all facts of this example.
 
@@ -323,11 +323,11 @@ We can then calculate the mean of each group, and look at the difference.
 
 ```r
 mean(group_A)
-#> [1] 65.00427
+#> [1] 63.80599
 mean(group_B)
-#> [1] 64.35203
+#> [1] 65.03299
 mean(group_A)-mean(group_B)
-#> [1] 0.6522375
+#> [1] -1.226997
 ```
 
 In some general sense if the manipulation works, that is it **causes a difference**, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, **however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups**.
@@ -343,7 +343,7 @@ new_A_mean <- mean(resample[1:50])
 new_B_mean <- mean(resample[51:100])
 new_difference <- new_A_mean-new_B_mean
 new_difference
-#> [1] -1.032973
+#> [1] -1.647882
 
 # Simulate the above process 10000 times
 mean_differences <- c()
@@ -365,7 +365,7 @@ qplot(mean_differences)+
   theme_classic()
 ```
 
-<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-25-1.png" width="100%" />
 
 The above histogram is a "sampling distribution of mean differences", and it shows the kinds of differences between group A and group B that could be obtained purely because of randomly assigning people to different groups. 
 
@@ -376,7 +376,7 @@ We can also use this distribution to calculate specific probabilities concerning
 
 ```r
 length(mean_differences[mean_differences >=4 ])/length(mean_differences)
-#> [1] 0.0274
+#> [1] 0.0258
 ```
 
 ## P1: Randomization test with real data
@@ -426,45 +426,45 @@ simulation_data <- the_data %>%
 simulation_data %>%
   mutate(Intellect_Rating = sample(Intellect_Rating))
 #>    CONDITION Intellect_Rating
-#> 1          1        6.0000000
-#> 2          1        7.0000000
-#> 3          1        7.6666667
-#> 4          0        1.0000000
-#> 5          0        3.3333333
-#> 6          0        5.0000000
-#> 7          1        5.6666667
-#> 8          0        3.6666667
-#> 9          1        5.6666667
-#> 10         0        3.3333333
-#> 11         0        4.6666667
-#> 12         1        9.0000000
-#> 13         1        6.6666667
-#> 14         0        6.0000000
-#> 15         0        6.0000000
-#> 16         1        6.3333333
-#> 17         1        0.6666667
-#> 18         1        4.6666667
+#> 1          1        4.6666667
+#> 2          1        3.3333333
+#> 3          1        5.6666667
+#> 4          0        6.0000000
+#> 5          0        9.0000000
+#> 6          0        5.6666667
+#> 7          1        5.0000000
+#> 8          0        6.0000000
+#> 9          1        1.6666667
+#> 10         0        3.6666667
+#> 11         0        6.6666667
+#> 12         1        6.0000000
+#> 13         1        5.6666667
+#> 14         0        3.6666667
+#> 15         0        5.0000000
+#> 16         1        4.6666667
+#> 17         1        5.6666667
+#> 18         1        7.0000000
 #> 19         0        2.3333333
 #> 20         0        4.6666667
-#> 21         0        3.3333333
-#> 22         0        3.6666667
-#> 23         0        6.0000000
-#> 24         1        5.0000000
-#> 25         1        1.6666667
-#> 26         1        1.6666667
-#> 27         0        5.6666667
-#> 28         1        5.3333333
-#> 29         1        3.6666667
-#> 30         1        4.6666667
-#> 31         0        2.0000000
-#> 32         0        6.6666667
-#> 33         1        5.0000000
+#> 21         0        3.6666667
+#> 22         0        3.3333333
+#> 23         0        6.3333333
+#> 24         1        6.6666667
+#> 25         1        5.0000000
+#> 26         1        9.0000000
+#> 27         0        3.6666667
+#> 28         1        1.0000000
+#> 29         1        3.3333333
+#> 30         1        1.6666667
+#> 31         0        4.6666667
+#> 32         0        6.0000000
+#> 33         1        7.6666667
 #> 34         1        3.6666667
-#> 35         0        2.3333333
-#> 36         1        9.0000000
-#> 37         0        5.6666667
-#> 38         1        6.0000000
-#> 39         1        3.6666667
+#> 35         0        0.6666667
+#> 36         1        2.3333333
+#> 37         0        2.0000000
+#> 38         1        5.3333333
+#> 39         1        6.0000000
 
 # example of calculating a new mean difference
 
@@ -477,12 +477,12 @@ new_data
 #> # A tibble: 2 x 2
 #>   CONDITION new_means
 #>       <int>     <dbl>
-#> 1         0      5.06
-#> 2         1      4.43
+#> 1         0      5.13
+#> 2         1      4.37
 new_data[new_data$CONDITION == 0,]$new_means
-#> [1] 5.055556
+#> [1] 5.12963
 new_data[new_data$CONDITION == 1,]$new_means
-#> [1] 4.428571
+#> [1] 4.365079
 new_difference <- new_data[new_data$CONDITION == 1,]$new_means-new_data[new_data$CONDITION == 0,]$new_means
 
 # Run a randomization test
@@ -510,13 +510,13 @@ qplot(possible_differences)+
   theme_classic()
 ```
 
-<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="100%" />
 It's pretty clear in this example that a mean difference of 2 rarely occurred across the random shuffles of the data. The odds of getting 2 or larger from the simulation were:
 
 
 ```r
 length(possible_differences[possible_differences >= 2]) / length(possible_differences)
-#> [1] 0
+#> [1] 0.001
 ```
 
 What can be concluded from this exercise? Should we conclude that that experimental manipulation actually caused the difference in Intellect ratings? Should we conclude that chance did not produce the difference?
@@ -566,7 +566,7 @@ qplot(mean_differences)+
   theme_classic()
 ```
 
-<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-31-1.png" width="100%" />
 
 
 ## Lab 6 Generalization Assignment

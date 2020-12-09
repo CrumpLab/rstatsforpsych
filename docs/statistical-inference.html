@@ -150,7 +150,7 @@
 <div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1 5 3 4 2</span></code></pre></div>
+<span class="co">#&gt; [1] 3 4 2 1 5</span></code></pre></div>
 <p>The number of permutations (unique re-orderings) for n distinct items is <span class="math inline">\(n!\)</span></p>
 <p>Therefore, if we take 5 numbers from the distinct values 1, 2, 3, 4, 5, we will be able to form 120 distinct orders or permutations of those numbers.</p>
 <div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
@@ -174,7 +174,7 @@
 <span class="op">}</span>
 
 <span class="va">count_examples</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0069</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0081</span></code></pre></div>
 <p>A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.</p>
 </div>
 <div id="a-permutation-test-example" class="section level3" number="6.3.2">
@@ -200,7 +200,7 @@
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">1</td>
-<td align="right">7</td>
+<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
@@ -210,32 +210,32 @@
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">3</td>
-<td align="right">6</td>
+<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
 <td align="right">4</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">1</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">2</td>
 <td align="right">8</td>
 </tr>
 <tr class="odd">
 <td align="left">B</td>
-<td align="right">1</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">B</td>
-<td align="right">2</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">B</td>
 <td align="right">3</td>
 <td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">B</td>
 <td align="right">4</td>
-<td align="right">5</td>
+<td align="right">7</td>
 </tr>
 </tbody>
 </table></div>
@@ -255,7 +255,7 @@
 <p>What do these possible differences look like? Let’s make a histogram.</p>
 <div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-10-1.png" width="100%"></div>
 <p>Let’s do a sanity check. What is the biggest possible difference that could be obtained? That would occur if one group chose the 4 smallest numbers (1,2,3,4), which sums to 10; and the other group chose the 4 biggest numbers (5,6,7,8), which sums to 26. Therefore, the largest possible difference is 26-10 = 16.</p>
 <p>What is the largest difference observed in our <code>possible_differences</code> vector? Checks out, that’s good.</p>
 <div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
@@ -341,7 +341,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-20-1.png" width="100%"></div>
 <p>The histogram shows all of the possible differences we could have obtained by randomly sampling the participants into the different groups. The red line shows the difference that was obtained. These are all facts of this example.</p>
 <p>I like to the think of the “distribution of possible differences” as a window of opportunity for chance. That is, we are looking at differences in the data that could have been produced by chance. We also see that some values occur more often than others. For example, the red line, with the observed difference of 8.25 is 1) inside the distribution, which means that chance could have produced this difference, but 2) it is kind of far to the left, so it seems that chance doesn’t produce a difference this big very often.</p>
 <p>We could be more precise and calculate the odds of getting a difference of 8.25 or larger, which I find to be 11.4%.</p>
@@ -365,11 +365,11 @@
 <p>We can then calculate the mean of each group, and look at the difference.</p>
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span>
-<span class="co">#&gt; [1] 65.00427</span>
+<span class="co">#&gt; [1] 63.80599</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>
-<span class="co">#&gt; [1] 64.35203</span>
+<span class="co">#&gt; [1] 65.03299</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.6522375</span></code></pre></div>
+<span class="co">#&gt; [1] -1.226997</span></code></pre></div>
 <p>In some general sense if the manipulation works, that is it <strong>causes a difference</strong>, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, <strong>however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups</strong>.</p>
 <p>We now want to calculate a <strong>sampling distribution of possible mean differences</strong>. To do this, we take all of the values in Group A and B, and randomly re-assign them across both groups, then recalculate the means and the mean difference. Then we, do this multiple times, as in monte-carlo simulation.</p>
 <div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
@@ -380,7 +380,7 @@
 <span class="va">new_B_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">resample</span><span class="op">[</span><span class="fl">51</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">)</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_A_mean</span><span class="op">-</span><span class="va">new_B_mean</span>
 <span class="va">new_difference</span>
-<span class="co">#&gt; [1] -1.032973</span>
+<span class="co">#&gt; [1] -1.647882</span>
 
 <span class="co"># Simulate the above process 10000 times</span>
 <span class="va">mean_differences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
@@ -396,13 +396,13 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-25-1.png" width="100%"></div>
 <p>The above histogram is a “sampling distribution of mean differences”, and it shows the kinds of differences between group A and group B that could be obtained purely because of randomly assigning people to different groups.</p>
 <p>In terms of a detective novel, this is <strong>chances alibi</strong>, it shows what chance is capable of doing. In this situation, chance alone could easily produce differences between group A and B as large as 4 or -4. Notice, that chance never produces a difference as large as 20. If you had all the information that we have in this example, then as a researcher you could attempt to rule out the possibility that was chance was involved in producing a difference that you observed.</p>
 <p>We can also use this distribution to calculate specific probabilities concerning chance. For example, what is the probability of getting a 4 or larger by chance alone?</p>
 <div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;=</span><span class="fl">4</span> <span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.0274</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0258</span></code></pre></div>
 </div>
 <div id="p1-randomization-test-with-real-data" class="section level2" number="6.5">
 <h2>
@@ -444,45 +444,45 @@
 <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    CONDITION Intellect_Rating</span>
-<span class="co">#&gt; 1          1        6.0000000</span>
-<span class="co">#&gt; 2          1        7.0000000</span>
-<span class="co">#&gt; 3          1        7.6666667</span>
-<span class="co">#&gt; 4          0        1.0000000</span>
-<span class="co">#&gt; 5          0        3.3333333</span>
-<span class="co">#&gt; 6          0        5.0000000</span>
-<span class="co">#&gt; 7          1        5.6666667</span>
-<span class="co">#&gt; 8          0        3.6666667</span>
-<span class="co">#&gt; 9          1        5.6666667</span>
-<span class="co">#&gt; 10         0        3.3333333</span>
-<span class="co">#&gt; 11         0        4.6666667</span>
-<span class="co">#&gt; 12         1        9.0000000</span>
-<span class="co">#&gt; 13         1        6.6666667</span>
-<span class="co">#&gt; 14         0        6.0000000</span>
-<span class="co">#&gt; 15         0        6.0000000</span>
-<span class="co">#&gt; 16         1        6.3333333</span>
-<span class="co">#&gt; 17         1        0.6666667</span>
-<span class="co">#&gt; 18         1        4.6666667</span>
+<span class="co">#&gt; 1          1        4.6666667</span>
+<span class="co">#&gt; 2          1        3.3333333</span>
+<span class="co">#&gt; 3          1        5.6666667</span>
+<span class="co">#&gt; 4          0        6.0000000</span>
+<span class="co">#&gt; 5          0        9.0000000</span>
+<span class="co">#&gt; 6          0        5.6666667</span>
+<span class="co">#&gt; 7          1        5.0000000</span>
+<span class="co">#&gt; 8          0        6.0000000</span>
+<span class="co">#&gt; 9          1        1.6666667</span>
+<span class="co">#&gt; 10         0        3.6666667</span>
+<span class="co">#&gt; 11         0        6.6666667</span>
+<span class="co">#&gt; 12         1        6.0000000</span>
+<span class="co">#&gt; 13         1        5.6666667</span>
+<span class="co">#&gt; 14         0        3.6666667</span>
+<span class="co">#&gt; 15         0        5.0000000</span>
+<span class="co">#&gt; 16         1        4.6666667</span>
+<span class="co">#&gt; 17         1        5.6666667</span>
+<span class="co">#&gt; 18         1        7.0000000</span>
 <span class="co">#&gt; 19         0        2.3333333</span>
 <span class="co">#&gt; 20         0        4.6666667</span>
-<span class="co">#&gt; 21         0        3.3333333</span>
-<span class="co">#&gt; 22         0        3.6666667</span>
-<span class="co">#&gt; 23         0        6.0000000</span>
-<span class="co">#&gt; 24         1        5.0000000</span>
-<span class="co">#&gt; 25         1        1.6666667</span>
-<span class="co">#&gt; 26         1        1.6666667</span>
-<span class="co">#&gt; 27         0        5.6666667</span>
-<span class="co">#&gt; 28         1        5.3333333</span>
-<span class="co">#&gt; 29         1        3.6666667</span>
-<span class="co">#&gt; 30         1        4.6666667</span>
-<span class="co">#&gt; 31         0        2.0000000</span>
-<span class="co">#&gt; 32         0        6.6666667</span>
-<span class="co">#&gt; 33         1        5.0000000</span>
+<span class="co">#&gt; 21         0        3.6666667</span>
+<span class="co">#&gt; 22         0        3.3333333</span>
+<span class="co">#&gt; 23         0        6.3333333</span>
+<span class="co">#&gt; 24         1        6.6666667</span>
+<span class="co">#&gt; 25         1        5.0000000</span>
+<span class="co">#&gt; 26         1        9.0000000</span>
+<span class="co">#&gt; 27         0        3.6666667</span>
+<span class="co">#&gt; 28         1        1.0000000</span>
+<span class="co">#&gt; 29         1        3.3333333</span>
+<span class="co">#&gt; 30         1        1.6666667</span>
+<span class="co">#&gt; 31         0        4.6666667</span>
+<span class="co">#&gt; 32         0        6.0000000</span>
+<span class="co">#&gt; 33         1        7.6666667</span>
 <span class="co">#&gt; 34         1        3.6666667</span>
-<span class="co">#&gt; 35         0        2.3333333</span>
-<span class="co">#&gt; 36         1        9.0000000</span>
-<span class="co">#&gt; 37         0        5.6666667</span>
-<span class="co">#&gt; 38         1        6.0000000</span>
-<span class="co">#&gt; 39         1        3.6666667</span>
+<span class="co">#&gt; 35         0        0.6666667</span>
+<span class="co">#&gt; 36         1        2.3333333</span>
+<span class="co">#&gt; 37         0        2.0000000</span>
+<span class="co">#&gt; 38         1        5.3333333</span>
+<span class="co">#&gt; 39         1        6.0000000</span>
 
 <span class="co"># example of calculating a new mean difference</span>
 
@@ -495,12 +495,12 @@
 <span class="co">#&gt; # A tibble: 2 x 2</span>
 <span class="co">#&gt;   CONDITION new_means</span>
 <span class="co">#&gt;       &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1         0      5.06</span>
-<span class="co">#&gt; 2         1      4.43</span>
+<span class="co">#&gt; 1         0      5.13</span>
+<span class="co">#&gt; 2         1      4.37</span>
 <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
-<span class="co">#&gt; [1] 5.055556</span>
+<span class="co">#&gt; [1] 5.12963</span>
 <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
-<span class="co">#&gt; [1] 4.428571</span>
+<span class="co">#&gt; [1] 4.365079</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span><span class="op">-</span><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
 
 <span class="co"># Run a randomization test</span>
@@ -523,11 +523,11 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">2</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure">
-<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="672">
+<img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="100%">
 It’s pretty clear in this example that a mean difference of 2 rarely occurred across the random shuffles of the data. The odds of getting 2 or larger from the simulation were:</div>
 <div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">[</span><span class="va">possible_differences</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0</span></code></pre></div>
+<span class="co">#&gt; [1] 0.001</span></code></pre></div>
 <p>What can be concluded from this exercise? Should we conclude that that experimental manipulation actually caused the difference in Intellect ratings? Should we conclude that chance did not produce the difference?</p>
 <p>I’m a bit more conservative about what can be concluded. I would say that the exercise of producing the sampling distribution of differences was very useful. It gives me a pretty good sense of the kinds of differences that chance alone could produce. It shows me that a difference of 2 is very rarely produced by chance alone. This gives me some confidence to rule out chance as a candidate. In other words, I do not really think that chance has a great alibi, it wouldn’t have produced the pattern in the data very often. At the same time, it could have, just not very often…so, we can be confident, but not completely sure that chance didn’t do it.</p>
 <p>As for the experimental manipulation…if it wasn’t chance that caused the difference, is it necessarily the case that the manipulation caused the difference? This is like saying Donald Duck did not cause the difference, therefore my manipulation did cause the difference. It makes no sense. Instead, sure, the manipulation could have caused the difference, also maybe there were other confounds that were not addressed that caused the difference. Ruling out chance doesn’t tell you what caused the difference, it just suggests that the difference wasn’t caused by chance.</p>
@@ -570,7 +570,7 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">2</span>, color <span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-31-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-31-1.png" width="100%"></div>
 </div>
 </div>
 <div id="lab-6-generalization-assignment" class="section level2" number="6.6">

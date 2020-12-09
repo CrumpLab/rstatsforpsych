@@ -45,7 +45,7 @@ When we use sample, we can create discrete distributions and sample from them. B
 
 ```r
 sample(x= 1:2, size = 2)
-#> [1] 2 1
+#> [1] 1 2
 ```
 
 2. Create a distribution with two equally possible numbers, sample from it 10 times (note must set replace=TRUE, because we are sampling more items than exist in the vector):
@@ -53,7 +53,7 @@ sample(x= 1:2, size = 2)
 
 ```r
 sample(x= 1:2, size = 10, replace = TRUE)
-#>  [1] 2 2 1 1 2 2 2 1 1 2
+#>  [1] 1 2 2 2 1 1 1 1 2 1
 ```
 
 3. Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times
@@ -61,7 +61,7 @@ sample(x= 1:2, size = 10, replace = TRUE)
 
 ```r
 sample(x= 1:2, size = 10, replace = TRUE, prob=c(.9,.1))
-#>  [1] 1 2 1 1 2 1 1 2 1 1
+#>  [1] 1 1 1 2 1 1 1 1 1 1
 ```
 
 4. Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return "heads" or "tails".
@@ -69,7 +69,7 @@ sample(x= 1:2, size = 10, replace = TRUE, prob=c(.9,.1))
 
 ```r
 sample(x = c("heads","tails"), size=10, replace= TRUE) 
-#>  [1] "heads" "tails" "heads" "tails" "tails" "heads" "tails" "heads" "tails"
+#>  [1] "heads" "heads" "tails" "tails" "tails" "heads" "heads" "heads" "heads"
 #> [10] "tails"
 ```
 
@@ -78,7 +78,7 @@ sample(x = c("heads","tails"), size=10, replace= TRUE)
 
 ```r
 sample(x= 1:1000, size = 10, replace = FALSE)
-#>  [1] 277 208 837 814  75 492 841 847 719 704
+#>  [1] 195 130 884 296 985 967 655 511 667 442
 ```
 
 ### Normal distribution
@@ -90,12 +90,12 @@ To sample random deviates from a normal distribution, use the `rnorm(n, mean = 0
 
 ```r
 rnorm(n= 10,mean = 0, sd = 1)
-#>  [1] -0.6205916  0.1080475 -0.3815423 -0.6242661  0.9667522 -0.9231609
-#>  [7]  0.5330538  1.3612077  0.5654421 -0.5738990
+#>  [1]  0.7507135  1.2885156 -0.1181898 -0.3109193 -2.7237272  0.9839745
+#>  [7] -0.4655029  0.2585130  1.0485176  0.9370757
 
 rnorm(10,0,1)
-#>  [1]  0.1581810 -1.9928215 -0.4290687  1.2985554  1.0347357  1.1762725
-#>  [7]  0.6672085 -0.5236141 -0.6811292 -1.4808057
+#>  [1]  2.3865434  0.4312720 -0.4052384  1.1844978  1.6142325 -0.5250654
+#>  [7] -1.0776366 -0.1900261 -0.9026587  0.3735507
 ```
 
 2. Visualize the sample quickly with `hist()`
@@ -106,7 +106,7 @@ my_sample <- rnorm(100,0,1)
 hist(my_sample)
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 3. Visualize the sample with ggplot2 using `geom_histogram()`. A requirement here is that the sample data is formatted in a `data.frame` first. I create a data frame with 100 observations in a `sample_data` column, and I add a `sample` column which contains all 1s, to refer to the fact that all of the numbers in sample_data belong to sample #1.
 
@@ -121,7 +121,7 @@ ggplot(my_data, aes(x=sample_data))+
   geom_histogram()
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 
 4. Visualizing multiple samples with individual histograms with ggplot2. Let's say we want to sample 25 values from a normal distribution, but we want to repeat this process four times. We will have samples 1 to 4, each containing 25 observations. We also want to generate four histograms to quickly look at each of the four samples. We can do this by setting up our dataframe to represent this situation, and by using `facet_wrap()`.
 
@@ -137,7 +137,7 @@ ggplot(my_data, aes(x=sample_data))+
   facet_wrap(~sample)
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 ### Uniform Distribution (rectangle distribution)
 
@@ -152,7 +152,7 @@ Use `runif(n, min = 0, max = 1)` to sample numbers from a uniform distribution. 
 hist(runif(1000,0,1))
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 2. Sample and plot 10000 values from a uniform distribution between 100 and 1000.
 
@@ -161,7 +161,7 @@ hist(runif(1000,0,1))
 hist(runif(10000,100,1000))
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 3. Take one sample of 100 numbers from a uniform distribution between 0 and 1. Then, for this one sample return a count of how many numbers are less than the value .05.
 
@@ -169,7 +169,7 @@ hist(runif(10000,100,1000))
 ```r
 my_sample <- runif(100,0,1)
 length(my_sample[my_sample < .05])
-#> [1] 4
+#> [1] 5
 ```
 
 ### Other distributions
@@ -183,7 +183,7 @@ Exponential distribution
 hist(rexp(1000,rate =2))
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 Binomial Distribution
 
@@ -192,7 +192,7 @@ Binomial Distribution
 hist(rbinom(100,1,prob=c(.5,.5)))
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 Weibull distribution
 
@@ -201,7 +201,7 @@ Weibull distribution
 hist(rweibull(n=1000, shape=2, scale = 1))
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 
 ### Other descriptive statistics
 
@@ -214,34 +214,34 @@ In Chapter 5, Vokey and Allen discuss skewness and kurtosis as additional descri
 library(moments)
 my_sample <- rnorm(1000,0,1)
 mean(my_sample)
-#> [1] -0.0160362
+#> [1] -0.0416809
 sd(my_sample)
-#> [1] 0.9836153
+#> [1] 1.001718
 skewness(my_sample)
-#> [1] 0.06439033
+#> [1] -0.1607327
 kurtosis(my_sample)
-#> [1] 2.847791
+#> [1] 2.969609
 hist(my_sample)
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 2. Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a right-skewed exponential distribution.
 
 
 ```r
 my_sample <- rexp(1000,2)
 mean(my_sample)
-#> [1] 0.4994639
+#> [1] 0.4883312
 sd(my_sample)
-#> [1] 0.5109935
+#> [1] 0.4653218
 skewness(my_sample)
-#> [1] 2.19753
+#> [1] 1.752688
 kurtosis(my_sample)
-#> [1] 10.65415
+#> [1] 7.173032
 hist(my_sample)
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-18-1.png" width="100%" />
 
 ## Conceptual I: Monte carlo simulations
 
@@ -297,7 +297,7 @@ ggplot(sim_data, aes(x=flip,y=proportion_heads))+
   geom_hline(yintercept=.5, color="red")
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-19-1.png" width="100%" />
 
 ### Samples become the population as n increases
 
@@ -331,7 +331,7 @@ ggplot(sim_data,aes(x=n,y=sample_mean))+
   geom_hline(yintercept=100, color="red")
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-1.png" width="100%" />
 
 ```r
 
@@ -341,7 +341,7 @@ ggplot(sim_data,aes(x=n,y=sample_sd))+
   geom_hline(yintercept=50, color="red")
 ```
 
-<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-2.png" width="672" />
+<img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-2.png" width="100%" />
 
 ## Lab 3 Generalization Assignment
 

@@ -39,13 +39,13 @@ t.test(some_random_means, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  some_random_means
-#> t = 0.11233, df = 9, p-value = 0.913
+#> t = 1.1445, df = 9, p-value = 0.2819
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -0.9564048  1.0563463
+#>  -0.3947402  1.2031553
 #> sample estimates:
-#>  mean of x 
-#> 0.04997076
+#> mean of x 
+#> 0.4042076
 ```
 
 ### Paired-sample t-test
@@ -60,13 +60,13 @@ t.test(A_means,B_means,paired=TRUE)
 #> 	Paired t-test
 #> 
 #> data:  A_means and B_means
-#> t = -1.1449, df = 9, p-value = 0.2818
+#> t = 0.22548, df = 9, p-value = 0.8266
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.1732874  0.3847453
+#>  -0.9896233  1.2087485
 #> sample estimates:
 #> mean of the differences 
-#>               -0.394271
+#>               0.1095626
 ```
 
 ### Independent-sample t-test
@@ -81,13 +81,13 @@ t.test(A_means,B_means, var.equal=TRUE)
 #> 	Two Sample t-test
 #> 
 #> data:  A_means and B_means
-#> t = -0.19658, df = 18, p-value = 0.8464
+#> t = 0.72818, df = 18, p-value = 0.4759
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.1097518  0.9198464
+#>  -0.5337639  1.1000357
 #> sample estimates:
 #>   mean of x   mean of y 
-#> -0.03707941  0.05787326
+#>  0.21170883 -0.07142705
 ```
 
 ### formula syntax for data frames
@@ -104,13 +104,13 @@ t.test(means~group, var.equal=TRUE, data=my_data)
 #> 	Two Sample t-test
 #> 
 #> data:  means by group
-#> t = -2.0349, df = 18, p-value = 0.05686
+#> t = -0.20974, df = 18, p-value = 0.8362
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.49229942  0.02381311
+#>  -1.251444  1.024251
 #> sample estimates:
 #> mean in group A mean in group B 
-#>       0.1463294       0.8805725
+#>     -0.13271602     -0.01911943
 ```
 
 ### one or two-sided test
@@ -125,37 +125,37 @@ t.test(some_random_means, mu=0, alternative = "two.sided")
 #> 	One Sample t-test
 #> 
 #> data:  some_random_means
-#> t = 0.39857, df = 9, p-value = 0.6995
+#> t = -0.74874, df = 9, p-value = 0.4731
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -0.5785888  0.8260743
+#>  -0.7587637  0.3813899
 #> sample estimates:
-#> mean of x 
-#> 0.1237428
+#>  mean of x 
+#> -0.1886869
 t.test(some_random_means, mu=0, alternative = "less")
 #> 
 #> 	One Sample t-test
 #> 
 #> data:  some_random_means
-#> t = 0.39857, df = 9, p-value = 0.6502
+#> t = -0.74874, df = 9, p-value = 0.2366
 #> alternative hypothesis: true mean is less than 0
 #> 95 percent confidence interval:
-#>      -Inf 0.692869
+#>       -Inf 0.2732682
 #> sample estimates:
-#> mean of x 
-#> 0.1237428
+#>  mean of x 
+#> -0.1886869
 t.test(some_random_means, mu=0, alternative = "greater")
 #> 
 #> 	One Sample t-test
 #> 
 #> data:  some_random_means
-#> t = 0.39857, df = 9, p-value = 0.3498
+#> t = -0.74874, df = 9, p-value = 0.7634
 #> alternative hypothesis: true mean is greater than 0
 #> 95 percent confidence interval:
-#>  -0.4453835        Inf
+#>  -0.650642       Inf
 #> sample estimates:
-#> mean of x 
-#> 0.1237428
+#>  mean of x 
+#> -0.1886869
 ```
 
 ### var.equal and Welch's correction
@@ -171,13 +171,13 @@ t.test(A,B)
 #> 	Welch Two Sample t-test
 #> 
 #> data:  A and B
-#> t = -1.255, df = 16.626, p-value = 0.2268
+#> t = 0.87964, df = 14.526, p-value = 0.3934
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.499883  0.382264
+#>  -0.53283  1.27805
 #> sample estimates:
 #>  mean of x  mean of y 
-#> -0.3866647  0.1721449
+#> -0.2247527 -0.5973629
 ```
 
 To conduct a t-test without the correction set `var.equal=TRUE`. This only applies to the independent sample case where there are two variances. 
@@ -189,13 +189,13 @@ t.test(A,B, var.equal=TRUE)
 #> 	Two Sample t-test
 #> 
 #> data:  A and B
-#> t = -1.255, df = 18, p-value = 0.2255
+#> t = 0.87964, df = 18, p-value = 0.3906
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.4943085  0.3766894
+#>  -0.5173251  1.2625455
 #> sample estimates:
 #>  mean of x  mean of y 
-#> -0.3866647  0.1721449
+#> -0.2247527 -0.5973629
 ```
 
 ### t.test() contents
@@ -209,13 +209,13 @@ The `t.test()` function has two kinds of outputs. First, it prints the results t
 #> 	Two Sample t-test
 #> 
 #> data:  A and B
-#> t = -1.255, df = 18, p-value = 0.2255
+#> t = 0.87964, df = 18, p-value = 0.3906
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.4943085  0.3766894
+#>  -0.5173251  1.2625455
 #> sample estimates:
 #>  mean of x  mean of y 
-#> -0.3866647  0.1721449
+#> -0.2247527 -0.5973629
 ```
 
 For example:
@@ -224,15 +224,15 @@ For example:
 ```r
 my_results$statistic
 #>         t 
-#> -1.254962
+#> 0.8796425
 my_results$parameter
 #> df 
 #> 18
 my_results$p.value
-#> [1] 0.2255426
+#> [1] 0.3906458
 my_results$estimate
 #>  mean of x  mean of y 
-#> -0.3866647  0.1721449
+#> -0.2247527 -0.5973629
 ```
 
 ### papaja reporting with apa_print()
@@ -244,13 +244,13 @@ The `papaja` package has convenient functions for automating the writing of t-te
 library(papaja)
 apa_print(my_results)
 #> $estimate
-#> [1] "$\\Delta M = -0.56$, 95\\% CI $[-1.49$, $0.38]$"
+#> [1] "$\\Delta M = 0.37$, 95\\% CI $[-0.52$, $1.26]$"
 #> 
 #> $statistic
-#> [1] "$t(18) = -1.25$, $p = .226$"
+#> [1] "$t(18) = 0.88$, $p = .391$"
 #> 
 #> $full_result
-#> [1] "$\\Delta M = -0.56$, 95\\% CI $[-1.49$, $0.38]$, $t(18) = -1.25$, $p = .226$"
+#> [1] "$\\Delta M = 0.37$, 95\\% CI $[-0.52$, $1.26]$, $t(18) = 0.88$, $p = .391$"
 #> 
 #> $table
 #> NULL
@@ -258,7 +258,7 @@ apa_print(my_results)
 #> attr(,"class")
 #> [1] "apa_results" "list"
 ```
-For example, this t-test result, $t(18) = -1.25$, $p = .226$, was printed using an r code snippet inserted into the text of this .Rmd.
+For example, this t-test result, $t(18) = 0.88$, $p = .391$, was printed using an r code snippet inserted into the text of this .Rmd.
 
 
 ## Conceptual I: Simulating the t-test
@@ -306,13 +306,13 @@ t.test(means~groups, var.equal =TRUE,data = subject_means)
 #> 	Two Sample t-test
 #> 
 #> data:  means by groups
-#> t = 0.3985, df = 18, p-value = 0.695
+#> t = -1.9629, df = 18, p-value = 0.0653
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -12.95504  19.01994
+#>  -30.844333   1.047707
 #> sample estimates:
 #> mean in group A mean in group B 
-#>        99.83405        96.80160
+#>        92.43684       107.33515
 ```
 As one alternative, here is another example of the above in a one-liner:
 
@@ -325,13 +325,13 @@ t.test(replicate(N, mean(rnorm(X, A_mean, A_sd))),
 #> 	Two Sample t-test
 #> 
 #> data:  replicate(N, mean(rnorm(X, A_mean, A_sd))) and replicate(N, mean(rnorm(X, B_mean, B_sd)))
-#> t = -1.0633, df = 18, p-value = 0.3017
+#> t = 0.77914, df = 18, p-value = 0.446
 #> alternative hypothesis: true difference in means is not equal to 0
 #> 95 percent confidence interval:
-#>  -19.137462   6.275552
+#>  -10.37599  22.60860
 #> sample estimates:
 #> mean of x mean of y 
-#>  106.7486  113.1796
+#> 100.08855  93.97224
 ```
 
 ### Simulating distributions of experiments
@@ -351,7 +351,7 @@ sim_mean_diffs <- replicate(1000, mean(replicate(N, mean(rnorm(X, A_mean, A_sd))
 hist(sim_mean_diffs)
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 
 #### The distribution of t
 
@@ -371,7 +371,7 @@ sim_ts <- replicate(1000, t.test(replicate(N, mean(rnorm(X, A_mean, A_sd))),
 hist(sim_ts)
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 
 ### t distribution functions
@@ -385,7 +385,7 @@ For example, rather than simulating t values as we did above, we could sample 10
 hist(rt(1000,df=18))
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-18-1.png" width="100%" />
 THe `dt` function could be used to draw the probability density function for t-distributions across a range of degrees of freedom.
 
 
@@ -408,7 +408,7 @@ ggplot(plot_df, aes(x = x, y=values, color=df, group=df))+
   scale_x_continuous(breaks=-5:5)
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-19-1.png" width="100%" />
 
 As discussed in lecture, the t-distribution approaches a normal distribution as degrees of freedom increase. For example, 95% of the values in normal distribution are smaller than Z = 1.644854 standard deviations. The corresponding 95% values of t are shown to approach 1.644 as degrees of freedom increase. 
 
@@ -442,11 +442,11 @@ sim_ps <- replicate(1000, t.test(replicate(10, mean(rnorm(5, 0, 1))),
 hist(sim_ps)
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-21-1.png" width="100%" />
 
 ```r
 length(sim_ps[sim_ps < .05])/1000
-#> [1] 0.066
+#> [1] 0.047
 ```
 
 A next question would be something like, what proportion of experiments would be significant if there actually was a difference between the means of group A and B. For example, here we assume that group A has a mean of 0, and group B has a mean of .25, and that both distributions have the same standard deviation (sd=1). In this design, with N = 10 in each group, and 5 scores measured per subject, the probability of getting a p < .05 is much higher than 5%.
@@ -459,11 +459,11 @@ sim_ps <- replicate(1000, t.test(replicate(10, mean(rnorm(5, 0, 1))),
 hist(sim_ps)
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-22-1.png" width="100%" />
 
 ```r
 length(sim_ps[sim_ps < .05])/1000
-#> [1] 0.212
+#> [1] 0.215
 ```
 
 ### Effect-size
@@ -506,7 +506,7 @@ ggplot(plot_df, aes(x=effect_sizes,y=prop_significant))+
   ylab("Proportion Significant")
 ```
 
-<img src="Lab10_ttest_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="Lab10_ttest_files/figure-html/unnamed-chunk-23-1.png" width="100%" />
 
 ## Lab 10 Generalization Assignment
 

@@ -170,7 +170,7 @@
 <span class="co"># plot the means</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">means_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">feed</span>, y<span class="op">=</span><span class="va">means</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="100%"></div>
 <div id="base-r-descriptive-statistics-functions" class="section level3" number="2.3.1">
 <h3>
 <span class="header-section-number">2.3.1</span> Base R descriptive statistics functions<a class="anchor" aria-label="anchor" href="#base-r-descriptive-statistics-functions"><i class="fas fa-link"></i></a>
@@ -359,12 +359,12 @@
 <p>Second, we could visualize the sum of the deviations. We could quickly do that with the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function.</p>
 <div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="100%"></div>
 <p>We are looking for the value on the x-axis that causes the sum of the deviations on the y-axis to be closest to 0. One way to help locate this value could be to look at the absolute values. Absolute values remove the negative (-) sign from numbers, leaving everything positive. You can convert to absolute values in R using <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></p>
 <p>Now, it is easy to see that 10 produces the sum of deviations closest to 0 (in this case it produces a value of 0, because 10 is also the mean).</p>
 <div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">sum_deviations</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-16-1.png" width="100%"></div>
 </div>
 <div id="locating-the-result-using-which" class="section level3" number="2.4.6">
 <h3>
@@ -597,7 +597,7 @@
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, y <span class="op">=</span> <span class="va">mean_lifeExp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="100%"></div>
 <p>Some options for modifying the plot:</p>
 <div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, y <span class="op">=</span> <span class="va">mean_lifeExp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -606,7 +606,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Continent"</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Mean Life Expectancy by Continent"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="100%"></div>
 </div>
 <div id="line-graph-1" class="section level3" number="2.6.2">
 <h3>
@@ -618,7 +618,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span>
 <span class="co">#&gt; the group aesthetic?</span></code></pre></div>
-<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="672">
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="100%">
 Note we get a message about adjusting the group aesthestic, and even though we asked ggplot to draw lines connecting the dots, we get a line graph. This is a good example of unexpected behavior that often requires a quick google. I copied the message the into google and found that setting <code>group=1</code> produced the lines I was expecting:</p>
 <div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, 
@@ -626,7 +626,7 @@ Note we get a message about adjusting the group aesthestic, and even though we a
                         group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-29-1.png" width="100%"></div>
 </div>
 <div id="error-bars" class="section level3" number="2.6.3">
 <h3>
@@ -644,7 +644,7 @@ Note we get a message about adjusting the group aesthestic, and even though we a
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mean_lifeExp</span> <span class="op">-</span> <span class="va">sd_lifeExp</span>,
                     ymax <span class="op">=</span> <span class="va">mean_lifeExp</span> <span class="op">+</span> <span class="va">sd_lifeExp</span><span class="op">)</span>,
                 width <span class="op">=</span> <span class="fl">.25</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="100%"></div>
 <div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">continent</span>, 
@@ -655,7 +655,7 @@ Note we get a message about adjusting the group aesthestic, and even though we a
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">mean_lifeExp</span> <span class="op">-</span> <span class="va">sd_lifeExp</span>,
                     ymax <span class="op">=</span> <span class="va">mean_lifeExp</span> <span class="op">+</span> <span class="va">sd_lifeExp</span><span class="op">)</span>,
                 width <span class="op">=</span> <span class="fl">.25</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-2.png" width="672"></div>
+<div class="inline-figure"><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-2.png" width="100%"></div>
 </div>
 </div>
 <div id="lab-2-generalization-assignment" class="section level2" number="2.7">

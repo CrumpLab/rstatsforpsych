@@ -126,7 +126,7 @@
 
 <span class="co"># the pvalue for this one pretend simulation</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.5374531</span>
+<span class="co">#&gt; [1] 0.4465779</span>
 
 <span class="co"># running the simulation</span>
 <span class="co"># everytime we run this function we do one simulated experiment and return the p-value</span>
@@ -141,12 +141,12 @@
 
 <span class="co"># plot the null-distribution of p-values</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-2-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-2-1.png" width="100%"></div>
 <div class="sourceCode" id="cb377"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.052</span></code></pre></div>
+<span class="co">#&gt; [1] 0.048</span></code></pre></div>
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
@@ -160,7 +160,7 @@
 <code class="sourceCode R">  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
   <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.02286011</span>
+<span class="co">#&gt; [1] 0.04564235</span>
 
 <span class="co"># make the mean for B 15 (5 more than A)</span>
 <span class="va">sim_alternative</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
@@ -174,12 +174,12 @@
 
 <span class="co"># plot the distribution of p-values</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-3-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-3-1.png" width="100%"></div>
 <div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.581</span></code></pre></div>
+<span class="co">#&gt; [1] 0.556</span></code></pre></div>
 <p>We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).</p>
 </div>
 <div id="power-and-effect-size" class="section level2" number="10.12">
@@ -249,7 +249,7 @@
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-5-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-5-1.png" width="100%"></div>
 <p>This power curve applies to all independent-sample t-tests with n=10. It is a property, or fact about those designs. Every design has it’s own power curve. The power curve shows us what <strong>should</strong> happen (on average), when the <strong>true</strong> state of the world involves effects of different sizes.</p>
 <p>If you do not know the power-curve for your design, then you do not know how sensitive your design is for detecting effects of particular sizes. You might accidentally be using an under powered design, with only a very small chance of detecting an effect of a size you are interested in.</p>
 <p>If you do know the power-curve for your design, you will be in a better position to plan your experiment, for example by modifying the number of subjects that you run.</p>
@@ -281,7 +281,7 @@
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-6-1.png" width="100%"></div>
 <p>Well, it looks like you need many subjects to have high power. For example, if you want to detect the effect 95% of the time, you would need around 650 subjects. It’s worth doing this kind of analysis to see if your design checks out. You don’t want to waste your time running an experiment that is designed to fail (even when the true effect is real).</p>
 </div>
 </div>
@@ -327,7 +327,7 @@
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-7-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-7-1.png" width="100%"></div>
 <p>In this case, there is no obvious benefit to computing the power-curve by simulation. The answer we get is similar to the answer we got before using the <code>pwr</code> package, but our simulation answer is more noisy. Why bother the simulation?</p>
 <p>One answer to the why bother question is that you can simulate deeper aspects of the design and get more refined answers without having to work through the math.</p>
 </div>
@@ -378,7 +378,7 @@
                     color<span class="op">=</span><span class="va">trials</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="100%"></div>
 <div class="sourceCode" id="cb385"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># a vectorized version of the loop</span>
@@ -440,7 +440,7 @@
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="100%"></div>
 <p>It looks like this design (1 factor, between-subjects, 20 subjects per group) has high power to detect an effect of d=1, specifically when one of the groups differs from the others by d=1.</p>
 <p>However, most effects in psychology are smalls, d=.2 is very common. How, many subjects does this design require to have high power (let’s say above .95, although most people use .8) to detect that small effect?</p>
 <div class="sourceCode" id="cb387"><pre class="downlit sourceCode r">
@@ -472,7 +472,7 @@
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-10-1.png" width="100%"></div>
 <p>The simulations suggests we need about 560 subjects in each group to have power .95 to detect the effect (d=.2). That’s a total of 2240 subjects. Reality can be surprising when it comes to power analysis. It is better to be surprised about your design before you run your experiment, not after.</p>
 </div>
 <div id="correlation-between-traits-and-behavior" class="section level3" number="10.16.2">
@@ -498,7 +498,7 @@
 
 <span class="co"># show histogram of 20 correlations</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-11-1.png" width="100%"></div>
 <p>The histogram shows that a range of correlations between individual questions and behavior can emerge just by chance alone. If you run the above code a few times, you will see that the histogram changes a bit because of random chance.</p>
 <p>Oftentimes researchers might not know which question on the questionnaire is the best question. That is, the one that best correlates with behavior. Consider a researcher who computes all of the correlations between each question and behavior, and then chooses the question with highest correlation (positive or negative) as the best question. After all, it has the highest correlation. After choosing this question, they might suggest that behavior is strongly correlated with how people answer this question.</p>
 <p>Let’s try to find out by simulation what kinds of large correlations can occur just by chance alone. We will run the above many times, and each time we will save the absolute value of the largest correlation between a question and behavior. Just how large can these correlations be by chance alone?</p>
@@ -516,7 +516,7 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_max</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="100%"></div>
 <p>The simulation shows that chance alone in this situation can produce very large correlations, as large as .8 or .9 (although not very often).</p>
 <p>The situation changes somewhat if many more subjects are run. Let’s do the same as above, but run 200 subjects, rather than 20.</p>
 <div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
@@ -533,7 +533,7 @@
 <span class="op">}</span>
 
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_max</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
+<div class="inline-figure"><img src="SP_Power_files/figure-html/unnamed-chunk-13-1.png" width="100%"></div>
 <p>Now, chance doesn’t do much better than .25.</p>
 
 </div>

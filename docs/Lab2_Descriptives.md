@@ -65,7 +65,7 @@ ggplot(means_df, aes(x=feed, y=means)) +
   geom_bar(stat="identity")
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="100%" />
 
 
 
@@ -296,7 +296,7 @@ Second, we could visualize the sum of the deviations. We could quickly do that w
 plot(sum_deviations)
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 We are looking for the value on the x-axis that causes the sum of the deviations on the y-axis to be closest to 0. One way to help locate this value could be to look at the absolute values. Absolute values remove the negative (-) sign from numbers, leaving everything positive. You can convert to absolute values in R using `abs()`
 
@@ -307,7 +307,7 @@ Now, it is easy to see that 10 produces the sum of deviations closest to 0 (in t
 plot(abs(sum_deviations))
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 
 ### Locating the result using which()
 
@@ -511,7 +511,7 @@ ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
   geom_bar(stat="identity")
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="100%" />
 
 Some options for modifying the plot:
 
@@ -525,7 +525,7 @@ ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
   ggtitle("Mean Life Expectancy by Continent")
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="100%" />
 
 ### Line graph
 
@@ -538,7 +538,7 @@ ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
 #> the group aesthetic?
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="100%" />
 Note we get a message about adjusting the group aesthestic, and even though we asked ggplot to draw lines connecting the dots, we get a line graph. This is a good example of unexpected behavior that often requires a quick google. I copied the message the into google and found that setting `group=1` produced the lines I was expecting:
 
 
@@ -550,7 +550,7 @@ ggplot(group_means, aes(x = continent,
   geom_line()
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-29-1.png" width="100%" />
 
 ### Error bars
 
@@ -570,7 +570,7 @@ ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
                 width = .25)
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="100%" />
 
 ```r
 
@@ -584,7 +584,7 @@ ggplot(group_means, aes(x = continent,
                 width = .25)
 ```
 
-<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-2.png" width="672" />
+<img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-2.png" width="100%" />
 
 
 ## Lab 2 Generalization Assignment

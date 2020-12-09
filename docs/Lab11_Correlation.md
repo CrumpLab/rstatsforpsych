@@ -31,7 +31,7 @@ For additional reading and introductory background to the concept of correlation
 knitr::include_graphics("imgs/corNormFourNs-1.gif")
 ```
 
-![](imgs/corNormFourNs-1.gif)<!-- -->
+<img src="imgs/corNormFourNs-1.gif" width="100%" />
 
 The animated gif above shows examples of observing random correlations by chance alone. See the above link for example R code to generate gifs like this one.
 
@@ -56,7 +56,7 @@ B <- c(1,3,2,4,3,5,4,5,6,7)
 plot(A,B)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 ```r
 cor(A,B)  
@@ -71,16 +71,16 @@ A <- matrix(rnorm(100,0,1),ncol=10,nrow=10)
 B <- c(1,3,2,4,3,5,4,5,6,7)
 cor(A,B)
 #>               [,1]
-#>  [1,] -0.149591667
-#>  [2,] -0.093486332
-#>  [3,]  0.043355374
-#>  [4,] -0.009305997
-#>  [5,]  0.304553867
-#>  [6,] -0.310538433
-#>  [7,]  0.054887741
-#>  [8,] -0.002121928
-#>  [9,] -0.595286204
-#> [10,] -0.304395016
+#>  [1,]  0.003608347
+#>  [2,] -0.078283572
+#>  [3,] -0.388866519
+#>  [4,]  0.572010311
+#>  [5,] -0.306468442
+#>  [6,]  0.491808612
+#>  [7,] -0.236608937
+#>  [8,]  0.224104176
+#>  [9,]  0.415322381
+#> [10,] -0.347772269
 ```
 If both x and y are matrices, then the correlation between each column of X and Y are computed.
 
@@ -89,12 +89,12 @@ If both x and y are matrices, then the correlation between each column of X and 
 A <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 B <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 cor(A,B)
-#>            [,1]        [,2]       [,3]       [,4]       [,5]
-#> [1,] -0.2743451 -0.04889331 0.74520963 0.91489288  0.6188221
-#> [2,] -0.8491074  0.59200763 0.65248632 0.23593466 -0.5056840
-#> [3,]  0.4935011 -0.56293963 0.06550691 0.56657389  0.8790991
-#> [4,] -0.5651423  0.75331545 0.75264882 0.05986537  0.4711307
-#> [5,]  0.2913020 -0.39049580 0.25282148 0.63366183  0.8844350
+#>            [,1]        [,2]        [,3]       [,4]       [,5]
+#> [1,]  0.9274565  0.53291336  0.63002119 -0.5879674 -0.7128238
+#> [2,] -0.1839302 -0.43329264 -0.30701022  0.3671484  0.5783932
+#> [3,]  0.4741766 -0.03726613 -0.02985365 -0.2856831 -0.2155076
+#> [4,] -0.6559865 -0.16264847 -0.10544917  0.2496656  0.3408820
+#> [5,]  0.4630268  0.75290824  0.68851761 -0.1870484 -0.5952092
 ```
 ### cor and n-1
 
@@ -206,7 +206,7 @@ Y <- 1:10
 plot(X,Y)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 ```r
 cor(X,Y)
@@ -222,7 +222,7 @@ Y <- 10:1
 plot(X,Y)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 ```r
 cor(X,Y)
@@ -241,11 +241,11 @@ Y <- sample(10:1)
 plot(X,Y)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 ```r
 cor(X,Y)
-#> [1] -0.3818182
+#> [1] 0.1151515
 ```
 
 ### Crossproducts and correlation
@@ -304,7 +304,7 @@ When the numbers are arranged to produce a perfect negative correlation, the sum
 
 ```r
 sum(sample(1:10)*sample(1:10))
-#> [1] 303
+#> [1] 327
 ```
 
 
@@ -313,13 +313,13 @@ sim_sums <- replicate(1000,sum(sample(1:10)*sample(1:10)))
 hist(sim_sums)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-21-1.png" width="100%" />
 
 ```r
 min(sim_sums)
-#> [1] 226
+#> [1] 229
 max(sim_sums)
-#> [1] 377
+#> [1] 380
 ```
 
 ## Conceptual II: Statistical inference for correlation
@@ -337,7 +337,7 @@ For example, if we randomly sample 10 values from a normal distribution into X, 
 X <- rnorm(10,0,1)
 Y <- rnorm(10,0,1)
 cor(X,Y)
-#> [1] -0.4152839
+#> [1] 0.3314112
 ```
 
 What happens if we do the above 10 times?
@@ -345,8 +345,8 @@ What happens if we do the above 10 times?
 
 ```r
 replicate(10,cor(rnorm(10,0,1),rnorm(10,0,1)))
-#>  [1]  0.53326172  0.45756969 -0.29581255 -0.60466118 -0.37431851 -0.43264668
-#>  [7]  0.01171446  0.18340664  0.22989572 -0.36701048
+#>  [1] -0.72904120  0.10020194  0.03293618  0.56556534 -0.56853952  0.14498714
+#>  [7]  0.31301378 -0.22757317 -0.31687271 -0.21953919
 ```
 
 How about 1000 times?
@@ -357,15 +357,15 @@ rand_1000 <- replicate(1000,cor(rnorm(10,0,1),rnorm(10,0,1)))
 hist(rand_1000)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-24-1.png" width="100%" />
 
 ```r
 mean(rand_1000)
-#> [1] -0.01023313
+#> [1] 0.003693625
 max(rand_1000)
-#> [1] 0.8727551
+#> [1] 0.8023694
 min(rand_1000)
-#> [1] -0.8378403
+#> [1] -0.8333578
 ```
 
 In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of $r$ values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It's clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.
@@ -380,15 +380,15 @@ rand_1000 <- replicate(1000,cor(rnorm(100,0,1),rnorm(100,0,1)))
 hist(rand_1000)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-25-1.png" width="100%" />
 
 ```r
 mean(rand_1000)
-#> [1] 0.003455237
+#> [1] 0.001979886
 max(rand_1000)
-#> [1] 0.3293139
+#> [1] 0.3201781
 min(rand_1000)
-#> [1] -0.3370171
+#> [1] -0.3079627
 ```
 
 ### Permutation test 
@@ -441,7 +441,7 @@ ggplot(all,aes(x=Length,y=Meanings))+
   geom_text_repel(aes(label=Words))
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-26-1.png" width="100%" />
 
 
 According to the `cor.test()` function, the correlation in the sample data is unlikely to have been produced by chance alone.
@@ -466,7 +466,7 @@ Instead of using the `cor.test()` function, we can use the concept of a permutat
 
 ```r
 cor(sample(Length),sample(Meanings))
-#> [1] -0.09527861
+#> [1] 0.05954913
 ```
 
 
@@ -475,7 +475,7 @@ sim_rs <- replicate(1000,cor(sample(Length),sample(Meanings)))
 hist(sim_rs)
 ```
 
-<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="Lab11_Correlation_files/figure-html/unnamed-chunk-29-1.png" width="100%" />
 
 ```r
 

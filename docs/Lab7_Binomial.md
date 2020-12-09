@@ -138,7 +138,7 @@ qplot(y=dbinom(0:100,100,.5))+
   xlab('# of successes')
 ```
 
-<img src="Lab7_Binomial_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="Lab7_Binomial_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 Remember two things. First, this is a discrete probability distribution. Each of the number of successes is an integer, you can't have 5.5 successes. Also, each of the successes is associated with a particular probability. The area under the curve should sum to 1, reflecting the fact that there is a 100% chance that one of the outcomes will occur:
 
 

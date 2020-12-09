@@ -61,7 +61,7 @@ ggplot(plot_df, aes(y=score,x=x))+
   facet_wrap(~dist)
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-3-1.png" width="100%" />
 
 However, the x-axes are different for each of the graphs. If we allow the x-axes to vary freely, so that we can "zoom" into each distribution in the same way, we now see:
 
@@ -72,7 +72,7 @@ ggplot(plot_df, aes(y=score,x=x))+
   facet_wrap(~dist, scales="free_x")
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 Again, these distributions have a similar shape, but "seemingly" not exactly the same shape...the second one is shorter and more spread out. **Nevertheless, the shape is still EXACTLY THE SAME, in one important way**. Specifically, **the probability of getting scores in between particular ranges, expressed as standard deviations, is the same**.
 
@@ -93,7 +93,7 @@ ggplot(plot_df, aes(y=score,x=x))+
               aes(ymin=0,ymax=score))
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 To calculate the area of the shaded regions relative to the total area properly we should perform an integration. However, let's skip that part, and do something quick in R. For example, we could sum up all of the numbers in our two vectors `first_one` and `second_one`, and this would approximate the "total area". Then, for each vector, we could sum up the numbers (probability density values) in each range. Then we could divide the sums to approximate the probability, and then check to see if they are the same.
 
 
@@ -163,7 +163,7 @@ ggplot(plot_df, aes(x=celsius,y=fahrenheit))+
   scale_x_continuous(breaks=seq(-50,50,10))
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 ### z-scores
 
 Z-scores express raw scores from a normal distribution in terms of how far they are away from the mean in standard deviation units.
@@ -200,7 +200,7 @@ ggplot(plot_df,aes(x=zscores,y=pdf))+
                      sec.axis = sec_axis(~ .*5+25, name="Raw Scores",breaks=seq(5,50,5)))
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 ## Why are z-scores convenient?
 
 Z-scores could be convenient for you if you know how to interpret them. For example, I find Fahrenheit convenient to use for hot temperatures. When I know that it is 109 degrees Fahrenheit outside, I know that is really hot. To be honest, I don't have a good intuitive feeling about what really hot is in Celsius. So, I don't find Celsius convenient for hot temperatures. It could become convenient for me if I got used to it with practice. But, I already have something that works, so I stick with that (convenience and inertia are strong forces...).
@@ -212,7 +212,7 @@ Z-scores can become convenient if you get used to what they represent. For examp
 knitr::include_graphics("imgs/norm_zscores.png")
 ```
 
-<img src="imgs/norm_zscores.png" width="600" />
+<img src="imgs/norm_zscores.png" width="100%" />
 
 If you spend time with the unit normal distribution, then you learn its basic properties, such as about 95% of scores fall between -2 and +2 standard deviations; or 99% of scores fall between -3 and 3 standard deviations, or about 34% of scores fall between the mean and one standard deviation. If you memorized all of these details, then whenever you have three things in the future...1) a score from a normal distribution, 2) the mean, and 3) the standard deviation...you can have some good intuitions about whether the score is common or rare...which can be convenient (if you happen to be interacting with normal distributions on a regular basis).
 
@@ -247,7 +247,7 @@ raw_scores <- runif(10000,min = 0,100)
 hist(raw_scores)
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 Now, rather than plotting individual scores. We create a sampling distribution of the mean. We will take 10,000 samples (say of n = 5 for each) and compute the mean for each, and then plot the distribution of sample means.
 
 
@@ -256,7 +256,7 @@ sample_means <- replicate(10000,mean(runif(5,0,100)))
 hist(sample_means)
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 The above histogram (sample means) is much more normal looking compared to the flat distribution where all of the individual scores came from. Of course, this is all done by simulation, so we have to wonder if our simulated distribution of sample means really does approximate a normal distribution? This raises a general question...if you have a distribution of numbers, and you suspect it is a normal distribution, how can you know if that distribution is normal? 
 
@@ -274,7 +274,7 @@ We could ask if we find the same proportion of numbers falling between 0 and 1 s
 ```r
 to_z <- (sample_means-mean(sample_means))/sd(sample_means)
 length(to_z[to_z > 0 & to_z < 1])/10000
-#> [1] 0.3322
+#> [1] 0.3361
 ```
 
 We've just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.
@@ -322,7 +322,7 @@ sample_means <- replicate(10000,mean(rnorm(10,55,5)))
 hist(sample_means)
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 Now, we are one step removed from the original distribution. The original distribution has a mean of 55 and standard deviation of 5. The distribution in the histogram is the sampling distribution of sample means. From the central limit theorem we expect this distribution of sample means to be approximately normal. What are the parameters (mean and standard deviation) of this distribution?
 
 We can estimate them from the simulation:
@@ -330,9 +330,9 @@ We can estimate them from the simulation:
 
 ```r
 mean(sample_means)
-#> [1] 55.01157
+#> [1] 55.00716
 sd(sample_means)
-#> [1] 1.566849
+#> [1] 1.591821
 ```
 
 Or, we could use analytic formulas to "know" what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.
@@ -366,7 +366,7 @@ pnorm(zscore,0,1, lower.tail = FALSE)
 
 # this is similar to what the simulation showed:
 length(sample_means[sample_means > 60])/10000
-#> [1] 3e-04
+#> [1] 6e-04
 ```
 
 
@@ -392,22 +392,22 @@ mean_differences <- replicate(10000,mean(rnorm(10,55,5))-mean(rnorm(10,55,5)))
 hist(mean_differences)
 ```
 
-<img src="Lab8_Normal_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="Lab8_Normal_files/figure-html/unnamed-chunk-20-1.png" width="100%" />
 
 When we assume that sample means from group A and B come from the exact same distribution, and when we subtract the means from group A and B to create the above sampling distribution of mean differences, we create a null-distribution, or null-hypothesis, that shows the kinds of mean differences that could be observed due to random sampling. This is what chance could do in your experiment. Without getting more specific, if you thought your "special training" would improve the test scores in this scenario by 30%, that is way outside the window, there is no way that chance alone could do that (30% would be ABOVE AND BEYOND what chance can do). On other hand, if you ran your experiment and you found that your training improved test performance by 3%...well, how often do you get a difference of 3% or better by chance? The answer can be found by evaluating the above distribution:
 
 
 ```r
 length(mean_differences[mean_differences > 3])/10000
-#> [1] 0.0872
+#> [1] 0.0899
 ```
 
-According to a simulation, scores of 3% or greater occur with p <= 0.0872. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
+According to a simulation, scores of 3% or greater occur with p <= 0.0899. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
 
 
 ```r
 length(mean_differences[mean_differences > 3 | mean_differences < -3])/10000
-#> [1] 0.1774
+#> [1] 0.1754
 ```
 
 These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.
@@ -426,7 +426,7 @@ We could estimate this value from our simulation by calculating the standard dev
 
 ```r
 sd(mean_differences)
-#> [1] 2.227231
+#> [1] 2.213127
 ```
 
 It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:

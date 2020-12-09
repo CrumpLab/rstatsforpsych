@@ -185,7 +185,7 @@ d%in%a
 
 ```r
 print(as.numeric(Sys.time())*1000, digits=15)
-#> [1] 1607353020518.23
+#> [1] 1607480572704.37
 ```
 
 
@@ -358,7 +358,7 @@ encrypt_numbers <-function(input_sequence,key){
 }
 
 encrypt_numbers(original_sequence,encryption_key)
-#>  [1] 1 3 4 2 5 3 3 4 3 2 5 3
+#>  [1] 3 5 4 1 2 5 5 4 5 1 2 5
 ```
   
   - here is a different approach making use of the `factor()` function
@@ -380,7 +380,7 @@ new_sequence # all elements are now changed
 
 ### Snakes and Ladders
 
-<img src="imgs/SnakesLadders.png" width="130" />
+<img src="imgs/SnakesLadders.png" width="100%" />
 
 Your task here is to write an algorithm that can simulate playing the above depicted Snakes and Ladders board. You should assume that each roll of the dice produces a random number between 1 and 6. After you are able to simulate one played game, you will then write a loop to simulate 1000 games, and estimate the average number of dice rolls needed to successfully complete the game.
 
@@ -388,9 +388,9 @@ Your task here is to write an algorithm that can simulate playing the above depi
 ```r
 # rolling a dice with sample
 sample(c(1,2,3,4,5,6),1)
-#> [1] 6
+#> [1] 4
 sample(c(1,2,3,4,5,6),1)
-#> [1] 3
+#> [1] 1
 sample(c(1,2,3,4,5,6),1)
 #> [1] 1
 ```
@@ -408,7 +408,7 @@ while(total_sum < 25){
   total_sum <-total_sum+sample(c(1,2,3,4,5,6),1)
 }
 number_of_rolls
-#> [1] 6
+#> [1] 8
 
 # record the results from multiple simulations
 
@@ -423,7 +423,7 @@ for(sims in 1:100){
   save_rolls[sims] <- number_of_rolls
 }
 mean(save_rolls)
-#> [1] 7.41
+#> [1] 7.74
 ```
   
   - how do you add in a representaion of the board, so that you change which square the player is on depending on whether they land on a ladder or snake.

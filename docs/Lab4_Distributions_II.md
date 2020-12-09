@@ -36,7 +36,7 @@ rolls <- sample(1:6,1000, replace=TRUE)
 table(rolls)
 #> rolls
 #>   1   2   3   4   5   6 
-#> 173 172 172 164 171 148
+#> 185 158 155 163 164 175
 ```
 
 2. With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.
@@ -49,7 +49,7 @@ combined <- one+two
 table(combined)/1000
 #> combined
 #>     2     3     4     5     6     7     8     9    10    11    12 
-#> 0.026 0.051 0.081 0.101 0.130 0.166 0.156 0.124 0.087 0.051 0.027
+#> 0.025 0.058 0.084 0.086 0.137 0.180 0.155 0.109 0.081 0.060 0.025
 ```
 Let's compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:
 
@@ -73,11 +73,11 @@ true_probs <- table(sum_rolls)/length(sum_rolls)
 true_probs-sim_result
 #> sum_rolls
 #>             2             3             4             5             6 
-#>  0.0017777778  0.0045555556  0.0023333333  0.0101111111  0.0088888889 
+#>  0.0027777778 -0.0024444444 -0.0006666667  0.0251111111  0.0018888889 
 #>             7             8             9            10            11 
-#>  0.0006666667 -0.0171111111 -0.0128888889 -0.0036666667  0.0045555556 
+#> -0.0133333333 -0.0161111111  0.0021111111  0.0023333333 -0.0044444444 
 #>            12 
-#>  0.0007777778
+#>  0.0027777778
 ```
 ### Event generators
 
@@ -88,7 +88,7 @@ Remember that you can use `sample()` to generate events with specific probabilit
 
 ```r
 sample(c("A","B"), 20, replace = TRUE, prob = c(.8, .2))
-#>  [1] "A" "A" "A" "B" "A" "A" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "A"
+#>  [1] "A" "A" "B" "A" "A" "A" "A" "A" "A" "B" "A" "A" "A" "A" "A" "A" "A" "A" "B"
 #> [20] "A"
 ```
 
@@ -111,9 +111,9 @@ LETTERS
 
 ```r
 sample(letters,50,replace=TRUE)
-#>  [1] "b" "j" "e" "e" "p" "b" "j" "o" "c" "c" "r" "o" "e" "n" "o" "j" "s" "i" "g"
-#> [20] "w" "e" "g" "i" "h" "r" "q" "q" "p" "c" "p" "h" "z" "l" "k" "k" "g" "i" "g"
-#> [39] "x" "u" "b" "u" "b" "s" "e" "y" "q" "f" "d" "y"
+#>  [1] "r" "d" "m" "g" "p" "k" "q" "o" "d" "k" "v" "d" "y" "x" "g" "u" "f" "j" "d"
+#> [20] "z" "z" "t" "h" "f" "c" "g" "j" "m" "g" "e" "q" "p" "o" "m" "v" "l" "r" "u"
+#> [39] "f" "h" "s" "k" "w" "l" "q" "s" "z" "w" "w" "k"
 ```
 
 3. Create a random string generator that creates strings of random letters. For example a string of 5 random letters could look like "fjwud". Generate 50 random letter strings, each with 5 random letters in it.
@@ -127,7 +127,7 @@ my_strings <- matrix(my_letters, ncol=5)
 
 # each row is a word, need to collapse the column to create a string
 paste(my_strings[1,], collapse="")
-#> [1] "jpnvh"
+#> [1] "deqpd"
 
 # loop to collapse all of the rows into words
 random_strings <-c()
@@ -136,12 +136,12 @@ for(i in 1:dim(my_strings)[1]){
 }
 
 random_strings
-#>  [1] "jpnvh" "loosy" "dmrkb" "mokpe" "srlow" "xhotk" "ufyec" "pgugx" "trlhu"
-#> [10] "iddob" "irgdc" "wocsx" "ytyao" "trheb" "xzwne" "anusm" "wdjpe" "okubt"
-#> [19] "sxuuj" "ttmgu" "cmxlx" "lkims" "fvzxn" "jvmpb" "nssks" "bmrve" "jetgn"
-#> [28] "cnmvb" "djqyc" "bbbxq" "eisds" "cxxji" "mphxs" "mgupa" "hnssx" "thgkk"
-#> [37] "ssalo" "dwwah" "zfkpn" "mcrqs" "styop" "mgnxk" "oyhwc" "wcika" "wehme"
-#> [46] "wbxnu" "hyypj" "rkqic" "uxjye" "dtjaz"
+#>  [1] "deqpd" "zrrfj" "ghaoj" "xwemf" "qxtvu" "pygmr" "hbqka" "vhzoi" "zwvfd"
+#> [10] "atlqy" "fcbjy" "xrdms" "quqgb" "uuxrw" "svlao" "ojtcr" "pbxzn" "yshvl"
+#> [19] "oxynn" "aygqi" "bsrau" "xruqy" "rukxd" "jztop" "cjhiu" "bpgtx" "egwbs"
+#> [28] "eqeol" "upswv" "cndnz" "ttpvw" "gylcw" "jrekt" "hbono" "xevpm" "pqivb"
+#> [37] "tlhtk" "oblzq" "sarqw" "lpjfh" "kgauv" "zvgcy" "vyzfv" "qtwwj" "gisgy"
+#> [46] "jwtfv" "hgsgi" "bepid" "lhvjj" "zpnzv"
 ```
 
 ## Concept II: Experiencing probability
@@ -165,7 +165,7 @@ number_of_heads <- colSums(sim_results)
 table(number_of_heads)/10000
 #> number_of_heads
 #>      0      1      2      3      4      5      6      7      8      9     10 
-#> 0.0009 0.0095 0.0429 0.1231 0.2068 0.2411 0.2061 0.1138 0.0437 0.0103 0.0018
+#> 0.0007 0.0096 0.0423 0.1208 0.2032 0.2453 0.2100 0.1143 0.0428 0.0100 0.0010
 
 # alternative solution using rbinom
 
@@ -173,7 +173,7 @@ number_of_heads <- rbinom(10000,10,prob=.5)
 table(number_of_heads)/10000
 #> number_of_heads
 #>      0      1      2      3      4      5      6      7      8      9     10 
-#> 0.0011 0.0085 0.0404 0.1170 0.2083 0.2433 0.2067 0.1201 0.0410 0.0126 0.0010
+#> 0.0007 0.0102 0.0458 0.1115 0.2045 0.2480 0.2119 0.1142 0.0428 0.0089 0.0015
 ```
 2. If you flipped a coin 10000 times, you would find many different kinds of short-run sequences. For example, HH, HT, TH, and TT. What is the probability of each of these kinds of sequences?
 
@@ -191,7 +191,7 @@ for(i in 2:length(flips)){
 table(sequence)/sum(table(sequence))
 #> sequence
 #>        HH        HT        TH        TT 
-#> 0.2489249 0.2497250 0.2498250 0.2515252
+#> 0.2499250 0.2528253 0.2528253 0.2444244
 
 ## 3 element sequences
 
@@ -210,7 +210,7 @@ for(i in 3:length(flips)){
 table(sequence)/sum(table(sequence))
 #> sequence
 #>       HHH       HHT       HTH       HTT       THH       THT       TTH       TTT 
-#> 0.1214243 0.1269254 0.1286257 0.1241248 0.1270254 0.1258252 0.1241248 0.1219244
+#> 0.1297259 0.1245249 0.1236247 0.1263253 0.1246249 0.1254251 0.1263253 0.1194239
 ```
 
 ## Concept III: Subjective Probability
@@ -245,7 +245,7 @@ for(i in 1:length(simulated_sequence)){
 plot(my_belief)
 ```
 
-<img src="Lab4_Distributions_II_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="Lab4_Distributions_II_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 What do your beliefs about the probability of getting heads look like if you only allow yourself to remember the last 20 coin flips?
 
@@ -273,7 +273,7 @@ for(i in 1:length(simulated_sequence)){
 plot(my_belief)
 ```
 
-<img src="Lab4_Distributions_II_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="Lab4_Distributions_II_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 
 ## Lab 4 Generalization Assignment

@@ -73,8 +73,9 @@
 <li><a class="active" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
 <li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
 <li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
 <li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
-<li><a class="" href="references.html">References</a></li>
+<li><a class="" href="references-1.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -91,7 +92,7 @@
 <h2>
 <span class="header-section-number">10.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-5"><i class="fas fa-link"></i></a>
 </h2>
-<p><span class="citation">Vokey &amp; Allen (<a href="references.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 14; <span class="citation">Crump et al. (<a href="references.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/t-tests.html">Chapter 6</a></p>
+<p><span class="citation">Vokey &amp; Allen (<a href="references-1.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 14; <span class="citation">Crump et al. (<a href="references-1.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/t-tests.html">Chapter 6</a></p>
 </div>
 <div id="overview-9" class="section level2" number="10.2">
 <h2>
@@ -106,7 +107,7 @@
 <h2>
 <span class="header-section-number">10.3</span> Historical Background<a class="anchor" aria-label="anchor" href="#historical-background"><i class="fas fa-link"></i></a>
 </h2>
-<p>William Sealy Gosset published the t-test under the pseudonym “Student”, which is why the test is sometimes called “Student’s t-test” <span class="citation">(Student, <a href="references.html#ref-studentProbableErrorMean1908" role="doc-biblioref">1908</a>)</span>. There is dispute about the origin and meaning of <span class="math inline">\(t\)</span>. One hypothesis is that <span class="math inline">\(s\)</span> was commonly used at the time to refer to sample statistics, so Gosset chose <span class="math inline">\(t\)</span> as the next letter, perhaps indicating a “step-up” in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job. <span class="citation">Pearson (<a href="references.html#ref-pearsonStudentStatistician1939" role="doc-biblioref">1939</a>)</span> provides a biography of Gosset. <span class="citation">Sawilowsky &amp; Blair (<a href="references.html#ref-sawilowskyMoreRealisticLook1992" role="doc-biblioref">1992</a>)</span> conduct simulations and examine how robust the t-test is to violations of assumptions.</p>
+<p>William Sealy Gosset published the t-test under the pseudonym “Student”, which is why the test is sometimes called “Student’s t-test” <span class="citation">(Student, <a href="references-1.html#ref-studentProbableErrorMean1908" role="doc-biblioref">1908</a>)</span>. There is dispute about the origin and meaning of <span class="math inline">\(t\)</span>. One hypothesis is that <span class="math inline">\(s\)</span> was commonly used at the time to refer to sample statistics, so Gosset chose <span class="math inline">\(t\)</span> as the next letter, perhaps indicating a “step-up” in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job. <span class="citation">Pearson (<a href="references-1.html#ref-pearsonStudentStatistician1939" role="doc-biblioref">1939</a>)</span> provides a biography of Gosset. <span class="citation">Sawilowsky &amp; Blair (<a href="references-1.html#ref-sawilowskyMoreRealisticLook1992" role="doc-biblioref">1992</a>)</span> conduct simulations and examine how robust the t-test is to violations of assumptions.</p>
 </div>
 <div id="practical-i-t.test" class="section level2" number="10.4">
 <h2>
@@ -405,7 +406,7 @@
 <h3>
 <span class="header-section-number">10.5.2</span> Simulating distributions of experiments<a class="anchor" aria-label="anchor" href="#simulating-distributions-of-experiments"><i class="fas fa-link"></i></a>
 </h3>
-<p>“Any experiment may be regarded as forming an individual of a ‘population’ of experiments which might be performed under the same conditions. A series of experiments is a sample drawn from this population.” — William Sealy Gossett <span class="citation">(Student, <a href="references.html#ref-studentProbableErrorMean1908" role="doc-biblioref">1908</a>)</span>.</p>
+<p>“Any experiment may be regarded as forming an individual of a ‘population’ of experiments which might be performed under the same conditions. A series of experiments is a sample drawn from this population.” — William Sealy Gossett <span class="citation">(Student, <a href="references-1.html#ref-studentProbableErrorMean1908" role="doc-biblioref">1908</a>)</span>.</p>
 <p>This quote is the first sentence from Student’s formative paper on the t-test. In the previous section we have simulated a single experiment. If we conduct this simulation several thousand times, we can create the “population” of experiments that could have occurred under the same conditions. The very general idea is to create a sampling distribution of experiments, and then compare the results of an actual experiment to distributions of possible experiments.</p>
 <div id="the-distribution-of-mean-differences" class="section level4" number="10.5.2.1">
 <h4>

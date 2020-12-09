@@ -25,6 +25,7 @@ rmd_files:
 - "Lab10_ttest.Rmd"
 - "SP_Power.Rmd"
 - "Lab11_Correlation.Rmd"
+- "Lab12_Regression.Rmd"
 - "semester_project.Rmd"
 
 - "References.Rmd"

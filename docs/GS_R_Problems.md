@@ -2,7 +2,7 @@
 
 # Practice problems {.unnumbered}
 
-"8/27/2020 | Last Compiled: 2020-12-08"
+"8/27/2020 | Last Compiled: 2020-12-09"
 
 *This chapter is here as a supplement for students who are looking for exercises to work on coding skills outside of class.* The labs in this course are designed to develop practical data analysis skills in R, and conceptual knowledge about statistics by using R as a way to interact with statistical phenomena. I assume that students may be new to coding. Don't worry, if you are a student in this course, we will gradually introduce coding concepts throughout the course. 
 
@@ -24,7 +24,7 @@ The problems are roughly ordered in terms of difficulty, with easier problems fi
 
 ## Easier Problems
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/50ElzpX7MOE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/50ElzpX7MOE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 1.  Do simple math with numbers, addition, subtraction, multiplication, division
 2.  Put numbers into variables, do simple math on the variables
@@ -68,7 +68,7 @@ function_name(some_input)
 7.  List all of the prime numbers from 1 to 1000.
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2k_K7rZezMU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/2k_K7rZezMU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 8.  Generate 100 random numbers
   - check out the `runif` function

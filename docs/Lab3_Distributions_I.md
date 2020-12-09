@@ -2,7 +2,7 @@
 
 # Distributions I
 
-"9/2/2020 | Last Compiled: 2020-12-08"
+"9/2/2020 | Last Compiled: 2020-12-09"
 
 ## Reading
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YQC3QlRNHwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/YQC3QlRNHwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 We are about to spend three entire labs devoted to understanding and working with distributions. We will cover topics that closely relate to the main statistics lecture, but also take advantage of R to examine distributions in a more direct and hands manner that is not possible without a programming environment.
 
@@ -358,7 +358,7 @@ Your assignment instructions are the following:
 5. Submit your github repository link for Lab 3 on blackboard.
 6. There are four problems to solve
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kvPVWdEWm6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/kvPVWdEWm6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ### Problems
 

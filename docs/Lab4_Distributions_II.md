@@ -2,7 +2,7 @@
 
 # Distributions II
 
-"9/17/2020 | Last Compiled: 2020-12-08"
+"9/17/2020 | Last Compiled: 2020-12-09"
 
 ## Reading
 
@@ -18,7 +18,7 @@ We will look at three conceptual issues with probability, and gain practical ski
 2. Concept II: Experiencing probability
 3. Concept III: Subjective Probability
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/h4EvG2e65O8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/h4EvG2e65O8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## Concept I: Probabilisitic event generation
 
@@ -291,7 +291,7 @@ Your assignment instructions are the following:
 5. Submit your github repository link for Lab 4 on blackboard.
 6. There are five problems to solve
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cT27lOvn4qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/cT27lOvn4qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 
 ### Problems

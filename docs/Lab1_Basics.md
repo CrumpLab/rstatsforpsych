@@ -4,13 +4,13 @@
 
 # R Basics
 
-"8/27/2020 | Last Compiled: 2020-12-08"
+"8/27/2020 | Last Compiled: 2020-12-09"
 
 ## Reading and walkthrough video
 
 Vokey & Allen [-@vokeyThinkingData7th2018], Chapter 1, available online here: <http://people.uleth.ca/~vokey/pdf/thinking.pdf>.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## Overview
 
@@ -773,7 +773,7 @@ add_multiply(1,2,3)
 
 Follow the instructions below to complete the assignment for lab 1 and hand it in by the due date on blackboard. For the first lab I have taken the extra step of pretending I was student in this course, and completed the first lab myself. This next video shows how I would complete the lab if I was a student. It is important that you try to solve the problems on your own, but please use this video as a resource to help you if you get stuck.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FLD3K-jLmjs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/FLD3K-jLmjs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ### Instructions
 

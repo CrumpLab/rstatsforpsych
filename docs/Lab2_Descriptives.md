@@ -2,7 +2,7 @@
 
 # Descriptives
 
-"9/2/2020 | Last Compiled: 2020-12-08"
+"9/2/2020 | Last Compiled: 2020-12-09"
 
 ## Reading
 
@@ -18,7 +18,7 @@ General note, I am trying to find a consistent way to structure the lab content.
   - calculating means or other descriptive statistics
   - graphing means with ggplot2
   
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nb8rzxeGbWk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/nb8rzxeGbWk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
   
 ## Means Demo
 
@@ -392,7 +392,7 @@ These practical examples will gloss over many important details that we will cov
   2. "Wrangling" the data into a desired format for analysis
   3. Applying calculations to the data
   
-<iframe width="560" height="315" src="https://www.youtube.com/embed/W08mG4PfgrU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/W08mG4PfgrU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
   
 ### Importing Data
 
@@ -602,7 +602,7 @@ Your assignment instructions are the following:
 5. Submit your github repository link for Lab 2 on blackboard.
 6. There are six problems to solve, each worth 1 point.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xSLTu1Rt1Zw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/xSLTu1Rt1Zw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ### Problems
 

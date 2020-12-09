@@ -2,7 +2,7 @@
 
 # T-tests
 
-"10/8/2020 | Last Compiled: 2020-12-08"
+"10/8/2020 | Last Compiled: 2020-12-09"
 
 ## Reading
 
@@ -12,7 +12,7 @@
 
 This lab demonstrates how to conduct one sample, paired sample, and independent sample t-tests in R, and uses R as a tool to develop insight into the conceptual foundations of the t-test.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xp_SWJ_uTn0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/xp_SWJ_uTn0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## Historical Background
 
@@ -422,7 +422,7 @@ qt(p=.95,df=c(1,5,10,100,1000))
 
 ## Conceptual II: Simulating power curves
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lHWpFcGCpj8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/lHWpFcGCpj8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 The above simulations assumed that an experimental manipulation had no effect, therefore the expectation is that measurements from both groups were taken from the same distribution, and that any differences between groups would be explained by random sampling.
 
@@ -510,7 +510,7 @@ ggplot(plot_df, aes(x=effect_sizes,y=prop_significant))+
 
 ## Lab 10 Generalization Assignment
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eSut_2cdRvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/eSut_2cdRvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ### Instructions
 

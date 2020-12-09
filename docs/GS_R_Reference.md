@@ -1932,7 +1932,7 @@ This package implements a grammar of tables. Similar to the concept behind `ggpl
 
 ### Installing papaja
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Oo-PobY1dgY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/Oo-PobY1dgY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 papaja requires a latex installation in order to compile .Rmd documents to pdf. The papaja documentation provides some guidance on installing latex and then papaja, see the [getting started section](https://crsh.github.io/papaja_man/introduction.html#getting-started).
 

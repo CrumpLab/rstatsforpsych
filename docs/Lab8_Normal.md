@@ -2,7 +2,7 @@
 
 # Z tests
 
-"10/8/2020 | Last Compiled: 2020-12-08"
+"10/8/2020 | Last Compiled: 2020-12-09"
 
 ## Reading
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m6PedhaOWT4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/m6PedhaOWT4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 1. Review
 2. Practical I: Z-scores
@@ -458,7 +458,7 @@ As you can see, the p-value we found by the z-test is basically the same as the 
 
 ## Lab 8 Generalization Assignment
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kymA90bZreo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/kymA90bZreo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 
 ### Instructions

@@ -2,7 +2,7 @@
 
 # Chi Square
 
-"10/8/2020 | Last Compiled: 2020-12-08"
+"10/8/2020 | Last Compiled: 2020-12-09"
 
 ## Reading
 
@@ -12,7 +12,7 @@
 
 This lab provides a conceptual foundation for understanding the chi square test using R.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gJ5qR_ebDvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/gJ5qR_ebDvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## Background
 
@@ -517,7 +517,7 @@ chisq.test(c(4900,5100))
 
 ## Lab 9 Generalization Assignment
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/n4RchGANJWg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/n4RchGANJWg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 
 ### Instructions

@@ -2,7 +2,7 @@
 
 # Binomial Test
 
-"10/8/2020 | Last Compiled: 2020-12-08"
+"10/8/2020 | Last Compiled: 2020-12-09"
 
 >Extraordinary claims require extraordinary evidence (ECREE) -  Carl Sagan
 
@@ -10,7 +10,7 @@
 
 @vokeyThinkingData7th2018, Chapter 11; @abdiExperimentalDesignAnalysis2009, appendix D and E on the binomial test.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MNzuV0x5x1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/MNzuV0x5x1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 Imagine a wise pigeon that you can ask any Yes or No question. You ask the question. The pigeon responds by pecking Yes or No. How many answers would the pigeon need to get correct in row before you were willing to believe the pigeon knew the correct answer to every question?
 
@@ -359,7 +359,7 @@ binom.test(5100,10000,.5,alternative="greater")
 
 ## Lab 7 Generalization Assignment
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4SAWdBVgy18" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/4SAWdBVgy18" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ### Instructions
 

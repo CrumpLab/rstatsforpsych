@@ -2,13 +2,13 @@
 
 # Statistical Inference
 
-"10/8/2020 | Last Compiled: 2020-12-08"
+"10/8/2020 | Last Compiled: 2020-12-09"
 
 ## Readings and Review
 
 @vokeyThinkingData7th2018, Chapter 10; @crumpAnsweringQuestionsData2018, [Chapter 5](https://crumplab.github.io/statistics/foundations-for-inference.html) 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_mOn3wLjqqA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/_mOn3wLjqqA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 This lab marks a departure into the land of statistical inference. We have been working toward these concepts and using R to help us understand basic aspects of distributions and sampling from distributions. These concepts will be applied throughout the remainder of the course as we discuss many different tools and tests and for statistical inference.
 
@@ -571,7 +571,7 @@ qplot(mean_differences)+
 
 ## Lab 6 Generalization Assignment
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-hUdBEn2tUg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/-hUdBEn2tUg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ### Instructions
 

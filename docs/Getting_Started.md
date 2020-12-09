@@ -9,7 +9,7 @@ Before we meet for our first class there are few things you should try at home t
 1. Download and install R on your computer. This is the R website [https://www.r-project.org](https://www.r-project.org)
 2. Download and install R-studio. You must download and install R first before installing R-studio. The R-studio website is [https://www.rstudio.com](https://www.rstudio.com)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VxsJYnQI0AE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/VxsJYnQI0AE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## Github.com and Github Desktop
 
@@ -25,17 +25,17 @@ This semester students will be submitting their work as github repositories. Fol
 3. Publish the R project folder on Github.com
 4. Make commits and demonstrate that your local changes are reflected on github.com
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/efQlpUomP94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/efQlpUomP94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## Why are we using R for this statistics lab?
 
 A quick attempt to explain why I think it is totally worth it to learn R for data-analysis, and for psychologists in general.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/l_goAV71iKM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/l_goAV71iKM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 
 ## RStudio run through
 
 A look through some of the features of RStudio.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hEhm5orkzMc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="videoWrapper">  <iframe width="560" height="315" src="https://www.youtube.com/embed/hEhm5orkzMc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
 

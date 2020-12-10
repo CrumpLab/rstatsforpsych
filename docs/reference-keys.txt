@@ -377,3 +377,10 @@ part-3-power-analysis-8-points
 simulation-based-power-analysis
 example-of-a-completed-project
 semester-project-submission
+cc-by-sa-4.0-license
+copying-the-textbook
+citation
+pnorm
+z-scores
+why-are-z-scores-convenient
+developing-intuitions-about-chi2

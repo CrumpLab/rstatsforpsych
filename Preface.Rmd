@@ -28,6 +28,8 @@ Feel free to fork the repo and use these materials as you see fit. If you would 
 
 ## CC BY-SA 4.0 license
 
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
 This license means that you are free to:
 
 - Share: copy and redistribute the material in any medium or format
@@ -55,6 +57,10 @@ If you want to contribute to this version of the textbook, you could make pull r
 
 Note to self to come back here with a quick video rundown of this process.
 
+## Citation
 
+Note, the date reflects the latest compilation of this book. The DOI was minted on 12/10/2020.
+
+Crump, M. J. C. (`r format(Sys.Date(), format = "%Y, %B %d")`). Reproducible statistics for psychologists with R: Lab Tutorials. https://doi.org/10.17605/OSF.IO/KBHGA
 
 

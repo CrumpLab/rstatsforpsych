@@ -51,32 +51,7 @@
 </form>
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Welcome</a></li>
-<li><a class="active" href="preface.html">Preface</a></li>
-<li class="book-part">Getting started</li>
-<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
-<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
-<li><a class="" href="practice-problems.html">Practice problems</a></li>
-<li><a class="" href="coding-reference.html">Coding Reference</a></li>
-<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
-<li class="book-part">Labs</li>
-<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
-<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
-<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
-<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
-<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
-<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
-<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
-<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
-<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
-<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
-<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
-<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
-<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
-<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
-<li><a class="" href="references-1.html">References</a></li>
-</ul>
+        <ul class="book-toc list-unstyled"><li><a class="" href="index.html">Preface</a></li></ul>
 
         <div class="book-extra">
           <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
@@ -104,47 +79,97 @@
 <h2>
 <span class="header-section-number">0.2</span> For Instructors<a class="anchor" aria-label="anchor" href="#for-instructors"><i class="fas fa-link"></i></a>
 </h2>
-<p>These materials are currently under development, but the plan is to release them under a CC BY 4.0 license. As a result, these materials will be free to remix and re-use under that license.</p>
+<p>These materials are currently under development, but also released under a CC BY-SA 4.0 license. As a result, these materials will be free to remix and re-use under that license.</p>
 <p>Feel free to fork the repo and use these materials as you see fit. If you would like to contribute to the development of these materials, feel free to submit a pull-request with suggested changes (or leave a comment in github issues).</p>
-<!--
-
-## Goals
-
-I have found learning a variety of computational skills incredibly useful for many aspects of my research, from theory-building to creating and running experiments, to analyzing and communicating results. Additionally, I have been spending some of my teaching energy on attempting to help students acquire these skills, especially students that have little to no prior experience in computation.
-
-There is no shortage of fantastic statistics curriculum out there these days, including many free and open educational resources; and, in general my hope is that our students and anyone else who wants to use these materials find them useful.
-
-This collection of tutorials is intended to supplement our weekly lectures across two semesters of teaching statistics, and they assume that students have read chapters in the above textbooks that we are currently using. I assume that many students come into our program with little to no programming or coding experience, so I am designing this stat lab curriculum to partly to aid in training computational skills. However, the primary focus of the course is still statistics and not coding, so various elements of coding in R gradually introduced over the labs.
-
--->
+</div>
+<div id="cc-by-sa-4.0-license" class="section level2" number="0.3">
+<h2>
+<span class="header-section-number">0.3</span> CC BY-SA 4.0 license<a class="anchor" aria-label="anchor" href="#cc-by-sa-4.0-license"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" alt="License: CC BY-SA 4.0"></a></p>
+<p>This license means that you are free to:</p>
+<ul>
+<li>Share: copy and redistribute the material in any medium or format</li>
+<li>Adapt: remix, transform, and build upon the material for any purpose, even commercially.</li>
+</ul>
+<p>The licensor cannot revoke these freedoms as long as you follow the license terms.</p>
+<p>Under the following terms:</p>
+<ul>
+<li>Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+<li>ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+<li>No additional restrictions: You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+</ul>
+</div>
+<div id="copying-the-textbook" class="section level2" number="0.4">
+<h2>
+<span class="header-section-number">0.4</span> Copying the textbook<a class="anchor" aria-label="anchor" href="#copying-the-textbook"><i class="fas fa-link"></i></a>
+</h2>
+<p>This textbook was written in R-Studio, using R Markdown, and compiled into a web-book format using the bookdown package. In general, I thank the larger R community for all of the amazing tools they made.</p>
+<p>All of the source code for compiling the book is available in the GitHub repository for this book:</p>
+<p><a href="https://github.com/CrumpLab/rstatsforpsych" class="uri">https://github.com/CrumpLab/rstatsforpsych</a></p>
+<p>In principle, anybody could fork or otherwise download this repository. Load the .Rproj file in R-studio compile the entire book. The individual .rmd files for each chapter could be edited for content and style to better suit your needs.</p>
+<p>If you want to contribute to this version of the textbook, you could make pull requests on GitHub, or discuss issues and make requests on the issues tab.</p>
+<p>Note to self to come back here with a quick video rundown of this process.</p>
+</div>
+<div id="citation" class="section level2" number="0.5">
+<h2>
+<span class="header-section-number">0.5</span> Citation<a class="anchor" aria-label="anchor" href="#citation"><i class="fas fa-link"></i></a>
+</h2>
+<p>Note, the date reflects the latest compilation of this book.</p>
+<p>Crump, M. J. C. (2020, December 10). Reproducible statistics for psychologists with R: Lab Tutorials. <a href="https://doi.org/10.17605/OSF.IO/KBHGA" class="uri">https://doi.org/10.17605/OSF.IO/KBHGA</a></p>
 
 </div>
 </div>
 
 
 
-  <div class="chapter-nav">
-<div class="prev"><a href="index.html">Welcome</a></div>
-<div class="next"><a href="r-rstudio-github.html">R, RStudio, &amp; Github</a></div>
+<div id="install-r-and-r-studio" class="section level2" number="0.6">
+<h2>
+<span class="header-section-number">0.6</span> Install R and R Studio<a class="anchor" aria-label="anchor" href="#install-r-and-r-studio"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="github.com-and-github-desktop" class="section level2" number="0.7">
+<h2>
+<span class="header-section-number">0.7</span> Github.com and Github Desktop<a class="anchor" aria-label="anchor" href="#github.com-and-github-desktop"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="test-the-pipeline" class="section level2" number="0.8">
+<h2>
+<span class="header-section-number">0.8</span> Test the pipeline<a class="anchor" aria-label="anchor" href="#test-the-pipeline"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="why-are-we-using-r-for-this-statistics-lab" class="section level2" number="0.9">
+<h2>
+<span class="header-section-number">0.9</span> Why are we using R for this statistics lab?<a class="anchor" aria-label="anchor" href="#why-are-we-using-r-for-this-statistics-lab"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="rstudio-run-through" class="section level2" number="0.10">
+<h2>
+<span class="header-section-number">0.10</span> RStudio run through<a class="anchor" aria-label="anchor" href="#rstudio-run-through"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+<div class="chapter-nav">
+<div class="empty"></div>
+<div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#preface">Preface</a></li>
-<li><a class="nav-link" href="#for-students"><span class="header-section-number">0.1</span> For Students</a></li>
-<li><a class="nav-link" href="#for-instructors"><span class="header-section-number">0.2</span> For Instructors</a></li>
-</ul>
+      <div id="book-on-this-page"></div>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/Preface.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/Preface.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
 </div>
     </nav>
 </div>
+</div>
+  
+
+  
 
 </div>
-</div> <!-- .container -->
+ <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 

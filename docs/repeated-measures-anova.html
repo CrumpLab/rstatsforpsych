@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>21 Repeated Measures ANOVA | Reproducible statistics for psychologists with R</title>
+<meta name="author" content="Matthew J. C. Crump">
+<meta name="description" content="21.1 Reading Chapters 18 and 19 from Abdi, Edelman, Dowling, &amp; Valentin85. Also see, additional examples and discussion of simple repeated measures in Crump, Navarro, &amp; Suzuki86, here...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="21 Repeated Measures ANOVA | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="21.1 Reading Chapters 18 and 19 from Abdi, Edelman, Dowling, &amp; Valentin85. Also see, additional examples and discussion of simple repeated measures in Crump, Navarro, &amp; Suzuki86, here...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="21 Repeated Measures ANOVA | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="21.1 Reading Chapters 18 and 19 from Abdi, Edelman, Dowling, &amp; Valentin85. Also see, additional examples and discussion of simple repeated measures in Crump, Navarro, &amp; Suzuki86, here...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
+<meta property="og:title" content="21 Repeated Measures ANOVA | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/repeated-measures-anova.html">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MattCrump_">
+<meta name="twitter:title" content="21 Repeated Measures ANOVA | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Lab Tutorials">Reproducible statistics for psychologists with R</a>:
+        <small class="text-muted">Lab Tutorials</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
+<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
+<li><a class="" href="practice-problems.html">Practice problems</a></li>
+<li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
+<li class="book-part">Semester 1 Labs</li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
+<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
+<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
+<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
+<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
+<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
+<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
+<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
+<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="active" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="repeated-measures-anova" class="section level1" number="21">
+<h1>
+<span class="header-section-number">21</span> Repeated Measures ANOVA<a class="anchor" aria-label="anchor" href="#repeated-measures-anova"><i class="fas fa-link"></i></a>
+</h1>
+<div id="reading-10" class="section level2" number="21.1">
+<h2>
+<span class="header-section-number">21.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-10"><i class="fas fa-link"></i></a>
+</h2>
+<p>Chapters 18 and 19 from <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>85</sup></a></span>. Also see, additional examples and discussion of simple repeated measures in <span class="citation">Crump, Navarro, &amp; Suzuki<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref"&gt;2018&lt;/a&gt;.&lt;/p&gt;'><sup>86</sup></a></span>, here <a href="https://crumplab.github.io/statistics/repeated-measures-anova.html" class="uri">https://crumplab.github.io/statistics/repeated-measures-anova.html</a>.</p>
+</div>
+<div id="practical-1-how-to-run-a-repeated-measures-anova-in-r" class="section level2" number="21.2">
+<h2>
+<span class="header-section-number">21.2</span> Practical 1: How to run a repeated measures ANOVA in R<a class="anchor" aria-label="anchor" href="#practical-1-how-to-run-a-repeated-measures-anova-in-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>This practical section contains three textbook examples of conducting repeated measures ANOVAs in R. The first two examples are single factor designs, each involving a single repeated measure. The third example is involves a 2x2 design, where both factors are repeated measures.</p>
+<p>All examples use the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function that we have used for between-subjects designs. The major difference involves specifying the error term appropriately in the formula.</p>
+<div id="single-factor-example-1" class="section level3" number="21.2.1">
+<h3>
+<span class="header-section-number">21.2.1</span> Single factor Example 1<a class="anchor" aria-label="anchor" href="#single-factor-example-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>From example 18.13 in <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>87</sup></a></span>.</p>
+<div class="sourceCode" id="cb648"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">Subject</span>, <span class="op">~</span><span class="va">Drug_A</span>, <span class="op">~</span><span class="va">Placebo</span>, <span class="op">~</span><span class="va">Drug_B</span>,
+        <span class="st">"s1"</span>, <span class="fl">124</span>, <span class="fl">108</span>, <span class="fl">104</span>,
+        <span class="st">"s2"</span>, <span class="fl">105</span>, <span class="fl">107</span>, <span class="fl">100</span>,
+        <span class="st">"s3"</span>,<span class="fl">107</span>,<span class="fl">90</span>,<span class="fl">100</span>,
+        <span class="st">"s4"</span>,<span class="fl">109</span>,<span class="fl">89</span>,<span class="fl">93</span>,
+        <span class="st">"s5"</span>,<span class="fl">94</span>,<span class="fl">105</span>,<span class="fl">89</span>,
+        <span class="st">"s6"</span>,<span class="fl">121</span>,<span class="fl">71</span>,<span class="fl">84</span><span class="op">)</span> 
+
+<span class="co"># convert to long</span>
+<span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">e1</span>,
+                   cols <span class="op">=</span> <span class="op">!</span><span class="va">Subject</span>,
+                   names_to <span class="op">=</span> <span class="st">"IV"</span>,
+                   values_to <span class="op">=</span> <span class="st">"Latency"</span><span class="op">)</span>
+
+<span class="co"># Convert IVs to factors</span>
+<span class="va">e1</span> <span class="op">&lt;-</span> <span class="va">e1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Subject <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Subject</span><span class="op">)</span>,
+         IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># conduct ANOVA, note the addition of the error term in the formula</span>
+<span class="va">aov_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Latency</span> <span class="op">~</span> <span class="va">IV</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">Subject</span><span class="op">)</span>, data<span class="op">=</span><span class="va">e1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov_out</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Subject</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; Residuals  5    750     150               </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Within</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; IV         2    900     450    3.75 0.0609 .</span>
+<span class="co">#&gt; Residuals 10   1200     120                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+</div>
+<div id="formula-syntax-for-repeated-measures-anova" class="section level3" number="21.2.2">
+<h3>
+<span class="header-section-number">21.2.2</span> Formula syntax for repeated measures ANOVA<a class="anchor" aria-label="anchor" href="#formula-syntax-for-repeated-measures-anova"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now that we have seen an example of conducting a repeated measures ANOVA with <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, let’s closely inspect the formula syntax.</p>
+<p>Here is the general syntax for a repeated measures ANOVA with one factor. You would replace <code>DV</code> with column name for the dependent variable in your <code>dataframe</code>; and replace <code>IV</code> with the column name for the independent variable in your <code>dataframe</code>; and, you would replacee <code>Subject</code> with the column name for your subject variable in your <code>dataframe</code>.</p>
+<div class="sourceCode" id="cb649"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">Subject</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dataframe</span><span class="op">)</span></code></pre></div>
+<p>Compare it to the syntax for between-subjects ANOVA with one factor, notice the between subjects version does not include the <code>+ Error(Subject)</code> component of the formula.</p>
+<div class="sourceCode" id="cb650"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">dataframe</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="single-factor-example-2" class="section level2" number="21.3">
+<h2>
+<span class="header-section-number">21.3</span> Single Factor Example 2<a class="anchor" aria-label="anchor" href="#single-factor-example-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>From example 18.14 in <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>88</sup></a></span>.</p>
+<div class="sourceCode" id="cb651"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">Subject</span>, <span class="op">~</span><span class="va">r1</span>, <span class="op">~</span><span class="va">r2</span>, <span class="op">~</span><span class="va">r3</span>, <span class="op">~</span><span class="va">r4</span>, <span class="op">~</span><span class="va">r5</span>, <span class="op">~</span><span class="va">r6</span>,
+        <span class="st">"s1"</span>,<span class="fl">30</span>,<span class="fl">18</span>,<span class="fl">21</span>,<span class="fl">15</span>,<span class="fl">18</span>,<span class="fl">12</span>,
+        <span class="st">"s2"</span>,<span class="fl">21</span>,<span class="fl">23</span>,<span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">13</span>,<span class="fl">12</span>,
+        <span class="st">"s3"</span>,<span class="fl">19</span>,<span class="fl">21</span>,<span class="fl">13</span>,<span class="fl">15</span>,<span class="fl">13</span>,<span class="fl">9</span>,
+        <span class="st">"s4"</span>,<span class="fl">19</span>,<span class="fl">19</span>,<span class="fl">16</span>,<span class="fl">9</span>,<span class="fl">11</span>,<span class="fl">10</span>,
+        <span class="st">"s5"</span>,<span class="fl">21</span>,<span class="fl">16</span>,<span class="fl">12</span>,<span class="fl">15</span>,<span class="fl">9</span>,<span class="fl">11</span>,
+        <span class="st">"s6"</span>,<span class="fl">22</span>,<span class="fl">17</span>,<span class="fl">14</span>,<span class="fl">12</span>,<span class="fl">10</span>,<span class="fl">9</span>,
+        <span class="st">"s7"</span>,<span class="fl">19</span>,<span class="fl">20</span>,<span class="fl">17</span>,<span class="fl">10</span>,<span class="fl">13</span>,<span class="fl">5</span>,
+        <span class="st">"s8"</span>,<span class="fl">17</span>,<span class="fl">18</span>,<span class="fl">11</span>,<span class="fl">11</span>,<span class="fl">9</span>,<span class="fl">12</span>
+        <span class="op">)</span> 
+
+<span class="co"># convert to long</span>
+<span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">e2</span>,cols <span class="op">=</span> <span class="op">!</span><span class="va">Subject</span>,
+                   names_to <span class="op">=</span> <span class="st">"Rank"</span>,
+                   values_to <span class="op">=</span> <span class="st">"Recall"</span><span class="op">)</span>
+
+<span class="co"># Convert IVs to factors</span>
+<span class="va">e2</span> <span class="op">&lt;-</span> <span class="va">e2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Subject <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Subject</span><span class="op">)</span>,
+         Rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Rank</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># conduct ANOVA, note the addition of the error term in the formula</span>
+<span class="va">aov_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Recall</span> <span class="op">~</span> <span class="va">Rank</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">Subject</span><span class="op">)</span>, data<span class="op">=</span> <span class="va">e2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov_out</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Subject</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; Residuals  7    168      24               </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Within</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<span class="co">#&gt; Rank       5    720     144      24 2.09e-10 ***</span>
+<span class="co">#&gt; Residuals 35    210       6                     </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+</div>
+<div id="two-factor-repeated-measures-example-3" class="section level2" number="21.4">
+<h2>
+<span class="header-section-number">21.4</span> Two factor repeated measures Example 3<a class="anchor" aria-label="anchor" href="#two-factor-repeated-measures-example-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>When there are multiple within-subject factors, we need to specify the error terms appropriately. Here is the general syntax for a two factor ANOVA with two repeated measures.</p>
+<div class="sourceCode" id="cb652"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV1</span><span class="op">*</span><span class="va">IV2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">Subjects</span><span class="op">/</span><span class="va">IV1</span><span class="op">*</span><span class="va">IV2</span><span class="op">)</span>, data<span class="op">=</span> <span class="va">dataframe</span><span class="op">)</span></code></pre></div>
+<p>From example 19.5 in <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>89</sup></a></span>.</p>
+<div class="sourceCode" id="cb653"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">godden_baddeley</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">Subjects</span>,<span class="op">~</span><span class="va">LearningPlace</span>,<span class="op">~</span><span class="va">TestingPlace</span>,<span class="op">~</span><span class="va">Recall</span>,
+        <span class="st">"s1"</span>,<span class="st">"On Land"</span>,<span class="st">"On Land"</span>,<span class="fl">34</span>,
+        <span class="st">"s2"</span>,<span class="st">"On Land"</span>,<span class="st">"On Land"</span>,<span class="fl">37</span>,
+        <span class="st">"s3"</span>,<span class="st">"On Land"</span>,<span class="st">"On Land"</span>,<span class="fl">27</span>,
+        <span class="st">"s4"</span>,<span class="st">"On Land"</span>,<span class="st">"On Land"</span>,<span class="fl">43</span>,
+        <span class="st">"s5"</span>,<span class="st">"On Land"</span>,<span class="st">"On Land"</span>,<span class="fl">44</span>,
+        <span class="st">"s1"</span>,<span class="st">"On Land"</span>,<span class="st">"Under Sea"</span>,<span class="fl">18</span>,
+        <span class="st">"s2"</span>,<span class="st">"On Land"</span>,<span class="st">"Under Sea"</span>,<span class="fl">21</span>,
+        <span class="st">"s3"</span>,<span class="st">"On Land"</span>,<span class="st">"Under Sea"</span>,<span class="fl">25</span>,
+        <span class="st">"s4"</span>,<span class="st">"On Land"</span>,<span class="st">"Under Sea"</span>,<span class="fl">37</span>,
+        <span class="st">"s5"</span>,<span class="st">"On Land"</span>,<span class="st">"Under Sea"</span>,<span class="fl">34</span>,
+        <span class="st">"s1"</span>,<span class="st">"Under Sea"</span>,<span class="st">"On Land"</span>,<span class="fl">14</span>,
+        <span class="st">"s2"</span>,<span class="st">"Under Sea"</span>,<span class="st">"On Land"</span>,<span class="fl">21</span>,
+        <span class="st">"s3"</span>,<span class="st">"Under Sea"</span>,<span class="st">"On Land"</span>,<span class="fl">31</span>,
+        <span class="st">"s4"</span>,<span class="st">"Under Sea"</span>,<span class="st">"On Land"</span>,<span class="fl">27</span>,
+        <span class="st">"s5"</span>,<span class="st">"Under Sea"</span>,<span class="st">"On Land"</span>,<span class="fl">32</span>,
+        <span class="st">"s1"</span>,<span class="st">"Under Sea"</span>,<span class="st">"Under Sea"</span>,<span class="fl">22</span>,
+        <span class="st">"s2"</span>,<span class="st">"Under Sea"</span>,<span class="st">"Under Sea"</span>,<span class="fl">25</span>,
+        <span class="st">"s3"</span>,<span class="st">"Under Sea"</span>,<span class="st">"Under Sea"</span>,<span class="fl">33</span>,
+        <span class="st">"s4"</span>,<span class="st">"Under Sea"</span>,<span class="st">"Under Sea"</span>,<span class="fl">33</span>,
+        <span class="st">"s5"</span>,<span class="st">"Under Sea"</span>,<span class="st">"Under Sea"</span>,<span class="fl">42</span>
+        <span class="op">)</span>
+
+<span class="co"># convert IVs to factors</span>
+<span class="va">godden_baddeley</span> <span class="op">&lt;-</span> <span class="va">godden_baddeley</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Subjects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Subjects</span><span class="op">)</span>,
+         LearningPlace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">LearningPlace</span><span class="op">)</span>,
+         TestingPlace <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">TestingPlace</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># run ANOVA</span>
+<span class="va">aov_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Recall</span> <span class="op">~</span> <span class="va">LearningPlace</span><span class="op">*</span><span class="va">TestingPlace</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">Subjects</span><span class="op">/</span><span class="op">(</span><span class="va">LearningPlace</span><span class="op">*</span><span class="va">TestingPlace</span><span class="op">)</span><span class="op">)</span>, <span class="va">godden_baddeley</span><span class="op">)</span>
+
+<span class="co"># print out ANOVA summary table</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov_out</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Subjects</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; Residuals  4    680     170               </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Subjects:LearningPlace</span>
+<span class="co">#&gt;               Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; LearningPlace  1     80      80       2   0.23</span>
+<span class="co">#&gt; Residuals      4    160      40               </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Subjects:TestingPlace</span>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; TestingPlace  1     20      20     2.5  0.189</span>
+<span class="co">#&gt; Residuals     4     32       8               </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Subjects:LearningPlace:TestingPlace</span>
+<span class="co">#&gt;                            Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; LearningPlace:TestingPlace  1    320     320      20 0.0111 *</span>
+<span class="co">#&gt; Residuals                   4     64      16                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+
+<span class="co"># generate plot of means</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">godden_baddeley</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">TestingPlace</span>,
+                            y<span class="op">=</span><span class="va">Recall</span>,
+                            shape<span class="op">=</span><span class="va">LearningPlace</span>,
+                            group<span class="op">=</span><span class="va">LearningPlace</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"summary"</span>,fun<span class="op">=</span><span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"summary"</span>,fun<span class="op">=</span><span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span>base_size<span class="op">=</span><span class="fl">12</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab9_RM_ANOVA_files/figure-html/unnamed-chunk-7-1.png" width="100%"></div>
+</div>
+<div id="concept-1-sphericity" class="section level2" number="21.5">
+<h2>
+<span class="header-section-number">21.5</span> Concept 1: Sphericity<a class="anchor" aria-label="anchor" href="#concept-1-sphericity"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb654"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## example data set to illustrate sphericity</span>
+<span class="va">textbook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">S</span>, <span class="op">~</span><span class="va">a1</span>, <span class="op">~</span><span class="va">a2</span>, <span class="op">~</span><span class="va">a3</span>, <span class="op">~</span><span class="va">a4</span>,
+        <span class="st">"s1"</span>,<span class="fl">76</span>,<span class="fl">64</span>,<span class="fl">34</span>,<span class="fl">26</span>,
+        <span class="st">"s2"</span>,<span class="fl">60</span>,<span class="fl">48</span>,<span class="fl">46</span>,<span class="fl">30</span>,
+        <span class="st">"s3"</span>,<span class="fl">58</span>,<span class="fl">34</span>,<span class="fl">32</span>,<span class="fl">28</span>,
+        <span class="st">"s4"</span>,<span class="fl">46</span>,<span class="fl">46</span>,<span class="fl">32</span>,<span class="fl">28</span>,
+        <span class="st">"s5"</span>,<span class="fl">30</span>,<span class="fl">18</span>,<span class="fl">36</span>,<span class="fl">28</span>
+        <span class="op">)</span> 
+
+<span class="co">## selecting the table of values in each column</span>
+<span class="va">textbook</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>
+<span class="co">#&gt; # A tibble: 5 × 4</span>
+<span class="co">#&gt;      a1    a2    a3    a4</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1    76    64    34    26</span>
+<span class="co">#&gt; 2    60    48    46    30</span>
+<span class="co">#&gt; 3    58    34    32    28</span>
+<span class="co">#&gt; 4    46    46    32    28</span>
+<span class="co">#&gt; 5    30    18    36    28</span>
+
+<span class="co">## computing the covariation matrix</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">textbook</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt;     a1  a2 a3 a4</span>
+<span class="co">#&gt; a1 294 258  8 -8</span>
+<span class="co">#&gt; a2 258 294  8 -8</span>
+<span class="co">#&gt; a3   8   8 34  6</span>
+<span class="co">#&gt; a4  -8  -8  6  2</span>
+
+<span class="co">## ta</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">textbook</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  a1  a2  a3  a4 </span>
+<span class="co">#&gt; 138 138  14  -2</span>
+
+<span class="co">## sa-s</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">textbook</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">textbook</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  a1  a2  a3  a4 </span>
+<span class="co">#&gt;  66  66 -58 -74</span>
+
+<span class="co">## double-centering</span>
+
+<span class="va">cov_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">textbook</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="va">col_mean_matrix</span> <span class="op">&lt;-</span> <span class="va">cov_matrix</span><span class="op">*</span><span class="fl">0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">cov_matrix</span><span class="op">)</span>
+<span class="va">row_mean_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">cov_matrix</span><span class="op">*</span><span class="fl">0</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">cov_matrix</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dc_matrix</span> <span class="op">&lt;-</span> <span class="va">cov_matrix</span> <span class="op">-</span> <span class="va">col_mean_matrix</span> <span class="op">-</span><span class="va">row_mean_matrix</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cov_matrix</span><span class="op">)</span>
+
+<span class="co">## greenhouse-geisser</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">dc_matrix</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">dc_matrix</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dc_matrix</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.4459613</span></code></pre></div>
+<div id="sphericity-corrections-in-r" class="section level3" number="21.5.1">
+<h3>
+<span class="header-section-number">21.5.1</span> Sphericity corrections in R<a class="anchor" aria-label="anchor" href="#sphericity-corrections-in-r"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function does not automatically apply corrections for sphericity as is sometimes common in statistics programs. However, there are other ANOVA functions that do, such as the ANOVA function from the <code>car</code> package. One wrinkle here is that this function requires data to be in wide format. Here is an example</p>
+<div class="sourceCode" id="cb655"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">textbook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">S</span>, <span class="op">~</span><span class="va">a1</span>, <span class="op">~</span><span class="va">a2</span>, <span class="op">~</span><span class="va">a3</span>, <span class="op">~</span><span class="va">a4</span>,
+        <span class="st">"s1"</span>,<span class="fl">76</span>,<span class="fl">64</span>,<span class="fl">34</span>,<span class="fl">26</span>,
+        <span class="st">"s2"</span>,<span class="fl">60</span>,<span class="fl">48</span>,<span class="fl">46</span>,<span class="fl">30</span>,
+        <span class="st">"s3"</span>,<span class="fl">58</span>,<span class="fl">34</span>,<span class="fl">32</span>,<span class="fl">28</span>,
+        <span class="st">"s4"</span>,<span class="fl">46</span>,<span class="fl">46</span>,<span class="fl">32</span>,<span class="fl">28</span>,
+        <span class="st">"s5"</span>,<span class="fl">30</span>,<span class="fl">18</span>,<span class="fl">36</span>,<span class="fl">28</span>
+        <span class="op">)</span> 
+
+<span class="co">## ANOVA using car</span>
+<span class="va">wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">textbook</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="va">aov_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">wide_data</span> <span class="op">~</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">rm_factor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'a1'</span>,<span class="st">'a2'</span>,<span class="st">'a3'</span>,<span class="st">'a4'</span><span class="op">)</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span>
+<span class="va">new_anova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/car/man/Anova.html">Anova</a></span><span class="op">(</span><span class="va">aov_model</span>, 
+                   idata<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">rm_factor</span><span class="op">)</span>,
+                   idesign <span class="op">=</span> <span class="op">~</span><span class="va">rm_factor</span>,
+                   type<span class="op">=</span><span class="st">"III"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">new_anova</span>,multivariate<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Univariate Type III Repeated-Measures ANOVA Assuming Sphericity</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;             Sum Sq num Df Error SS den Df  F value    Pr(&gt;F)    </span>
+<span class="co">#&gt; (Intercept)  32000      1     1152      4 111.1111 0.0004582 ***</span>
+<span class="co">#&gt; rm_factor     1800      3     1344     12   5.3571 0.0142330 *  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Mauchly Tests for Sphericity</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;           Test statistic p-value</span>
+<span class="co">#&gt; rm_factor       0.088557 0.27931</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Greenhouse-Geisser and Huynh-Feldt Corrections</span>
+<span class="co">#&gt;  for Departure from Sphericity</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;            GG eps Pr(&gt;F[GG])  </span>
+<span class="co">#&gt; rm_factor 0.44596    0.05999 .</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;              HF eps Pr(&gt;F[HF])</span>
+<span class="co">#&gt; rm_factor 0.5871795 0.04114125</span></code></pre></div>
+<p>Note, the adjusted degrees of freedom are not displayed in the above printout. This repeated measures ANOVA yielded F(3,12) = 5.3571, p = .0142330.</p>
+<div class="sourceCode" id="cb656"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span>q<span class="op">=</span> <span class="fl">5.3571</span>, df1<span class="op">=</span> <span class="fl">3</span>, df2<span class="op">=</span> <span class="fl">12</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.01423341</span></code></pre></div>
+<p>The estimate of epsilon based on Greenhouse Geisser was .44596. Notice, the p-value is different in the printout above (p = .059999). The Greenhouse-Geisser estimate of epsilon is used to modify the degrees of freedom.</p>
+<div class="sourceCode" id="cb657"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">GG_df1</span> <span class="op">=</span> <span class="op">(</span><span class="fl">4</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.44596</span>
+<span class="va">GG_df2</span> <span class="op">=</span> <span class="op">(</span><span class="fl">4</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">5</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> <span class="op">*</span><span class="fl">.44596</span>
+
+<span class="va">GG_df1</span>
+<span class="co">#&gt; [1] 1.33788</span>
+<span class="va">GG_df2</span>
+<span class="co">#&gt; [1] 5.35152</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span>q<span class="op">=</span> <span class="fl">5.3571</span>, df1<span class="op">=</span> <span class="va">GG_df1</span>, df2<span class="op">=</span> <span class="va">GG_df2</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.05999576</span></code></pre></div>
+<p>For comparison purposes, here is an ANOVA summary using <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> that does not include corrections.</p>
+<div class="sourceCode" id="cb658"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># compare to ANOVA using aov</span>
+<span class="co"># convert to long</span>
+<span class="va">long_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">textbook</span>,cols <span class="op">=</span> <span class="op">!</span><span class="va">S</span>,
+                   names_to <span class="op">=</span> <span class="st">"IV"</span>,
+                   values_to <span class="op">=</span> <span class="st">"DV"</span><span class="op">)</span>
+
+<span class="co"># Convert IVs to factors</span>
+<span class="va">long_data</span> <span class="op">&lt;-</span> <span class="va">long_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>S <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>,
+         IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># conduct ANOVA, note the addition of the error term in the formula</span>
+<span class="va">aov_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">S</span><span class="op">)</span>, data<span class="op">=</span> <span class="va">long_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov_out</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: S</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; Residuals  4   1152     288               </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Error: Within</span>
+<span class="co">#&gt;           Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; IV         3   1800     600   5.357 0.0142 *</span>
+<span class="co">#&gt; Residuals 12   1344     112                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+</div>
+</div>
+<div id="lab-9-generalization-assignment-1" class="section level2" number="21.6">
+<h2>
+<span class="header-section-number">21.6</span> Lab 9 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-9-generalization-assignment-1"><i class="fas fa-link"></i></a>
+</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C_FB5dgoSB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="instructions-20" class="section level3" number="21.6.1">
+<h3>
+<span class="header-section-number">21.6.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-20"><i class="fas fa-link"></i></a>
+</h3>
+<p>Your assignment instructions are the following:</p>
+<ol style="list-style-type: decimal">
+<li>Work inside the new R project for stats II that you created</li>
+<li>Create a new R Markdown document called “Lab9.Rmd”</li>
+<li>Use Lab9.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>
+<strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
+<li>Submit your github repository link for Lab 9 on blackboard.</li>
+</ol>
+</div>
+<div id="problems-19" class="section level3" number="21.6.2">
+<h3>
+<span class="header-section-number">21.6.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-19"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Create an R script that can generate simulated data for the following repeated measures design. (2 points)</li>
+</ol>
+<p>A. The dependent variable is assumed to come from a normal distribution with mean = 0 and standard deviation = 1.</p>
+<p>B. There is one repeated measures factor with 5 levels (Down1, Down2, Control, Up1, Up2). The control group is assumed to have no effect. The Down1 and Down2 levels shift the mean down by 1 and 2 standard deviations, respectively. The Up1 and Up2 levels shift the mean up by 1 and 2 standard deviations, respectively.</p>
+<p>C. There are 6 subjects in the experiment, and they are each measured once in each condition. The 6 subjects are assumed to be different from one another (e.g., they will have different baseline means in the control condition), but they will all be influenced by the IV in the exact same way (e.g., no interaction).</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Run a simulation to determine the proportion of experiments that would return a significant result for the above design. Assume that the effect of the levels of the IV are increments of .1 of a standard deviation, rather than increments of 1 as in the above design.</p></li>
+<li><p>Demonstrate that the Godden and Baddeley example data from the textbook (19.5), which used a 2x2 repeated measures design, can be be analyzed with one-sample t-tests to return the same results. Specifically, show the one-sample t-tests for each main effect and the interaction. (2 points)</p></li>
+</ol>
+<p>Bonus Points</p>
+<p>These bonus questions are about the sphericity concept, and they will involve modifying the example data from the textbook (same as used in concept sectdion 1). The data is reprinted here for your convenience:</p>
+<div class="sourceCode" id="cb659"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sphericity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">S</span>, <span class="op">~</span><span class="va">a1</span>, <span class="op">~</span><span class="va">a2</span>, <span class="op">~</span><span class="va">a3</span>, <span class="op">~</span><span class="va">a4</span>,
+        <span class="st">"s1"</span>,<span class="fl">76</span>,<span class="fl">64</span>,<span class="fl">34</span>,<span class="fl">26</span>,
+        <span class="st">"s2"</span>,<span class="fl">60</span>,<span class="fl">48</span>,<span class="fl">46</span>,<span class="fl">30</span>,
+        <span class="st">"s3"</span>,<span class="fl">58</span>,<span class="fl">34</span>,<span class="fl">32</span>,<span class="fl">28</span>,
+        <span class="st">"s4"</span>,<span class="fl">46</span>,<span class="fl">46</span>,<span class="fl">32</span>,<span class="fl">28</span>,
+        <span class="st">"s5"</span>,<span class="fl">30</span>,<span class="fl">18</span>,<span class="fl">36</span>,<span class="fl">28</span>
+        <span class="op">)</span> </code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Create a line plot showing how each of the 5 subjects perform across the levels of the IV. Discuss how the line plot visually shows the sphericity problem in the data (1 point)</p></li>
+<li><p>Modify the above data to remove the sphericity problem. Specifically, ensure that all subjects are different from another (there overall means are different), and that the IV has the same effect for each level and each subject (no interaction). Then, plot the new data and discuss how the graph shows the sphericity problem has been removed. (1 point)</p></li>
+<li><p>Calculate the Greenhouse-Geisser estimate of epsilon for your modified data to demonstrate you have removed the sphericity problem. (1 point)</p></li>
+</ol>
+</div>
+</div>
+<div id="references-8" class="section level2" number="21.7">
+<h2>
+<span class="header-section-number">21.7</span> References<a class="anchor" aria-label="anchor" href="#references-8"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></div>
+<div class="next"><a href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#repeated-measures-anova"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="nav-link" href="#reading-10"><span class="header-section-number">21.1</span> Reading</a></li>
+<li>
+<a class="nav-link" href="#practical-1-how-to-run-a-repeated-measures-anova-in-r"><span class="header-section-number">21.2</span> Practical 1: How to run a repeated measures ANOVA in R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#single-factor-example-1"><span class="header-section-number">21.2.1</span> Single factor Example 1</a></li>
+<li><a class="nav-link" href="#formula-syntax-for-repeated-measures-anova"><span class="header-section-number">21.2.2</span> Formula syntax for repeated measures ANOVA</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#single-factor-example-2"><span class="header-section-number">21.3</span> Single Factor Example 2</a></li>
+<li><a class="nav-link" href="#two-factor-repeated-measures-example-3"><span class="header-section-number">21.4</span> Two factor repeated measures Example 3</a></li>
+<li>
+<a class="nav-link" href="#concept-1-sphericity"><span class="header-section-number">21.5</span> Concept 1: Sphericity</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#sphericity-corrections-in-r"><span class="header-section-number">21.5.1</span> Sphericity corrections in R</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#lab-9-generalization-assignment-1"><span class="header-section-number">21.6</span> Lab 9 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-20"><span class="header-section-number">21.6.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-19"><span class="header-section-number">21.6.2</span> Problems</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#references-8"><span class="header-section-number">21.7</span> References</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/s2_Lab9_RM_ANOVA.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/s2_Lab9_RM_ANOVA.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Reproducible statistics for psychologists with R</strong>: Lab Tutorials" was written by Matthew J. C. Crump. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

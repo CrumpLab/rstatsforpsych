@@ -28,4 +28,18 @@ rmd_files:
 - "Lab12_Regression.Rmd"
 - "semester_project.Rmd"
 
+- "s2_Lab1_Shape.Rmd"
+- "s2_Lab2_Multiple_regression_I.Rmd"
+- "s2_Lab3_Multiple_regression_II.Rmd"
+- "s2_Lab4_ANOVA.Rmd"
+- "s2_Lab5_ANOVA_Randomization.Rmd"
+- "s2_Lab6_Comparisons.Rmd"
+- "s2_Lab7_Factorial_ANOVA.Rmd"
+- "s2_Lab8_Contrasts.Rmd"
+- "s2_Lab9_RM_ANOVA.Rmd"
+- "s2_Lab10_Nested_Designs.Rmd"
+- "s2_Lab11_WYOR.Rmd"
+- "s2_semester_project_2021.Rmd"
+- "s2_semester_project.Rmd"
+
 - "References.Rmd"

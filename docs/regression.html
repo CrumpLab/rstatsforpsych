@@ -6,12 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>12 Regression | Reproducible statistics for psychologists with R</title>
 <meta name="author" content="Matthew J. C. Crump">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs_font_google_work%20sans-0.2.3.9000/font.css" rel="stylesheet">
-<link href="libs/bs_font_google_major%20mono%20display-0.2.3.9000/font.css" rel="stylesheet">
-<link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<meta name="description" content="“10/8/2020 | Last Compiled: 2022-04-24”  12.1 Readings Vokey &amp; Allen53, Chapter 8; Abdi, Edelman, Dowling, &amp; Valentin54, Chapters 3 and 4; Crump, Navarro, &amp; Suzuki55, 3.5.  12.2 Overview...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="12 Regression | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="“10/8/2020 | Last Compiled: 2022-04-24”  12.1 Readings Vokey &amp; Allen53, Chapter 8; Abdi, Edelman, Dowling, &amp; Valentin54, Chapters 3 and 4; Crump, Navarro, &amp; Suzuki55, 3.5.  12.2 Overview...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="12 Regression | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="“10/8/2020 | Last Compiled: 2022-04-24”  12.1 Readings Vokey &amp; Allen53, Chapter 8; Abdi, Edelman, Dowling, &amp; Valentin54, Chapters 3 and 4; Crump, Navarro, &amp; Suzuki55, 3.5.  12.2 Overview...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -22,14 +30,40 @@
 <meta property="og:card" content="website">
 <meta property="og:title" content="12 Regression | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
-<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/regression.html">
 <meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@MattCrump_">
 <meta name="twitter:title" content="12 Regression | Reproducible statistics for psychologists with R">
 <meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
 <meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
-<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="custom.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -60,7 +94,7 @@
 <li><a class="" href="practice-problems.html">Practice problems</a></li>
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
 <li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
-<li class="book-part">Labs</li>
+<li class="book-part">Semester 1 Labs</li>
 <li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
 <li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
 <li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
@@ -75,7 +109,21 @@
 <li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
 <li><a class="active" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
 <li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
-<li><a class="" href="references-1.html">References</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -87,12 +135,12 @@
 <h1>
 <span class="header-section-number">12</span> Regression<a class="anchor" aria-label="anchor" href="#regression"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-09”</p>
+<p>“10/8/2020 | Last Compiled: 2022-04-24”</p>
 <div id="readings-2" class="section level2" number="12.1">
 <h2>
 <span class="header-section-number">12.1</span> Readings<a class="anchor" aria-label="anchor" href="#readings-2"><i class="fas fa-link"></i></a>
 </h2>
-<p><span class="citation">Vokey &amp; Allen (<a href="references-1.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 8; <span class="citation">Abdi et al. (<a href="references-1.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, Chapters 3 and 4; <span class="citation">Crump et al. (<a href="references-1.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intro">3.5</a>.</p>
+<p><span class="citation">Vokey &amp; Allen<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-vokeyThinkingData7th2018" role="doc-biblioref"&gt;2018&lt;/a&gt;.&lt;/p&gt;'><sup>53</sup></a></span>, Chapter 8; <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>54</sup></a></span>, Chapters 3 and 4; <span class="citation">Crump, Navarro, &amp; Suzuki<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref"&gt;2018&lt;/a&gt;.&lt;/p&gt;'><sup>55</sup></a></span>, <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intro">3.5</a>.</p>
 </div>
 <div id="overview-12" class="section level2" number="12.2">
 <h2>
@@ -175,7 +223,7 @@
 <h4>
 <span class="header-section-number">12.3.1.2</span> Specify the formula<a class="anchor" aria-label="anchor" href="#specify-the-formula"><i class="fas fa-link"></i></a>
 </h4>
-<p>The linear regression is performed below. There two basic inputs <code><a href="https://rdrr.io/r/stats/lm.html">lm(formula = , data=)</a></code>. The formula supplied below is <code>Y_dv ~ X_iv</code>. The dependent variable is always placed on the left side (<code>Y_dv</code>), and the independent variable is placed on the right side (<code>X_dv</code>). Order matters. In this case, we are explaining/predicting variation in <code>Y_dv</code> as a function of variation in <code>X_dv</code>.</p>
+<p>The linear regression is performed below. There two basic inputs <code>lm(formula = , data=)</code>. The formula supplied below is <code>Y_dv ~ X_iv</code>. The dependent variable is always placed on the left side (<code>Y_dv</code>), and the independent variable is placed on the right side (<code>X_dv</code>). Order matters. In this case, we are explaining/predicting variation in <code>Y_dv</code> as a function of variation in <code>X_dv</code>.</p>
 <div class="sourceCode" id="cb432"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#compute linear regression,</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y_dv</span> <span class="op">~</span> <span class="va">X_iv</span>, data<span class="op">=</span><span class="va">some_data</span><span class="op">)</span>
@@ -247,7 +295,7 @@
 <span class="header-section-number">12.3.2.1</span> geom_smooth<a class="anchor" aria-label="anchor" href="#geom_smooth"><i class="fas fa-link"></i></a>
 </h4>
 <div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X_iv</span>, y<span class="op">=</span><span class="va">Y_dv</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
@@ -270,21 +318,21 @@
 <span class="header-section-number">12.3.2.2</span> Add equations and model info<a class="anchor" aria-label="anchor" href="#add-equations-and-model-info"><i class="fas fa-link"></i></a>
 </h4>
 <p><code>ggplot2</code> does not automatically show the regression equation or <span class="math inline">\(R^2\)</span> values, but they can be added with <a href="https://ggplot2-book.org/annotations.html">annotations</a>. Or, you could find an extension package that might do the thing you are looking for. For example, there are numerous extensions to ggplot2, <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a>. One of them is <a href="https://docs.r4photobiology.info/ggpmisc/">ggpmisc</a>, which can help with adding these details to a plot.</p>
-<p><code><a href="https://docs.r4photobiology.info/ggpmisc//reference/stat_poly_eq.html">ggpmisc::stat_poly_eq()</a></code> can add the <span class="math inline">\(R^2\)</span> value to the plot.</p>
+<p><code><a href="https://docs.r4photobiology.info/ggpmisc/reference/stat_poly_eq.html">ggpmisc::stat_poly_eq()</a></code> can add the <span class="math inline">\(R^2\)</span> value to the plot.</p>
 <div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.r4photobiology.info/ggpmisc/">ggpmisc</a></span><span class="op">)</span>
 <span class="va">formula</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>
-<span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc//reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">X_iv</span>, y <span class="op">=</span> <span class="va">Y_dv</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://docs.r4photobiology.info/ggpp/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">X_iv</span>, y <span class="op">=</span> <span class="va">Y_dv</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">formula</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc//reference/stat_poly_eq.html">stat_poly_eq</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula</span>, parse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc/reference/stat_poly_eq.html">stat_poly_eq</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula</span>, parse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab12_Regression_files/figure-html/unnamed-chunk-10-1.png" width="100%"></div>
 <p>Or, you could print the regression line equation, or both. I’ll refer you to <a href="https://docs.r4photobiology.info/ggpmisc/articles/user-guide.html">examples here for more info on using ggpmisc</a>.</p>
 <div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc//reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">X_iv</span>, y <span class="op">=</span> <span class="va">Y_dv</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<code class="sourceCode R"><span class="fu"><a href="https://docs.r4photobiology.info/ggpp/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">X_iv</span>, y <span class="op">=</span> <span class="va">Y_dv</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">formula</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc//reference/stat_poly_eq.html">stat_poly_eq</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">stat</a></span><span class="op">(</span><span class="va">eq.label</span><span class="op">)</span><span class="op">)</span>, formula <span class="op">=</span> <span class="va">formula</span>,
+  <span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc/reference/stat_poly_eq.html">stat_poly_eq</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html">stat</a></span><span class="op">(</span><span class="va">eq.label</span><span class="op">)</span><span class="op">)</span>, formula <span class="op">=</span> <span class="va">formula</span>,
                parse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="Lab12_Regression_files/figure-html/unnamed-chunk-11-1.png" width="100%"></div>
 </div>
@@ -296,7 +344,7 @@
 </h2>
 <p>The code chunk below generates a linear regression animation using ggplot2 and <a href="https://gganimate.com/index.html">gganimate</a>.</p>
 <div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gganimate.com">gganimate</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
@@ -324,7 +372,7 @@
 <span class="va">total_error_sims</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">total_error</span>,each<span class="op">=</span><span class="fl">32</span><span class="op">)</span>
 <span class="va">sims</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>,each<span class="op">=</span><span class="fl">32</span><span class="op">)</span>
 
-<span class="va">d</span><span class="op">&lt;-</span><span class="va">d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span>
+<span class="va">d</span><span class="op">&lt;-</span><span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">d</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">d</span>,<span class="va">sims</span>,<span class="va">move_line_sims</span>,<span class="va">total_error_sims</span><span class="op">)</span>
 
@@ -354,7 +402,7 @@
 <h3>
 <span class="header-section-number">12.4.1</span> Illustrating regression concepts with R<a class="anchor" aria-label="anchor" href="#illustrating-regression-concepts-with-r"><i class="fas fa-link"></i></a>
 </h3>
-<p>The <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intr">animation example</a> is modified from <span class="citation">Crump et al. (<a href="references-1.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> (I added the little rectangles to indicate the squared error).</p>
+<p>The <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intr">animation example</a> is modified from <span class="citation">Crump, Navarro, &amp; Suzuki<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref"&gt;2018&lt;/a&gt;.&lt;/p&gt;'><sup>56</sup></a></span> (I added the little rectangles to indicate the squared error).</p>
 <p>In this concept section we will use R to create a graph like the above animation. Our goal is to see if we can use R to visually illustrate concepts of linear regression. For example, we can already plot data points as a scatterplot, and we can plot the regression line. It would be nice if we could visualize the error between each data point and the line, and perhaps also see that this error is smallest when we use the best fit line, and not some other line.</p>
 </div>
 <div id="create-a-scatterplot" class="section level3" number="12.4.2">
@@ -398,7 +446,7 @@
 <p>Let’s add the predictions into the graph. We will do this by adding a new column to the data.frame. Using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> we can run the prediction function on the existing columns for X and Y.</p>
 <div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -425,8 +473,8 @@
 <p>The next step is to visually depict the error between each black dot (a data point), and the blue line. This will involve drawing vertical lines between each black dot, and the red dot representing the prediction of the blue line. We can use <code><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment()</a></code> to draw lines.</p>
 <div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -444,8 +492,8 @@
 <p>Next, let’s illustrate the deviations as squares, which will better depict the actual quantity that is being summed over. We use <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code> to draw rectangles.</p>
 <div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -482,8 +530,8 @@
 <p>Finally, let’s try one or two more graphs to illustrate that if we drew different lines, they would not be the best fit lines. If we drew a “worse” line, we should see that altogether, the squared error boxes get bigger and bigger. For example, the new red line below does not go through the black dots (the line was shifted up), and the squared errors are much larger than the ones for the blue best fit line.</p>
 <div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -504,15 +552,15 @@
 <div class="sourceCode" id="cb450"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">some_data</span>,
                    <span class="va">some_data</span>,
                    <span class="va">some_data</span>,
-                   <span class="va">some_data</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                   <span class="va">some_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>step <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,each <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,
-         Y_pred <span class="op">=</span> <span class="va">Y_pred</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">1</span>,<span class="fl">1.5</span>,<span class="fl">2</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         Y_pred <span class="op">=</span> <span class="va">Y_pred</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">1</span>,<span class="fl">1.5</span>,<span class="fl">2</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -535,8 +583,8 @@
 <span class="va">slope</span> <span class="op">=</span> <span class="fl">2</span>
 <span class="va">b</span> <span class="op">=</span> <span class="fl">1</span>
 <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="va">slope</span><span class="op">*</span><span class="va">X</span><span class="op">+</span><span class="va">b</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="va">slope</span><span class="op">*</span><span class="va">X</span><span class="op">+</span><span class="va">b</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>error <span class="op">=</span> <span class="va">Y</span><span class="op">-</span><span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">error</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
@@ -547,7 +595,7 @@
 <h2>
 <span class="header-section-number">12.5</span> Concept II: <span class="math inline">\(R^2\)</span>, F, and variance explained<a class="anchor" aria-label="anchor" href="#concept-ii-r2-f-and-variance-explained"><i class="fas fa-link"></i></a>
 </h2>
-<p><span class="citation">Wright (<a href="references-1.html#ref-wrightCorrelationCausation" role="doc-biblioref">n.d.</a>)</span> is credited <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">on wikipedia</a> with coining the term <em>coefficient of determination</em> for <span class="math inline">\(R^2\)</span>. It was interesting to read that paper and think about the term coefficient of determination. Wright discussed how plain old correlations could obviously be caused by multiple causal variables, which is one reason why correlation does not equal causation. He sought methods to break a correlation into component causes or paths, and this seems to inspire the rather loaded inspirational term <em>coefficient of determination</em>. I say this term is inspirational because squaring an <span class="math inline">\(r\)</span>-value and using deterministic language doesn’t magically allow one to identify causal forces from a correlation.</p>
+<p><span class="citation">Wright, S.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-wrightCorrelationCausation" role="doc-biblioref"&gt;(N.d.). Correlation and &lt;span&gt;Causation&lt;/span&gt;. &lt;em&gt;Journal of Agricultural Research&lt;/em&gt;, &lt;em&gt;20&lt;/em&gt;, 557–585&lt;/a&gt;.&lt;/p&gt;'><sup>57</sup></a></span> is credited <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">on wikipedia</a> with coining the term <em>coefficient of determination</em> for <span class="math inline">\(R^2\)</span>. It was interesting to read that paper and think about the term coefficient of determination. Wright discussed how plain old correlations could obviously be caused by multiple causal variables, which is one reason why correlation does not equal causation. He sought methods to break a correlation into component causes or paths, and this seems to inspire the rather loaded inspirational term <em>coefficient of determination</em>. I say this term is inspirational because squaring an <span class="math inline">\(r\)</span>-value and using deterministic language doesn’t magically allow one to identify causal forces from a correlation.</p>
 <p>If I was to coin a term with less hubris, I would call <span class="math inline">\(R^2\)</span> a <em>co-efficient of composition</em>. Because, as we will see, <span class="math inline">\(R^2\)</span> is not just about squaring a correlation coefficient…it has another (equivalent) definition based on the concept that variance can be partitioned into different parts. Throughout the course this general idea will turn into something called the General Linear Model. For now, it is the idea that variation in some measurement can be broken down into separate components, such that the original data can be re-expressed or “re-composed” in terms of the sum of its parts.</p>
 <p>In linear regression we have variation in a Y variable, and we plot that data against an X variable. Then we draw a best fit line. In the next sections, we will see how the data points in Y are decomposed into different parts. The total variation in Y is expressed as the squared differences between each Y value and the mean of Y. This total variation is partitioned into two parts. One part is “explained” by the regression line, the other part is the leftover bits, called residuals.</p>
 <div id="explaining-variance" class="section level3" number="12.5.1">
@@ -588,7 +636,7 @@
 <h3>
 <span class="header-section-number">12.5.4</span> Transforming <span class="math inline">\(R^2\)</span> to <span class="math inline">\(F\)</span><a class="anchor" aria-label="anchor" href="#transforming-r2-to-f"><i class="fas fa-link"></i></a>
 </h3>
-<p><span class="citation">Abdi et al. (<a href="references-1.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> provide a formula (chapter 3) that shows Fs can be converted from <span class="math inline">\(R^2\)</span>.</p>
+<p><span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>58</sup></a></span> provide a formula (chapter 3) that shows Fs can be converted from <span class="math inline">\(R^2\)</span>.</p>
 <p><span class="math inline">\(F = \frac{R^2}{1-R^2} \times (S-2)\)</span></p>
 <p>The numerator is <span class="math inline">\(R^2\)</span>, which we have previously defined as the proportion of variance <strong>explained</strong>; and the denominator is the proporition of variance <strong>unexplained</strong>. So, this formula again presents F as a ratio of explained over unexplained variance.</p>
 </div>
@@ -617,8 +665,8 @@
 <p>The scatterplot below visualizes <span class="math inline">\(SS_total\)</span>; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce <span class="math inline">\(SS_total\)</span> for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would “explain everything”, leaving nothing left for any other variable to explain.</p>
 <div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">total_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -646,8 +694,8 @@
 <p>Consider now the regression line, and the squared deviations that we produced in the first concept section. I colored the error squares red to flag the fact that the blue regression line does not explain these deviations from the blue line.</p>
 <div class="sourceCode" id="cb455"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">res_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
@@ -711,9 +759,9 @@
 <p>I think it would be more interesting to show the sum of squares for <span class="math inline">\(\text{SS}_{Explained}\)</span> as squares on the scatterplots we have been making. The “explained” variance is associated the squared areas between the black line for the mean of Y, and blue regression line. I colored these squared areas blue.</p>
 <div class="sourceCode" id="cb458"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">)</span><span class="op">)</span>,
-         Y_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         Y_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_error <span class="op">=</span> <span class="va">Y</span> <span class="op">-</span> <span class="va">Y_pred</span>,
          Y_total <span class="op">=</span> <span class="va">Y</span><span class="op">-</span><span class="va">Y_mean</span><span class="op">)</span>
 
@@ -794,8 +842,8 @@
 <span class="va">slope</span> <span class="op">=</span> <span class="fl">2</span>
 <span class="va">b</span> <span class="op">=</span> <span class="fl">1</span>
 <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="va">slope</span><span class="op">*</span><span class="va">X</span><span class="op">+</span><span class="va">b</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="va">slope</span><span class="op">*</span><span class="va">X</span><span class="op">+</span><span class="va">b</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>error <span class="op">=</span> <span class="va">Y</span><span class="op">-</span><span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="va">sum_deviations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">error</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
@@ -806,8 +854,8 @@
   <span class="va">new_b</span> <span class="op">&lt;-</span> <span class="va">b</span> <span class="op">+</span> <span class="va">step_size</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>
   
   <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
-                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="va">new_slope</span><span class="op">*</span><span class="va">X</span><span class="op">+</span><span class="va">new_b</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                        X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Y_pred <span class="op">=</span> <span class="va">new_slope</span><span class="op">*</span><span class="va">X</span><span class="op">+</span><span class="va">new_b</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>error <span class="op">=</span> <span class="va">Y</span><span class="op">-</span><span class="va">Y_pred</span><span class="op">)</span>
 
 <span class="va">new_sum_deviations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">error</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
@@ -821,9 +869,9 @@
 <span class="op">}</span>
 
 <span class="va">slope</span>
-<span class="co">#&gt; [1] 0.47</span>
+<span class="co">#&gt; [1] 0.51</span>
 <span class="va">b</span>
-<span class="co">#&gt; [1] 1.21</span></code></pre></div>
+<span class="co">#&gt; [1] 0.95</span></code></pre></div>
 </div>
 <div id="lab-12-generalization-assignment" class="section level2" number="12.7">
 <h2>
@@ -863,6 +911,7 @@
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="correlation.html"><span class="header-section-number">11</span> Correlation</a></div>
 <div class="next"><a href="semester-1-project.html">Semester 1 project</a></div>
@@ -948,6 +997,22 @@
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

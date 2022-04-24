@@ -2,7 +2,7 @@
 
 # Simulation and Power Analysis {.unnumbered}
 
-"11/8/2020 | Last Compiled: 2020-12-09"
+"11/8/2020 | Last Compiled: 2022-04-24"
 
 ## Reading
 
@@ -37,7 +37,7 @@ B <- rnorm(n=10,mean=10, sd=5)
 
 # the pvalue for this one pretend simulation
 t.test(A,B,var.equal=TRUE)$p.value
-#> [1] 0.4465779
+#> [1] 0.292469
 
 # running the simulation
 # everytime we run this function we do one simulated experiment and return the p-value
@@ -60,7 +60,7 @@ hist(outcomes)
 
 # proportion of simulated experiments had a p-value less than .05
 length(outcomes[outcomes<.05])/1000
-#> [1] 0.048
+#> [1] 0.052
 ```
 
 We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.
@@ -76,7 +76,7 @@ Consider this. How often will we find a p-value less than .05 if there was a mea
   A <- rnorm(n=10,mean=10, sd=5)
   B <- rnorm(n=10,mean=15, sd=5)
   t.test(A,B,var.equal=TRUE)$p.value
-#> [1] 0.04564235
+#> [1] 0.06901522
 
 # make the mean for B 15 (5 more than A)
 sim_alternative <- function(){
@@ -98,7 +98,7 @@ hist(outcomes)
 
 # proportion of simulated experiments had a p-value less than .05
 length(outcomes[outcomes<.05])/1000
-#> [1] 0.556
+#> [1] 0.595
 ```
 
 We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).

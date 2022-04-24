@@ -1,0 +1,37 @@
+
+
+# Nested Designs
+
+## Reading
+
+Chapters 20 and 21 from @abdiExperimentalDesignAnalysis2009.
+
+## Surprise
+
+This lab has no content as of yet. Instead, the generalization problems are for you demonstrate how to complete the textbook examples for Chapter 20 and 21 in R. 
+
+## Lab 10 Generalization Assignment
+
+### Instructions
+
+Your assignment instructions are the following:
+
+1.  Work inside the new R project for stats II that you created
+2.  Create a new R Markdown document called "Lab10.Rmd"
+3.  Use Lab10.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+4.  **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.
+5.  Submit your github repository link for Lab 10 on blackboard.
+
+## Problems
+
+1. From Chapter 20, reproduce the bat and hat example (20.2) in R. Your code should represent the data in long-form, conduct the ANOVA, and report the ANOVA table. You will know if you did it correctly if you can reproduce the ANOVA table from the textbook. (3 points)
+
+2. From Chapter 21, reproduce the phonological similarity example (21.2.1) in R. Your code should represent the data in long-form, conduct the ANOVA, and report the ANOVA table. You will know if you did it correctly if you can reproduce the ANOVA table from the textbook. (3 points) Note, the F-value for the phonological similarity factor that you find with R may not be the same as the textbook. The textbook produces the quasi-F, and it is OK if you do not.
+
+Bonus points:
+
+3. Use R to produce the missing quasi_F value for problem 2. 
+
+## References
+
+

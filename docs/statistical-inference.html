@@ -6,12 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>6 Statistical Inference | Reproducible statistics for psychologists with R</title>
 <meta name="author" content="Matthew J. C. Crump">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs_font_google_work%20sans-0.2.3.9000/font.css" rel="stylesheet">
-<link href="libs/bs_font_google_major%20mono%20display-0.2.3.9000/font.css" rel="stylesheet">
-<link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<meta name="description" content="“10/8/2020 | Last Compiled: 2022-04-24”  6.1 Readings and Review Vokey &amp; Allen22, Chapter 10; Crump, Navarro, &amp; Suzuki23, Chapter 5  This lab marks a departure into the land of statistical...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="6 Statistical Inference | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="“10/8/2020 | Last Compiled: 2022-04-24”  6.1 Readings and Review Vokey &amp; Allen22, Chapter 10; Crump, Navarro, &amp; Suzuki23, Chapter 5  This lab marks a departure into the land of statistical...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6 Statistical Inference | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="“10/8/2020 | Last Compiled: 2022-04-24”  6.1 Readings and Review Vokey &amp; Allen22, Chapter 10; Crump, Navarro, &amp; Suzuki23, Chapter 5  This lab marks a departure into the land of statistical...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -22,14 +30,40 @@
 <meta property="og:card" content="website">
 <meta property="og:title" content="6 Statistical Inference | Reproducible statistics for psychologists with R">
 <meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
-<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/statistical-inference.html">
 <meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@MattCrump_">
 <meta name="twitter:title" content="6 Statistical Inference | Reproducible statistics for psychologists with R">
 <meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
 <meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
-<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS --><link rel="stylesheet" href="custom.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -60,7 +94,7 @@
 <li><a class="" href="practice-problems.html">Practice problems</a></li>
 <li><a class="" href="coding-reference.html">Coding Reference</a></li>
 <li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
-<li class="book-part">Labs</li>
+<li class="book-part">Semester 1 Labs</li>
 <li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
 <li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
 <li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
@@ -75,7 +109,21 @@
 <li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
 <li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
 <li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
-<li><a class="" href="references-1.html">References</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
 </ul>
 
         <div class="book-extra">
@@ -87,12 +135,12 @@
 <h1>
 <span class="header-section-number">6</span> Statistical Inference<a class="anchor" aria-label="anchor" href="#statistical-inference"><i class="fas fa-link"></i></a>
 </h1>
-<p>“10/8/2020 | Last Compiled: 2020-12-09”</p>
+<p>“10/8/2020 | Last Compiled: 2022-04-24”</p>
 <div id="readings-and-review" class="section level2" number="6.1">
 <h2>
 <span class="header-section-number">6.1</span> Readings and Review<a class="anchor" aria-label="anchor" href="#readings-and-review"><i class="fas fa-link"></i></a>
 </h2>
-<p><span class="citation">Vokey &amp; Allen (<a href="references-1.html#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 10; <span class="citation">Crump et al. (<a href="references-1.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/foundations-for-inference.html">Chapter 5</a></p>
+<p><span class="citation">Vokey &amp; Allen<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-vokeyThinkingData7th2018" role="doc-biblioref"&gt;2018&lt;/a&gt;.&lt;/p&gt;'><sup>22</sup></a></span>, Chapter 10; <span class="citation">Crump, Navarro, &amp; Suzuki<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref"&gt;2018&lt;/a&gt;.&lt;/p&gt;'><sup>23</sup></a></span>, <a href="https://crumplab.github.io/statistics/foundations-for-inference.html">Chapter 5</a></p>
 <div class="videoWrapper">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_mOn3wLjqqA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -111,7 +159,7 @@
 <h3>
 <span class="header-section-number">6.1.2</span> Foundations for Statistical Inference and the Crump test<a class="anchor" aria-label="anchor" href="#foundations-for-statistical-inference-and-the-crump-test"><i class="fas fa-link"></i></a>
 </h3>
-<p>If you are new to the concept of tests for statistical inference, and/or if you want a slightly unconventional take on statistical inference, I’ll forward you to a chapter from my undergraduate statistics textbook <span class="citation">(Crump et al., <a href="references-1.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>: <a href="https://crumplab.github.io/statistics/foundations-for-inference.html" class="uri">https://crumplab.github.io/statistics/foundations-for-inference.html</a>. This chapter discusses some basic ideas behind statistical inference, and it also provides a test that I “made up” called the Crump test, which doesn’t use any formulas, and tries to highlight the process and ideas behind statistical inference.</p>
+<p>If you are new to the concept of tests for statistical inference, and/or if you want a slightly unconventional take on statistical inference, I’ll forward you to a chapter from my undergraduate statistics textbook:<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref"&gt;Crump, Navarro, &amp;amp; Suzuki, 2018&lt;/a&gt;.&lt;/p&gt;'><sup>24</sup></a></span> <a href="https://crumplab.github.io/statistics/foundations-for-inference.html" class="uri">https://crumplab.github.io/statistics/foundations-for-inference.html</a>. This chapter discusses some basic ideas behind statistical inference, and it also provides a test that I “made up” called the Crump test, which doesn’t use any formulas, and tries to highlight the process and ideas behind statistical inference.</p>
 </div>
 <div id="a-parting-metaphor" class="section level3" number="6.1.3">
 <h3>
@@ -152,7 +200,7 @@
 <div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3 4 2 1 5</span></code></pre></div>
+<span class="co">#&gt; [1] 4 1 2 3 5</span></code></pre></div>
 <p>The number of permutations (unique re-orderings) for n distinct items is <span class="math inline">\(n!\)</span></p>
 <p>Therefore, if we take 5 numbers from the distinct values 1, 2, 3, 4, 5, we will be able to form 120 distinct orders or permutations of those numbers.</p>
 <div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
@@ -176,7 +224,7 @@
 <span class="op">}</span>
 
 <span class="va">count_examples</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0081</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0084</span></code></pre></div>
 <p>A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.</p>
 </div>
 <div id="a-permutation-test-example" class="section level3" number="6.3.2">
@@ -202,42 +250,42 @@
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">1</td>
-<td align="right">2</td>
+<td align="right">5</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
 <td align="right">2</td>
-<td align="right">1</td>
+<td align="right">7</td>
 </tr>
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="right">4</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="left">B</td>
-<td align="right">1</td>
 <td align="right">6</td>
 </tr>
 <tr class="even">
+<td align="left">A</td>
+<td align="right">4</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
 <td align="left">B</td>
 <td align="right">2</td>
-<td align="right">8</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">B</td>
 <td align="right">3</td>
-<td align="right">3</td>
+<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">B</td>
 <td align="right">4</td>
-<td align="right">7</td>
+<td align="right">8</td>
 </tr>
 </tbody>
 </table></div>
@@ -337,7 +385,7 @@
 <div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># visualize the analysis</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/qplot.html">qplot</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span><span class="op">+</span>
@@ -367,11 +415,11 @@
 <p>We can then calculate the mean of each group, and look at the difference.</p>
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span>
-<span class="co">#&gt; [1] 63.80599</span>
+<span class="co">#&gt; [1] 65.43351</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>
-<span class="co">#&gt; [1] 65.03299</span>
+<span class="co">#&gt; [1] 64.66912</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>
-<span class="co">#&gt; [1] -1.226997</span></code></pre></div>
+<span class="co">#&gt; [1] 0.7643827</span></code></pre></div>
 <p>In some general sense if the manipulation works, that is it <strong>causes a difference</strong>, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, <strong>however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups</strong>.</p>
 <p>We now want to calculate a <strong>sampling distribution of possible mean differences</strong>. To do this, we take all of the values in Group A and B, and randomly re-assign them across both groups, then recalculate the means and the mean difference. Then we, do this multiple times, as in monte-carlo simulation.</p>
 <div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
@@ -382,7 +430,7 @@
 <span class="va">new_B_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">resample</span><span class="op">[</span><span class="fl">51</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">)</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_A_mean</span><span class="op">-</span><span class="va">new_B_mean</span>
 <span class="va">new_difference</span>
-<span class="co">#&gt; [1] -1.647882</span>
+<span class="co">#&gt; [1] 1.635763</span>
 
 <span class="co"># Simulate the above process 10000 times</span>
 <span class="va">mean_differences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
@@ -404,7 +452,7 @@
 <p>We can also use this distribution to calculate specific probabilities concerning chance. For example, what is the probability of getting a 4 or larger by chance alone?</p>
 <div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;=</span><span class="fl">4</span> <span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.0258</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0186</span></code></pre></div>
 </div>
 <div id="p1-randomization-test-with-real-data" class="section level2" number="6.5">
 <h2>
@@ -427,10 +475,10 @@
 <span class="co"># compute the group means</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="va">the_data</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">the_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   CONDITION group_means</span>
 <span class="co">#&gt;       &lt;int&gt;       &lt;dbl&gt;</span>
 <span class="co">#&gt; 1         0        3.65</span>
@@ -439,70 +487,70 @@
 <p>Was this difference a result that could have occurred because of randomly assigning people to different groups? Let’s do a randomization test to create <strong>a sampling distribution of possible mean differences</strong>.</p>
 <div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># restrict the dataset to the columns of interest</span>
-<span class="va">simulation_data</span> <span class="op">&lt;-</span> <span class="va">the_data</span> <span class="op">%&gt;%</span>
+<span class="va">simulation_data</span> <span class="op">&lt;-</span> <span class="va">the_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">CONDITION</span>,<span class="va">Intellect_Rating</span><span class="op">)</span>
 
 <span class="co"># example of randomizing the scores across conditions</span>
-<span class="va">simulation_data</span> <span class="op">%&gt;%</span>
+<span class="va">simulation_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    CONDITION Intellect_Rating</span>
-<span class="co">#&gt; 1          1        4.6666667</span>
-<span class="co">#&gt; 2          1        3.3333333</span>
-<span class="co">#&gt; 3          1        5.6666667</span>
-<span class="co">#&gt; 4          0        6.0000000</span>
+<span class="co">#&gt; 1          1        3.6666667</span>
+<span class="co">#&gt; 2          1        4.6666667</span>
+<span class="co">#&gt; 3          1        1.6666667</span>
+<span class="co">#&gt; 4          0        5.6666667</span>
 <span class="co">#&gt; 5          0        9.0000000</span>
-<span class="co">#&gt; 6          0        5.6666667</span>
-<span class="co">#&gt; 7          1        5.0000000</span>
-<span class="co">#&gt; 8          0        6.0000000</span>
-<span class="co">#&gt; 9          1        1.6666667</span>
-<span class="co">#&gt; 10         0        3.6666667</span>
-<span class="co">#&gt; 11         0        6.6666667</span>
-<span class="co">#&gt; 12         1        6.0000000</span>
-<span class="co">#&gt; 13         1        5.6666667</span>
-<span class="co">#&gt; 14         0        3.6666667</span>
-<span class="co">#&gt; 15         0        5.0000000</span>
-<span class="co">#&gt; 16         1        4.6666667</span>
-<span class="co">#&gt; 17         1        5.6666667</span>
-<span class="co">#&gt; 18         1        7.0000000</span>
-<span class="co">#&gt; 19         0        2.3333333</span>
+<span class="co">#&gt; 6          0        3.6666667</span>
+<span class="co">#&gt; 7          1        4.6666667</span>
+<span class="co">#&gt; 8          0        1.0000000</span>
+<span class="co">#&gt; 9          1        2.3333333</span>
+<span class="co">#&gt; 10         0        6.3333333</span>
+<span class="co">#&gt; 11         0        4.6666667</span>
+<span class="co">#&gt; 12         1        3.3333333</span>
+<span class="co">#&gt; 13         1        3.6666667</span>
+<span class="co">#&gt; 14         0        3.3333333</span>
+<span class="co">#&gt; 15         0        9.0000000</span>
+<span class="co">#&gt; 16         1        5.0000000</span>
+<span class="co">#&gt; 17         1        1.6666667</span>
+<span class="co">#&gt; 18         1        2.0000000</span>
+<span class="co">#&gt; 19         0        6.0000000</span>
 <span class="co">#&gt; 20         0        4.6666667</span>
-<span class="co">#&gt; 21         0        3.6666667</span>
-<span class="co">#&gt; 22         0        3.3333333</span>
-<span class="co">#&gt; 23         0        6.3333333</span>
-<span class="co">#&gt; 24         1        6.6666667</span>
-<span class="co">#&gt; 25         1        5.0000000</span>
-<span class="co">#&gt; 26         1        9.0000000</span>
-<span class="co">#&gt; 27         0        3.6666667</span>
-<span class="co">#&gt; 28         1        1.0000000</span>
-<span class="co">#&gt; 29         1        3.3333333</span>
-<span class="co">#&gt; 30         1        1.6666667</span>
-<span class="co">#&gt; 31         0        4.6666667</span>
-<span class="co">#&gt; 32         0        6.0000000</span>
-<span class="co">#&gt; 33         1        7.6666667</span>
-<span class="co">#&gt; 34         1        3.6666667</span>
-<span class="co">#&gt; 35         0        0.6666667</span>
-<span class="co">#&gt; 36         1        2.3333333</span>
-<span class="co">#&gt; 37         0        2.0000000</span>
-<span class="co">#&gt; 38         1        5.3333333</span>
-<span class="co">#&gt; 39         1        6.0000000</span>
+<span class="co">#&gt; 21         0        6.6666667</span>
+<span class="co">#&gt; 22         0        5.6666667</span>
+<span class="co">#&gt; 23         0        3.3333333</span>
+<span class="co">#&gt; 24         1        3.6666667</span>
+<span class="co">#&gt; 25         1        5.6666667</span>
+<span class="co">#&gt; 26         1        5.6666667</span>
+<span class="co">#&gt; 27         0        2.3333333</span>
+<span class="co">#&gt; 28         1        3.6666667</span>
+<span class="co">#&gt; 29         1        6.0000000</span>
+<span class="co">#&gt; 30         1        6.6666667</span>
+<span class="co">#&gt; 31         0        6.0000000</span>
+<span class="co">#&gt; 32         0        5.0000000</span>
+<span class="co">#&gt; 33         1        6.0000000</span>
+<span class="co">#&gt; 34         1        5.3333333</span>
+<span class="co">#&gt; 35         0        6.0000000</span>
+<span class="co">#&gt; 36         1        0.6666667</span>
+<span class="co">#&gt; 37         0        7.0000000</span>
+<span class="co">#&gt; 38         1        5.0000000</span>
+<span class="co">#&gt; 39         1        7.6666667</span>
 
 <span class="co"># example of calculating a new mean difference</span>
 
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>new_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span>, .groups<span class="op">=</span><span class="st">"drop"</span><span class="op">)</span>
 
 <span class="va">new_data</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   CONDITION new_means</span>
 <span class="co">#&gt;       &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1         0      5.13</span>
-<span class="co">#&gt; 2         1      4.37</span>
+<span class="co">#&gt; 1         0      4.81</span>
+<span class="co">#&gt; 2         1      4.63</span>
 <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
-<span class="co">#&gt; [1] 5.12963</span>
+<span class="co">#&gt; [1] 4.814815</span>
 <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
-<span class="co">#&gt; [1] 4.365079</span>
+<span class="co">#&gt; [1] 4.634921</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span><span class="op">-</span><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
 
 <span class="co"># Run a randomization test</span>
@@ -510,9 +558,9 @@
 <span class="va">possible_differences</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># permute the data and calculate new means</span>
-  <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>new_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span>, .groups<span class="op">=</span><span class="st">'drop'</span><span class="op">)</span>
   
   <span class="co"># calculate and save mean difference</span>
@@ -543,10 +591,10 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
 <span class="va">the_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"open_data/SchroederEpley2015data.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># compute the group means</span>
-<span class="va">the_data</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">the_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   CONDITION group_means</span>
 <span class="co">#&gt;       &lt;int&gt;       &lt;dbl&gt;</span>
 <span class="co">#&gt; 1         0        3.65</span>
@@ -624,6 +672,7 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
 </div>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></div>
 <div class="next"><a href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></div>
@@ -696,6 +745,22 @@ It’s pretty clear in this example that a mean difference of 2 rarely occurred 
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
 </html>

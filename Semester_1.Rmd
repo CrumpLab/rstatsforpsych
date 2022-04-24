@@ -1,0 +1,34 @@
+```{r, include = FALSE}
+source("global_stuff.R")
+```
+
+# (PART\*) Semester 1 {.unnumbered}
+
+# Overview {#action-intro .unnumbered}
+
+
+
+-   Chapter \@ref(action-layout) details the various ways you can layout input and output components on a page, and how you can customise their appearance with themes.
+
+-   Chapter \@ref(action-graphics) shows you how to add direct interaction to your plot and how to display images generated in other ways.
+
+-   Chapter \@ref(action-feedback) covers a family of techniques (including inline errors, notifications, progress bars, and dialog boxes) for giving feedback to your users while you app runs.
+
+-   Chapter \@ref(action-transfer) discusses how to transfer files to and from your app.
+
+-   Chapter \@ref(action-dynamic) shows you how to dynamic modify your apps user interface while it runs.
+
+-   Chapter \@ref(action-bookmark) shows how to record app state in such a way that your users can bookmark it.
+
+-   Chapter \@ref(action-tidy) shows you how to allow users to select variables when working with tidyverse packages.
+
+Let's begin by working on your workflow for developing apps.
+
+
+
+
+
+
+
+
+

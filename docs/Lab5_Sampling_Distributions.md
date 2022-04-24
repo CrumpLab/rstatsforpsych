@@ -2,7 +2,7 @@
 
 # Sampling Distributions
 
-"10/2/2020 | Last Compiled: 2020-12-09"
+"10/2/2020 | Last Compiled: 2022-04-24"
 
 ## Readings
 
@@ -50,8 +50,8 @@ We use `rnorm()` to sample numbers from a normal distribution:
 
 ```r
 rnorm(n=10, mean = 0, sd = 1)
-#>  [1] -1.0019349 -1.0519557 -0.3011568  1.2220209  0.1025381  1.0983615
-#>  [7]  0.1640728  1.4291822  0.7122542  0.8019979
+#>  [1] -0.4262326 -1.9504370 -0.2630845 -1.4325022  0.5692190  0.3995944
+#>  [7] -0.1543729 -0.3256509  0.3089172 -0.9080528
 ```
 
 We can 'see' the distribution by sampling a large number of observations, and plotting them in a histogram:
@@ -78,20 +78,18 @@ How often did we sample a value larger than 2.5? What is the probability that ch
 
 ```r
 some_data$observations[some_data$observations > 2.5]
-#>  [1] 2.928525 2.781648 2.868732 2.552076 2.727173 3.154145 2.681787 2.864008
-#>  [9] 3.191691 2.624065 2.646727 2.731566 2.739447 2.679715 2.521466 2.834034
-#> [17] 2.863045 2.810554 3.516797 2.799241 2.791296 2.572595 2.778810 2.850113
-#> [25] 2.681773 3.034754 2.805372 2.990966 2.674465 3.102878 2.736407 2.669546
-#> [33] 2.579411 3.141679 3.025064 2.563732 3.372532 2.810153 2.657164 2.673537
-#> [41] 3.866567 2.764349 2.612303 3.414172 2.897619 5.325133 2.632761 2.512114
-#> [49] 2.625397 3.020722 2.757451 2.633909 2.694776 3.115221 2.814079 3.009813
-#> [57] 2.799929 2.660804 2.977252 2.979958 2.627102 3.367223 2.630621 2.502218
-#> [65] 2.685564 2.621895 2.511339 3.141363 2.614251 2.651630 2.568692 2.571659
-#> [73] 3.451340
+#>  [1] 2.569002 2.854438 2.542498 2.911574 2.741360 2.875751 2.642938 2.607074
+#>  [9] 2.699894 2.751360 2.520366 3.512031 2.704728 3.038817 2.664322 2.752404
+#> [17] 2.586985 2.780469 2.929764 3.362060 2.746399 2.537388 3.434642 2.533305
+#> [25] 2.787945 2.923204 2.581067 2.754448 2.783801 3.000941 2.626614 2.781184
+#> [33] 2.607430 3.364519 2.544195 3.340397 3.130555 2.788952 4.106499 2.547435
+#> [41] 3.282487 2.608786 2.702069 3.177433 2.500632 3.176734 2.828287 3.000135
+#> [49] 2.865655 2.765614 2.500413 2.930355 2.847117 2.981198 2.910288 2.661948
+#> [57] 2.635070 2.555418 2.625948 3.025801 2.506846
 length(some_data$observations[some_data$observations > 2.5])
-#> [1] 73
+#> [1] 61
 length(some_data$observations[some_data$observations > 2.5])/10000
-#> [1] 0.0073
+#> [1] 0.0061
 ```
 2. We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with `d`, `p`, `q`, and `r`, so there are `dnorm`, `pnorm`, `qnorm`, and `rnorm` functions for the normal distribution (and other distributions).
 
@@ -103,8 +101,8 @@ length(some_data$observations[some_data$observations > 2.5])/10000
 
 ```r
 rnorm(n=10, mean = 0, sd = 1)
-#>  [1]  1.6196756  0.6847015 -0.2484228 -0.8445940 -0.8467085 -0.7368235
-#>  [7] -0.8444813 -1.4188080 -0.4046103  1.4017983
+#>  [1]  1.1903046  1.8631129  0.9828581  0.8447314 -0.7088629 -1.1957783
+#>  [7] -0.4183044 -0.1706795  1.0815985 -0.2198671
 ```
 
 #### dnorm()
@@ -274,7 +272,7 @@ We already know what the sample mean is and how to calculate it in R. Here is an
 
 ```r
 mean(rnorm(10, mean=0, sd =1))
-#> [1] 0.3376038
+#> [1] -0.4239849
 ```
 
 ### Multiple sample means
@@ -286,15 +284,15 @@ Here is an example of creating 5 sample means from 5 sets of 10 observations.
 
 ```r
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.139616
+#> [1] -0.04471581
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.6549391
+#> [1] -0.2384895
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.1269689
+#> [1] 0.376665
 mean(rnorm(10, mean=0, sd =1))
-#> [1] -0.06684122
+#> [1] 0.0569266
 mean(rnorm(10, mean=0, sd =1))
-#> [1] 0.3020679
+#> [1] 0.1866335
 ```
 
 Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.
@@ -338,7 +336,7 @@ The standard deviation of the sample means would give us an idea of how much var
 ```r
 sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 sd(sample_means)
-#> [1] 0.3177668
+#> [1] 0.3225278
 ```
 
 The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.
@@ -356,7 +354,7 @@ We can also compare the SEM from the formula to the one we obtained by simulatio
 # simulation SEM
 sample_means <- replicate(10000, mean(rnorm(10,0,1)))
 sd(sample_means)
-#> [1] 0.3172985
+#> [1] 0.3181567
 
 # analytic SEM
 

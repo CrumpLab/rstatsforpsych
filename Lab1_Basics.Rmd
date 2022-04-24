@@ -2,7 +2,7 @@
 source("global_stuff.R")
 ```
 
-# (PART) Labs {.unnumbered}
+# (PART) Semester 1 Labs {.unnumbered}
 
 # R Basics
 

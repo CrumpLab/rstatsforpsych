@@ -59,8 +59,8 @@ Note to self to come back here with a quick video rundown of this process.
 
 ## Citation
 
-Note, the date reflects the latest compilation of this book.
+Note, the date reflects the latest compilation of this book. The DOI was minted on 12/10/2020.
 
-Crump, M. J. C. (2020, December 10). Reproducible statistics for psychologists with R: Lab Tutorials. https://doi.org/10.17605/OSF.IO/KBHGA
+Crump, M. J. C. (2022, April 24). Reproducible statistics for psychologists with R: Lab Tutorials. https://doi.org/10.17605/OSF.IO/KBHGA
 
 

@@ -3,7 +3,7 @@
 
 # Regression
 
-"10/8/2020 | Last Compiled: 2020-12-09"
+"10/8/2020 | Last Compiled: 2022-04-24"
 
 ## Readings
 
@@ -848,9 +848,9 @@ if(new_sum_deviations < sum_deviations) {
 }
 
 slope
-#> [1] 0.47
+#> [1] 0.51
 b
-#> [1] 1.21
+#> [1] 0.95
 ```
 
 ## Lab 12 Generalization Assignment

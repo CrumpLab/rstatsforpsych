@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>20 Factorial II | Reproducible statistics for psychologists with R</title>
+<meta name="author" content="Matthew J. C. Crump">
+<meta name="description" content="20.1 Readings Chapter 17.84  20.2 Overview This lab supplements the chapter on factorial designs and contrast analyses that discusses statistical techniques for interrogating specific patterns...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="20 Factorial II | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="20.1 Readings Chapter 17.84  20.2 Overview This lab supplements the chapter on factorial designs and contrast analyses that discusses statistical techniques for interrogating specific patterns...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20 Factorial II | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="20.1 Readings Chapter 17.84  20.2 Overview This lab supplements the chapter on factorial designs and contrast analyses that discusses statistical techniques for interrogating specific patterns...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
+<meta property="og:title" content="20 Factorial II | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/factorial-ii.html">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MattCrump_">
+<meta name="twitter:title" content="20 Factorial II | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Lab Tutorials">Reproducible statistics for psychologists with R</a>:
+        <small class="text-muted">Lab Tutorials</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
+<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
+<li><a class="" href="practice-problems.html">Practice problems</a></li>
+<li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
+<li class="book-part">Semester 1 Labs</li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
+<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
+<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
+<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
+<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
+<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
+<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
+<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
+<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="active" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="factorial-ii" class="section level1" number="20">
+<h1>
+<span class="header-section-number">20</span> Factorial II<a class="anchor" aria-label="anchor" href="#factorial-ii"><i class="fas fa-link"></i></a>
+</h1>
+<div id="readings-7" class="section level2" number="20.1">
+<h2>
+<span class="header-section-number">20.1</span> Readings<a class="anchor" aria-label="anchor" href="#readings-7"><i class="fas fa-link"></i></a>
+</h2>
+<p>Chapter 17.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;Abdi, Edelman, Dowling, &amp;amp; Valentin, 2009&lt;/a&gt;.&lt;/p&gt;'><sup>84</sup></a></span></p>
+</div>
+<div id="overview-21" class="section level2" number="20.2">
+<h2>
+<span class="header-section-number">20.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-21"><i class="fas fa-link"></i></a>
+</h2>
+<p>This lab supplements the chapter on factorial designs and contrast analyses that discusses statistical techniques for interrogating specific patterns among means in factorial designs.</p>
+<p>Fundamental to these ideas is a strong understanding of the concepts of main effect and interactions. In the current lab we build on the score model concept and use R to examine properties of main effects and interactions in greater detail.</p>
+</div>
+<div id="concept-i-generating-main-effect-and-interactions" class="section level2" number="20.3">
+<h2>
+<span class="header-section-number">20.3</span> Concept I: Generating main effect and interactions<a class="anchor" aria-label="anchor" href="#concept-i-generating-main-effect-and-interactions"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this section we use R to generate predicted patterns of main effects and interactions for a design with two independent variables.</p>
+<p>The following code chunk shows how the score model for a fixed design (model I) can be coded in R to produce any pattern of main effects and interactions, along with a graphical display of the patterns.</p>
+<div class="sourceCode" id="cb640"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#load libraries</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span>
+
+<span class="co"># define 2-factor score model</span>
+<span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fl">50</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">50</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="op">-</span><span class="fl">15</span><span class="op">)</span>
+<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># create design table</span>
+<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="va">i</span> 
+    <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="va">j</span>
+    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">sc_GM</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span>
+    <span class="va">sc_A</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
+    <span class="va">sc_B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
+    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
+                        <span class="va">sc_GM</span>,<span class="va">sc_A</span>,<span class="va">sc_B</span>,<span class="va">sc_AB</span><span class="op">)</span>
+    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">IVA</th>
+<th align="right">IVB</th>
+<th align="right">DV</th>
+<th align="right">sc_GM</th>
+<th align="right">sc_A</th>
+<th align="right">sc_B</th>
+<th align="right">sc_AB</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">55</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">35</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">55</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">60</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">40</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">60</td>
+<td align="right">50</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">65</td>
+<td align="right">50</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">45</td>
+<td align="right">50</td>
+<td align="right">10</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">65</td>
+<td align="right">50</td>
+<td align="right">15</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">70</td>
+<td align="right">50</td>
+<td align="right">15</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">15</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">70</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">75</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">55</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">75</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">80</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">3</td>
+<td align="right">60</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">2</td>
+<td align="right">105</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">3</td>
+<td align="right">85</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># generate plots</span>
+<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
+                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
+
+<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                         x<span class="op">=</span><span class="va">IVA</span>,
+                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="op">(</span><span class="va">bar_graph</span><span class="op">/</span><span class="va">line_graph</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab8_Contrasts_files/figure-html/unnamed-chunk-2-1.png" width="100%"></div>
+<div id="one-or-two-main-effects-and-no-interaction" class="section level3" number="20.3.1">
+<h3>
+<span class="header-section-number">20.3.1</span> One or two main effects and no interaction<a class="anchor" aria-label="anchor" href="#one-or-two-main-effects-and-no-interaction"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is important to recognize that just because a design uses multiple independent variables, it is not necessarily the case that interactions will occur.</p>
+<p>For example, consider the following toy example. We will conduct an experiment, and the first IV will have three levels (0,5,10), indicating how much money participants are paid when they complete the experiment. The second IV will also have three levels (0,5,10), indicating how much bonus money participants are paid when they complete the experiment. The DV will be how much money in total the participant is given by the experimenter at the end of the experiment.</p>
+<p>Consider how we would represent this experiment using the code from above. First, we program in the expected means for each level of the first and second IV. Second, we do not program an interaction term.</p>
+<div class="sourceCode" id="cb642"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># define 2-factor score model</span>
+<span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># create design table</span>
+<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="va">i</span> 
+    <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="va">j</span>
+    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">sc_GM</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span>
+    <span class="va">sc_A</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
+    <span class="va">sc_B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
+    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
+                        <span class="va">sc_GM</span>,<span class="va">sc_A</span>,<span class="va">sc_B</span>,<span class="va">sc_AB</span><span class="op">)</span>
+    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">IVA</th>
+<th align="right">IVB</th>
+<th align="right">DV</th>
+<th align="right">sc_GM</th>
+<th align="right">sc_A</th>
+<th align="right">sc_B</th>
+<th align="right">sc_AB</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">-5</td>
+<td align="right">-5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">-5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">-5</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">-5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">15</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">10</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">-5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">15</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb643"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># generate plots</span>
+<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
+                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
+
+<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                         x<span class="op">=</span><span class="va">IVA</span>,
+                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="op">(</span><span class="va">bar_graph</span><span class="op">/</span><span class="va">line_graph</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure">
+<img src="s2_Lab8_Contrasts_files/figure-html/unnamed-chunk-3-1.png" width="100%">
+This is a silly design where an interaction should, by definition, be impossible. There are two independent sources of money, and the total amount of money received by each subject is the sum of both sources. In this scenario, the concept of an interaction would occur if one of the combinations of IVA and IVB levels somehow produces more or less than the sum of the levels. For example, if the subjects who received 5 dollars in level 2 of IVA, and 5 dollars bonus from level 2 of IVB, somehow were paid more than 10 dollars in total, or less than 10 dollars in total, there would be an interaction. However, in our mock scenario, we are stipulating that 5+5 = 10, so we have created a situation where an interaction is not possible.</div>
+</div>
+<div id="two-main-effects-and-an-interaction" class="section level3" number="20.3.2">
+<h3>
+<span class="header-section-number">20.3.2</span> Two main effects and an interaction<a class="anchor" aria-label="anchor" href="#two-main-effects-and-an-interaction"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s consider an example from a classic demonstration in visual search. In a visual search task subjects are shown a visual display and asked to find a target among distractors.</p>
+<p>For example, the task could be to find the T, and report whether it is rotated to the left or to the right. Some example displays are shown below.</p>
+<div class="sourceCode" id="cb644"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">'imgs/Factorial/visual_search.png'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="imgs/Factorial/visual_search.png" width="100%"></div>
+<p>The figure depicts a 3x2 design, with three levels of set-size (10,20, 30), and two levels of popout (no popout vs color popout),</p>
+<p>A classic main effect in visual search involves set-size. In general, it takes longer to finder a target as the number of distractors (set-size) increases.</p>
+<p>However, it is possible modulate the set-size effect. For example, the set-size effect would be very pronounced in the no color popout condition. However, in the color popout condition, the target just “pops” out, and it is very easy to find. In this case, the number of distractors (set-size) has a very small or possibly no effect on search time.</p>
+<p>Let’s implement these ideas to produce expected patterns of main effects and interactions for this design. We assume it takes about 500ms to find a target, and that the set size effect changes the time by about 10ms per distractor.</p>
+<div class="sourceCode" id="cb645"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># define 2-factor score model</span>
+<span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fl">500</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">100</span><span class="op">)</span>
+<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span>
+
+<span class="co"># create design table</span>
+<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="va">i</span> 
+    <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="va">j</span>
+    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">sc_GM</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span>
+    <span class="va">sc_A</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
+    <span class="va">sc_B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
+    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
+                        <span class="va">sc_GM</span>,<span class="va">sc_A</span>,<span class="va">sc_B</span>,<span class="va">sc_AB</span><span class="op">)</span>
+    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">IVA</th>
+<th align="right">IVB</th>
+<th align="right">DV</th>
+<th align="right">sc_GM</th>
+<th align="right">sc_A</th>
+<th align="right">sc_B</th>
+<th align="right">sc_AB</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">500</td>
+<td align="right">500</td>
+<td align="right">-100</td>
+<td align="right">100</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">300</td>
+<td align="right">500</td>
+<td align="right">-100</td>
+<td align="right">-100</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">600</td>
+<td align="right">500</td>
+<td align="right">0</td>
+<td align="right">100</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">300</td>
+<td align="right">500</td>
+<td align="right">0</td>
+<td align="right">-100</td>
+<td align="right">-100</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">700</td>
+<td align="right">500</td>
+<td align="right">100</td>
+<td align="right">100</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">300</td>
+<td align="right">500</td>
+<td align="right">100</td>
+<td align="right">-100</td>
+<td align="right">-200</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb646"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># generate plots</span>
+<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
+                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
+
+<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                         x<span class="op">=</span><span class="va">IVA</span>,
+                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="op">(</span><span class="va">bar_graph</span><span class="op">/</span><span class="va">line_graph</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab8_Contrasts_files/figure-html/unnamed-chunk-5-1.png" width="100%"></div>
+</div>
+</div>
+<div id="concept-ii-simulated-power-analysis" class="section level2" number="20.4">
+<h2>
+<span class="header-section-number">20.4</span> Concept II: Simulated power analysis<a class="anchor" aria-label="anchor" href="#concept-ii-simulated-power-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p>The following code block gives an example of simulating data for a 2x2 design that can be used to estimate power (proportion of experiments returning a significant result) for each main effect and interaction.</p>
+<div class="sourceCode" id="cb647"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># N per group</span>
+<span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+
+<span class="va">A_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">B_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">AB_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"2"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,<span class="va">N</span><span class="op">)</span>
+  <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"2"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,<span class="va">N</span><span class="op">)</span>
+  <span class="va">DV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A1B1</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A1B2</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.2</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A2B1</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.2</span>,<span class="fl">1</span><span class="op">)</span>  <span class="co"># means A2B2</span>
+          <span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">sim_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span><span class="op">)</span>
+  
+  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IVA</span><span class="op">*</span><span class="va">IVB</span>, <span class="va">sim_df</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">A_pvalue</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">B_pvalue</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
+  <span class="va">AB_pvalue</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A_pvalue</span><span class="op">[</span><span class="va">A_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.785</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B_pvalue</span><span class="op">[</span><span class="va">B_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.037</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">AB_pvalue</span><span class="op">[</span><span class="va">AB_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.054</span></code></pre></div>
+</div>
+<div id="lab-8-generalization-assignment-1" class="section level2" number="20.5">
+<h2>
+<span class="header-section-number">20.5</span> Lab 8 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-8-generalization-assignment-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>Note: there was a technical glitch for this video, where I zoomed to close on the RStudio window. Most of the screencast is visible, but sometimes I am working on code that is out of view. As always, the .Rmd files for the solutions are on the github repository for this course, so you can check those out too.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tu-rYkuq1lI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="instructions-19" class="section level3" number="20.5.1">
+<h3>
+<span class="header-section-number">20.5.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-19"><i class="fas fa-link"></i></a>
+</h3>
+<p>Your assignment instructions are the following:</p>
+<ol style="list-style-type: decimal">
+<li>Work inside the new R project for stats II that you created</li>
+<li>Create a new R Markdown document called “Lab8.Rmd”</li>
+<li>Use Lab8.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>
+<strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
+<li>Submit your github repository link for Lab 8 on blackboard.</li>
+</ol>
+</div>
+<div id="problems-18" class="section level3" number="20.5.2">
+<h3>
+<span class="header-section-number">20.5.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-18"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Consider a 2x2 design. Assume the DV is measured from a normal distribution with mean 0, and standard deviation 1. Assume that the main effect of A causes a total shift of .5 standard deviations of the mean between the levels. Assume that level 1 of B is a control, where you expect to measure the standard effect of A. Assume that level 2 of B is an experimental factor intended to reduce the effect of A by .25 standard deviations.</li>
+</ol>
+<p>A. create a ggplot2 figure that depicts the expected results from this design (2 points)</p>
+<p>Conduct simulation-based power analyses to answer the questions.</p>
+<p>B. How many subjects are needed to detect the main effect of A with power = .8? (2 points)</p>
+<p>C. How many subjects are needed to detect the interaction effect with power = .8? (2 points)</p>
+<p>Bonus point question:</p>
+<p>B1. Create a power curve showing how power for the interaction effect in this example is influenced by number of subjects. Choose a range of N from 25 to 800 (per cell) and run a simulation-based power analysis for increments of 25 subjects. Then plot the results using ggplot2 (2 points).</p>
+</div>
+</div>
+<div id="references-7" class="section level2" number="20.6">
+<h2>
+<span class="header-section-number">20.6</span> References<a class="anchor" aria-label="anchor" href="#references-7"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></div>
+<div class="next"><a href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#factorial-ii"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="nav-link" href="#readings-7"><span class="header-section-number">20.1</span> Readings</a></li>
+<li><a class="nav-link" href="#overview-21"><span class="header-section-number">20.2</span> Overview</a></li>
+<li>
+<a class="nav-link" href="#concept-i-generating-main-effect-and-interactions"><span class="header-section-number">20.3</span> Concept I: Generating main effect and interactions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#one-or-two-main-effects-and-no-interaction"><span class="header-section-number">20.3.1</span> One or two main effects and no interaction</a></li>
+<li><a class="nav-link" href="#two-main-effects-and-an-interaction"><span class="header-section-number">20.3.2</span> Two main effects and an interaction</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#concept-ii-simulated-power-analysis"><span class="header-section-number">20.4</span> Concept II: Simulated power analysis</a></li>
+<li>
+<a class="nav-link" href="#lab-8-generalization-assignment-1"><span class="header-section-number">20.5</span> Lab 8 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-19"><span class="header-section-number">20.5.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-18"><span class="header-section-number">20.5.2</span> Problems</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#references-7"><span class="header-section-number">20.6</span> References</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/s2_Lab8_Contrasts.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/s2_Lab8_Contrasts.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Reproducible statistics for psychologists with R</strong>: Lab Tutorials" was written by Matthew J. C. Crump. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

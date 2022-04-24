@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>17 ANOVA and Randomization | Reproducible statistics for psychologists with R</title>
+<meta name="author" content="Matthew J. C. Crump">
+<meta name="description" content="17.1 Reading Chapters 9 and 10 from.75  17.2 Overview Simulating the Null and Randomization test  Alternative Hypotheses  Throughout this course we reiterate that ANOVA and regression are...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="17 ANOVA and Randomization | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="17.1 Reading Chapters 9 and 10 from.75  17.2 Overview Simulating the Null and Randomization test  Alternative Hypotheses  Throughout this course we reiterate that ANOVA and regression are...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="17 ANOVA and Randomization | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="17.1 Reading Chapters 9 and 10 from.75  17.2 Overview Simulating the Null and Randomization test  Alternative Hypotheses  Throughout this course we reiterate that ANOVA and regression are...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
+<meta property="og:title" content="17 ANOVA and Randomization | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/anova-and-randomization.html">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MattCrump_">
+<meta name="twitter:title" content="17 ANOVA and Randomization | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Lab Tutorials">Reproducible statistics for psychologists with R</a>:
+        <small class="text-muted">Lab Tutorials</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
+<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
+<li><a class="" href="practice-problems.html">Practice problems</a></li>
+<li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
+<li class="book-part">Semester 1 Labs</li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
+<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
+<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
+<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
+<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
+<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
+<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
+<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
+<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="active" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="anova-and-randomization" class="section level1" number="17">
+<h1>
+<span class="header-section-number">17</span> ANOVA and Randomization<a class="anchor" aria-label="anchor" href="#anova-and-randomization"><i class="fas fa-link"></i></a>
+</h1>
+<div id="reading-8" class="section level2" number="17.1">
+<h2>
+<span class="header-section-number">17.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-8"><i class="fas fa-link"></i></a>
+</h2>
+<p>Chapters 9 and 10 from.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;Abdi, Edelman, Dowling, &amp;amp; Valentin, 2009&lt;/a&gt;.&lt;/p&gt;'><sup>75</sup></a></span></p>
+</div>
+<div id="overview-18" class="section level2" number="17.2">
+<h2>
+<span class="header-section-number">17.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-18"><i class="fas fa-link"></i></a>
+</h2>
+<p>Simulating the Null and Randomization test</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3a0OHVuxoMI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Alternative Hypotheses</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b54D5Ryc_xk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Throughout this course we reiterate that ANOVA and regression are fundamentally the same analysis. For example, the readings from the textbook for this week show ANOVA from a linear regression perspective. The purpose of this lab is to develop another similarity, between ANOVA and randomization/permutation tests (remember we discussed these last semester in <a href="https://crumplab.github.io/psyc7709Lab/articles/Stats1/Lab6_Statistical_Inference.html">lab 6</a>).
+The plan for the lab is to walk through the conceptual issues involved in detecting causal influences from experiments with one independent variable and multiple levels. We will see how ANOVA is one approach to detecting causal influences. In this lab we will attempt to expose the assumptions made in ANOVA, and also show how Randomization tests could be employed as a non-parametric alternative (a test that doesn’t depend on the assumptions inherent to ANOVA).</p>
+</div>
+<div id="how-can-you-know-if-your-experiment-works" class="section level2" number="17.3">
+<h2>
+<span class="header-section-number">17.3</span> How can you know if your experiment works?<a class="anchor" aria-label="anchor" href="#how-can-you-know-if-your-experiment-works"><i class="fas fa-link"></i></a>
+</h2>
+<p>You are planning to run a between-subjects experiment with one independent variable that has multiple levels (let’s say four). As an experimenter, you are interested in whether the manipulation (your IV) causes a change in your measurement (your DV). You will assign subjects randomly to each of the levels of your IV, and you will take measurements of subject performance in each of the levels. Then, you will look at means in each level.</p>
+<p>If some aspect of your manipulation causally changes the means in your measurement (DV), then you will expect to find some differences in means between the levels. However, because you are randomly assigning different subjects to the different levels, you also know that you will find differences between the means as a result of the error introduced by the random assignment process. Thus, you consider the role of chance in producing differences in your measurements as a part of your inferential process for determining whether experiment had a causal influence.</p>
+</div>
+<div id="constructing-a-null-hypothesis" class="section level2" number="17.4">
+<h2>
+<span class="header-section-number">17.4</span> Constructing a null-hypothesis<a class="anchor" aria-label="anchor" href="#constructing-a-null-hypothesis"><i class="fas fa-link"></i></a>
+</h2>
+<p>Last lab we walked through the details of the pieces of ANOVA, including how the F-ratio is computed directly from the data. Remember, the formula for F is:</p>
+<p><span class="math inline">\(F = \frac{MS_{between}}{MS_{within}}\)</span></p>
+<p><span class="math inline">\(MS_{between}\)</span> is a variance representing the average differences between the levels in your independent variable. This number should grow larger as the differences between means across your levels grows larger. <span class="math inline">\(MS_{within}\)</span> is a variance representing the average differences among subjects inside each level. If we assume that that your manipulation does not change these random differences between subjects, then this variance should roughly be the same regardless of whether your manipulation causes a change in the means.</p>
+<p>The <span class="math inline">\(F\)</span>-ratio itself is a summary statistic of the data. <span class="math inline">\(F\)</span> will tend to get larger than 1 when the experimental manipulation actually causes a difference in means between the levels. This is because the numerator <span class="math inline">\(MS_{between}\)</span>, will tend to be much larger than the denominator <span class="math inline">\(MS_{within}\)</span>. At the same time, <span class="math inline">\(F\)</span> can take on a range values just by random chance too. So, a first step in our process of statistical inference will be to determine what kinds of values F can take as a result of our random assignment process. This involves constructing a sampling distribution of <span class="math inline">\(F\)</span> for the null-hypothesis of no differences between means.</p>
+<div id="f-distribution" class="section level3" number="17.4.1">
+<h3>
+<span class="header-section-number">17.4.1</span> F distribution<a class="anchor" aria-label="anchor" href="#f-distribution"><i class="fas fa-link"></i></a>
+</h3>
+<p>As mentioned last class, base R provide distribution functions for <span class="math inline">\(F\)</span>, such as <code><a href="https://rdrr.io/r/stats/Fdist.html">df()</a></code>, <code><a href="https://rdrr.io/r/stats/Fdist.html">pf()</a></code>, <code><a href="https://rdrr.io/r/stats/Fdist.html">qf()</a></code>, <code><a href="https://rdrr.io/r/stats/Fdist.html">rf()</a></code>.</p>
+<p>For example, we can sample random deviates from an F-distribution:</p>
+<div class="sourceCode" id="cb572"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">some_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">some_F_values</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-2-1.png" width="100%"></div>
+<p>And, we can compute the probability of obtaining F-values, given associated p-values.</p>
+<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">16</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.02658133</span></code></pre></div>
+<p>These distribution functions follow from the formal analytic solutions for the F-distribution, which requires advanced calculus. The wikipedia page for the F-distribution shows some of the math involved <a href="https://en.wikipedia.org/wiki/F-distribution" class="uri">https://en.wikipedia.org/wiki/F-distribution</a>. Although this math is advanced and beyond the scope of this lab, the concept behind the math is not very advanced, and we can approximate these distributions in R using monte-carlo simulation.</p>
+</div>
+</div>
+<div id="simulating-a-null-f-distribution-in-r" class="section level2" number="17.5">
+<h2>
+<span class="header-section-number">17.5</span> Simulating a null F-distribution in R<a class="anchor" aria-label="anchor" href="#simulating-a-null-f-distribution-in-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Before we simulate a null F-distribution in R, consider the overarching point of doing so for your experimental design. Let’s say you want to do a really good job of controlling for the error introduced by randomly assigning participants to groups. So, before you run your actual experiment, you instead run thousands of control experiments. In the control experiments, you randomly assign subjects to different groups and you measure them on your dependent variable. However, you do not conduct any manipulation at all. In this case it is impossible for your manipulation to do anything because there wasn’t one. However, you have still assigned subjects randomly to different groups. As a result, you can measure F-ratios for each of the control experiments. Sometimes by random chance you will have larger and smaller F-ratios. All of the variation in the F-ratios for your control experiments is a result of random assignment process and the fact that your dependent measure has some inherent variability. As a careful experimenter, you are interested in knowing what this control distribution of F-values looks like before you run your experiment. In other words, the null-distribution is a record of what happens across the ultimate set of control experiments (where your manipulation does nothing). If you could estimate this distribution, then when you run your experiment you could ask yourself whether you think the result you found could have happened in the control scenario (e.g., could have been something that chance did, and not your manipulation).</p>
+<div class="sourceCode" id="cb574"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+
+<span class="co"># construct a dataframe to represent sampling random subjects into each group of the design</span>
+
+<span class="va">levels</span> <span class="op">&lt;-</span> <span class="fl">4</span>
+<span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+
+<span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
+                      <span class="op">)</span>
+
+<span class="co"># compute the ANOVA and extractd the F-value</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">random_data</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+
+
+<span class="co"># repeat the above many times to compute the F-distribution</span>
+<span class="va">save_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
+                      <span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">random_data</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">save_F_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span></code></pre></div>
+<p>Let’s do a quick check to see that the results we are simulating above are like the results we would get from the analytic F-distributions. The simulated distribution should converge on the analytic one as the number of iterations in the monte-carlo simulation is increased.</p>
+<div class="sourceCode" id="cb575"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+
+<span class="va">F_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"analytic"</span>,<span class="st">"simulated"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, 
+                        F_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>,<span class="va">save_F_values</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_comparison</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_value</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-5-1.png" width="100%"></div>
+<div id="anova-assumptions" class="section level3" number="17.5.1">
+<h3>
+<span class="header-section-number">17.5.1</span> ANOVA assumptions<a class="anchor" aria-label="anchor" href="#anova-assumptions"><i class="fas fa-link"></i></a>
+</h3>
+<p>A major purpose of running these simulations is to find ways to inspect the underlying assumptions of ANOVA. You can see that the simulation above produced the same F-distribution as the one obtained by the analytic solution for the F-distribution.</p>
+<p>The basic assumption in the simulation, which also appear in ANOVA, is that the score for each subject (that is used to compute the F-ratio) is <strong>randomly sampled from a normal distribution</strong>. In our simulation, we randomly sampled numbers for each subject from a unit normal distribution with mean = 0, and standard deviation = 1.</p>
+<p>A first point to make is that the parameters in our simulated normal distribution do not influence the F-distribution. Remember, that a normal distribution has the same overall shape no matter what the mean and standard deviation is. As a result, we will always get the same F-distribution if we assume that all of our samples are coming from the same normal distribution. To illustrate the point, let’s re-run our simulation, but take values from normal distribution with mean = 50, and standard deviation = 25.</p>
+<div class="sourceCode" id="cb576"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">save_new_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span>, <span class="fl">50</span>, <span class="fl">25</span><span class="op">)</span>
+                      <span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">random_data</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">save_new_F_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
+
+<span class="va">F_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"analytic"</span>,<span class="st">"sim_0_1"</span>,<span class="st">"sim_50_25"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, 
+                        F_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>,<span class="va">save_F_values</span>, <span class="va">save_new_F_values</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_comparison</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_value</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-6-1.png" width="100%"></div>
+<p>A common term to describe the above assumption is <strong>i.i.d</strong>, which stands for independent and identically distributed. That is, we assume that each score in the data is sampled <strong>independently</strong> (or randomly) from all of the other scores, and each score is sampled from the <strong>identical</strong> distribution as all other scores. In the two simulated F-distributions above, we implemented the <strong>iid</strong> assumption both times. In one case, we sampled values from a normal with mean = 0 , and sd = 1, and the in the other we sampled scores from a normal with mean = 50, and sd = 25. As an aside, it is worth considering whether this assumption is ever true in the real world. For example, could you run a control experiment where you sample people into different groups, do no manipulation beyond assigning people to different groups, and then be confident that the mean of your measurement of each person is the same as sampling from a <strong>iid</strong> normal distribution?</p>
+<p>Even though in practice we routinely violate assumptions of ANOVA, it is also the case that F-distributions are fairly resistant to violations of assumptions. For example, let’s assume that individual scores are sampled from a bimodal distribution, that is very obviously not normal. The result is that F-distribution is roughly similar to our previous ones based on the normal distribution.</p>
+<div class="sourceCode" id="cb577"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># an example bi-modal sample</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">/</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">/</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-7-1.png" width="100%"></div>
+<div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">save_bimodal_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+
+  <span class="va">random_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                        IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                        DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">/</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+                                      <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">/</span><span class="fl">2</span>,<span class="fl">5</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+                        <span class="op">)</span>
+  <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">random_data</span><span class="op">)</span>
+  <span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">save_bimodal_F_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
+
+<span class="va">F_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"analytic"</span>,<span class="st">"sim_0_1"</span>,<span class="st">"sim_50_25"</span>, <span class="st">"sim_bimodal"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, 
+                        F_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>,<span class="va">save_F_values</span>, <span class="va">save_new_F_values</span>,<span class="va">save_bimodal_F_values</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_comparison</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_value</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-7-2.png" width="100%"></div>
+</div>
+<div id="p-values" class="section level3" number="17.5.2">
+<h3>
+<span class="header-section-number">17.5.2</span> p-values<a class="anchor" aria-label="anchor" href="#p-values"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s consider p-values for a moment. The graph above shows several simulations of the “ultimate control experiment” for our design. All of the <span class="math inline">\(F-values\)</span> are the values that can be obtained by chance alone. Remember, we introduce randomness by assigning different people randomly to different groups, and we assume there is inherent variability in our measurement that is also unpredictable.</p>
+<p>Let’s be conventional for a moment and ask about the critical value of F, for an alpha of .05. This would be the value of F where 95% of F values are smaller than the critical value.</p>
+<p>We can use the <code>qf</code> function to compute the critical value precisely:</p>
+<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3.238872</span></code></pre></div>
+<p>Let’s see how close each of the simulations got to this critical value:</p>
+<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="co">## 1000 deviates samples from true F distribution</span>
+<span class="va">Fs</span> <span class="op">&lt;-</span> <span class="va">F_comparison</span><span class="op">[</span><span class="va">F_comparison</span><span class="op">$</span><span class="va">type</span><span class="op">==</span><span class="st">"analytic"</span>,<span class="op">]</span><span class="op">$</span><span class="va">F_value</span>
+<span class="va">sorted_Fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">Fs</span><span class="op">)</span>
+<span class="va">sorted_Fs</span><span class="op">[</span><span class="fl">950</span><span class="op">]</span>
+<span class="co">#&gt; [1] 3.325027</span>
+
+<span class="co">## 1000 deviates samples from normal sim_0_1</span>
+<span class="va">Fs</span> <span class="op">&lt;-</span> <span class="va">F_comparison</span><span class="op">[</span><span class="va">F_comparison</span><span class="op">$</span><span class="va">type</span><span class="op">==</span><span class="st">"sim_0_1"</span>,<span class="op">]</span><span class="op">$</span><span class="va">F_value</span>
+<span class="va">sorted_Fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">Fs</span><span class="op">)</span>
+<span class="va">sorted_Fs</span><span class="op">[</span><span class="fl">950</span><span class="op">]</span>
+<span class="co">#&gt; [1] 3.103811</span>
+
+<span class="co">## 1000 deviates samples from normal sim_50_25</span>
+<span class="va">Fs</span> <span class="op">&lt;-</span> <span class="va">F_comparison</span><span class="op">[</span><span class="va">F_comparison</span><span class="op">$</span><span class="va">type</span><span class="op">==</span><span class="st">"sim_50_25"</span>,<span class="op">]</span><span class="op">$</span><span class="va">F_value</span>
+<span class="va">sorted_Fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">Fs</span><span class="op">)</span>
+<span class="va">sorted_Fs</span><span class="op">[</span><span class="fl">950</span><span class="op">]</span>
+<span class="co">#&gt; [1] 3.20533</span>
+
+<span class="co">## 1000 deviates samples from bimodal sim</span>
+<span class="va">Fs</span> <span class="op">&lt;-</span> <span class="va">F_comparison</span><span class="op">[</span><span class="va">F_comparison</span><span class="op">$</span><span class="va">type</span><span class="op">==</span><span class="st">"sim_bimodal"</span>,<span class="op">]</span><span class="op">$</span><span class="va">F_value</span>
+<span class="va">sorted_Fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">Fs</span><span class="op">)</span>
+<span class="va">sorted_Fs</span><span class="op">[</span><span class="fl">950</span><span class="op">]</span>
+<span class="co">#&gt; [1] 3.818101</span></code></pre></div>
+<p>Blurring your eyes a bit, we see that control experiments where the manipulation does nothing produce F values that are smaller than 3.2 to 3.4ish 95% of the time. Looking at the distributions, themselves, you can see that they never produce values much larger than 10.</p>
+<p>If you were to conduct a real experiment, then you might want to observe an F value that was larger than 3.2ish. If you found an F-value larger than 10, you could be pretty confident that the null-distribution did not cause the F-value. Instead, it would seem more plausible that your experimental manipulation actually caused some change in the means of your measured variable.</p>
+</div>
+</div>
+<div id="randomization-test" class="section level2" number="17.6">
+<h2>
+<span class="header-section-number">17.6</span> Randomization test<a class="anchor" aria-label="anchor" href="#randomization-test"><i class="fas fa-link"></i></a>
+</h2>
+<p>We have seen that the true F-distribution is well approximated by our simulation distributions, and that the F-distribution is robust to violations of the assumptions of ANOVA. For example, when we changed the base distribution to a bi-modal distribution, we found a pretty similar overall F-distribution to the ones obtained assuming a normal distribution.</p>
+<p>More generally, we can construct useful null distributions for a one-factor design that do not depend on the distributional assumptions of ANOVA. For example, we could conduct a randomization test. The randomization test creates a null-distribution that controls for the random assignment process. For example, it is clear that when an experiment involves randomly assigning people to different groups, that the assignment that happened is just one out of many possible assignments to the groups. For example, if you assigned all the tall people to one group, all of the average height people to one group, and all of the shorter people to another group, would you really want to claim that some manipulation like listening to different kinds of music, caused people to have different heights? No, instead you would say the assignment process caused people of specific heights to be assigned to specific groups. The general question here is, given that the people you are measuring will be different, what kinds of differences between groups could you get just by assigning people randomly to different groups?</p>
+<p>The randomization test determines the answer to the above question by taking the observed data, reshuffling it across the groups many times over, and each time computing a test statistic like <span class="math inline">\(F\)</span>. s</p>
+<p>Imagine we had some data where one group had a larger mean than the others. I just made up some numbers here, so they definetly did not come from a normal distribution. Most of the numbers are around 9, but the numbers in group 1 happen to be all above 10.</p>
+<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">levels</span> <span class="op">&lt;-</span> <span class="fl">4</span>
+<span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+
+<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span>,<span class="fl">12</span>,<span class="fl">11</span>,<span class="fl">11</span>,<span class="fl">12</span>,
+                             <span class="fl">10</span>,<span class="fl">8</span>,<span class="fl">10</span>,<span class="fl">9</span>,<span class="fl">10</span>,
+                             <span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">10</span>,
+                             <span class="fl">10</span>,<span class="fl">8</span>,<span class="fl">10</span>,<span class="fl">9</span>,<span class="fl">10</span>
+                             <span class="op">)</span>
+                      <span class="op">)</span></code></pre></div>
+<p>Even though we are violating the assumptions of the ANOVA, we can still compute the ANOVA table from the data. Here, we get an <span class="math inline">\(F\)</span> value of 7.407. The p-value for this F-value assumes that the data were randomly sampled from a normal distribution, which they were not.</p>
+<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">some_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
+<span class="co">#&gt; IV           3   15.0   5.000   7.407 0.00249 **</span>
+<span class="co">#&gt; Residuals   16   10.8   0.675                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<p>Instead of using the provided p-value, we can conduct a randomization test. This involves shuffling the data, computing F, and repeating several times to create a sampling distribution of <span class="math inline">\(F\)</span>. This distribution will be specific to the numbers in the dataset. We are asking, what kind of <span class="math inline">\(F\)</span> values could have been obtained if the numbers for each person were randomly assigned to different groups.</p>
+<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">save_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                        IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                        DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span>,<span class="fl">12</span>,<span class="fl">11</span>,<span class="fl">11</span>,<span class="fl">12</span>,
+                               <span class="fl">10</span>,<span class="fl">8</span>,<span class="fl">10</span>,<span class="fl">9</span>,<span class="fl">10</span>,
+                               <span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">10</span>,<span class="fl">10</span>,
+                               <span class="fl">10</span>,<span class="fl">8</span>,<span class="fl">10</span>,<span class="fl">9</span>,<span class="fl">10</span>
+                               <span class="op">)</span><span class="op">)</span>
+                        <span class="op">)</span>
+  <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span><span class="va">some_data</span><span class="op">)</span>
+  <span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">save_F_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
+
+<span class="va">F_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"analytic"</span>,<span class="st">"randomization"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, 
+                        F_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>,<span class="va">save_F_values</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_comparison</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_value</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-12-1.png" width="100%"></div>
+<p>As you can see, the distribution of possible F values that we obtained by randomly reshuffling the data isn’t terribly different from the analytic F distribution based on the normal distribution.</p>
+<p>Using the F distribution from the Randomization test, we can compute a p-value for the observed F-value and find a similar result.</p>
+<div class="sourceCode" id="cb584"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">[</span><span class="va">save_F_values</span><span class="op">&gt;</span><span class="fl">7.407</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.004</span></code></pre></div>
+</div>
+<div id="the-alternative-hypotheses" class="section level2" number="17.7">
+<h2>
+<span class="header-section-number">17.7</span> The alternative hypotheses<a class="anchor" aria-label="anchor" href="#the-alternative-hypotheses"><i class="fas fa-link"></i></a>
+</h2>
+<p>The above section showed an example of simulating the null-hypothesis for a design with one independent variable and multiple levels. The basic set-up was pretty straightforward. You randomly sample numbers from the same distribution into your different groups. Thus, the null hypothesis is that every group mean should be on average be the same, because they should all be the same as the mean of the distribution that they came from.</p>
+<p>What if we want to simulate a situation where your experimental manipulation is presumed to actually do something to the measurement? If your manipulation causes some change in the measurement, then by definition we must be violating the <strong>iid</strong> assumption. It will no longer be the case that the scores sampled into different groups are taken randomly from identical distributions. Instead, we think of the manipulation as effectively causing multiple distributions to exist. If one level causes a large increase to the mean, then we think of the scores in that group as coming from a distribution with a shifted mean, relative to scores in the other groups.</p>
+<div id="simulating-alternative-hypotheses" class="section level3" number="17.7.1">
+<h3>
+<span class="header-section-number">17.7.1</span> Simulating alternative hypotheses<a class="anchor" aria-label="anchor" href="#simulating-alternative-hypotheses"><i class="fas fa-link"></i></a>
+</h3>
+<p>The null-hypothesis is easy to simulate because of the <strong>iid</strong> assumption. However, alternative hypotheses in general are more difficult because there are an infinity of them.</p>
+<p>Let’s begin by simulating one specific alternative hypothesis. The method for doing this is just to declare what distributions your data are being sampled from for each group. Any scenario that is not the null, is a possible alternative.</p>
+<p>Let’s imagine that we are measuring performance on a standardized test, with mean = 100, and sd = 25. There are four groups that manipulate the kind of music people listen to when they take the test. Let’s say that for some reason listening to 1970s sitcom music causally changes test performance, and it increases the mean for that group by 1 one whole standard deviation. Let’s declare this exact situation in R.</p>
+<p>The tibble represents random values for four groups sampled from two different distributions. Group one gets <code>rnorm(n,125,25)</code>, and the other three groups get <code>rnorm(n,100,25)</code>.</p>
+<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">levels</span> <span class="op">&lt;-</span> <span class="fl">4</span>
+<span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+
+<span class="va">alternative_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">125</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>
+                             <span class="op">)</span>
+                      <span class="op">)</span></code></pre></div>
+<p>In general, we can specify any alternative hypothesis that we want. All we have to do is declare the properties of the distribution(s) generating the scores in each group.</p>
+<p>We can even generate F-distributions based off of the alternative that we specified. For example, what kind of F-values would we expect to get for the above set of assumptions?</p>
+<div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># repeat the above many times to compute the F-distribution</span>
+<span class="va">save_altF_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">alternative_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">125</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>
+                             <span class="op">)</span>
+                      <span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">alternative_data</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">save_altF_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
+
+<span class="va">F_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"null"</span>,<span class="st">"alternative"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, 
+                        F_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>,<span class="va">save_altF_values</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_comparison</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_value</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, nrow<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-15-1.png" width="100%"></div>
+<p>The alternative F-distribution is more spread out, and tends to have higher values than the null. But, there is still a good deal of overlap. For example, the critical value for F based on the null is</p>
+<div class="sourceCode" id="cb587"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">3</span>,<span class="fl">16</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3.238872</span></code></pre></div>
+<p>How many times was F higher than 3.23 in the alternative distribution?</p>
+<div class="sourceCode" id="cb588"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_altF_values</span><span class="op">[</span><span class="va">save_altF_values</span> <span class="op">&gt;</span> <span class="fl">3.23</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt; [1] 266</span></code></pre></div>
+<p>This is a pretty low number, and it means that the true effect is not detected very often even when it is actually there. In other words, the design has low power to detect to detect the effect.</p>
+</div>
+<div id="number-of-subjects-needed" class="section level3" number="17.7.2">
+<h3>
+<span class="header-section-number">17.7.2</span> Number of subjects needed<a class="anchor" aria-label="anchor" href="#number-of-subjects-needed"><i class="fas fa-link"></i></a>
+</h3>
+<p>We programmed one group to have a mean that was shifted by a whole standard deviation. This is a large difference, but it was not reliably detected by the design because of the large amount of variability stemming from the small n. Consider what happens here when we increase the number of subjects, say from 5 to 50 in each group:</p>
+<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="fl">50</span>
+
+<span class="co"># repeat the above many times to compute the F-distribution</span>
+<span class="va">save_altF_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">alternative_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">125</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                             <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>
+                             <span class="op">)</span>
+                      <span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">alternative_data</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">save_altF_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
+
+<span class="va">F_comparison</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"null"</span>,<span class="st">"alternative"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>, 
+                        F_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">rf</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">3</span>,<span class="fl">96</span><span class="op">)</span>,<span class="va">save_altF_values</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_comparison</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_value</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, nrow<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-18-1.png" width="100%"></div>
+<p>In this scenario the <span class="math inline">\(F\)</span> values in the alternative distribution are much higher than the null distribution, and reliably so. The critical value for F is slightly different now because increasing n changed the degrees of freedom. The new critical value is:</p>
+<div class="sourceCode" id="cb590"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">3</span>,<span class="fl">200</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2.650677</span></code></pre></div>
+<p>Now, we can ask how many experiments out of 1000 surpassed the critical value?</p>
+<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_altF_values</span><span class="op">[</span><span class="va">save_altF_values</span> <span class="op">&gt;</span> <span class="fl">2.65</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1000</span></code></pre></div>
+<p>In this case, the design is very sensitive, 100% of the experiments would have yielded an F-value larger than the critical value. From a cost-benefit perspective, increasing n to 50 for each group might be waste of resources. For example, what is the least amount of subjects you would need to have power of around 95%?</p>
+<p>One solution is fidget with n until you find about 95%…</p>
+<p>For example, I wiggled <code>n_per_level</code> until I was getting about 95% of experiments passing the critical value, and I landed on n = 25 per group. Note, that this simulation is a little noisy because we are only conducting 1000 simulations, we would get a more precise and stable estimate by increasing the number of simulations.</p>
+<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="fl">25</span>
+
+<span class="co"># repeat the above many times to compute the F-distribution</span>
+<span class="va">save_altF_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">alternative_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                        IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                        DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">125</span>, <span class="fl">25</span><span class="op">)</span>,
+                               <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                               <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                               <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>
+                               <span class="op">)</span>
+                        <span class="op">)</span>
+  <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">alternative_data</span><span class="op">)</span>
+  <span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">save_altF_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_altF_values</span><span class="op">[</span><span class="va">save_altF_values</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">3</span>,<span class="op">(</span><span class="va">n_per_level</span><span class="op">*</span><span class="fl">4</span><span class="op">)</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.964</span></code></pre></div>
+<p>Instead of wiggling the n by hand, we could run a set of simulations for different n, and plot a curve power-curve:</p>
+<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">num_subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">30</span><span class="op">)</span>
+<span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_subjects</span><span class="op">)</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">n</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_subjects</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+
+  <span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="va">num_subjects</span><span class="op">[</span><span class="va">n</span><span class="op">]</span>
+  
+  <span class="co"># repeat the above many times to compute the F-distribution</span>
+  <span class="va">save_altF_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">alternative_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                          IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                          DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">125</span>, <span class="fl">25</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>
+                                 <span class="op">)</span>
+                          <span class="op">)</span>
+    <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">alternative_data</span><span class="op">)</span>
+    <span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+    <span class="va">save_altF_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+  <span class="op">}</span>
+  
+  <span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_altF_values</span><span class="op">[</span><span class="va">save_altF_values</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">3</span>,<span class="op">(</span><span class="va">n_per_level</span><span class="op">*</span><span class="fl">4</span><span class="op">)</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+  <span class="va">sim_power</span><span class="op">[</span><span class="va">n</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">power</span>
+<span class="op">}</span>
+
+<span class="va">power_curve</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">num_subjects</span>,
+                      <span class="va">sim_power</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">power_curve</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">num_subjects</th>
+<th align="right">sim_power</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.261</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">0.565</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="right">0.760</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">0.906</td>
+</tr>
+<tr class="odd">
+<td align="right">25</td>
+<td align="right">0.952</td>
+</tr>
+<tr class="even">
+<td align="right">30</td>
+<td align="right">0.985</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb594"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">power_curve</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num_subjects</span>,
+                        y<span class="op">=</span><span class="va">sim_power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-22-1.png" width="100%"></div>
+</div>
+<div id="simulated-power-analysis" class="section level3" number="17.7.3">
+<h3>
+<span class="header-section-number">17.7.3</span> Simulated power analysis<a class="anchor" aria-label="anchor" href="#simulated-power-analysis"><i class="fas fa-link"></i></a>
+</h3>
+<p>Last semester we discussed power analysis for simple two-group designs along with the concept of effect-size. In those designs, we used Cohen’s D as a measure of effect-size, which expresses the mean difference between groups in terms of standard deviation units. There are several ways to generalize these ideas to one-factor ANOVA, where there are more than two groups.</p>
+<p>Notice that in the above example, we didn’t discuss a general measure of effect-size before doing the power-analysis. Instead, we declared that one group would have a different mean than the other groups, and we also set the size of the difference to be one standard deviation. This approach is useful because it allows you, the researcher, to declare specifically what you think might happen in your experiment, and then conduct a simulation based power analysis to determine a sufficient sample-size to detect the effects that you specified. This is more or less in line with <span class="citation">Lenth, R. V.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-lenthPracticalGuidelinesEffective2001" role="doc-biblioref"&gt;(2001). Some &lt;span&gt;Practical Guidelines&lt;/span&gt; for &lt;span&gt;Effective Sample Size Determination&lt;/span&gt;. &lt;em&gt;The American Statistician&lt;/em&gt;, &lt;em&gt;55&lt;/em&gt;(3), 187–193. &lt;/a&gt;&lt;a href="https://doi.org/b4523s" role="doc-biblioref"&gt;https://doi.org/b4523s&lt;/a&gt;.&lt;/p&gt;'><sup>76</sup></a></span>, who advocates for a thoughtful and tailored (to the research question at hand) approach to the problem of power analysis and sample-size planning.</p>
+<p>Let’s consider one more example of a simulated power-analysis for a more general kind of question. Assume you a researcher studying performance on a standardized test that is normally distributed. You are interested in manipulations that help people learn the material that is being tested, and subsequently improve their test scores. You are going to run an experiment with 4 groups, and each group will get different learning interventions. You don’t know anything about whether the learning interventions will do anything. You have no idea what “effect” they will have on the test scores. Can you do a power analysis here, even when you have no idea could happen?…for example, consider that any of the four different interventions could cause mean test performance to go up or down by any amount…and, since the groups are independent, you could potentially find any combination of the possible ways that four group means could be different!</p>
+<p>In this case, let’s say you are interested in practical matters like whether or not to actually use a particular learning intervention to help students. In this stage of the research you are trying different learning interventions out to see if any of them work. You are trying four different ones at a time. A good practical question is, what kind of learning intervention is worth using? Is a learning intervention that changes test performance by .00000001 of a standard deviation worth discovering? Perhaps not for the purposes of training students. What size of a difference is worth it?</p>
+<p>Let’s say you would be interested in sdetecting evidence of manipulations that caused test performance to go up or down by around .2 standard deviations on average. I’m pulling this number out of the air as if it is meaningful, but perhaps it’s a big enough shift to be interesting. How many subjects are needed for reasonably powered design, let’s say power = 80%?</p>
+<p>We can implement this situation by changing the mean value for each group. In this case, I sample the mean parameter from another normal distribution with mean = 0 and sd = .2. This results in the data from each group being sampled from different normal distributions that on average have mean differences of about .2 standard deviations in any direction.</p>
+<div class="sourceCode" id="cb595"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">num_subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>, <span class="fl">125</span>, <span class="fl">150</span>, <span class="fl">175</span>, <span class="fl">200</span><span class="op">)</span>
+<span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_subjects</span><span class="op">)</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">n</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">num_subjects</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+
+  <span class="va">n_per_level</span> <span class="op">&lt;-</span> <span class="va">num_subjects</span><span class="op">[</span><span class="va">n</span><span class="op">]</span>
+  
+  <span class="co"># repeat the above many times to compute the F-distribution</span>
+  <span class="va">save_altF_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">alternative_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">levels</span><span class="op">*</span><span class="va">n_per_level</span><span class="op">)</span>,
+                          IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">levels</span>, each <span class="op">=</span> <span class="va">n_per_level</span><span class="op">)</span><span class="op">)</span>,
+                          DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">.2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">.2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">.2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n_per_level</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">.2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>
+                                 <span class="op">)</span>
+                          <span class="op">)</span>
+    <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">alternative_data</span><span class="op">)</span>
+    <span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+    <span class="va">save_altF_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+  <span class="op">}</span>
+  
+  <span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_altF_values</span><span class="op">[</span><span class="va">save_altF_values</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">3</span>,<span class="op">(</span><span class="va">n_per_level</span><span class="op">*</span><span class="fl">4</span><span class="op">)</span><span class="op">-</span><span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+  <span class="va">sim_power</span><span class="op">[</span><span class="va">n</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">power</span>
+<span class="op">}</span>
+
+<span class="va">power_curve</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">num_subjects</span>,
+                      <span class="va">sim_power</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">power_curve</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">num_subjects</th>
+<th align="right">sim_power</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">0.131</td>
+</tr>
+<tr class="even">
+<td align="right">50</td>
+<td align="right">0.437</td>
+</tr>
+<tr class="odd">
+<td align="right">75</td>
+<td align="right">0.581</td>
+</tr>
+<tr class="even">
+<td align="right">100</td>
+<td align="right">0.681</td>
+</tr>
+<tr class="odd">
+<td align="right">125</td>
+<td align="right">0.719</td>
+</tr>
+<tr class="even">
+<td align="right">150</td>
+<td align="right">0.774</td>
+</tr>
+<tr class="odd">
+<td align="right">175</td>
+<td align="right">0.804</td>
+</tr>
+<tr class="even">
+<td align="right">200</td>
+<td align="right">0.825</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb596"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">power_curve</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num_subjects</span>,
+                        y<span class="op">=</span><span class="va">sim_power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-23-1.png" width="100%"></div>
+</div>
+</div>
+<div id="lab-5-generalization-assignment-1" class="section level2" number="17.8">
+<h2>
+<span class="header-section-number">17.8</span> Lab 5 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-5-generalization-assignment-1"><i class="fas fa-link"></i></a>
+</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/btX3h8y-6IQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="instructions-16" class="section level3" number="17.8.1">
+<h3>
+<span class="header-section-number">17.8.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-16"><i class="fas fa-link"></i></a>
+</h3>
+<p>Your assignment instructions are the following:</p>
+<ol style="list-style-type: decimal">
+<li>Work inside the new R project for stats II that you created</li>
+<li>Create a new R Markdown document called “Lab5.Rmd”</li>
+<li>Use Lab5.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>
+<strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
+<li>Submit your github repository link for Lab 5 on blackboard.</li>
+</ol>
+</div>
+<div id="problems-15" class="section level3" number="17.8.2">
+<h3>
+<span class="header-section-number">17.8.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-15"><i class="fas fa-link"></i></a>
+</h3>
+<p>In the context of making decisions about whether or not observed data is consistent or inconsistent with a Null hypothesis, it is possible to make errors. The questions below ask you to create simulated data containing patterns that could lead to correct and incorrect decisions about the role of the null hypothesis.</p>
+<p>Consider a design with 3 groups, and 10 people per group. Assume that the dependent variable is assumed to be normally distributed, and use unit normal distributions with mean = 0, and sd = 1 in your simulations.</p>
+<ol style="list-style-type: decimal">
+<li><p>Create simulated data for the above design that could be produced by the null hypothesis, and that results in a <span class="math inline">\(F\)</span> value that is <strong>smaller</strong> than the critical value for <span class="math inline">\(F\)</span> in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)</p></li>
+<li><p>Create simulated data for the above design that could be produced by the null hypothesis, and that results in a <span class="math inline">\(F\)</span> value that is <strong>larger</strong> than the critical value for <span class="math inline">\(F\)</span> in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)</p></li>
+</ol>
+<p>Bonus Question</p>
+<ol start="3" style="list-style-type: decimal">
+<li>In the lab we saw that F-distribution is robust to violations of the assumptions of ANOVA. For example, the simulation of the null based on a bi-modal distribution was very similar to the true F distribution. For this bonus question, show that you can “break” the F-distribution. Specifically, can you run a simulation that samples numbers from a non-normal distribution that does produce a very different looking F-distribution? (3 points)</li>
+</ol>
+<!--
+## Extra
+
+More simulations to break the ANOVA
+
+Simulated Normal
+
+
+```r
+levels <- 4
+n_per_level <- 5
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rnorm(levels*n_per_level, 0, 1)
+                        )
+  
+  aov.out <- aov(DV ~ IV, data = random_data)
+  
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  
+  save_F_values[i] <- simulated_F
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_normal"), each = 10000), 
+                       F_value = c(rf(10000,3,16),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+<img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-24-1.png" width="100%" />
+
+
+
+Simulated Poisson
+
+
+
+```r
+
+levels <- 4
+n_per_level <- 100
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rpois(levels*n_per_level, .1)
+                        )
+  
+  save_F_values[i] <- summary(aov(DV ~ IV, data = random_data))[[1]]$`F value`[1]
+  
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_pois"), each = 10000), 
+                       F_value = c(rf(10000,levels-1,(n_per_level*levels)-levels),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+<img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-25-1.png" width="100%" />
+
+
+
+```r
+
+levels <- 4
+n_per_level <- 100
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rt(levels*n_per_level, 1)
+                        )
+  
+  save_F_values[i] <- summary(aov(DV ~ IV, data = random_data))[[1]]$`F value`[1]
+  
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_cauchy"), each = 10000), 
+                       F_value = c(rf(10000,levels-1,(n_per_level*levels)-levels),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+<img src="s2_Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-26-1.png" width="100%" />
+
+-->
+</div>
+</div>
+<div id="references-4" class="section level2" number="17.9">
+<h2>
+<span class="header-section-number">17.9</span> References<a class="anchor" aria-label="anchor" href="#references-4"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="anova.html"><span class="header-section-number">16</span> ANOVA</a></div>
+<div class="next"><a href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#anova-and-randomization"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="nav-link" href="#reading-8"><span class="header-section-number">17.1</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-18"><span class="header-section-number">17.2</span> Overview</a></li>
+<li><a class="nav-link" href="#how-can-you-know-if-your-experiment-works"><span class="header-section-number">17.3</span> How can you know if your experiment works?</a></li>
+<li>
+<a class="nav-link" href="#constructing-a-null-hypothesis"><span class="header-section-number">17.4</span> Constructing a null-hypothesis</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#f-distribution"><span class="header-section-number">17.4.1</span> F distribution</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#simulating-a-null-f-distribution-in-r"><span class="header-section-number">17.5</span> Simulating a null F-distribution in R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#anova-assumptions"><span class="header-section-number">17.5.1</span> ANOVA assumptions</a></li>
+<li><a class="nav-link" href="#p-values"><span class="header-section-number">17.5.2</span> p-values</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#randomization-test"><span class="header-section-number">17.6</span> Randomization test</a></li>
+<li>
+<a class="nav-link" href="#the-alternative-hypotheses"><span class="header-section-number">17.7</span> The alternative hypotheses</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simulating-alternative-hypotheses"><span class="header-section-number">17.7.1</span> Simulating alternative hypotheses</a></li>
+<li><a class="nav-link" href="#number-of-subjects-needed"><span class="header-section-number">17.7.2</span> Number of subjects needed</a></li>
+<li><a class="nav-link" href="#simulated-power-analysis"><span class="header-section-number">17.7.3</span> Simulated power analysis</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#lab-5-generalization-assignment-1"><span class="header-section-number">17.8</span> Lab 5 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-16"><span class="header-section-number">17.8.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-15"><span class="header-section-number">17.8.2</span> Problems</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#references-4"><span class="header-section-number">17.9</span> References</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/s2_Lab5_ANOVA_Randomization.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/s2_Lab5_ANOVA_Randomization.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Reproducible statistics for psychologists with R</strong>: Lab Tutorials" was written by Matthew J. C. Crump. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

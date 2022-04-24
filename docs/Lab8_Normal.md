@@ -2,7 +2,7 @@
 
 # Z tests
 
-"10/8/2020 | Last Compiled: 2020-12-09"
+"10/8/2020 | Last Compiled: 2022-04-24"
 
 ## Reading
 
@@ -274,7 +274,7 @@ We could ask if we find the same proportion of numbers falling between 0 and 1 s
 ```r
 to_z <- (sample_means-mean(sample_means))/sd(sample_means)
 length(to_z[to_z > 0 & to_z < 1])/10000
-#> [1] 0.3361
+#> [1] 0.3305
 ```
 
 We've just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.
@@ -330,9 +330,9 @@ We can estimate them from the simulation:
 
 ```r
 mean(sample_means)
-#> [1] 55.00716
+#> [1] 54.99784
 sd(sample_means)
-#> [1] 1.591821
+#> [1] 1.583107
 ```
 
 Or, we could use analytic formulas to "know" what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.
@@ -366,7 +366,7 @@ pnorm(zscore,0,1, lower.tail = FALSE)
 
 # this is similar to what the simulation showed:
 length(sample_means[sample_means > 60])/10000
-#> [1] 6e-04
+#> [1] 0.0014
 ```
 
 
@@ -399,15 +399,15 @@ When we assume that sample means from group A and B come from the exact same dis
 
 ```r
 length(mean_differences[mean_differences > 3])/10000
-#> [1] 0.0899
+#> [1] 0.0943
 ```
 
-According to a simulation, scores of 3% or greater occur with p <= 0.0899. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
+According to a simulation, scores of 3% or greater occur with p <= 0.0943. This would be a "one-tailed" test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:
 
 
 ```r
 length(mean_differences[mean_differences > 3 | mean_differences < -3])/10000
-#> [1] 0.1754
+#> [1] 0.1843
 ```
 
 These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.
@@ -426,7 +426,7 @@ We could estimate this value from our simulation by calculating the standard dev
 
 ```r
 sd(mean_differences)
-#> [1] 2.213127
+#> [1] 2.248508
 ```
 
 It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:

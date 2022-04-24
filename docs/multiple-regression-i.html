@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>14 Multiple Regression I | Reproducible statistics for psychologists with R</title>
+<meta name="author" content="Matthew J. C. Crump">
+<meta name="description" content="14.1 Readings Chapters 4 and 5 from Abdi, Edelman, Dowling, &amp; Valentin59.   14.2 Overview The purpose of this lab is to show how simple linear regression (using a line) can be extended into...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="14 Multiple Regression I | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="14.1 Readings Chapters 4 and 5 from Abdi, Edelman, Dowling, &amp; Valentin59.   14.2 Overview The purpose of this lab is to show how simple linear regression (using a line) can be extended into...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="14 Multiple Regression I | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="14.1 Readings Chapters 4 and 5 from Abdi, Edelman, Dowling, &amp; Valentin59.   14.2 Overview The purpose of this lab is to show how simple linear regression (using a line) can be extended into...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
+<meta property="og:title" content="14 Multiple Regression I | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/multiple-regression-i.html">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MattCrump_">
+<meta name="twitter:title" content="14 Multiple Regression I | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Lab Tutorials">Reproducible statistics for psychologists with R</a>:
+        <small class="text-muted">Lab Tutorials</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
+<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
+<li><a class="" href="practice-problems.html">Practice problems</a></li>
+<li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
+<li class="book-part">Semester 1 Labs</li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
+<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
+<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
+<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
+<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
+<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
+<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
+<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
+<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="active" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="multiple-regression-i" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> Multiple Regression I<a class="anchor" aria-label="anchor" href="#multiple-regression-i"><i class="fas fa-link"></i></a>
+</h1>
+<div id="readings-3" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Readings<a class="anchor" aria-label="anchor" href="#readings-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Chapters 4 and 5 from <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>59</sup></a></span>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qvpNGAMFZ0o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="overview-15" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-15"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>The purpose of this lab</strong> is to show how simple linear regression (using a line) can be extended into multiple linear regression (using a plane or hyperplane).</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.002.jpeg" width="100%"></div>
+<p>Before we begin, let’s take stock of how far we got last semester. Remember, the entire purpose of this course is to understand how statistical inference is applied to experimental designs. In experimental designs, researchers are interested in whether manipulations to one experimental variable cause change in a measured dependent variable. Last semester we considered very simple situations involving <em>one independent variable (manipulation) with two levels</em>, and <em>one dependent variable (measure</em>. A design like this could be analyzed with a t-test.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.003.jpeg" width="100%"></div>
+<p>Note also, that by the end of last semester we began discussing another relatively simple situation involving two variables, a <em>predictor</em> variable and a <em>dependent variable</em>; and, we saw how linear regression could be applied to examine potential linear relationships between a predictor variable and dependent variable. As the above figure implies, there can be a relationship between both of the simple situations. In this lab, we will show that a t-test and a simple linear regression can be equivalent. This equivalence also exists for more complicated designs, and throughout the semester we will show that ANOVAs and Multiple Linear Regression are different expressions of the same analysis.</p>
+<p>The entire rest of this semester focuses on expansions of the simplest experimental design (one independent variable with two levels, and one dependent variable). For example, one way to expand on this design is to <em>increase the number of levels</em> of a single independent variable. We will see that designs with multiple levels can be analyzed with ANOVA (Analysis of Variance) or Linear Regression, and both with produce the same results.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.004.jpeg" width="100%"></div>
+<p>Another way to expand the simple design is to <em>increase the number of manipulations, or independent variables</em>. Designs with multiple IVs, each with multiple levels, can all be analyzed with ANOVA and Multiple Linear Regression, to produce the same results.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.005.jpeg" width="100%"></div>
+</div>
+<div id="concept-i-t-tests-and-simple-regression" class="section level2" number="14.3">
+<h2>
+<span class="header-section-number">14.3</span> Concept I: t-tests and simple regression<a class="anchor" aria-label="anchor" href="#concept-i-t-tests-and-simple-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>Throughout the course we will be mostly focusing on extensions to the t-test in the form of ANOVA (Analysis of Variance). These extensions allow for analyses of more complicated designs with multiple independent variables each with multiple levels. However, <em>before</em> we discuss ANOVA, we spend this lab and the next one discussing multiple linear regression. This is because linear regression can also be extended to handle the same more complicated designs. The extension is termed multiple linear regression. Last, ANOVA and multiple linear regression are fundamentally the same analysis, they produce the same results.</p>
+<p>The relationship holds true for simple designs too. So, before we head into multiple linear regression, let’s quickly revisit simple linear regression and see how it can be the same as a t-test.</p>
+<div id="independent-sample-t-test-for-two-groups" class="section level3" number="14.3.1">
+<h3>
+<span class="header-section-number">14.3.1</span> Independent sample t-test for two groups<a class="anchor" aria-label="anchor" href="#independent-sample-t-test-for-two-groups"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s quickly make some sample data for an experiment with two groups that could be analyzed with a t-test.</p>
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="va">simple_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,
+                        DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Here’s a table of the data (arranged in long-format):</p>
+<div class="sourceCode" id="cb488"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">simple_design</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">group</th>
+<th align="right">DV</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table></div>
+<p>Here’s a bar graph showing the means for each group, and the data-points for each subject overlaid on top of the bars.</p>
+<div class="sourceCode" id="cb489"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">simple_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">group</span>, y<span class="op">=</span><span class="va">DV</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-8-1.png" width="100%"></div>
+<p>Here’s the t-test results:</p>
+<div class="sourceCode" id="cb490"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">group</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span>, data<span class="op">=</span><span class="va">simple_design</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Two Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  DV by group</span>
+<span class="co">#&gt; t = -1.412, df = 18, p-value = 0.175</span>
+<span class="co">#&gt; alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -2.9854404  0.5854404</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; mean in group 0 mean in group 1 </span>
+<span class="co">#&gt;             3.7             4.9</span></code></pre></div>
+</div>
+<div id="linear-regression-for-two-groups" class="section level3" number="14.3.2">
+<h3>
+<span class="header-section-number">14.3.2</span> Linear regression for two groups<a class="anchor" aria-label="anchor" href="#linear-regression-for-two-groups"><i class="fas fa-link"></i></a>
+</h3>
+<p>It is common to apply linear regression to a situation involving two continuous variables. However, we can also apply simple linear regression to the above situation. For example, the predictor variable is ‘group’, and it ranges from 0 to 1. The dependent variable is ‘DV’.</p>
+<p>We can add a regression line to the graph. Notice that the regression line goes across the boundaries from 0 to 1 (even though there is no data in between 0 and 1). Also, notice that the regression line crosses exactly at the mean for group. This is because the regression line is the line that goes through the means of the two levels.</p>
+<div class="sourceCode" id="cb491"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">simple_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">group</span>, y<span class="op">=</span><span class="va">DV</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-10-1.png" width="100%"></div>
+<p>Next, we conduct a linear regression on the same data.</p>
+<div class="sourceCode" id="cb492"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">simple_design</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = DV ~ group, data = simple_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt; (Intercept)        group  </span>
+<span class="co">#&gt;         3.7          1.2</span></code></pre></div>
+<p>Notice the intercept is 3.7. This is value of DV on the line when group = 0, and it is also the mean value of DV for group 0. Notice that the coefficient for group is 1.2. This represents the idea that as the line goes up by 1, the value of DV will go up by 1.2. So, if we go from group = 0, to group =1, we should go from 3.7 to 3.7+1.2 = 4.9. Notice, that 4.9 is the mean of group 1.</p>
+<p>Last, we can look at a summary of the linear regression. Notice that the p-value is .175, the same as the t-test from above. Notice that there is no t-value here, however the square root of the F-value 1.994 is 1.412, which is the same as the t-value from the t-test.</p>
+<div class="sourceCode" id="cb493"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">group</span>, data<span class="op">=</span><span class="va">simple_design</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = DV ~ group, data = simple_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;    Min     1Q Median     3Q    Max </span>
+<span class="co">#&gt;  -2.90  -1.10   0.10   1.15   4.10 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)   3.7000     0.6009   6.157 8.18e-06 ***</span>
+<span class="co">#&gt; group         1.2000     0.8498   1.412    0.175    </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 1.9 on 18 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.09972,    Adjusted R-squared:  0.04971 </span>
+<span class="co">#&gt; F-statistic: 1.994 on 1 and 18 DF,  p-value: 0.175</span></code></pre></div>
+</div>
+</div>
+<div id="concept-ii-adding-more-levels-is-still-simple-linear-regression" class="section level2" number="14.4">
+<h2>
+<span class="header-section-number">14.4</span> Concept II: Adding more levels is still simple linear regression<a class="anchor" aria-label="anchor" href="#concept-ii-adding-more-levels-is-still-simple-linear-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>We ended last lab with an assignment to read <span class="citation">Slamecka, N. J.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref"&gt;(1960). Retroactive inhibition of connected discourse as a function of practice level. &lt;em&gt;Journal of Experimental Psychology&lt;/em&gt;, &lt;em&gt;59&lt;/em&gt;(2), 104–108. &lt;/a&gt;&lt;a href="https://doi.org/b5z2nt" role="doc-biblioref"&gt;https://doi.org/b5z2nt&lt;/a&gt;.&lt;/p&gt;'><sup>60</sup></a></span> The research design from that paper is used in chapter 5<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;Abdi, Edelman, Dowling, &amp;amp; Valentin, 2009&lt;/a&gt;.&lt;/p&gt;'><sup>61</sup></a></span> to explain multiple orthogonal linear regression. We are working toward explaining this example. The full design has two independent variables, each with three levels. Before we take a look at that, let’s consider the issue of extending the number of levels for one independent variable.</p>
+<div id="a-simplified-memory-experiment" class="section level3" number="14.4.1">
+<h3>
+<span class="header-section-number">14.4.1</span> A simplified memory experiment<a class="anchor" aria-label="anchor" href="#a-simplified-memory-experiment"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s simplify the <span class="citation">Slamecka<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref"&gt;1960&lt;/a&gt;.&lt;/p&gt;'><sup>62</sup></a></span> experiment for the moment. Read the following sentence one time:</p>
+<p>“We must postulate that from strictly semantic points of vantage, most confusions in communication revolve about inadequate stipulation of meaning.”</p>
+<p>Now, imagine that in 5 minutes you try to recall the entire sentence from memory. The original sentence has 20 words. How many do you think you can correctly recall?</p>
+<p>In <span class="citation">Slamecka<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref"&gt;1960&lt;/a&gt;.&lt;/p&gt;'><sup>63</sup></a></span>, subjects were given sentences with 20 words in them, and they had different amounts of practice, termed Original Learning (OL). Some subjects got 2, 4, or 8 trials of practice on sentence. Thus, the first Independent variable is OL (or amount of practice), and it had three levels, 2, 4, and 8.</p>
+<p>The expectation is that manipulating amount of practice will change memory performance. Specifically, the more you practice the sentence, the more you will be able to remember it. I created a quick sketch to illustrate the basic predictions.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.008.jpeg" width="100%"></div>
+<p>Notice this prediction graph is not terribly different from the t-test graph from the previous example. Instead of groups 0 and 1 on the x-axis, we have three levels of practice, 2, 4, and 8. If we ran this experiment, we might expect that memory performance goes up as the amount of practice goes up, and we could put line on the data as a basic way to see if the amount of practice actually has an effect. If practice has no effect, then the line would be flat. If there is an effect, then the line would go up like the yellow line in the graph.</p>
+<p>So, let’s quickly reproduce this situation in R. I’ll imagine we have data for 3 subjects in each practice condition. And, I make up some numbers to reflect the idea that more practice will lead to more words recalled. Finally, we fit a regression line.</p>
+<div class="sourceCode" id="cb494"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">recall_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>practice <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">3</span><span class="op">)</span>,
+                        subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">9</span>,
+                        recall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,
+                                   <span class="fl">8</span>,<span class="fl">10</span>,<span class="fl">12</span>,
+                                   <span class="fl">12</span>,<span class="fl">15</span>,<span class="fl">17</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">recall_design</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">practice</th>
+<th align="right">subjects</th>
+<th align="right">recall</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">7</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">17</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb495"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">recall_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">practice</span>, y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span><span class="op">~</span><span class="va">x</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-14-1.png" width="100%"></div>
+<p>There are some tiny wrinkles here to note. If you look closely, the regression line does not go exactly through the means for each level of practice. Also, the bar for 8 trials of practice is far away from the bar for 4 trials of practice.</p>
+<p>What is happening here is that the levels of practice variable is being treated as a continuous variable. When the independent variable is treated like a continuous predictor variable, the regression and ANOVA will be the same, but the regression line may not go through the means in each level.</p>
+<div class="sourceCode" id="cb496"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">recall</span><span class="op">~</span><span class="va">practice</span>, data<span class="op">=</span><span class="va">recall_design</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ practice, data = recall_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -2.8095 -1.5714  0.1905  1.0476  2.4286 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span>
+<span class="co">#&gt; (Intercept)   4.3333     1.3678   3.168  0.01575 * </span>
+<span class="co">#&gt; practice      1.3095     0.2585   5.066  0.00145 **</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 1.934 on 7 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.7857, Adjusted R-squared:  0.7551 </span>
+<span class="co">#&gt; F-statistic: 25.67 on 1 and 7 DF,  p-value: 0.001453</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">recall</span><span class="op">~</span><span class="va">practice</span>, data<span class="op">=</span><span class="va">recall_design</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
+<span class="co">#&gt; practice     1  96.03   96.03   25.67 0.00145 **</span>
+<span class="co">#&gt; Residuals    7  26.19    3.74                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<p>It is also possible to treat the independent variable as a categorical variable. We can do this be redefining the <code>practice</code> variable as factor in R. This has a couple different consequences. First, the bar for 8 trials of practice is now located beside the 4. It is now considered to be one category away, and not four steps away, from 4. Also, ggplot2 does not show the regression line even though we asked it to draw one. And, the results of the linear regression and ANOVA are different than before (although they are the same as each other).</p>
+<div class="sourceCode" id="cb497"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">recall_design</span><span class="op">$</span><span class="va">practice</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">recall_design</span><span class="op">$</span><span class="va">practice</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">recall_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">practice</span>, y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span><span class="op">~</span><span class="va">x</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-16-1.png" width="100%"></div>
+<div class="sourceCode" id="cb498"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">recall</span><span class="op">~</span><span class="va">practice</span>, data<span class="op">=</span><span class="va">recall_design</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ practice, data = recall_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -2.6667 -1.6667  0.3333  1.3333  2.3333 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span>
+<span class="co">#&gt; (Intercept)    6.667      1.186   5.620  0.00136 **</span>
+<span class="co">#&gt; practice4      3.333      1.678   1.987  0.09413 . </span>
+<span class="co">#&gt; practice8      8.000      1.678   4.768  0.00310 **</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 2.055 on 6 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.7927, Adjusted R-squared:  0.7236 </span>
+<span class="co">#&gt; F-statistic: 11.47 on 2 and 6 DF,  p-value: 0.008905</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">recall</span><span class="op">~</span><span class="va">practice</span>, data<span class="op">=</span><span class="va">recall_design</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)   </span>
+<span class="co">#&gt; practice     2  96.89   48.44   11.47 0.0089 **</span>
+<span class="co">#&gt; Residuals    6  25.33    4.22                  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+</div>
+</div>
+<div id="concept-iii-multiple-orthogonal-linear-regression" class="section level2" number="14.5">
+<h2>
+<span class="header-section-number">14.5</span> Concept III: Multiple orthogonal linear regression<a class="anchor" aria-label="anchor" href="#concept-iii-multiple-orthogonal-linear-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p><span class="citation">Slamecka<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref"&gt;1960&lt;/a&gt;.&lt;/p&gt;'><sup>64</sup></a></span> manipulated a second independent variable in addition to practice. The second variable was called interpolated learning (IL), and it also had three levels (0,4,8). Here’s what happened. After subjects practiced learning a sentence they had to learn some MORE sentences. These additional sentences would likely have a distracting effect.</p>
+<p>How well would you remember this sentence…</p>
+<p>“We must postulate that from strictly semantic points of vantage, most confusions in communication revolve about inadequate stipulation of meaning.”</p>
+<p>If that’s all you had to do (0 distraction sentences afterwards). How well would you remember the above sentence if you had to practice this new sentence four times:</p>
+<p>“Communicators can exercise latitude in specifying meaning however they choose, provided that such definitions correspond somewhat closely to customary usage.”</p>
+<p>What if you had to practice the new sentence 8 times? The expectation was that your memory for the first sentence would get worse as you practiced additional sentences that would probably distract you from the first one.</p>
+<p>The design was a 3x3 design. The first independent variable was amount of practice on the first sentence (2,4,8 trials of original learning). The second independent variable we’ll call amount of distraction sentences (interpolated learning: 0,4,8). The design was fully crossed, which means that each level of the first independent variable was paired with each level of the second. There are 3x3 = 9 total cells in the design. Here are some general expectations for the data:</p>
+<p>Notice there are 9 dots representing rough predictions for memory recall in each of the 9 conditions (cells) in the design. The practice variable is indicated on the x-axis. The distraction variable is indicated by different colors and connected lines.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.009.jpeg" width="100%"></div>
+<p>Just like in Concept section II, we expect that increasing practice will increase the number of words recalled. We can see the prediction for the practice variable (IV) in all of the colored lines. They all move up to the right, indicating that the more you practice a sentence, the more we expect you to remember more words from the sentence.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.010.jpeg" width="100%"></div>
+<p>The predictions for the second IV, the distraction variable can be see by looking at the colored lines. When there is 0 distraction, we expect the best performance overall, so the blue line representing 0 distraction is at the top. When there is 4 trials of distraction, we expect memory performance to go down, so the green line is lower than the blue line. Finally, when there is 8 trials of distraction, we expect memory performance to go down even more. So, the yellow lines is below the green line.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.011.jpeg" width="100%"></div>
+<p>These trends are referred to as “main effects”. We expect the main effect of practice to increase memory performance. We expect the main effect distraction to decrease memory performance. We expect that both things can happen at the same time, so the total memory performance is basically the sum of your practice minus the distraction.</p>
+<p>To follow along with your textbook, we can visualize predictions for performance in this design in terms of 3-D space. One dimension represents the DV (more or less memory recall), and the other two dimensions represent the IVs (more or less practice, and more or less distraction). When we only had one IV, we could look for the best fit line relating the IV to the DV. Now, that we have two IVs we have to add a dimension to our line. A two-dimensional line is a plane. So, when we have two IVs, we can find the best fit plane that runs through the means in each cell in the design.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.012.jpeg" width="100%"></div>
+<p>Multiple linear regression can be extended to as many IVs as you like. However, it becomes difficult to visualize the extensions. We can go from a line to a plane, but it’s harder to visualize what happens when you add a third IV to the mix. This would require a four-dimensional graph that is hard to draw. But, we would extend the plane just like we did before, and there would be some best fit cube. As we keep adding more IVs, we need more and more geometrical dimensions that we can’t visualize. To keep things “simple”, in those situations we say that we are fitting a “hyperplane” to the data.</p>
+<p><strong>Summary</strong>: The main purpose of the preceding section was to illustrate that multiple linear regression has a geometric interpretation, and that the geometric interpretation can be extended from a simple 2-D space involving one IV and one DV, to a 3-D space involving 2 IVs and one DV, and beyond.</p>
+</div>
+<div id="practical-i-simulating-slamecka-1960" class="section level2" number="14.6">
+<h2>
+<span class="header-section-number">14.6</span> Practical I: Simulating Slamecka (1960)<a class="anchor" aria-label="anchor" href="#practical-i-simulating-slamecka-1960"><i class="fas fa-link"></i></a>
+</h2>
+<p>The purpose of this section is to conduct the <span class="citation">Slamecka<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref"&gt;1960&lt;/a&gt;.&lt;/p&gt;'><sup>65</sup></a></span> example from the textbook in R. Note, that in the original design the IL (number of interpolated lists) had three levels 0, 4, and 8. In the textbook, the 0 is a 2. To align with the textbook, we use a 2 here too.</p>
+<div id="representing-the-data-in-long-form" class="section level3" number="14.6.1">
+<h3>
+<span class="header-section-number">14.6.1</span> Representing the data in long-form<a class="anchor" aria-label="anchor" href="#representing-the-data-in-long-form"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb499"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">slamecka_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>number_of_learning_trials <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">6</span><span class="op">)</span>,
+                          number_of_IL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>,
+                          subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">18</span>,
+                          recall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>,<span class="fl">21</span>,<span class="fl">6</span>,
+                                   <span class="fl">39</span>,<span class="fl">31</span>,<span class="fl">8</span>,
+                                   <span class="fl">40</span>,<span class="fl">34</span>,<span class="fl">18</span>,
+                                   <span class="fl">52</span>,<span class="fl">42</span>,<span class="fl">26</span>,
+                                   <span class="fl">61</span>,<span class="fl">58</span>,<span class="fl">46</span>,
+                                   <span class="fl">73</span>,<span class="fl">66</span>,<span class="fl">52</span>
+                                   <span class="op">)</span>
+                          <span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">slamecka_design</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">number_of_learning_trials</th>
+<th align="right">number_of_IL</th>
+<th align="right">subjects</th>
+<th align="right">recall</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">39</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">6</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">52</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">11</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">12</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">13</td>
+<td align="right">61</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">14</td>
+<td align="right">58</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">15</td>
+<td align="right">46</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">16</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">17</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">18</td>
+<td align="right">52</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="visualizing-the-data" class="section level3" number="14.6.2">
+<h3>
+<span class="header-section-number">14.6.2</span> Visualizing the data<a class="anchor" aria-label="anchor" href="#visualizing-the-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb500"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">number_of_IL</span>,
+                           group <span class="op">=</span> <span class="va">number_of_learning_trials</span>,
+                           y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>,<span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-22-1.png" width="100%"></div>
+</div>
+<div id="running-the-multiple-regression-in-r" class="section level3" number="14.6.3">
+<h3>
+<span class="header-section-number">14.6.3</span> Running the multiple regression in R<a class="anchor" aria-label="anchor" href="#running-the-multiple-regression-in-r"><i class="fas fa-link"></i></a>
+</h3>
+<p>Note, the main purpose of this example is to show correspondence between the fully worked out example in the textbook, and output from R.</p>
+<div class="sourceCode" id="cb501"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">recall</span><span class="op">~</span> <span class="va">number_of_learning_trials</span> <span class="op">+</span> <span class="va">number_of_IL</span>,data <span class="op">=</span> <span class="va">slamecka_design</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ number_of_learning_trials + number_of_IL, </span>
+<span class="co">#&gt;     data = slamecka_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;               (Intercept)  number_of_learning_trials  </span>
+<span class="co">#&gt;                        30                          6  </span>
+<span class="co">#&gt;              number_of_IL  </span>
+<span class="co">#&gt;                        -4</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">recall</span><span class="op">~</span> <span class="va">number_of_learning_trials</span> <span class="op">+</span> <span class="va">number_of_IL</span>,data <span class="op">=</span> <span class="va">slamecka_design</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ number_of_learning_trials + number_of_IL, </span>
+<span class="co">#&gt;     data = slamecka_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;    Min     1Q Median     3Q    Max </span>
+<span class="co">#&gt;   -9.0   -4.0    0.5    4.0    6.0 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)                30.0000     3.3993   8.825 2.52e-07 ***</span>
+<span class="co">#&gt; number_of_learning_trials   6.0000     0.4818  12.453 2.60e-09 ***</span>
+<span class="co">#&gt; number_of_IL               -4.0000     0.4818  -8.302 5.44e-07 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 5.099 on 15 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.9372, Adjusted R-squared:  0.9289 </span>
+<span class="co">#&gt; F-statistic:   112 on 2 and 15 DF,  p-value: 9.609e-10</span></code></pre></div>
+</div>
+</div>
+<div id="practical-ii-graphing-designs-with-multiple-ivs-and-levels" class="section level2" number="14.7">
+<h2>
+<span class="header-section-number">14.7</span> Practical II: Graphing designs with multiple IVs and levels<a class="anchor" aria-label="anchor" href="#practical-ii-graphing-designs-with-multiple-ivs-and-levels"><i class="fas fa-link"></i></a>
+</h2>
+<p>This section provides several example code snippets of using ggplot2 to graph means from designs with multiple IVs and levels.</p>
+<p>Notice the textbook version the Slamecka results plotted number of interpolated learning trials on the x-axis, whereas in concept section III, we had plotted amount of practice on the x-axis. It’s easy to swap this around, by assigning different variables to <code>x</code> or <code>group</code>.</p>
+<div class="sourceCode" id="cb502"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">number_of_IL</span>,
+                           group <span class="op">=</span> <span class="va">number_of_learning_trials</span>,
+                           y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>,<span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-24-1.png" width="100%"></div>
+<div class="sourceCode" id="cb503"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">slamecka_design</span><span class="op">$</span><span class="va">number_of_IL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">slamecka_design</span><span class="op">$</span><span class="va">number_of_IL</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">number_of_learning_trials</span>,
+                           group <span class="op">=</span> <span class="va">number_of_IL</span>,
+                           y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>shape<span class="op">=</span><span class="va">number_of_IL</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-25-1.png" width="100%"></div>
+<div id="facet-wrapping" class="section level3" number="14.7.1">
+<h3>
+<span class="header-section-number">14.7.1</span> facet-wrapping<a class="anchor" aria-label="anchor" href="#facet-wrapping"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>ggplot2</code> has a very useful function called <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> that can be used to graph complicated designs in different ways.</p>
+<p>Facets are created for each level of an independent variable. Below, we at facets for each level of the distraction (IL) variable.</p>
+<div class="sourceCode" id="cb504"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">number_of_learning_trials</span>,
+                           y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">number_of_IL</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-26-1.png" width="100%"></div>
+<p>Let’s imagine that there were 6 subjects in the experiment, and they were assigned to the conditions in the following manner:</p>
+<div class="sourceCode" id="cb505"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">slamecka_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>number_of_learning_trials <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">6</span><span class="op">)</span>,
+                          number_of_IL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>,
+                          subjects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each<span class="op">=</span><span class="fl">3</span><span class="op">)</span>,
+                          recall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>,<span class="fl">21</span>,<span class="fl">6</span>,
+                                   <span class="fl">39</span>,<span class="fl">31</span>,<span class="fl">8</span>,
+                                   <span class="fl">40</span>,<span class="fl">34</span>,<span class="fl">18</span>,
+                                   <span class="fl">52</span>,<span class="fl">42</span>,<span class="fl">26</span>,
+                                   <span class="fl">61</span>,<span class="fl">58</span>,<span class="fl">46</span>,
+                                   <span class="fl">73</span>,<span class="fl">66</span>,<span class="fl">52</span>
+                                   <span class="op">)</span>
+                          <span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">slamecka_design</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">number_of_learning_trials</th>
+<th align="right">number_of_IL</th>
+<th align="right">subjects</th>
+<th align="right">recall</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">39</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">52</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">61</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">58</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">5</td>
+<td align="right">46</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">6</td>
+<td align="right">52</td>
+</tr>
+</tbody>
+</table></div>
+<p>I made this change to illustrate that <code>facet_wrap</code> can create facets that combine two variables, in this practice and individual subjects:</p>
+<div class="sourceCode" id="cb506"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">number_of_IL</span>,
+                           y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">number_of_learning_trials</span><span class="op">*</span><span class="va">subjects</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-28-1.png" width="100%"></div>
+</div>
+</div>
+<div id="lab-2-generalization-assignment-1" class="section level2" number="14.8">
+<h2>
+<span class="header-section-number">14.8</span> Lab 2 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-2-generalization-assignment-1"><i class="fas fa-link"></i></a>
+</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oQwYnBGj_C8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="instructions-13" class="section level3" number="14.8.1">
+<h3>
+<span class="header-section-number">14.8.1</span> Instructions<a class="anchor" aria-label="anchor" href="#instructions-13"><i class="fas fa-link"></i></a>
+</h3>
+<p>Your assignment instructions are the following:</p>
+<ol style="list-style-type: decimal">
+<li>Work inside the new R project for stats II that you created</li>
+<li>Create a new R Markdown document called “Lab2.Rmd”</li>
+<li>Use Lab2.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>
+<strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
+<li>Submit your github repository link for Lab 2 on blackboard.</li>
+</ol>
+</div>
+<div id="problems-12" class="section level3" number="14.8.2">
+<h3>
+<span class="header-section-number">14.8.2</span> Problems<a class="anchor" aria-label="anchor" href="#problems-12"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>(3 points) The following code roughly reproduces figure 5.5 from the textbook.<span class="citation"><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;Abdi, Edelman, Dowling, &amp;amp; Valentin, 2009&lt;/a&gt;.&lt;/p&gt;'><sup>66</sup></a></span> Modify the ggplot code so that the graph looks as close as possible to the figure from textbook:</li>
+</ol>
+<ul>
+<li>change the x-axis title</li>
+<li>change the y-axis title</li>
+<li>make the x-axis and y axis ticks the same</li>
+<li>include different symbols to differentiate the lines</li>
+</ul>
+<div class="sourceCode" id="cb507"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">slamecka_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>number_of_learning_trials <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">6</span><span class="op">)</span>,
+                          number_of_IL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>,
+                          subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">18</span>,
+                          recall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>,<span class="fl">21</span>,<span class="fl">6</span>,
+                                   <span class="fl">39</span>,<span class="fl">31</span>,<span class="fl">8</span>,
+                                   <span class="fl">40</span>,<span class="fl">34</span>,<span class="fl">18</span>,
+                                   <span class="fl">52</span>,<span class="fl">42</span>,<span class="fl">26</span>,
+                                   <span class="fl">61</span>,<span class="fl">58</span>,<span class="fl">46</span>,
+                                   <span class="fl">73</span>,<span class="fl">66</span>,<span class="fl">52</span>
+                                   <span class="op">)</span>
+                          <span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">number_of_IL</span>,
+                           group <span class="op">=</span> <span class="va">number_of_learning_trials</span>,
+                           y<span class="op">=</span><span class="va">recall</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"summary"</span>, fun <span class="op">=</span> <span class="st">"mean"</span>,<span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>(3 points) The Slamecka design was a 3x3 design. The practice variable had three levels (2, 4, and 8), and was assumed to increase memory recall with increasing amount of practice. The interpolated learning (IL or distraction) variable had three levels (0, 4, and 8), and was assumed to decrease memory recall with increasing amounts of distraction.</li>
+</ol>
+<p>Imagine Slamecka had included a third independent variable that also had three levels. This new IV is expected to increase memory recall. For example, maybe the third IV is amount of reward given to subjects (0, 50 dollars, 1 million dollars) for completing the study. As the amount of expected reward is increased, subjects are more motivated so they remember more words.</p>
+<p>Use R to create a dataframe to represent predictions for this new 3x3x3 design. Then use ggplot and facet wrapping to show predicted means for each condition. As a hint, I have provided a drawing and I expect your ggplot graph will look something like this drawing.</p>
+<div class="inline-figure"><img src="imgs/multiple_regression/multiple_regression.013.jpeg" width="100%"></div>
+</div>
+</div>
+<div id="references-2" class="section level2" number="14.9">
+<h2>
+<span class="header-section-number">14.9</span> References<a class="anchor" aria-label="anchor" href="#references-2"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></div>
+<div class="next"><a href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiple-regression-i"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="nav-link" href="#readings-3"><span class="header-section-number">14.1</span> Readings</a></li>
+<li><a class="nav-link" href="#overview-15"><span class="header-section-number">14.2</span> Overview</a></li>
+<li>
+<a class="nav-link" href="#concept-i-t-tests-and-simple-regression"><span class="header-section-number">14.3</span> Concept I: t-tests and simple regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#independent-sample-t-test-for-two-groups"><span class="header-section-number">14.3.1</span> Independent sample t-test for two groups</a></li>
+<li><a class="nav-link" href="#linear-regression-for-two-groups"><span class="header-section-number">14.3.2</span> Linear regression for two groups</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#concept-ii-adding-more-levels-is-still-simple-linear-regression"><span class="header-section-number">14.4</span> Concept II: Adding more levels is still simple linear regression</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#a-simplified-memory-experiment"><span class="header-section-number">14.4.1</span> A simplified memory experiment</a></li></ul>
+</li>
+<li><a class="nav-link" href="#concept-iii-multiple-orthogonal-linear-regression"><span class="header-section-number">14.5</span> Concept III: Multiple orthogonal linear regression</a></li>
+<li>
+<a class="nav-link" href="#practical-i-simulating-slamecka-1960"><span class="header-section-number">14.6</span> Practical I: Simulating Slamecka (1960)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#representing-the-data-in-long-form"><span class="header-section-number">14.6.1</span> Representing the data in long-form</a></li>
+<li><a class="nav-link" href="#visualizing-the-data"><span class="header-section-number">14.6.2</span> Visualizing the data</a></li>
+<li><a class="nav-link" href="#running-the-multiple-regression-in-r"><span class="header-section-number">14.6.3</span> Running the multiple regression in R</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#practical-ii-graphing-designs-with-multiple-ivs-and-levels"><span class="header-section-number">14.7</span> Practical II: Graphing designs with multiple IVs and levels</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#facet-wrapping"><span class="header-section-number">14.7.1</span> facet-wrapping</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#lab-2-generalization-assignment-1"><span class="header-section-number">14.8</span> Lab 2 Generalization Assignment</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#instructions-13"><span class="header-section-number">14.8.1</span> Instructions</a></li>
+<li><a class="nav-link" href="#problems-12"><span class="header-section-number">14.8.2</span> Problems</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#references-2"><span class="header-section-number">14.9</span> References</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/s2_Lab2_Multiple_regression_I.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/s2_Lab2_Multiple_regression_I.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Reproducible statistics for psychologists with R</strong>: Lab Tutorials" was written by Matthew J. C. Crump. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

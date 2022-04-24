@@ -1221,45 +1221,45 @@ knitr::kable(head(fake_data))
 <tbody>
   <tr>
    <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 69.03042 </td>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:right;"> 59.62167 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> FALSE </td>
    <td style="text-align:left;"> g </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 63.57233 </td>
-   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 67.66261 </td>
+   <td style="text-align:right;"> 20 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> y </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 61.90138 </td>
-   <td style="text-align:right;"> 18 </td>
-   <td style="text-align:left;"> TRUE </td>
    <td style="text-align:left;"> o </td>
   </tr>
   <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 63.57263 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> i </td>
+  </tr>
+  <tr>
    <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 74.80167 </td>
+   <td style="text-align:right;"> 64.65839 </td>
    <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> y </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> o </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 58.80694 </td>
-   <td style="text-align:right;"> 18 </td>
+   <td style="text-align:right;"> 75.72879 </td>
+   <td style="text-align:right;"> 19 </td>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:left;"> r </td>
+   <td style="text-align:left;"> i </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 68.09122 </td>
+   <td style="text-align:right;"> 66.66997 </td>
    <td style="text-align:right;"> 20 </td>
-   <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:left;"> v </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> i </td>
   </tr>
 </tbody>
 </table>
@@ -1278,25 +1278,23 @@ fake_data %>%
   group_by(likes_chocolate) %>%
   summarize(mean_grade = mean(grades),
             sd_grad = sd(grades))
-#> # A tibble: 2 x 3
+#> # A tibble: 2 × 3
 #>   likes_chocolate mean_grade sd_grad
 #>   <lgl>                <dbl>   <dbl>
-#> 1 FALSE                 66.5    6.59
-#> 2 TRUE                  67.8    4.81
+#> 1 FALSE                 65.4    4.88
+#> 2 TRUE                  71.1   NA
 
 fake_data %>%
   group_by(likes_chocolate,age) %>%
   summarize(mean_grade = mean(grades),
             sd_grad = sd(grades))
-#> # A tibble: 5 x 4
+#> # A tibble: 3 × 4
 #> # Groups:   likes_chocolate [2]
 #>   likes_chocolate   age mean_grade sd_grad
 #>   <lgl>           <int>      <dbl>   <dbl>
-#> 1 FALSE              18       58.8   NA   
-#> 2 FALSE              19       68.4    5.78
-#> 3 TRUE               18       65.5    5.04
-#> 4 TRUE               19       65.1   NA   
-#> 5 TRUE               20       71.4    4.75
+#> 1 FALSE              19       64.7    7.55
+#> 2 FALSE              20       66.0    1.98
+#> 3 TRUE               19       71.1   NA
 ```
 
 ### filter
@@ -1308,16 +1306,18 @@ Filter out rows depending on logical comparisons
 fake_data %>%
   filter(grades < 65)
 #>   subjects   grades age likes_chocolate favorite_color
-#> 1        2 63.57233  19           FALSE              y
-#> 2        3 61.90138  18            TRUE              o
-#> 3        5 58.80694  18           FALSE              r
-#> 4        8 63.26356  19           FALSE              y
+#> 1        1 59.62167  19           FALSE              g
+#> 2        3 63.57263  19           FALSE              i
+#> 3        4 64.65839  20           FALSE              o
+#> 4        7 59.98810  19           FALSE              o
+#> 5        9 63.27830  20           FALSE              v
 
 fake_data %>%
   filter(grades < 65,
          likes_chocolate == TRUE)
-#>   subjects   grades age likes_chocolate favorite_color
-#> 1        3 61.90138  18            TRUE              o
+#> [1] subjects        grades          age             likes_chocolate
+#> [5] favorite_color 
+#> <0 rows> (or 0-length row.names)
 ```
 
 ### select
@@ -1329,30 +1329,30 @@ Select specific columns
 fake_data %>%
   select(grades)
 #>      grades
-#> 1  69.03042
-#> 2  63.57233
-#> 3  61.90138
-#> 4  74.80167
-#> 5  58.80694
-#> 6  68.09122
-#> 7  73.86248
-#> 8  63.26356
-#> 9  72.93247
-#> 10 65.12974
+#> 1  59.62167
+#> 2  67.66261
+#> 3  63.57263
+#> 4  64.65839
+#> 5  75.72879
+#> 6  66.66997
+#> 7  59.98810
+#> 8  67.82681
+#> 9  63.27830
+#> 10 71.06737
 
 fake_data %>%
   select(grades,likes_chocolate)
 #>      grades likes_chocolate
-#> 1  69.03042            TRUE
-#> 2  63.57233           FALSE
-#> 3  61.90138            TRUE
-#> 4  74.80167            TRUE
-#> 5  58.80694           FALSE
-#> 6  68.09122            TRUE
-#> 7  73.86248           FALSE
-#> 8  63.26356           FALSE
-#> 9  72.93247           FALSE
-#> 10 65.12974            TRUE
+#> 1  59.62167           FALSE
+#> 2  67.66261           FALSE
+#> 3  63.57263           FALSE
+#> 4  64.65839           FALSE
+#> 5  75.72879           FALSE
+#> 6  66.66997           FALSE
+#> 7  59.98810           FALSE
+#> 8  67.82681           FALSE
+#> 9  63.27830           FALSE
+#> 10 71.06737            TRUE
 ```
 ### mutate
 
@@ -1365,16 +1365,16 @@ fake_data <- fake_data %>%
 
 fake_data
 #>    subjects   grades age likes_chocolate favorite_color new_thing
-#> 1         1 69.03042  18            TRUE              g         0
-#> 2         2 63.57233  19           FALSE              y         0
-#> 3         3 61.90138  18            TRUE              o         0
-#> 4         4 74.80167  20            TRUE              y         0
-#> 5         5 58.80694  18           FALSE              r         0
-#> 6         6 68.09122  20            TRUE              v         0
-#> 7         7 73.86248  19           FALSE              b         0
-#> 8         8 63.26356  19           FALSE              y         0
-#> 9         9 72.93247  19           FALSE              y         0
-#> 10       10 65.12974  19            TRUE              y         0
+#> 1         1 59.62167  19           FALSE              g         0
+#> 2         2 67.66261  20           FALSE              o         0
+#> 3         3 63.57263  19           FALSE              i         0
+#> 4         4 64.65839  20           FALSE              o         0
+#> 5         5 75.72879  19           FALSE              i         0
+#> 6         6 66.66997  20           FALSE              i         0
+#> 7         7 59.98810  19           FALSE              o         0
+#> 8         8 67.82681  20           FALSE              b         0
+#> 9         9 63.27830  20           FALSE              v         0
+#> 10       10 71.06737  19            TRUE              o         0
 ```
 
 ## ggplot2
@@ -2036,11 +2036,11 @@ compared
 ```r
 # returns 1 randomly sampled number from 1 to 10
 sample(1:10,1)
-#> [1] 1
+#> [1] 2
 
 # let's repeat the above 10 times using replicate
 replicate(10,sample(1:10,1))
-#>  [1]  5  1  9  1  7  4  2 10  2  8
+#>  [1]  1  2  5 10  5  2  9  3  4  8
 ```
 
 The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times. 
@@ -2058,9 +2058,9 @@ ttest_result <- function(){
 # get 10 t-values from repeating the above 10 times
 replicate(10, ttest_result() )
 #>          t          t          t          t          t          t          t 
-#>  0.7462134  0.1265805  1.6177355  0.3190185 -0.3212202 -0.1425219  0.6180752 
+#>  1.3199503  0.5352204  1.0307364  0.7180495  1.8898355 -2.5935801  0.2701770 
 #>          t          t          t 
-#> -0.2880227  0.2400779 -0.3862252
+#> -0.3495035 -0.1420472  2.1285776
 ```
 
 ### apply family
@@ -2147,7 +2147,7 @@ random_matrix <- matrix(sample(1:10,25, replace=TRUE),ncol=5)
 # applies the sum function to each row
 # 1 tells apply to go across rows
 apply(random_matrix,1,sum)
-#> [1] 24 24 35 16 26
+#> [1] 31 25 26 37 37
 ```
 
 The sum of each column
@@ -2157,7 +2157,7 @@ The sum of each column
 # applies the sum function to each column
 # 2 tells apply to go across columns
 apply(random_matrix, 2, sum)
-#> [1] 22 20 28 18 37
+#> [1] 14 36 23 40 43
 ```
 
 Let's say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.
@@ -2177,13 +2177,13 @@ apply(sample_matrix,2,t.test, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  newX[, i]
-#> t = -0.15555, df = 9, p-value = 0.8798
+#> t = 0.034762, df = 9, p-value = 0.973
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -0.6103617  0.5318253
+#>  -0.3706933  0.3822637
 #> sample estimates:
-#>  mean of x 
-#> -0.0392682 
+#>   mean of x 
+#> 0.005785176 
 #> 
 #> 
 #> [[2]]
@@ -2191,13 +2191,13 @@ apply(sample_matrix,2,t.test, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  newX[, i]
-#> t = -0.66068, df = 9, p-value = 0.5254
+#> t = -0.9425, df = 9, p-value = 0.3705
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.1479343  0.6289721
+#>  -0.7877233  0.3243796
 #> sample estimates:
 #>  mean of x 
-#> -0.2594811 
+#> -0.2316719 
 #> 
 #> 
 #> [[3]]
@@ -2205,13 +2205,13 @@ apply(sample_matrix,2,t.test, mu=0)
 #> 	One Sample t-test
 #> 
 #> data:  newX[, i]
-#> t = -2.6149, df = 9, p-value = 0.02804
+#> t = 0.58176, df = 9, p-value = 0.575
 #> alternative hypothesis: true mean is not equal to 0
 #> 95 percent confidence interval:
-#>  -1.10948184 -0.08024462
+#>  -0.5081706  0.8600290
 #> sample estimates:
-#>  mean of x 
-#> -0.5948632
+#> mean of x 
+#> 0.1759292
 ```
 
 What if we wanted to return only the t-values, rather than whole output?
@@ -2232,7 +2232,7 @@ apply(sample_matrix, 2,
         t_out <- t.test(x,mu=0)
         return(t_out$statistic)
       })
-#> [1] -0.1555452 -0.6606843 -2.6148959
+#> [1]  0.03476155 -0.94249931  0.58175659
 ```
 
 

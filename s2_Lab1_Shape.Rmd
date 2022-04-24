@@ -1,0 +1,434 @@
+```{r, include = FALSE}
+source("global_stuff.R")
+```
+
+# (PART) Semester 2 Labs {.unnumbered}
+
+# Shaping Data
+
+## Overview
+
+Welcome back. This lab overviews practical aspects about the form or shape that data can take. We will use coding concepts in R that should be mostly familiar from last semester, and use this lab as an opportunity for a little bit of review. There are no readings from the textbook for this lab, but you may find the following links generally helpful:
+
+1.  [dplyr](https://dplyr.tidyverse.org)
+2.  [Data-transformation Chapter](https://r4ds.had.co.nz/transform.html)
+
+Apologies that the videos are in two parts...I couldn't compete with a vacuum cleaner.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WRk20lrFhWw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l9KG15RS_iY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Background
+
+The structure of research designs imply that produced data will particular properties, the data can be saved in different formats, data can arrive in different shapes and sizes, and it must be transformed into specific shapes in order to conduct specific analyses. Thus, the shape of data, and the shaping of data, are part and parcel of research, from the beginning to the end. We could spend a good deal of time discussing data organization and manipulation. Most of this conversation will unfold over the semester. In the remaining part of this background section I'm going to identify a few places where data organization is important. Each of these topics could easily be expanded to a whole chapter. For now, my goal is to alert you to them. We will cover some of these topics in more detail in this lab.
+
+### Data-Creation
+
+1.  How should you save your data?
+2.  What kind of file formats are there for saving data?
+
+Perhaps because the discipline of Psychology is so large and varied it has been slow to adopt any widespread standards for formatting data. Certainly, there are so many kinds of data that standards for one research project might not apply to another. Here are some considerations to keep in mind:
+
+1.  The decisions you make about how to save your data will have consequences later for analysis. If you save in a format that is analysis-ready, then you won't have to transform the data later
+2.  Save the data in a machine-readable and transformable format. Machine-readable means that you can input the data to a program language like R, and transformable means that you can reshape the data while preserving its inherent factor structure (more on this in this lab).
+3.  There are numerous file formats. We will typically be reading in .txt (text files), .csv (comma separated value) files, and sometimes .xlsx (excel) or proprietary files.
+
+### Reproducible analysis pipeline
+
+1.  Inputting data to R
+2.  Re-shaping it for analysis
+
+Data-shaping is a practical part of all data-analysis in R. Using scripts to handle the data from the input to analysis allows a reproducible pipeline. A reproducible is helpful for you and others. When your analysis pipeline is not reproducible, you may not be able to fix mistakes that you make. For example, if you accidentally delete something, or move something around by hand, you may not have a record of having performed that operation, and if you forget about it, you may never be able to go back and fix errors. When you use a script for analysis you never "touch" the data by hand. Instead, all actions are taken by script. Even if your script makes a mistake, the mistake is at least identifiable and fixable. If someone else has the raw data, and your analysis script, then if they input the data to your script, they should output the same analysis that you reported. The nuts and bolts of the analysis script often include many transformations of the data: The raw data is inputted to R, it might be saved in different variables, pre-processed in various ways, and reformatted and sliced and diced to meet input requirements for R statistical analysis functions.
+
+### Knowing your design and analysis
+
+1.  Design and implied shape
+2.  Simulated data and analysis
+
+A major overarching goal for the end of our course is for you to understand how you could create your own statistical analyses customized exactly to nuances of your research designs. In other words, how to WYOR (Write Your Own Recipes) for statistics. In order to get there, it is important to recognize fundamental connections between your research design and the shape of data that will be collected in the design. In this lab, we will use R as a conceptual and practical tool to illustrate how simulated data can be created for particular designs. Once you have simulated data, you can test out your own planned analysis in advance of obtaining real data.
+
+## Concept I: Transformability
+
+This is a short concept section to illustrate the concept of transformability. The basic idea is that transformable data can be arranged into different shapes and back again without losing any information. As a practical matter, many functions depend on their inputs being formatted in a particular way. Thus, data transformation is often required to get the data into shape so that it can be inputted into some function.
+
+### Long vs. wide data
+
+As a general rule, most functions for statistical tests in R require that data are organized in long-format. I personally find this convenient because it means that:
+
+1.  If can get my data into long format, then
+2.  I can do just about anything I want to it using R functions for analysis and visualization
+
+Let's look at an example of wide data. Imagine we have five people, and we have measured how many times they check their phone, in the morning, afternoon, and evening.
+
+```{r}
+wide_data <- data.frame(person = 1:5,
+                        Morning = c(1,3,2,4,3),
+                        Afternoon = c(3,4,5,4,7),
+                        Evening = c(7,8,7,6,9))
+knitr::kable(wide_data)
+
+```
+
+If we have 5 people, and collect measures three times each, then we must have 5 x 3 total cells. The wide version of this data is a 5x3 matrix with 5 rows (different people), and 3 columns (morning, afternoon, evening). This matrix has 15 cells in it, so it is capable of representing all complete cases of the data. Wide-data is a perfectly fine way to represent data, and there is nothing inherently wrong with wide-data. However, as I mentioned before, many functions in R are written with the assumption that data is shaped as long-data.
+
+Here is an example of the same thing in long-format:
+
+```{r}
+long_data <- data.frame(person = rep(1:5, each=3),
+                        time_of_day = rep(c("Morning", "Afternoon", "Evening"),5),
+                        counts = c(1,3,7,3,4,8,2,5,7,4,4,6,3,7,9))
+knitr::kable(long_data)
+
+
+person <- rep(1:5,3)
+time_of_day <- rep(c("Morning", "Afternoon", "Evening"),each =5)
+counts <- c(1,3,7,3,4,8,2,5,7,4,4,6,3,7,9)
+
+test <- data.frame(person,time_of_day,counts)
+
+```
+
+As you can see, in long-data format, the data gets really long. The rule here is that each dependent measure (e.g., the counts of phone looking) is listed on a single row. There ar 5 x 3 = 15 total individual measures, so there must be 15 rows in the long-form representation.
+
+### Converting Wide to long
+
+Sometimes you might receive data in wide format and need to convert it to long format. This can be accomplished in R in multiple different ways. You can write custom code to do it, or you can try using various existing functions. If you Google "wide to long in R", you might come across a curious history of functions that have been developed to provide this function. One part of that history is that the functions keep getting re-written so that they are "more clear" about how they work. I'll admit that I have found these functions confusing before, and usually find myself messing around with them until they do the conversion I'm looking for. In any case, here is an example of pivoting from wide to long using `tidyr`
+
+```{r}
+library(tidyr)
+
+pivot_longer(data = wide_data, 
+             cols = !person,
+             names_to = "time_of_day",
+             values_to = "counts")
+```
+
+### Custom to long
+
+The grim reality is that data that is not made by you could take a huge number of different formats. And, once you get it into R, you may have wrangle it into shape before you can proceed to analyze it. In this example, I will show a strange data format, and write some custom code to wrangle it into long-format. This is just to illustrate the general idea that sometimes you may have to do custom data shaping.
+
+Consider the following format. Each subject's phone checking count is a number separated by commas. The first number is always for morning, the second is for afternoon, and the third for evening. Individual subjects are separated by semi-colons. Thus, the first three numbers are for subject 1, and the next three are for subject 2, and so on. As you can see, all of the data from before is perfectly preserved, all on one line.
+
+```{r}
+the_data<-"1,3,7;3,4,8;2,5,7;4,4,6;3,7,9"
+```
+
+So, we have a custom format above, and now we need to get it into long format. Unfortunately, there are no tidy-verse functions for shaping weird custom data formats. So, someone has pull some tricks out of their hat.
+
+```{r}
+library(dplyr)
+
+
+subjects <- unlist(strsplit(the_data, split = ";"))
+subjects
+subjects <- strsplit(subjects,split=",")
+subjects
+
+subjects <- t(data.frame(subjects))
+subjects
+colnames(subjects) <- c("Morning","Afternoon","Evening")
+subjects
+row.names(subjects) <- 1:5
+subjects <- as.data.frame(subjects) %>%
+  mutate(person=1:5)
+
+pivot_longer(data = subjects, 
+             cols = 1:3,
+             names_to = "time_of_day",
+             values_to = "counts")
+
+```
+
+<!--
+
+Functions are shape dependent
+
+```{r}
+
+find_group_means_A <- function(x){
+  colMeans(x)
+}
+
+find_group_means_B <- function(x,IV,DV){
+  aggregate(DV~IV, data=x, mean)
+}
+
+wide_data <- matrix(1:20,ncol=2)
+long_data <- data.frame(IV = rep(c("A","B"),each=10),
+                        DV = 1:20)
+
+find_group_means_A(wide_data)
+find_group_means_B(long_data)
+
+```
+
+-->
+
+## Practical I: Simulated data for different designs
+
+The purpose of this section is to focus on the process of creating data-structures in R that have the following properties:
+
+1.  They appropriately represent the data necessary for a particular design
+2.  They are formatted so that R functions for statistical tests can be performed on them
+
+### One-sample t-test 
+
+A one-sample t-test involves a vector of means. Here, a vector of means is created by sampling 10 values from a unit normal distribution.
+
+```{r}
+dv <- rnorm(10,0,1)
+t.test(dv)
+```
+
+Consider a design with 50 participants. Each participant takes a TRUE/FALSE quiz with 10 questions. A researcher wants to apply a one-sample t-test to test whether the participants performed better than chance.
+
+1.  Create example raw data that represents each subjects' answer to each question
+
+    -   There 50 participants x 10 questions, so there must be 500 cells
+
+    -   I sample 1s and 0s from a binomial to indicate correct vs incorrect one each question
+
+2.  Create a summary vector of means suitable for the t.test function
+
+3.  Run the t.test
+
+```{r}
+subject_data <- matrix( rbinom(50*10,1,.5), ncol=10, nrow=50)
+subject_means <- rowMeans(subject_data)
+t.test(subject_means, mu=.5)
+```
+
+### Paired sample t-test
+
+Consider a design measuring fluctuations in weight as a function of weekday vs. weekend. Researchers have 25 people weigh themselves 5 times throughout the day on Wednesday, and 5 times throughout the day on Sunday. Create a data frame that represents this situation, and conduct a paired sample t-test.
+
+To break this down, we will create a long data.frame with four columns: Subject number, Day, measurement number, weight. How many rows must their be? There are 25 people, 5 measurements per day, and two days of measurements. In long-format, there is only one measure per row. Therefore, there are 25 x 5 x 2 = 250 rows.
+
+I repeat each number from 1 to 25, 10 times each.
+
+```{r}
+subject_number <- rep(1:25, each=10)
+```
+
+The day column has two levels, Wednesday vs. Sunday. Each level has to appear 5 times for each subject.
+
+```{r}
+#day <- rep(c("Wednesday","Sunday"), each = 5) # makes one subject
+day <- rep(rep(c("Wednesday","Sunday"), each = 5), 25)
+```
+
+We need a variable to represent each of the five measurements that are taken per day. Let's call this measurement_number
+
+```{r}
+measurement_number <- rep(1:5, 2*25)
+```
+
+We need some pretend measurements. For now, let's just choose some random numbers from a normal distribution. We need 250 numbers.
+
+```{r}
+weights <- rnorm(250, 100, 25)
+```
+
+Next, let's combine all of these vectors into a data.frame
+
+```{r}
+weight_data <- data.frame(subject_number,
+                          day,
+                          measurement_number,
+                          weights)
+head(weight_data)
+```
+
+Note, we could have defined everything inside a single data.frame
+
+```{r}
+weight_data <- data.frame(subject_number = rep(1:25, each=10),
+                          day = rep(rep(c("Wednesday","Sunday"), each = 5), 25),
+                          measurement_number = rep(1:5, 2*25),
+                          weights = rnorm(250, 100, 25))
+
+```
+
+The data.frame `weight_data` now represents the complete shape of the data implied by the research design. However, this data is not yet ready for the `t.test` function. This is because the `t.test` function assumes that inputs will be means for each participant in each condition. So, the raw data must be summarized first. In other words, we must find the mean weight within each day that each participant was measured. We will continue to use the `dplyr` syntax to group and summarize data.
+
+```{r}
+subject_means <- weight_data %>%
+  group_by(subject_number,day) %>%
+  summarize(mean_weight = mean(weights), .groups = "drop")
+
+head(subject_means)
+```
+
+Finally, we can run the `t.test`
+
+```{r}
+t.test(mean_weight~day, paired=TRUE, data=subject_means)
+```
+
+### Independent sample t-test
+
+A researcher gives 10 subjects a recall memory test. They all read 50 words for a later memory test. After a short break half of the participants are put in a noisy room, and the other half are put in a quiet room. They are all given a piece of paper with 50 lines and asked to write down as memory words as they can remember. The raw data is coded as 1s or 0s, with 1 representing a correctly recalled word and 0 represent an incorrectly recalled word. A researcher wants to do a t-test on the number of correctly recalled words in the noisy vs quiet room.
+
+Note, I switch to using a [tibble](https://blog.rstudio.com/2016/03/24/tibble-1-0-0/) here instead of a data.frame. 
+
+```{r}
+
+subjects <- rep(1:10, each = 50)
+room <- rep(c("Noisy","Quiet"), each = 50*5)
+words <- rep(1:50, 10)
+correct <- rbinom(500,1,.5)
+
+recall_data <- tibble(subjects,
+                      room,
+                      words,
+                      correct)
+
+recall_data
+
+count_data <- recall_data %>%
+  group_by(subjects,room) %>%
+  summarize(number_correct = sum(correct), .groups="drop")
+
+count_data
+
+t.test(number_correct~room, var.equal=TRUE, data=count_data)
+
+```
+
+### Simple linear regression
+
+100 people write down their height in centimeters, and the day of the month they were born. Conduct a linear regression to see if day of month explains variation in height.
+
+```{r}
+
+people <- tibble(height = rnorm(100, 90, 10),
+                 day = sample(1:31, 100, replace=TRUE))
+
+people
+
+lm.out <- lm(height~day, data= people)
+lm.out
+summary(lm.out)
+
+```
+
+### One-way ANOVA
+
+We haven't yet covered one-way ANOVA in this course. You may already be familiar with ANOVA. For now, we can think of it is a kind of extension of t-tests to deal with single-factor designs with more than one level. For example, consider extending the paired t-test sample above. In that example, 25 people weighed themselves 5 times throughout the day on Wednesday, and 5 times throughout the day on Sunday. The independent variable is day, and it has two levels (Wednesday vs Sunday). Why should we stop at Wednesday vs. Sunday? There are five other days of the week. Maybe each day has its own influence on weight.
+
+Consider simulating data for a one-factor design with 7 levels, one for each day of the week. N=25, and each person measures themselves 5 times each day.
+
+```{r}
+weight_data <- tibble(subject_number = rep(1:25, each=5*7),
+                          day = rep(rep(c("S","M","T","W","Th","F","Sa"),
+                                      each = 5), 25),
+                          measurement_number = rep(1:5, 7*25),
+                          weights = rnorm(25*5*7, 100, 25))
+
+```
+
+As we will see in later labs on ANOVA, the analysis can be performed in one-line with the `aov` function
+
+```{r}
+subject_means <- weight_data %>%
+  group_by(subject_number,day) %>%
+  summarize(mean_weight = mean(weights), .groups="drop")
+
+subject_means
+
+aov.out <- aov(mean_weight ~ day, data = subject_means)
+summary(aov.out)
+```
+
+And, as we will also learn in class, ANOVA and Linear Regression are fundamentally the same analysis, so we could also use the `lm` function and treat the analysis as a regression.
+
+```{r}
+subject_means <- weight_data %>%
+  group_by(subject_number,day) %>%
+  summarize(mean_weight = mean(weights), .groups="drop")
+
+subject_means
+
+lm.out <- lm(mean_weight ~ day, data = subject_means)
+summary(lm.out)
+```
+
+### Factorial ANOVA
+
+The one-way ANOVA extends the t-test design in terms of the number of levels of a single factor. It is also possible to run experiments with multiple independent variables, that each have multiple levels.
+
+For example, let's continue with the above design and make some minor changes so it becomes a factorial 7x2 design. A 7x2 design has two independent variables. The first one has 7 levels, the second one has 2 levels.
+
+We modify the example include a time of day factor. For example, we will have people measure their weight two times in the morning, and two times in the evening. Thus, there will be two independent variables. Day (S, M, T, W, Th, F, Sa) and time of day (morning, evening). We will keep the number of subjects at 25.
+
+```{r}
+weight_data <- tibble(subject_number = rep(1:25, each=4*7),
+                          day = rep(rep(c("S","M","T","W","Th","F","Sa"),
+                                      each = 4), 25),
+                          time_of_day = rep(c("Morning","Morning",
+                                              "Evening","Evening"),7*25),
+                          measurement_number = rep(rep(1:2, 2), 7*25),
+                          weights = rnorm(25*4*7, 100, 25))
+
+```
+
+```{r}
+subject_means <- weight_data %>%
+  group_by(subject_number,day, time_of_day) %>%
+  summarize(mean_weight = mean(weights), .groups="drop")
+
+subject_means
+
+aov.out <- aov(mean_weight ~ day*time_of_day, data = subject_means)
+summary(aov.out)
+```
+
+Just like we can treat a one-way ANOVA as a regression, we can also treat a Factorial ANOVA as a multiple regression:
+
+```{r}
+subject_means <- weight_data %>%
+  group_by(subject_number,day, time_of_day) %>%
+  summarize(mean_weight = mean(weights), .groups="drop")
+
+subject_means$day <-as.factor(subject_means$day)
+subject_means$time_of_day <-as.factor(subject_means$time_of_day)
+
+subject_means
+
+lm.out <- lm(mean_weight ~ day*time_of_day, data = subject_means)
+summary(lm.out)
+anova(lm.out)
+
+```
+
+## Lab 1 Generalization Assignment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pwxqxTlDHHo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+NOTE: For Spring 2022, following the video in the [semester long project tab](https://www.crumplab.com/rstatsmethods/articles/Stats2/semester_project.html) for setting up your new R project and github repo. You will be making an .Rmd, adding it to your vignettes folder, and then displaying your work on your pkgdown website.
+
+### Instructions
+
+Your assignment instructions are the following:
+
+1.  Work inside the new R project that you created
+2.  Create a new R Markdown document called "Lab1.Rmd", inside the vignettes folder
+3.  Use Lab1.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+4.  **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.
+5. When you have finished, compile your pkgdown website by running `pkgdown::build_site()` so that your lab work is displayed on your website.
+6. Push everything to github, make sure your github repo is public, and that github pages is enabled. Make sure you can view your website. Submit the URL to your website on blackboard.
+
+### Problem (6 points)
+
+1. Download the `Lab1_data.xlsx` data file. This file contains fake data for a 2x3x2 repeated measures design, for 10 participants. The data is in wide format. Here is the link. 
+
+<https://github.com/CrumpLab/rstatsmethods/raw/master/vignettes/Stats2/Lab1_data.xlsx>
+
+Your task is to convert the data to long format, and store the long-format data in a data.frame or tibble. Print out some of the long-form data in your lab1.Rmd, to show that you did make the appropriate conversion. For extra fun, show two different ways to solve the problem. 
+
+If you need to modify the excel by hand to help you solve the problem that is OK, just make a note of it in your lab work.
+
+
+
+## References

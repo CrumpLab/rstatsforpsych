@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>23 WYOR | Reproducible statistics for psychologists with R</title>
+<meta name="author" content="Matthew J. C. Crump">
+<meta name="description" content="23.1 Reading Chapter 22 from Abdi, Edelman, Dowling, &amp; Valentin91.  23.2 Overview WYOR refers to “Writing Your own statistical Recipes”. A goal of this course has been to explore principles of...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="23 WYOR | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="23.1 Reading Chapter 22 from Abdi, Edelman, Dowling, &amp; Valentin91.  23.2 Overview WYOR refers to “Writing Your own statistical Recipes”. A goal of this course has been to explore principles of...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="23 WYOR | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="23.1 Reading Chapter 22 from Abdi, Edelman, Dowling, &amp; Valentin91.  23.2 Overview WYOR refers to “Writing Your own statistical Recipes”. A goal of this course has been to explore principles of...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
+<meta property="og:title" content="23 WYOR | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/wyor.html">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MattCrump_">
+<meta name="twitter:title" content="23 WYOR | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Lab Tutorials">Reproducible statistics for psychologists with R</a>:
+        <small class="text-muted">Lab Tutorials</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
+<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
+<li><a class="" href="practice-problems.html">Practice problems</a></li>
+<li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
+<li class="book-part">Semester 1 Labs</li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
+<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
+<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
+<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
+<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
+<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
+<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
+<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
+<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="active" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="wyor" class="section level1" number="23">
+<h1>
+<span class="header-section-number">23</span> WYOR<a class="anchor" aria-label="anchor" href="#wyor"><i class="fas fa-link"></i></a>
+</h1>
+<div id="reading-12" class="section level2" number="23.1">
+<h2>
+<span class="header-section-number">23.1</span> Reading<a class="anchor" aria-label="anchor" href="#reading-12"><i class="fas fa-link"></i></a>
+</h2>
+<p>Chapter 22 from <span class="citation">Abdi, Edelman, Dowling, &amp; Valentin<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="references-12.html#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref"&gt;2009&lt;/a&gt;.&lt;/p&gt;'><sup>91</sup></a></span>.</p>
+</div>
+<div id="overview-22" class="section level2" number="23.2">
+<h2>
+<span class="header-section-number">23.2</span> Overview<a class="anchor" aria-label="anchor" href="#overview-22"><i class="fas fa-link"></i></a>
+</h2>
+<p>WYOR refers to “Writing Your own statistical Recipes”. A goal of this course has been to explore principles of statistical analysis to the point where you would be able to use those general principles to craft statistical analyses that are tailored to your designs of interest. In this final lab, the practical section discusses some of the general aspects of R formula for declaring ANOVA and linear regression models. This can help you analyze many designs similar to those discussed in class throughout the last two semesters. The conceptual section is a final example of a simulated statistical analysis, and a few parting thoughts.</p>
+</div>
+<div id="practical-i-r-formula" class="section level2" number="23.3">
+<h2>
+<span class="header-section-number">23.3</span> Practical I: R formula<a class="anchor" aria-label="anchor" href="#practical-i-r-formula"><i class="fas fa-link"></i></a>
+</h2>
+<p>Throughout this course we have used the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> and <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> functions to conduct linear regressions and ANOVAs. For specific designs, we also demonstrated how to use the formula syntax to declare a design of interest. However, I did not present a more general description of the formula syntax, and how it can be used to declare many different kinds of designs. This practical section provides a quick look into the formula syntax. Also, check out this blog piece on writing formulas in R as an alternate resource, <a href="https://conjugateprior.org/2013/01/formulae-in-r-anova/" class="uri">https://conjugateprior.org/2013/01/formulae-in-r-anova/</a>.</p>
+<div id="read-the-formula-help-file" class="section level3" number="23.3.1">
+<h3>
+<span class="header-section-number">23.3.1</span> Read the formula() help file<a class="anchor" aria-label="anchor" href="#read-the-formula-help-file"><i class="fas fa-link"></i></a>
+</h3>
+<p>It turns out that there is a help file for the formula syntax that is actually pretty helpful. So, make sure you read it.</p>
+<div class="sourceCode" id="cb660"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="fu"><a href="https://rdrr.io/r/stats/formula.html">formula</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">?</span><span class="va">formula</span></code></pre></div>
+</div>
+<div id="formula-basics" class="section level3" number="23.3.2">
+<h3>
+<span class="header-section-number">23.3.2</span> Formula basics<a class="anchor" aria-label="anchor" href="#formula-basics"><i class="fas fa-link"></i></a>
+</h3>
+<p>We normally see a formula inside aov or lm, as follows. The column name of the dependent variable of interest (DV) is located on the left, followed by a tilda (~), followed by the independent variable(s) of interest, and a pointer to your data frame.</p>
+<div class="sourceCode" id="cb661"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">your_data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, data <span class="op">=</span> <span class="va">your_data</span><span class="op">)</span></code></pre></div>
+<p>Formulas can also be declared outside of these functions. For example, we can assign a formula to a named object.</p>
+<div class="sourceCode" id="cb662"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_formula</span> <span class="op">&lt;-</span> <span class="va">DV</span><span class="op">~</span><span class="va">IV</span></code></pre></div>
+<p>And, we can see that the class of this object is “formula”.</p>
+<div class="sourceCode" id="cb663"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">my_formula</span><span class="op">)</span>
+<span class="co">#&gt; [1] "formula"</span></code></pre></div>
+<p>Entering the name of the object alone will print out the formula to the console</p>
+<div class="sourceCode" id="cb664"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_formula</span>
+<span class="co">#&gt; DV ~ IV</span></code></pre></div>
+<p>There are also helper functions for formula objects that allow you inspect the individual terms in the formula.</p>
+<div class="sourceCode" id="cb665"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">my_formula</span><span class="op">)</span>
+<span class="co">#&gt; DV ~ IV</span>
+<span class="co">#&gt; attr(,"variables")</span>
+<span class="co">#&gt; list(DV, IV)</span>
+<span class="co">#&gt; attr(,"factors")</span>
+<span class="co">#&gt;    IV</span>
+<span class="co">#&gt; DV  0</span>
+<span class="co">#&gt; IV  1</span>
+<span class="co">#&gt; attr(,"term.labels")</span>
+<span class="co">#&gt; [1] "IV"</span>
+<span class="co">#&gt; attr(,"order")</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,"intercept")</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,"response")</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,".Environment")</span>
+<span class="co">#&gt; &lt;environment: R_GlobalEnv&gt;</span></code></pre></div>
+<p>If you have assigned a formula to an object, you can then use the object in place of the formula in <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> or <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>.</p>
+<div class="sourceCode" id="cb666"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>DV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+                    IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, <span class="va">some_data</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; IV           1   0.00  0.0004       0  0.983</span>
+<span class="co">#&gt; Residuals   18  16.07  0.8926</span>
+
+<span class="co"># is the same as</span>
+
+<span class="va">my_formula</span> <span class="op">&lt;-</span> <span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">my_formula</span>, <span class="va">some_data</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; IV           1   0.00  0.0004       0  0.983</span>
+<span class="co">#&gt; Residuals   18  16.07  0.8926</span></code></pre></div>
+</div>
+<div id="formula-operators" class="section level3" number="23.3.3">
+<h3>
+<span class="header-section-number">23.3.3</span> Formula operators<a class="anchor" aria-label="anchor" href="#formula-operators"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are several formula operators to be aware of, including <code>~</code>, <code>+</code>, <code>:</code>, <code>*</code>, <code>^</code>, <code>%in%</code>, <code>/</code>, and <code>-</code>.</p>
+<p>The tilda <code>~</code> operator is used to separately declare the dependent variable from the “model”, or set of independent variables used to account for variation in the dependent variable.</p>
+<div class="sourceCode" id="cb667"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># examples of DV ~ model</span>
+
+<span class="co"># one factor</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span>
+
+<span class="co"># two factors no interaction</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">+</span><span class="va">B</span>
+
+<span class="co"># three factors, all possible interactions</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span></code></pre></div>
+<p>The plus <code>+</code> operator is used to “add” specific terms to the model. For example, if you had one, two, or three independent variables, you could have different models that contain one, two, or three of those variables.</p>
+<div class="sourceCode" id="cb668"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">+</span><span class="va">B</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">+</span><span class="va">B</span><span class="op">+</span><span class="va">C</span></code></pre></div>
+<p>Importantly, the <code>+</code> sign adds individual terms only and nothing more. For example, a factorial design with three independent variables (A, B, C), has several two-way interactions and a three-way interaction. However, using the plus operator, these interaction terms will not be added unless they are explicitly declared.</p>
+<p>For example, we can inspect the terms for the formula <code>DV ~ A+B+C</code>, and see that there are only three terms, one for each independent variable.</p>
+<div class="sourceCode" id="cb669"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">+</span><span class="va">B</span><span class="op">+</span><span class="va">C</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B C</span>
+<span class="co">#&gt; DV 0 0 0</span>
+<span class="co">#&gt; A  1 0 0</span>
+<span class="co">#&gt; B  0 1 0</span>
+<span class="co">#&gt; C  0 0 1</span></code></pre></div>
+<p>Interaction terms can be declared using <code>:</code>. For example, <code>A:B</code> would specify an interaction between and A and B. Using the <code>+</code> operator, we can add in individual interaction terms declared using the <code>:</code> operator.</p>
+<div class="sourceCode" id="cb670"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## add the two-interaction between A and B</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span>
+<span class="co">#&gt; DV ~ A + B + C + A:B</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B C A:B</span>
+<span class="co">#&gt; DV 0 0 0   0</span>
+<span class="co">#&gt; A  1 0 0   1</span>
+<span class="co">#&gt; B  0 1 0   1</span>
+<span class="co">#&gt; C  0 0 1   0</span>
+
+<span class="co">## add all two-way interactions</span>
+
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">B</span><span class="op">:</span><span class="va">C</span>
+<span class="co">#&gt; DV ~ A + B + C + A:B + A:C + B:C</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">B</span><span class="op">:</span><span class="va">C</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B C A:B A:C B:C</span>
+<span class="co">#&gt; DV 0 0 0   0   0   0</span>
+<span class="co">#&gt; A  1 0 0   1   1   0</span>
+<span class="co">#&gt; B  0 1 0   1   0   1</span>
+<span class="co">#&gt; C  0 0 1   0   1   1</span>
+
+<span class="co">## add all interactions</span>
+
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">B</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span><span class="op">:</span><span class="va">C</span>
+<span class="co">#&gt; DV ~ A + B + C + A:B + A:C + B:C + A:B:C</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">B</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span><span class="op">:</span><span class="va">C</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B C A:B A:C B:C A:B:C</span>
+<span class="co">#&gt; DV 0 0 0   0   0   0     0</span>
+<span class="co">#&gt; A  1 0 0   1   1   0     1</span>
+<span class="co">#&gt; B  0 1 0   1   0   1     1</span>
+<span class="co">#&gt; C  0 0 1   0   1   1     1</span></code></pre></div>
+<p>The <code>*</code> operator signifies the crossing of factors. For example, in a 2x2 design, the two levels of A are fully crossed with the two levels of B. This design has two main effects (A and B), and one interaction term (A:B). The <code>*</code> operator is a shortcut to include all of the terms (main effects and interactions) in a crossed design, without having to specify each of them individually.</p>
+<div class="sourceCode" id="cb671"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span>
+<span class="co">#&gt; DV ~ A * B</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B A:B</span>
+<span class="co">#&gt; DV 0 0   0</span>
+<span class="co">#&gt; A  1 0   1</span>
+<span class="co">#&gt; B  0 1   1</span>
+
+<span class="co"># is the same as</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span>
+<span class="co">#&gt; DV ~ A + B + A:B</span>
+
+<span class="co"># 3-factor crossed</span>
+
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span> 
+<span class="co">#&gt; DV ~ A * B * C</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B C A:B A:C B:C A:B:C</span>
+<span class="co">#&gt; DV 0 0 0   0   0   0     0</span>
+<span class="co">#&gt; A  1 0 0   1   1   0     1</span>
+<span class="co">#&gt; B  0 1 0   1   0   1     1</span>
+<span class="co">#&gt; C  0 0 1   0   1   1     1</span>
+
+<span class="co">#is the same as </span>
+
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">B</span><span class="op">:</span><span class="va">C</span> <span class="op">+</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span><span class="op">:</span><span class="va">C</span>
+<span class="co">#&gt; DV ~ A + B + C + A:B + A:C + B:C + A:B:C</span></code></pre></div>
+<p>The <code>-</code> operator can subtract terms from the model. For example, let’s say you had a design with three crossed factors, but you did not want to include the 3-way interaction:</p>
+<div class="sourceCode" id="cb672"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># omit the three-way interaction</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span> <span class="op">-</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span><span class="op">:</span><span class="va">C</span>
+<span class="co">#&gt; DV ~ A * B * C - A:B:C</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span> <span class="op">-</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span><span class="op">:</span><span class="va">C</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A B C A:B A:C B:C</span>
+<span class="co">#&gt; DV 0 0 0   0   0   0</span>
+<span class="co">#&gt; A  1 0 0   1   1   0</span>
+<span class="co">#&gt; B  0 1 0   1   0   1</span>
+<span class="co">#&gt; C  0 0 1   0   1   1</span>
+
+<span class="co"># omit the two-way interactions</span>
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span> <span class="op">-</span> <span class="va">A</span><span class="op">:</span><span class="va">B</span> <span class="op">-</span> <span class="va">A</span><span class="op">:</span><span class="va">C</span> <span class="op">-</span> <span class="va">B</span><span class="op">:</span><span class="va">C</span>
+<span class="co">#&gt; DV ~ A * B * C - A:B - A:C - B:C</span></code></pre></div>
+<p>The <code>%in%</code> operator is used to declare nesting, such as <code>A%in%B</code>, where the term on the left is nested in the term on the right. The <code>/</code> operator can also be used to indicate nesting.</p>
+<div class="sourceCode" id="cb673"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">A</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="va">B</span>
+<span class="co">#&gt; DV ~ A + A %in% B</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">A</span><span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A A:B</span>
+<span class="co">#&gt; DV 0   0</span>
+<span class="co">#&gt; A  1   2</span>
+<span class="co">#&gt; B  0   1</span>
+
+<span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">+</span> <span class="va">A</span><span class="op">/</span><span class="va">B</span>
+<span class="co">#&gt; DV ~ A + A/B</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/terms.html">terms</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">A</span><span class="op">/</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">factors</span>
+<span class="co">#&gt;    A A:B</span>
+<span class="co">#&gt; DV 0   0</span>
+<span class="co">#&gt; A  1   2</span>
+<span class="co">#&gt; B  0   1</span></code></pre></div>
+</div>
+<div id="error" class="section level3" number="23.3.4">
+<h3>
+<span class="header-section-number">23.3.4</span> Error()<a class="anchor" aria-label="anchor" href="#error"><i class="fas fa-link"></i></a>
+</h3>
+<p>The above formulas would apply to between-subjects variables, or “fixed” effects. It is also possible to include random effects, however it is assumed that the designs are balanced. The <code><a href="https://rdrr.io/r/stats/aov.html">Error()</a></code> term is used to “specify error strata” (according the help file from aov). We have used <code><a href="https://rdrr.io/r/stats/aov.html">Error()</a></code> in class for designs with repeated measures. Here are some examples:</p>
+<div id="one-random-factor" class="section level4" number="23.3.4.1">
+<h4>
+<span class="header-section-number">23.3.4.1</span> One Random factor<a class="anchor" aria-label="anchor" href="#one-random-factor"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb674"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span>
+<span class="co">#&gt; DV ~ Error(A)</span></code></pre></div>
+</div>
+<div id="one-factor-with-repeated-measures" class="section level4" number="23.3.4.2">
+<h4>
+<span class="header-section-number">23.3.4.2</span> One Factor, with repeated Measures<a class="anchor" aria-label="anchor" href="#one-factor-with-repeated-measures"><i class="fas fa-link"></i></a>
+</h4>
+<p>Note, <code>subject</code> refers to the column name coding the subject variable in your data frame.</p>
+<div class="sourceCode" id="cb675"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">subject</span><span class="op">)</span>
+<span class="co">#&gt; DV ~ A + Error(subject)</span></code></pre></div>
+</div>
+<div id="two-factor-both-repeated-measures" class="section level4" number="23.3.4.3">
+<h4>
+<span class="header-section-number">23.3.4.3</span> Two factor, both repeated measures<a class="anchor" aria-label="anchor" href="#two-factor-both-repeated-measures"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb676"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">subject</span><span class="op">/</span><span class="op">(</span><span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; DV ~ A * B + Error(subject/(A * B))</span></code></pre></div>
+</div>
+<div id="two-factor-a-between-fixed-b-repeated-measures" class="section level4" number="23.3.4.4">
+<h4>
+<span class="header-section-number">23.3.4.4</span> Two factor, A between fixed, B repeated measures<a class="anchor" aria-label="anchor" href="#two-factor-a-between-fixed-b-repeated-measures"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb677"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">Error</a></span><span class="op">(</span><span class="va">subject</span><span class="op">/</span><span class="va">B</span><span class="op">)</span>
+<span class="co">#&gt; DV ~ A * B + Error(subject/B)</span></code></pre></div>
+</div>
+</div>
+<div id="conclusionwhen-in-doubt-reproduce-a-textbook-example" class="section level3" number="23.3.5">
+<h3>
+<span class="header-section-number">23.3.5</span> Conclusion…when in doubt, reproduce a textbook example<a class="anchor" aria-label="anchor" href="#conclusionwhen-in-doubt-reproduce-a-textbook-example"><i class="fas fa-link"></i></a>
+</h3>
+<p>Specifying formula in base R for a design of interest can be challenging, especially as the designs become more complicated. If you have unbalanced designs with multiple IVs, that are combinations of fixed and random and nested and repeated measures, then you will have more work to do. For example, you may have to learn about different R packages for mixed models such as <code>lme4</code> or <code>nlme</code>, along with the slightly different formula syntax that they use. To the extent possible, when using unfamiliar statistics software or packages, it can be very helpful to find a textbook example that you can trust (e.g., a fully worked out example analysis for a design of interest), and then attempt to reproduce that example using software as a way to confirm expected behavior.</p>
+</div>
+</div>
+<div id="conceptual-i-simulating-statistics" class="section level2" number="23.4">
+<h2>
+<span class="header-section-number">23.4</span> Conceptual I: Simulating statistics<a class="anchor" aria-label="anchor" href="#conceptual-i-simulating-statistics"><i class="fas fa-link"></i></a>
+</h2>
+<p>Throughout the course we conducted several statistical simulations, including simulations for power analysis. The simulations had several purposes. First, they give you some experience with general coding in R (e.g., to run loops and stored data from the simulations). Second, they concretely illustrate concepts like random sampling and sampling distributions and show how simulated results should converge on analytic procedures over the long run. Last, they are very flexible and can be used to anticipate possible outcomes of experimental designs, as well as develop inferential models to interpret possible outcomes.</p>
+<div id="basic-recipe-for-simulating-designs-in-r" class="section level3" number="23.4.1">
+<h3>
+<span class="header-section-number">23.4.1</span> Basic recipe for simulating designs in R<a class="anchor" aria-label="anchor" href="#basic-recipe-for-simulating-designs-in-r"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Declare a data frame that represents the structure of your design, down to the smallest detail you are interested in. For example, your data frame could include columns for the dependent variable and independent variables in the design. Each row could be an individual subject mean.</li>
+<li>Make explicit assumptions about the distributions underlying your measurements. Populate the DV with values sampled from those distributions.</li>
+<li>A null model assumes that the distribution of your DV does not change across the conditions/levels of the IV. Alternate models assume that the distributions between conditions/levels are different somehow. You get to choose what kind of simulation you are running, so you choose to specify the form of any differences in the distributions.</li>
+<li>After you have populated the data frame with possible data, then you can analyse the simulated data to answer a question of interest. This could involve applying a standard inferential test, to generate a test-statistic (e..g, t, F, r, etc), or some other statistic of interest (e.g., a mean difference).</li>
+<li>Repeat the process of randomly generating simulated data, and analyzing it to arrive at test-statistics of interest. Repeat roughly 10,000 times, save the test-statistics every time to produce a simulated sampling distribution for the each test-statistic.</li>
+<li>Use the simulated sampling distribution for inference or power analysis for design planning.</li>
+</ol>
+</div>
+<div id="a-conundrum-concrete-vs.-abstract-test-statistics" class="section level3" number="23.4.2">
+<h3>
+<span class="header-section-number">23.4.2</span> A conundrum: Concrete vs. abstract test-statistics<a class="anchor" aria-label="anchor" href="#a-conundrum-concrete-vs.-abstract-test-statistics"><i class="fas fa-link"></i></a>
+</h3>
+<p>Many test-statistics, like z, t, F, and r, are somewhat abstract and opaque. For example, is an F-value of 3, large or small? Does it mean that you should care about a difference between two means? It depends on factors like the degrees of freedom etc. Alternatively, sometimes test-statistics could be more concrete. For example, if I told you one population had a mean height of 5 ft, and another had a mean height of 6ft, then we could have a mean difference of 1ft. Because we are familiar with feet to measure height, a 1 ft difference is fairly concrete and, relative to an F value, fairly immediate to interpret.</p>
+<p>Using simulation techniques it is possible to evaluate “concrete” statistics. For example, consider a simple 1 factor design (between-subjects). The purpose of this design is simply to determine if there is a difference between the means of group A and group B.</p>
+<p>The simulation below conducts such an experiment 10,000. It is a simulation of the null hypothesis, so measures are randomly drawn from a normal distribution with mean = 0 and sd = 1. I create several simulated sampling distributions of various test-statistics to illustrate how the simulation procedure is very flexible. Then, we look at whether the null-hypotheses agree.</p>
+<div class="sourceCode" id="cb678"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="co"># declare simulation paramters</span>
+<span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">effect_size</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">null_distribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">iterations</span> <span class="op">&lt;-</span> <span class="fl">10000</span>
+
+<span class="co"># run simulation</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">iterations</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="co"># create a random sample of data</span>
+  <span class="va">null_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="va">N</span><span class="op">*</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+                      IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, each <span class="op">=</span> <span class="va">N</span><span class="op">)</span><span class="op">)</span>,
+                      DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">N</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">N</span>,<span class="va">effect_size</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+                      <span class="op">)</span>
+  
+  <span class="co"># run statistical analyses</span>
+  <span class="va">aov_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, data <span class="op">=</span> <span class="va">null_data</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="va">SS_IV</span> <span class="op">&lt;-</span> <span class="va">aov_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Sum Sq`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">SS_residuals</span> <span class="op">&lt;-</span> <span class="va">aov_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Sum Sq`</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
+  <span class="va">SS_total</span> <span class="op">&lt;-</span> <span class="va">SS_IV</span><span class="op">+</span><span class="va">SS_residuals</span>
+  <span class="va">MS_IV</span> <span class="op">&lt;-</span> <span class="va">aov_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Mean Sq`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+  <span class="va">MS_residuals</span> <span class="op">&lt;-</span> <span class="va">aov_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Mean Sq`</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
+  <span class="va">F_val</span> <span class="op">&lt;-</span> <span class="va">aov_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> 
+  
+  <span class="va">means</span> <span class="op">&lt;-</span> <span class="va">null_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">IV</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>meanDV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">DV</span><span class="op">)</span>,
+              sdDV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">DV</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="va">mean_difference</span> <span class="op">&lt;-</span> <span class="va">means</span><span class="op">[</span><span class="va">means</span><span class="op">$</span><span class="va">IV</span> <span class="op">==</span> <span class="st">"B"</span>,<span class="op">]</span><span class="op">$</span><span class="va">meanDV</span> <span class="op">-</span> <span class="va">means</span><span class="op">[</span><span class="va">means</span><span class="op">$</span><span class="va">IV</span> <span class="op">==</span> <span class="st">"A"</span>,<span class="op">]</span><span class="op">$</span><span class="va">meanDV</span> 
+  
+  <span class="va">abs_mean_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">mean_difference</span><span class="op">)</span>
+  
+  <span class="va">cohens_D</span> <span class="op">&lt;-</span> <span class="va">mean_difference</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">means</span><span class="op">$</span><span class="va">sdDV</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span>, <span class="va">null_data</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span>
+  
+  <span class="va">abs_t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>
+  
+  <span class="co"># save all test-statistics</span>
+  <span class="va">sim_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">SS_IV</span>,
+                    <span class="va">SS_residuals</span>,
+                    <span class="va">SS_total</span>,
+                    <span class="va">MS_IV</span>,
+                    <span class="va">MS_residuals</span>,
+                    <span class="va">F_val</span>,
+                    <span class="va">mean_difference</span>,
+                    <span class="va">abs_mean_diff</span>,
+                    <span class="va">cohens_D</span>,
+                    <span class="va">t</span>,
+                    <span class="va">abs_t</span>
+                    <span class="op">)</span>
+  
+  <span class="co"># append saved test-statsistics to the null-distribution tibble</span>
+  <span class="va">null_distribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">null_distribution</span>,
+                             <span class="va">sim_vals</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>We have now created separate null-distributions for each of the statistics that we saved. Each null-distribution has 10,000 values.</p>
+<p>Consider the simulated F-distribution that we created. Let’s get the critical value from the simulated distribution, and compare it to the known critical value of F.</p>
+<div class="sourceCode" id="cb679"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># write a general function to get critical values from</span>
+<span class="co"># a simulated distribution (vector of values)</span>
+
+<span class="va">get_critical_value</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">alpha</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">x_sorted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">alpha</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x_sorted</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># simulated F critical value</span>
+<span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">F_val</span>,
+                   alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span>
+<span class="co">#&gt; [1] 4.581539</span>
+
+<span class="co"># analytical F critical value</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">1</span>,<span class="fl">18</span><span class="op">)</span>
+<span class="co">#&gt; [1] 4.413873</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">null_distribution</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">F_val</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">F_val</span>,
+                   alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab11_WYOR_files/figure-html/unnamed-chunk-21-1.png" width="100%"></div>
+<p>Now let’s look instead at the sampling distribution of the mean difference between group A and B.</p>
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">null_distribution</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mean_difference</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab11_WYOR_files/figure-html/unnamed-chunk-22-1.png" width="100%"></div>
+<p>Let’s convert this distribution to the absolute value of the mean difference, and then find the critical value (assuming alpha =.05) associated with this distribution.</p>
+<div class="sourceCode" id="cb681"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">abs_mean_diff</span>,
+                   alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.8843424</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">null_distribution</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">abs_mean_diff</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">abs_mean_diff</span>,
+                   alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab11_WYOR_files/figure-html/unnamed-chunk-23-1.png" width="100%"></div>
+</div>
+<div id="which-null-is-the-true-null" class="section level3" number="23.4.3">
+<h3>
+<span class="header-section-number">23.4.3</span> Which null is the true null?<a class="anchor" aria-label="anchor" href="#which-null-is-the-true-null"><i class="fas fa-link"></i></a>
+</h3>
+<p>We have created several true null distributions. Above we looked at the values of F that can be produced by chance for this design. As well, we looked at the absolute mean differences that can be produced by chance for this design. We found the critical values for both test-statistics. We could use either of them for the purposes of “null-hypothesis testing”.</p>
+<p>However, the conundrum that I alluded to earlier is that the different Null distributions don’t necessarilly agree. In this particular case, they agree fairly closely, but not perfectly.</p>
+<p>For example, we could use the correlation coefficienty to quickly look check whether the F values are related to the absolute mean differences across the simulations.</p>
+<div class="sourceCode" id="cb682"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">null_distribution</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="13%">
+<col width="5%">
+<col width="10%">
+<col width="7%">
+<col width="5%">
+<col width="10%">
+<col width="5%">
+<col width="13%">
+<col width="11%">
+<col width="7%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">SS_IV</th>
+<th align="right">SS_residuals</th>
+<th align="right">SS_total</th>
+<th align="right">MS_IV</th>
+<th align="right">MS_residuals</th>
+<th align="right">F_val</th>
+<th align="right">mean_difference</th>
+<th align="right">abs_mean_diff</th>
+<th align="right">cohens_D</th>
+<th align="right">t</th>
+<th align="right">abs_t</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">SS_IV</td>
+<td align="right">1.00</td>
+<td align="right">0.00</td>
+<td align="right">0.23</td>
+<td align="right">1.00</td>
+<td align="right">0.00</td>
+<td align="right">0.91</td>
+<td align="right">-0.01</td>
+<td align="right">0.94</td>
+<td align="right">-0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.90</td>
+</tr>
+<tr class="even">
+<td align="left">SS_residuals</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">0.97</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">-0.21</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">-0.21</td>
+</tr>
+<tr class="odd">
+<td align="left">SS_total</td>
+<td align="right">0.23</td>
+<td align="right">0.97</td>
+<td align="right">1.00</td>
+<td align="right">0.23</td>
+<td align="right">0.97</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.22</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.01</td>
+</tr>
+<tr class="even">
+<td align="left">MS_IV</td>
+<td align="right">1.00</td>
+<td align="right">0.00</td>
+<td align="right">0.23</td>
+<td align="right">1.00</td>
+<td align="right">0.00</td>
+<td align="right">0.91</td>
+<td align="right">-0.01</td>
+<td align="right">0.94</td>
+<td align="right">-0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.90</td>
+</tr>
+<tr class="odd">
+<td align="left">MS_residuals</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">0.97</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">-0.21</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">-0.21</td>
+</tr>
+<tr class="even">
+<td align="left">F_val</td>
+<td align="right">0.91</td>
+<td align="right">-0.21</td>
+<td align="right">0.00</td>
+<td align="right">0.91</td>
+<td align="right">-0.21</td>
+<td align="right">1.00</td>
+<td align="right">-0.01</td>
+<td align="right">0.85</td>
+<td align="right">-0.01</td>
+<td align="right">0.02</td>
+<td align="right">0.92</td>
+</tr>
+<tr class="odd">
+<td align="left">mean_difference</td>
+<td align="right">-0.01</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">-0.01</td>
+<td align="right">0.00</td>
+<td align="right">-0.01</td>
+<td align="right">1.00</td>
+<td align="right">-0.01</td>
+<td align="right">1.00</td>
+<td align="right">-0.98</td>
+<td align="right">-0.02</td>
+</tr>
+<tr class="even">
+<td align="left">abs_mean_diff</td>
+<td align="right">0.94</td>
+<td align="right">0.00</td>
+<td align="right">0.22</td>
+<td align="right">0.94</td>
+<td align="right">0.00</td>
+<td align="right">0.85</td>
+<td align="right">-0.01</td>
+<td align="right">1.00</td>
+<td align="right">-0.01</td>
+<td align="right">0.02</td>
+<td align="right">0.96</td>
+</tr>
+<tr class="odd">
+<td align="left">cohens_D</td>
+<td align="right">-0.01</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">-0.01</td>
+<td align="right">0.00</td>
+<td align="right">-0.01</td>
+<td align="right">1.00</td>
+<td align="right">-0.01</td>
+<td align="right">1.00</td>
+<td align="right">-1.00</td>
+<td align="right">-0.02</td>
+</tr>
+<tr class="even">
+<td align="left">t</td>
+<td align="right">0.01</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.01</td>
+<td align="right">0.00</td>
+<td align="right">0.02</td>
+<td align="right">-0.98</td>
+<td align="right">0.02</td>
+<td align="right">-1.00</td>
+<td align="right">1.00</td>
+<td align="right">0.02</td>
+</tr>
+<tr class="odd">
+<td align="left">abs_t</td>
+<td align="right">0.90</td>
+<td align="right">-0.21</td>
+<td align="right">0.01</td>
+<td align="right">0.90</td>
+<td align="right">-0.21</td>
+<td align="right">0.92</td>
+<td align="right">-0.02</td>
+<td align="right">0.96</td>
+<td align="right">-0.02</td>
+<td align="right">0.02</td>
+<td align="right">1.00</td>
+</tr>
+</tbody>
+</table></div>
+<p>The table above shows the entire correlation matrix. We can see that there is a large positive correlation between F and the absolute mean difference. In other words, when large differences in the means are produced by chance large F values are also produced.</p>
+<p>However, because the two vectors are not perfectly correlated, they each have different opinions on what constitutes a type I error. This issue is more easily inspected below, which shows a scatterplot of the simulated F values and simulated absolute mean differences, along with critical values for each.</p>
+<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">null_distribution</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>significant <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+    <span class="va">abs_mean_diff</span> <span class="op">&gt;</span> <span class="fl">.88</span> <span class="op">&amp;</span> <span class="va">F_val</span> <span class="op">&gt;</span> <span class="fl">4.4</span> <span class="op">~</span> <span class="st">"both"</span>,
+    <span class="va">abs_mean_diff</span> <span class="op">&gt;</span> <span class="fl">.88</span> <span class="op">&amp;</span> <span class="va">F_val</span> <span class="op">&lt;</span> <span class="fl">4.4</span> <span class="op">~</span> <span class="st">"Mean Difference"</span>,
+    <span class="va">abs_mean_diff</span> <span class="op">&lt;</span> <span class="fl">.88</span> <span class="op">&amp;</span> <span class="va">F_val</span> <span class="op">&gt;</span> <span class="fl">4.4</span> <span class="op">~</span> <span class="st">"F"</span>
+  <span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">test</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">abs_mean_diff</span>,
+                 y<span class="op">=</span><span class="va">F_val</span>,
+                 color<span class="op">=</span><span class="va">significant</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept<span class="op">=</span><span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">abs_mean_diff</span>,
+                   alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">F_val</span>,
+                   alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="s2_Lab11_WYOR_files/figure-html/unnamed-chunk-25-1.png" width="100%"></div>
+<p>The red points are simulations that exceed both critical values (these would be significant on both measures, and represent similar conclusions about what type I errors look like), note this group is less than 5% of the simulations</p>
+<div class="sourceCode" id="cb684"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">significant</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>counts<span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+            proportion <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 4 × 3</span>
+<span class="co">#&gt;   significant     counts proportion</span>
+<span class="co">#&gt;   &lt;chr&gt;            &lt;int&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 both               374     0.0374</span>
+<span class="co">#&gt; 2 F                  168     0.0168</span>
+<span class="co">#&gt; 3 Mean Difference    135     0.0135</span>
+<span class="co">#&gt; 4 &lt;NA&gt;              9323     0.932</span></code></pre></div>
+</div>
+</div>
+<div id="references-10" class="section level2" number="23.5">
+<h2>
+<span class="header-section-number">23.5</span> References<a class="anchor" aria-label="anchor" href="#references-10"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></div>
+<div class="next"><a href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#wyor"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="nav-link" href="#reading-12"><span class="header-section-number">23.1</span> Reading</a></li>
+<li><a class="nav-link" href="#overview-22"><span class="header-section-number">23.2</span> Overview</a></li>
+<li>
+<a class="nav-link" href="#practical-i-r-formula"><span class="header-section-number">23.3</span> Practical I: R formula</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#read-the-formula-help-file"><span class="header-section-number">23.3.1</span> Read the formula() help file</a></li>
+<li><a class="nav-link" href="#formula-basics"><span class="header-section-number">23.3.2</span> Formula basics</a></li>
+<li><a class="nav-link" href="#formula-operators"><span class="header-section-number">23.3.3</span> Formula operators</a></li>
+<li><a class="nav-link" href="#error"><span class="header-section-number">23.3.4</span> Error()</a></li>
+<li><a class="nav-link" href="#conclusionwhen-in-doubt-reproduce-a-textbook-example"><span class="header-section-number">23.3.5</span> Conclusion…when in doubt, reproduce a textbook example</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#conceptual-i-simulating-statistics"><span class="header-section-number">23.4</span> Conceptual I: Simulating statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#basic-recipe-for-simulating-designs-in-r"><span class="header-section-number">23.4.1</span> Basic recipe for simulating designs in R</a></li>
+<li><a class="nav-link" href="#a-conundrum-concrete-vs.-abstract-test-statistics"><span class="header-section-number">23.4.2</span> A conundrum: Concrete vs. abstract test-statistics</a></li>
+<li><a class="nav-link" href="#which-null-is-the-true-null"><span class="header-section-number">23.4.3</span> Which null is the true null?</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#references-10"><span class="header-section-number">23.5</span> References</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/s2_Lab11_WYOR.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/s2_Lab11_WYOR.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Reproducible statistics for psychologists with R</strong>: Lab Tutorials" was written by Matthew J. C. Crump. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

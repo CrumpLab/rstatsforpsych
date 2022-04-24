@@ -2,7 +2,7 @@
 
 # Chi Square
 
-"10/8/2020 | Last Compiled: 2020-12-09"
+"10/8/2020 | Last Compiled: 2022-04-24"
 
 ## Reading
 
@@ -406,7 +406,7 @@ What is the expected mean of a unit normal distribution?
 
 ```r
 mean(rnorm(10000,0,1))
-#> [1] -0.003677052
+#> [1] -0.002371537
 ```
 
 If we square all of the values that we sample from a unit normal distribution (equivalent to $\chi^2$ with $k=1$), then what would the mean of those squared values be?
@@ -414,7 +414,7 @@ If we square all of the values that we sample from a unit normal distribution (e
 
 ```r
 mean(rnorm(10000,0,1)^2)
-#> [1] 1.007915
+#> [1] 1.000881
 ```
 
 It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a $\chi^2$ is the same as the $k$ parameter, also called degrees of freedom.
@@ -424,7 +424,7 @@ For example, the mean of 10,000 numbers drawn from a $\chi^2$ with k = 10, is:
 
 ```r
 mean(rchisq(10000,10))
-#> [1] 9.991172
+#> [1] 10.00974
 ```
 
 Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1...summing up 10 ones, gives you 10. The same expectations can be applied to $\chi^2$ distributions of any $k$.
@@ -566,8 +566,8 @@ Here is an example contingency table with 5 subjects. In this case, each column 
 ```r
 replicate(5,sample(c(1,0),2))
 #>      [,1] [,2] [,3] [,4] [,5]
-#> [1,]    1    1    0    1    0
-#> [2,]    0    0    1    0    1
+#> [1,]    1    1    1    0    1
+#> [2,]    0    0    0    1    0
 ```
 
 This is a contingency table, so it is possible to compute a chi-square test on this table.

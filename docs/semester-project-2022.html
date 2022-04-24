@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>25 Semester Project 2022 | Reproducible statistics for psychologists with R</title>
+<meta name="author" content="Matthew J. C. Crump">
+<meta name="description" content="25.1 Overview: We will developing and discussing the semester long project throughout the semester. And, I will add more detail and instructions to the project on this page. A major component will...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="25 Semester Project 2022 | Reproducible statistics for psychologists with R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="25.1 Overview: We will developing and discussing the semester long project throughout the semester. And, I will add more detail and instructions to the project on this page. A major component will...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="25 Semester Project 2022 | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="25.1 Overview: We will developing and discussing the semester long project throughout the semester. And, I will add more detail and instructions to the project on this page. A major component will...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Work%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="libs/_Major%20Mono%20Display-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-TJYWEN5QYP"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TJYWEN5QYP');
+    </script><link rel="icon" href="https://crumplab.github.io/rstatsforpsych/favicon.ico">
+<meta property="og:card" content="website">
+<meta property="og:title" content="25 Semester Project 2022 | Reproducible statistics for psychologists with R">
+<meta property="og:image" content="https://crumplab.github.io/rstatsforpsych/imgs/cover.png">
+<meta property="og:url" content="https://crumplab.github.io/rstatsforpsych/semester-project-2022.html">
+<meta property="og:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MattCrump_">
+<meta name="twitter:title" content="25 Semester Project 2022 | Reproducible statistics for psychologists with R">
+<meta name="twitter:description" content="A lab curriculum for psych stats that introduces R and scripting for reproducible analyses.">
+<meta name="twitter:image" content="https://crumplab.github.io/rstatsforpsych/imgs/rstats_large.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="custom.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Lab Tutorials">Reproducible statistics for psychologists with R</a>:
+        <small class="text-muted">Lab Tutorials</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html">Preface</a></li>
+<li class="book-part">Getting started</li>
+<li><a class="" href="r-rstudio-github.html">R, RStudio, &amp; Github</a></li>
+<li><a class="" href="basic-r-programming.html">Basic R programming</a></li>
+<li><a class="" href="practice-problems.html">Practice problems</a></li>
+<li><a class="" href="coding-reference.html">Coding Reference</a></li>
+<li><a class="" href="textbooks-and-other-resources.html">Textbooks and Other Resources</a></li>
+<li class="book-part">Semester 1 Labs</li>
+<li><a class="" href="r-basics.html"><span class="header-section-number">1</span> R Basics</a></li>
+<li><a class="" href="descriptives.html"><span class="header-section-number">2</span> Descriptives</a></li>
+<li><a class="" href="distributions-i.html"><span class="header-section-number">3</span> Distributions I</a></li>
+<li><a class="" href="distributions-ii.html"><span class="header-section-number">4</span> Distributions II</a></li>
+<li><a class="" href="sampling-distributions.html"><span class="header-section-number">5</span> Sampling Distributions</a></li>
+<li><a class="" href="statistical-inference.html"><span class="header-section-number">6</span> Statistical Inference</a></li>
+<li><a class="" href="binomial-test.html"><span class="header-section-number">7</span> Binomial Test</a></li>
+<li><a class="" href="z-tests.html"><span class="header-section-number">8</span> Z tests</a></li>
+<li><a class="" href="chi-square.html"><span class="header-section-number">9</span> Chi Square</a></li>
+<li><a class="" href="t-tests.html"><span class="header-section-number">10</span> T-tests</a></li>
+<li><a class="" href="simulation-and-power-analysis.html">Simulation and Power Analysis</a></li>
+<li><a class="" href="correlation.html"><span class="header-section-number">11</span> Correlation</a></li>
+<li><a class="" href="regression.html"><span class="header-section-number">12</span> Regression</a></li>
+<li><a class="" href="semester-1-project.html">Semester 1 project</a></li>
+<li class="book-part">Semester 2 Labs</li>
+<li><a class="" href="shaping-data.html"><span class="header-section-number">13</span> Shaping Data</a></li>
+<li><a class="" href="multiple-regression-i.html"><span class="header-section-number">14</span> Multiple Regression I</a></li>
+<li><a class="" href="multiple-regression-ii.html"><span class="header-section-number">15</span> Multiple Regression II”</a></li>
+<li><a class="" href="anova.html"><span class="header-section-number">16</span> ANOVA</a></li>
+<li><a class="" href="anova-and-randomization.html"><span class="header-section-number">17</span> ANOVA and Randomization</a></li>
+<li><a class="" href="linear-contrasts.html"><span class="header-section-number">18</span> Linear Contrasts</a></li>
+<li><a class="" href="factorial-anova-1.html"><span class="header-section-number">19</span> Factorial ANOVA</a></li>
+<li><a class="" href="factorial-ii.html"><span class="header-section-number">20</span> Factorial II</a></li>
+<li><a class="" href="repeated-measures-anova.html"><span class="header-section-number">21</span> Repeated Measures ANOVA</a></li>
+<li><a class="" href="nested-designs.html"><span class="header-section-number">22</span> Nested Designs</a></li>
+<li><a class="" href="wyor.html"><span class="header-section-number">23</span> WYOR</a></li>
+<li><a class="" href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></li>
+<li><a class="active" href="semester-project-2022.html"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="" href="references-12.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/CrumpLab/rstatsforpsych">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="semester-project-2022" class="section level1" number="25">
+<h1>
+<span class="header-section-number">25</span> Semester Project 2022<a class="anchor" aria-label="anchor" href="#semester-project-2022"><i class="fas fa-link"></i></a>
+</h1>
+<div id="overview-23" class="section level2" number="25.1">
+<h2>
+<span class="header-section-number">25.1</span> Overview:<a class="anchor" aria-label="anchor" href="#overview-23"><i class="fas fa-link"></i></a>
+</h2>
+<p>We will developing and discussing the semester long project throughout the semester. And, I will add more detail and instructions to the project on this page.</p>
+<p>A major component will be using the R package <a href="https://pkgdown.r-lib.org">pkgdown</a> to create a website (and more) to act as a portfolio for communicating and displaying the work you do this semester.</p>
+<p>Last semester you completed your lab work as .Rmd documents, uploaded them to a Github Repository, and submitted the link to your repository to Blackboard. This semester will be similar, except we will be using an R package project structure, and saving the lab work in a specific folder called <strong>vignettes</strong>, and compiling your work to present it in the form of a website.</p>
+<p>For now, watch this getting starting video to review the process. I will go over the details many times in class as well.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jxWe_XuQSeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="example-semester-project" class="section level2" number="25.2">
+<h2>
+<span class="header-section-number">25.2</span> Example Semester Project<a class="anchor" aria-label="anchor" href="#example-semester-project"><i class="fas fa-link"></i></a>
+</h2>
+<p>I will be building my own semester project throughout the semester. This code-base can act as working example code for you. My semester project will be located here:</p>
+<p><a href="https://github.com/CrumpLab/SemesterProject7709" class="uri">https://github.com/CrumpLab/SemesterProject7709</a></p>
+</div>
+<div id="r-basics-tab" class="section level2" number="25.3">
+<h2>
+<span class="header-section-number">25.3</span> R Basics tab<a class="anchor" aria-label="anchor" href="#r-basics-tab"><i class="fas fa-link"></i></a>
+</h2>
+<p>The purpose of this component of the semester long project is for you to demonstrate basic command of fundamental R programming skills. Consider this a litmus test for yourself. If you can confidently provide working code for each item, then you will also be creating a resource for your future self in case you forget how these elements of R programming work. If you find yourself struggling to produce working code for each item, then you have identified some basic skills to practice this semester.</p>
+<p>This is a semi open ended component. I will provide the following list of basic R skills. Your task is to write working code demonstrating usage of these skills. It is up to you how to demonstrate you understand the skills. To provide an example, refer to the reference code tab on the course website. Here, I have written working code to demonstrate basic operations in R. One way to complete this component, could be to make a similar reference page showing working code for each of the following items.</p>
+<p>Demonstrate your understanding of and ability to use:</p>
+<ol style="list-style-type: decimal">
+<li><p>Different object types, including vectors and data.frames. Also, demonstrate your knowledge of at least two or more object types that are not vectors or data.frames.</p></li>
+<li><p>Loops. There are multiple ways to iterate in R. Demonstrate at least two ways, including a FOR loop. Show that you know how to break a loop. Highlight one thing about loops in R that was not obvious to you, or you think might not be obvious to someone else.</p></li>
+<li><p>Logic. Show that you understand logical operations in R. Show that you know how to use logical operations for indexing. For example, use logical operations to index a vector, and to index a data.frame.</p></li>
+<li><p>Loops and logic. Demonstrate that you can combine loops and logic to solve some problem. For example, use loops and logic to solve the fizz buzz problem.</p></li>
+<li><p>Pick at least one advanced problem from this list of problems, and show that you can solve it in R.</p></li>
+</ol>
+<p><a href="https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html" class="uri">https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html</a></p>
+<p>For maximum fun, pick the snakes and ladders problem. I know you can do it.</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Write a function, include it in your R package, show that it works. FYI, I will help with this one. You will be writing a new function, putting it in your R folder (in our R package folder structure). You will make documentation for the function (I will show you how). You will build your R package, which will make the R function available to your instance of R. That means, that you can load your own package as a library (in this .rmd that you are writing your answers in), and you can show that you can use your R function right here.</p></li>
+<li><p>Do one thing in R that you want to learn how to do (or refresh your memory, or clarify for yourself, or whatever), and that you think your future self would thank yourself for making working code that you can consult later on. Do it, then wait a while (after this course is over), then thank your previous self for doing such a fine job.</p></li>
+</ol>
+</div>
+<div id="slide-decks" class="section level2" number="25.4">
+<h2>
+<span class="header-section-number">25.4</span> Slide Decks<a class="anchor" aria-label="anchor" href="#slide-decks"><i class="fas fa-link"></i></a>
+</h2>
+<p>It is possible to create slide decks using Rmd documents. Multiple output formats are supported including, pdf, html, and powerpoint. See this page for more information <a href="https://rmarkdown.rstudio.com/lesson-11.html" class="uri">https://rmarkdown.rstudio.com/lesson-11.html</a>.</p>
+<p>To complete this portion of the semester long project you should:</p>
+<ol style="list-style-type: decimal">
+<li>Create a slide deck using one of the above methods</li>
+<li>Save your slide deck to a folder called “slides” in your project folder</li>
+<li>Create a new tab on your website, and link to the html for your slide show. NOTE: you will have to make sure your final product gets saved to the docs folder too.</li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="semester-project-2021.html"><span class="header-section-number">24</span> Semester Project 2021</a></div>
+<div class="next"><a href="references-12.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#semester-project-2022"><span class="header-section-number">25</span> Semester Project 2022</a></li>
+<li><a class="nav-link" href="#overview-23"><span class="header-section-number">25.1</span> Overview:</a></li>
+<li><a class="nav-link" href="#example-semester-project"><span class="header-section-number">25.2</span> Example Semester Project</a></li>
+<li><a class="nav-link" href="#r-basics-tab"><span class="header-section-number">25.3</span> R Basics tab</a></li>
+<li><a class="nav-link" href="#slide-decks"><span class="header-section-number">25.4</span> Slide Decks</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/CrumpLab/rstatsforpsych/blob/master/s2_semester_project.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/CrumpLab/rstatsforpsych/edit/master/s2_semester_project.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Reproducible statistics for psychologists with R</strong>: Lab Tutorials" was written by Matthew J. C. Crump. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

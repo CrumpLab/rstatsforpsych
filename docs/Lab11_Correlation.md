@@ -2,7 +2,7 @@
 
 # Correlation
 
-"10/8/2020 | Last Compiled: 2020-12-09"
+"10/8/2020 | Last Compiled: 2022-04-24"
 
 ## Reading
 
@@ -70,17 +70,17 @@ The x or y inputs can also be matrices. In this case, the correlation between ea
 A <- matrix(rnorm(100,0,1),ncol=10,nrow=10) 
 B <- c(1,3,2,4,3,5,4,5,6,7)
 cor(A,B)
-#>               [,1]
-#>  [1,]  0.003608347
-#>  [2,] -0.078283572
-#>  [3,] -0.388866519
-#>  [4,]  0.572010311
-#>  [5,] -0.306468442
-#>  [6,]  0.491808612
-#>  [7,] -0.236608937
-#>  [8,]  0.224104176
-#>  [9,]  0.415322381
-#> [10,] -0.347772269
+#>                [,1]
+#>  [1,] -0.0007732836
+#>  [2,]  0.2105462061
+#>  [3,]  0.0498890881
+#>  [4,]  0.3139424573
+#>  [5,] -0.5678677690
+#>  [6,] -0.1178132763
+#>  [7,]  0.4675903979
+#>  [8,] -0.0862016646
+#>  [9,] -0.2831217608
+#> [10,] -0.4679394212
 ```
 If both x and y are matrices, then the correlation between each column of X and Y are computed.
 
@@ -89,12 +89,12 @@ If both x and y are matrices, then the correlation between each column of X and 
 A <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 B <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 cor(A,B)
-#>            [,1]        [,2]        [,3]       [,4]       [,5]
-#> [1,]  0.9274565  0.53291336  0.63002119 -0.5879674 -0.7128238
-#> [2,] -0.1839302 -0.43329264 -0.30701022  0.3671484  0.5783932
-#> [3,]  0.4741766 -0.03726613 -0.02985365 -0.2856831 -0.2155076
-#> [4,] -0.6559865 -0.16264847 -0.10544917  0.2496656  0.3408820
-#> [5,]  0.4630268  0.75290824  0.68851761 -0.1870484 -0.5952092
+#>            [,1]       [,2]        [,3]       [,4]        [,5]
+#> [1,]  0.6750004  0.9164679  0.43895000 -0.6522803 -0.07008638
+#> [2,]  0.3156052  0.6585476 -0.01190223 -0.5233832 -0.03164248
+#> [3,] -0.7339743 -0.1991054 -0.83370085  0.2719532  0.33902507
+#> [4,] -0.1355138 -0.8903007  0.11685418  0.9238322  0.55263043
+#> [5,] -0.8205371 -0.4681444 -0.60486866  0.2312924 -0.21254416
 ```
 ### cor and n-1
 
@@ -245,7 +245,7 @@ plot(X,Y)
 
 ```r
 cor(X,Y)
-#> [1] 0.1151515
+#> [1] -0.369697
 ```
 
 ### Crossproducts and correlation
@@ -304,7 +304,7 @@ When the numbers are arranged to produce a perfect negative correlation, the sum
 
 ```r
 sum(sample(1:10)*sample(1:10))
-#> [1] 327
+#> [1] 305
 ```
 
 
@@ -317,9 +317,9 @@ hist(sim_sums)
 
 ```r
 min(sim_sums)
-#> [1] 229
+#> [1] 230
 max(sim_sums)
-#> [1] 380
+#> [1] 376
 ```
 
 ## Conceptual II: Statistical inference for correlation
@@ -337,7 +337,7 @@ For example, if we randomly sample 10 values from a normal distribution into X, 
 X <- rnorm(10,0,1)
 Y <- rnorm(10,0,1)
 cor(X,Y)
-#> [1] 0.3314112
+#> [1] 0.1720688
 ```
 
 What happens if we do the above 10 times?
@@ -345,8 +345,8 @@ What happens if we do the above 10 times?
 
 ```r
 replicate(10,cor(rnorm(10,0,1),rnorm(10,0,1)))
-#>  [1] -0.72904120  0.10020194  0.03293618  0.56556534 -0.56853952  0.14498714
-#>  [7]  0.31301378 -0.22757317 -0.31687271 -0.21953919
+#>  [1] -0.16575280  0.11104389 -0.57530133 -0.19034062 -0.08043619  0.19232185
+#>  [7] -0.11890749  0.67469078 -0.38367144 -0.37141058
 ```
 
 How about 1000 times?
@@ -361,11 +361,11 @@ hist(rand_1000)
 
 ```r
 mean(rand_1000)
-#> [1] 0.003693625
+#> [1] -0.00662184
 max(rand_1000)
-#> [1] 0.8023694
+#> [1] 0.7796334
 min(rand_1000)
-#> [1] -0.8333578
+#> [1] -0.8187007
 ```
 
 In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of $r$ values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It's clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.
@@ -384,11 +384,11 @@ hist(rand_1000)
 
 ```r
 mean(rand_1000)
-#> [1] 0.001979886
+#> [1] 0.000502127
 max(rand_1000)
-#> [1] 0.3201781
+#> [1] 0.3591474
 min(rand_1000)
-#> [1] -0.3079627
+#> [1] -0.3453971
 ```
 
 ### Permutation test 
@@ -466,7 +466,7 @@ Instead of using the `cor.test()` function, we can use the concept of a permutat
 
 ```r
 cor(sample(Length),sample(Meanings))
-#> [1] 0.05954913
+#> [1] -0.1250532
 ```
 
 

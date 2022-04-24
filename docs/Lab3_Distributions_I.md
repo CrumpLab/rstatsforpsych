@@ -2,7 +2,7 @@
 
 # Distributions I
 
-"9/2/2020 | Last Compiled: 2020-12-09"
+"9/2/2020 | Last Compiled: 2022-04-24"
 
 ## Reading
 
@@ -53,7 +53,7 @@ sample(x= 1:2, size = 2)
 
 ```r
 sample(x= 1:2, size = 10, replace = TRUE)
-#>  [1] 1 2 2 2 1 1 1 1 2 1
+#>  [1] 1 2 2 2 1 2 2 1 2 2
 ```
 
 3. Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times
@@ -61,7 +61,7 @@ sample(x= 1:2, size = 10, replace = TRUE)
 
 ```r
 sample(x= 1:2, size = 10, replace = TRUE, prob=c(.9,.1))
-#>  [1] 1 1 1 2 1 1 1 1 1 1
+#>  [1] 1 2 1 2 1 1 1 1 1 1
 ```
 
 4. Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return "heads" or "tails".
@@ -69,7 +69,7 @@ sample(x= 1:2, size = 10, replace = TRUE, prob=c(.9,.1))
 
 ```r
 sample(x = c("heads","tails"), size=10, replace= TRUE) 
-#>  [1] "heads" "heads" "tails" "tails" "tails" "heads" "heads" "heads" "heads"
+#>  [1] "tails" "heads" "tails" "tails" "tails" "heads" "tails" "tails" "heads"
 #> [10] "tails"
 ```
 
@@ -78,7 +78,7 @@ sample(x = c("heads","tails"), size=10, replace= TRUE)
 
 ```r
 sample(x= 1:1000, size = 10, replace = FALSE)
-#>  [1] 195 130 884 296 985 967 655 511 667 442
+#>  [1] 295 305 647 958 650  34 601 750  84 871
 ```
 
 ### Normal distribution
@@ -90,12 +90,12 @@ To sample random deviates from a normal distribution, use the `rnorm(n, mean = 0
 
 ```r
 rnorm(n= 10,mean = 0, sd = 1)
-#>  [1]  0.7507135  1.2885156 -0.1181898 -0.3109193 -2.7237272  0.9839745
-#>  [7] -0.4655029  0.2585130  1.0485176  0.9370757
+#>  [1]  1.53852567  2.14642930  0.80763544  1.79687191 -1.98008976 -0.07184228
+#>  [7]  0.48002104 -2.87379573  0.07574962  0.25929634
 
 rnorm(10,0,1)
-#>  [1]  2.3865434  0.4312720 -0.4052384  1.1844978  1.6142325 -0.5250654
-#>  [7] -1.0776366 -0.1900261 -0.9026587  0.3735507
+#>  [1]  1.52940450 -0.54155168 -0.38429585 -0.38380544  0.32573162 -0.08141934
+#>  [7]  0.20515938  0.29457096 -0.35019916 -0.48560447
 ```
 
 2. Visualize the sample quickly with `hist()`
@@ -169,7 +169,7 @@ hist(runif(10000,100,1000))
 ```r
 my_sample <- runif(100,0,1)
 length(my_sample[my_sample < .05])
-#> [1] 5
+#> [1] 2
 ```
 
 ### Other distributions
@@ -214,13 +214,13 @@ In Chapter 5, Vokey and Allen discuss skewness and kurtosis as additional descri
 library(moments)
 my_sample <- rnorm(1000,0,1)
 mean(my_sample)
-#> [1] -0.0416809
+#> [1] -0.03866426
 sd(my_sample)
-#> [1] 1.001718
+#> [1] 1.002691
 skewness(my_sample)
-#> [1] -0.1607327
+#> [1] -0.08843055
 kurtosis(my_sample)
-#> [1] 2.969609
+#> [1] 3.036247
 hist(my_sample)
 ```
 
@@ -231,13 +231,13 @@ hist(my_sample)
 ```r
 my_sample <- rexp(1000,2)
 mean(my_sample)
-#> [1] 0.4883312
+#> [1] 0.4997936
 sd(my_sample)
-#> [1] 0.4653218
+#> [1] 0.5206859
 skewness(my_sample)
-#> [1] 1.752688
+#> [1] 2.206418
 kurtosis(my_sample)
-#> [1] 7.173032
+#> [1] 9.676076
 hist(my_sample)
 ```
 

@@ -2,7 +2,7 @@
 
 # Practice problems {.unnumbered}
 
-"8/27/2020 | Last Compiled: 2022-04-24"
+"8/27/2020 | Last Compiled: 2022-04-26"
 
 *This chapter is here as a supplement for students who are looking for exercises to work on coding skills outside of class.* The labs in this course are designed to develop practical data analysis skills in R, and conceptual knowledge about statistics by using R as a way to interact with statistical phenomena. I assume that students may be new to coding. Don't worry, if you are a student in this course, we will gradually introduce coding concepts throughout the course. 
 

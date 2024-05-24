@@ -6,7 +6,7 @@ A few years ago, we put our heads together to create a free undergraduate textbo
 
 Anjali has been teaching our stats sequence at the graduate level for several years, and our program decided to expand the statistics offering to include additional lab hours. So, this year, I'm joining the club and writing lab curriculum for every week of the course. As of now, I decided to gather all of the labs written so far and put them into this "fancy" new `bs4_book()` bookdown format.
 
-Anjali has been using two statistics textbooks for the lecture portion of the course. The first semester mostly follows "Thinking with Data" [@vokeyThinkingData7th2018], and the second semester mostly follows "Experimental Design and Analysis for Psychology" [@abdiExperimentalDesignAnalysis2009]. Coincidentally, I was trained by John Vokey & Scott Allen at the University of Lethbridge (and worked through their textbook as an undergrad), and Anjali was trained by Hérve Abdi at UT Austin. So, it seems we have both academically inherited the impulse to create statistics curriculum.
+Anjali has been using two statistics textbooks for the lecture portion of the course. The first semester mostly follows "Thinking with Data" [@vokeyThinkingData7th2018], and the second semester mostly follows "Experimental Design and Analysis for Psychology" [@abdiExperimentalDesignAnalysis2009]. Coincidentally, I was trained by John Vokey & Scott Allen at the University of Lethbridge (and worked through their textbook as an undergrad), and Anjali was trained by Hérve Abdi at UT Dallas. So, it seems we have both academically inherited the impulse to create statistics curriculum.
 
 ## For Students
 
